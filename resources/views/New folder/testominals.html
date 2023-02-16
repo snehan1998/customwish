@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Customwish</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href='https://fonts.googleapis.com/css?family=Mulish' rel='stylesheet'>
+     <link href='https://fonts.googleapis.com/css?family=Quimera' rel='stylesheet'>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="css/aos.css" />
+	
+	<link rel="stylesheet" href="css/swiper.css">
+	
+	
+	
+	   
+      <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
+<style>
+.media-body, .media-left, .media-right {
+    display: table-cell;
+    vertical-align: top;
+}
+.media-body {
+    width: 10000px;
+}
+.text-center {
+  text-align:center;
+  
+}
+h2,h1 {
+  margin:0;
+  padding-top:30px;
+}
+
+.bg-color {
+  background: var(--bg-color);
+}
+
+.half-color-box {
+  background: var(--gradient);
+  height: 300px;
+  margin-bottom: 100px;
+}
+
+.text-whtie {
+  color: #fff !important;
+}
+
+.bold {
+    font-weight: bolder;
+    padding: 100px 0 0 0;
+}
+.por {
+  position: relative;
+}
+
+.review-box .quote {
+  position: absolute;
+  width: 40px;
+  right: 10px;
+  bottom: 10px;
+}
+
+.test-arrowbox {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  top: 70px;
+}
+
+.review-box {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.review-box h5 {
+  margin: 50px 0 0 20px;
+}
+
+.review-box p {
+  margin-bottom: 0;
+  margin-top: 38px;
+  color: #7d8597;
+}
+
+.user-post {
+  font-size: 14px;
+  margin: 0 !important;
+ 
+}
+
+.swiper-testimonial {
+  padding: 100px 20px;
+  padding-top: 30px;
+}
+
+.half-color-box {
+  background: linear-gradient(#dc354542, #f9cbcf);
+  height: 300px;
+  margin-bottom: 312px;
+}
+
+.test-arrowbox .swiper-button-next-test,
+.test-arrowbox .swiper-button-prev-test {
+  margin-right: 20px;
+  /* background: var(--comp-color);2 */
+  border-radius: 50%;
+  --size: 55px;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-right {
+  transform: rotate(180deg);
+  margin-top: -8px;
+}
+
+.arrow {
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.arrow:hover {
+  transform: translateX(-15px);
+}
+</style>
+   
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-1 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+               
+			    
+                    <a class="text-body mr-3" href="">Contact Us</a>
+                    <a class="text-body mr-3" href="">Blog</a>
+                    <a class="text-body mr-3" href="" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
+                   
+          </div>
+          
+			   
+      </div>
+</div>
+		
+        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+          
+                <a href="index.html" class="logo-head">
+				<img src="img/l1.jpg">
+                    <!--<span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>-->
+                </a>
+           
+            <div class="col-lg-4 serch">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control search" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>&nbsp;Search
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+			<div class="col-lg-3 loc-align">
+			 <div class="input-group-append1">
+                            <span class="input-group-text bg-transparent text-primary1">
+                                <i class="fa-thin fa-location-dot fa-fw"></i>
+                            </span>
+                       
+                <form action="">
+                    <div class="input-group">  
+                        <input type="text" class="form-control delivery" placeholder="Select Delivery Location">
+                     
+                    </div>
+                </form> </div>
+            </div>
+			
+            <div class="col-lg-3 col-6 text-right">
+			
+			<p class="nab laphone"><img src="img/icons/p.png" class="phone"><br>
+1234567898</p>
+			<p class="nab"><img src="img/icons/c.png">
+                              <span class="badge text-secondary border border-secondary rounded-circle">0</span><br>
+Cart</p>
+			<p class="nab des"><img src="img/icons/a.png" class="account"><br>
+Account</p>
+
+               
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-dark mb-30">
+        <div class="row px-xl-5">
+         
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                    <a href="index.html" class="text-decoration-none d-block d-lg-none">
+                        	<img src="img/l1.jpg">
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                           <!-- <a href="index.html" class="nav-item nav-link active">Home</a>-->
+							
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Personalized  <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cake and Cake Topper <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Flowers <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+							 <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Combos <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Gifts <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+							
+							 <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part Supllies & Rentals <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+							
+							 <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Events <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+  
+	
+	
+
+  
+            
+<section class="half-color-box hidden-xs hidden-sm">
+    <div class="container spacer por">
+        <div class="text-whtie text-center ml-3">
+            <h1 class="bold">What People are saying?</h1>
+           <p class="lead">
+               <!--  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, at!-->
+            </p>
+        </div><br><br>
+        <div class="test-arrowbox">
+            <div class="swiper-button-prev-test">
+                <svg fill="#0d0862" height="34" class="arrow left">
+                    <use xlink:href="#arrow" />
+                </svg>
+            </div>
+            <div class="swiper-button-next-test">
+                <div class="arrow-right">
+                    <svg fill="#0d0862" height="60" width="60" class="arrow">
+                        <use xlink:href="#arrow" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-container swiper-testimonial ">
+            <div class="swiper-wrapper">
+ <div class="swiper-slide">
+                        <div class="review-box">
+                            <div class="media">
+                             	<div class="test-img"><span class="aname">A</span></div>
+                                <div class="media-body">
+								 <h5>
+                                    <a href="#">Our Happy Client</a></h5>
+                                 
+                                </div>
+                            </div>
+                            <div class="read">
+							
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur auctor. Aliquam nec ultricies dolor. Aliquam ornare posuere purus, sed gravida magna venenatis eu.</p>
+
+	<div class="d-flex align-items-center justify-content-left mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+          </div>
+                         </div>
+                          
+                        </div>
+                    </div>
+					
+ <div class="swiper-slide">
+                    <div class="review-box">
+                            <div class="media">
+                             	<div class="test-img"><span class="aname">B</span></div>
+                                <div class="media-body">
+								 <h5>
+                                    <a href="#">Our Happy Client</a></h5>
+                                 
+                                </div>
+                            </div>
+                            <div class="read">
+							
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur auctor. Aliquam nec ultricies dolor. Aliquam ornare posuere purus, sed gravida magna venenatis eu.</p>
+
+	<div class="d-flex align-items-center justify-content-left mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+          </div>
+                         </div>
+                          
+                        </div>
+                    </div>
+
+
+<div class="swiper-slide">
+                        <div class="review-box">
+                            <div class="media">
+                             	<div class="test-img"><span class="aname">C</span></div>
+                                <div class="media-body">
+								 <h5>
+                                    <a href="#">Our Happy Client</a></h5>
+                                 
+                                </div>
+                            </div>
+                            <div class="read">
+							
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur auctor. Aliquam nec ultricies dolor. Aliquam ornare posuere purus, sed gravida magna venenatis eu.</p>
+
+	<div class="d-flex align-items-center justify-content-left mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+          </div>
+                         </div>
+                          
+                        </div>
+                    </div>
+					
+					
+					<div class="swiper-slide">
+                        <div class="review-box">
+                            <div class="media">
+                             	<div class="test-img"><span class="aname">D</span></div>
+                                <div class="media-body">
+								 <h5>
+                                    <a href="#">Our Happy Client</a></h5>
+                                 
+                                </div>
+                            </div>
+                            <div class="read">
+							
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur auctor. Aliquam nec ultricies dolor. Aliquam ornare posuere purus, sed gravida magna venenatis eu.</p>
+
+	<div class="d-flex align-items-center justify-content-left mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+          </div>
+                         </div>
+                          
+                        </div>
+                    </div>
+					
+					
+<div class="swiper-slide">
+                <div class="review-box">
+                            <div class="media">
+                             	<div class="test-img"><span class="aname">E</span></div>
+                                <div class="media-body">
+								 <h5>
+                                    <a href="#">Our Happy Client</a></h5>
+                                 
+                                </div>
+                            </div>
+                            <div class="read">
+							
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur auctor. Aliquam nec ultricies dolor. Aliquam ornare posuere purus, sed gravida magna venenatis eu.</p>
+
+	<div class="d-flex align-items-center justify-content-left mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+          </div>
+                         </div>
+                          
+                        </div>
+                                        
+                </div>
+				</div>
+				
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+
+        </div>
+    </section>
+
+	
+	
+
+	
+	<div class="foot-top">
+	
+	 <div class="row" style="text-align: center;">
+	
+	  
+	 <div class="col-sm-2"></div>
+	
+	 <div class="col-sm-3">
+	 <img src="img/e1.png">
+	 <p class="event">PAN India Delivery</p>
+	 </div>
+	 
+	 <div class="col-sm-3">
+	 <img src="img/e2.png">
+	  <p class="event">100% Safe and Secure Payments</p>
+	 </div>
+	 
+	 <div class="col-sm-3">
+	 <img src="img/e3.png">
+	  <p class="event">Dedicated Help Center</p>
+	 </div>
+	 </div>
+	 
+	  <div class="col-sm-1"></div>
+	 </div>
+	</div>
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-secondary mt-5 pt-5" style="background-color: #002a5c !important;">
+        <div class="row px-xl-5 pt-5">
+		 <div class="col-lg-12 col-md-12">
+                <div class="row">
+            <div class="col-sm-3">
+                        <h5 class="text-secondary text-Capitallise mb-4">Our Company</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#"><!--<i class="fa fa-angle-right mr-2"></i>-->About Us</a>
+                            <a class="text-secondary mb-2" href="#">Media Coverage</a>
+                            <a class="text-secondary mb-2" href="#">Customer Reviews</a>
+                            <a class="text-secondary mb-2" href="#">Corporate Gifts</a>
+                            <a class="text-secondary mb-2" href="#">Events</a>
+                           
+                        </div>
+                    </div>
+           
+                  <div class="col-sm-3">
+                        <h5 class="text-secondary text-Capitallise mb-4">Help</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#">My Account</a>
+                            <a class="text-secondary mb-2" href="#">Cancellation & Refund</a>
+                            <a class="text-secondary mb-2" href="#">Shipping & Delivery Details</a>
+                            <a class="text-secondary mb-2" href="#">Terms & Conditions</a>
+                            <a class="text-secondary mb-2" href="#">Disclamer Policy</a>
+                            <a class="text-secondary" href="#">Privacy Policy</a>
+                        </div>
+                    </div>
+                  <div class="col-sm-3">
+                        <h5 class="text-secondary text-Capitallise mb-4">Whats News</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#">Offers</a>
+                            <a class="text-secondary mb-2" href="#">Gift Vochers</a>
+                          
+                        </div><br>
+
+						 <h5 class="text-secondary text-Capitallise mb-4">Spead The Love</h5>
+                        <div class="d-flex">
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                   <div class="col-sm-3">
+                       <h5 class="text-secondary text-Capitallise mb-4">Other</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#">Blogs</a>
+                            <a class="text-secondary mb-2" href="#">Client</a>
+                            <a class="text-secondary mb-2" href="#">Career Opportunity</a>
+                           
+                            <a class="text-secondary mb-2" href="#">Contact Us</a>
+							 <a class="text-secondary mb-2" href="#">Shopping Cart</a>
+                            <a class="text-secondary mb-2" href="#">FAQ</a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div><br>
+<br>
+
+        <div class="row border-top" style="border-color: rgba(256, 256, 256, .1) !important; background:black;">
+            <div class="col-md-12 px-xl-0">
+			<div align="center">
+                <p class="mb-md-0 text-center text-secondary">
+                    &copy; 2022 Customwish All Rights Reserved. </p>
+            </div>
+			</div>
+            
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+	
+	
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+	
+	  <script src="js/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+
+
+	<script>
+	var swiper = new Swiper('.swiper-container.swiper-testimonial', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+	  autoplay: true,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next-test',
+        prevEl: '.swiper-button-prev-test',
+    },
+});
+</script>
+
+</body>
+
+</html>

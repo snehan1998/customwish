@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Customwish</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="css/aos.css" />
+	<link href="css/custstyle.css" rel="stylesheet"/>
+	<style>
+	.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 0px 30px 17px;
+    margin-bottom: 1rem;
+    list-style: none;
+    /* background-color: #e9ecef; */
+}
+.card-wrapper {
+    max-width: 1100px;
+    margin: 0px auto;
+}
+img{
+    width: 100%;
+    display: block;
+}
+.img-display{
+    overflow: hidden;
+}
+.img-showcase{
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+.img-showcase img{
+    min-width: 100%;
+}
+.img-select{
+    display: flex;
+}
+.img-item{
+    margin: 0.3rem;
+}
+.img-item:nth-child(1),
+.img-item:nth-child(2),
+.img-item:nth-child(3){
+    margin-right: 0;
+}
+.img-item:hover{
+    opacity: 0.8;
+}
+.product-content{
+    padding: 2rem 1rem;
+}
+.product-title {
+    font-size: 22px;
+   
+	font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    position: relative;
+    color: #12263a;
+    margin: 1rem 0;
+}
+.product-title::after{
+ 
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    height: 1px;
+    width: 100%;
+    background: #12263a;
+
+}
+.product-link{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    background: #256eff;
+    color: #fff;
+    padding: 0 0.3rem;
+    transition: all 0.5s ease;
+}
+.product-link:hover{
+    opacity: 0.9;
+}
+.product-rating {
+   color: #ffc107;
+    text-align: right;
+    font-size: 12px;
+    margin: -18px 0 0px 0;
+}
+
+
+.product-rating span{
+    font-weight: 600;
+    color: #252525;
+}
+.product-price{
+    margin: 1rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.product-price span{
+    font-weight: 400;
+}
+.last-price span{
+    color: #f64749;
+    text-decoration: line-through;
+}
+.new-price span{
+    color: #256eff;
+}
+.product-detail h2{
+    text-transform: capitalize;
+    color: #12263a;
+    padding-bottom: 0.6rem;
+}
+.product-detail p{
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    opacity: 0.8;
+}
+.product-detail ul{
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+.product-detail ul li{
+    margin: 0;
+    list-style: none;
+    background: url(https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
+    background-size: 18px;
+    padding-left: 1.7rem;
+    margin: 0.4rem 0;
+    font-weight: 600;
+    opacity: 0.9;
+}
+.product-detail ul li span{
+    font-weight: 400;
+}
+.purchase-info{
+    margin: 1.5rem 0;
+}
+.purchase-info input,
+.purchase-info .btn{
+    border: 1.5px solid #ddd;
+    border-radius: 25px;
+    text-align: center;
+    padding: 0.45rem 0.8rem;
+    outline: 0;
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+}
+.purchase-info input{
+    width: 60px;
+}
+.purchase-info .btn{
+    cursor: pointer;
+    color: #fff;
+}
+.purchase-info .btn:first-of-type{
+    background: #256eff;
+}
+.purchase-info .btn:last-of-type{
+    background: #f64749;
+}
+.purchase-info .btn:hover{
+    opacity: 0.9;
+}
+.social-links{
+    display: flex;
+    align-items: center;
+}
+.social-links a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #000;
+    
+    margin: 0 0.2rem;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.5s ease;
+}
+.social-links a:hover{
+    background: #000;
+    border-color: transparent;
+    color: #fff;
+}
+
+@media screen and (min-width: 992px){
+    .card{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.5rem;
+    }
+    .card-wrapper{
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .product-imgs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .product-content{
+        padding-top: 0;
+    }
+}
+</style>
+   
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-1 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+               
+			    
+                    <a class="text-body mr-3" href="">Contact Us</a>
+                    <a class="text-body mr-3" href="">Blog</a>
+                    <a class="text-body mr-3" href="" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
+                   
+                </div>
+          
+			   
+            </div>
+        </div>
+		
+        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+          
+                <a href="index.html" class="logo-head">
+				<img src="img/l1.jpg">
+                    <!--<span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>-->
+                </a>
+           
+            <div class="col-lg-4">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control search" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>&nbsp;Search
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+			<div class="col-lg-3">
+			 <div class="input-group-append1">
+                            <span class="input-group-text bg-transparent text-primary1">
+                                <i class="fa fa-map-marker"></i>
+                            </span>
+                       
+                <form action="">
+                    <div class="input-group">  
+                        <input type="text" class="form-control delivery" placeholder="Select Delivery Location">
+                     
+                    </div>
+                </form> </div>
+            </div>
+			
+            <div class="col-lg-3 col-6 text-right">
+			
+			<p class="nab laphone"><i class="fa fa-phone"></i><br>
+1234567898</p>
+			<p class="nab"> <i class="fas fa-shopping-cart text-primary"></i>
+                              <!--  <span class="badge text-secondary border border-secondary rounded-circle">0</span>--><br>
+Cart</p>
+			<p class="nab des"><i class="fa fa-user"></i><br>
+Account</p>
+
+               
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-dark mb-30">
+        <div class="row px-xl-5">
+         
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                    <a href="index.html" class="text-decoration-none d-block d-lg-none">
+                       <img src="img/l1.jpg">
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                           <!-- <a href="index.html" class="nav-item nav-link active">Home</a>-->
+							
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Personalized  <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cake and Cake Topper <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Flowers <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+							 <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Combos <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Gifts <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+							
+							 <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part Supllies & Rentals <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+							
+							
+							 <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Events <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item">Shopping Cart</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+<br>
+ 
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="#">Home</a>
+                    <a class="breadcrumb-item text-dark" href="#">Personalized </a>
+                    <a class="breadcrumb-item text-dark" href="#">Travel </a>
+                    <a class="breadcrumb-item text-dark" href="#">Apperal</a>
+                    <span class="breadcrumb-item active">T-shirts</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Carousel End -->
+	
+	<div class="inner-con">
+	<div class="container">
+		
+		<div class="row">
+			
+  
+    <!-- card left -->
+    <div class = "col-lg-5 product-imgs">
+      <div class = "img-display">
+        <div class = "img-showcase">
+          <img src = "img/tshirt.png">
+          <img src = "img/tshirt.png">
+          <img src = "img/tshirt.png">
+          <img src = "img/tshirt.png">
+        </div>
+      </div>
+      <div class = "img-select">
+        <div class = "img-item">
+          <a href = "#" data-id = "1">
+           <img src = "img/tshirt.png">
+          </a>
+        </div>
+        <div class = "img-item">
+          <a href = "#" data-id = "2">
+            <img src = "img/tshirt.png">
+          </a>
+        </div>
+        <div class = "img-item">
+          <a href = "#" data-id = "3">
+            <img src = "img/tshirt.png">
+          </a>
+        </div>
+        <div class = "img-item">
+          <a href = "#" data-id = "4">
+            <img src = "img/tshirt.png">
+          </a>
+        </div>
+      </div><br>
+
+	   <p>Share with loved ones </p>
+	    <div class = "social-links">
+       
+        <a href = "#">
+         <img src="img/icons/fb.png">
+        </a>
+        <a href = "#">
+        <img src="img/icons/tw.png">
+        </a>
+        <a href = "#">
+          <img src="img/icons/ins.png">
+        </a>
+        <a href = "#">
+          <img src="img/icons/ln.png">
+        </a>
+        <a href = "#">
+         <img src="img/icons/pin.png">
+        </a>
+      </div>
+    </div>
+	
+    <!-- card right -->
+    <div class = "col-lg-7 product-content">
+      <h2 class = "product-title">Customized T-shirt <div class = "product-rating">
+        <i class = "fas fa-star"></i>
+        <i class = "fas fa-star"></i>
+        <i class = "fas fa-star"></i>
+        <i class = "fas fa-star"></i>
+         <i class = "fas fa-star"></i></div></h2> 
+      
+     <div class="container-fluid">
+     <div class="row">
+	  <div class="col-lg-12">
+	  <p class = "new-price">₹545<span> (Inclusive of GST)</span></p>
+		
+		 <h5>Quantity</h5>
+		 	<div class="input-group quantity" style="width: 100px; border:1px solid gray;color:#000;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary1 btn-minus" >
+                                        <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm bg-secondary1  text-center" value="1" style="border-color:#fff;font-size:20px; color:#000;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary1 btn-plus">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+		 </div>
+		 </div>
+		 <br>
+		
+			 <div class="row">
+			 <div class="col-6">
+
+							<select name="DropDownList1" id="experience" class="dropdown inputclass1">
+
+							<option value="Select">Choose size</option>
+
+							<option value="2">2-3</option>
+
+							<option value="3">3-4</option>
+							<option value="4">4-5</option>
+
+							<option value="5">5-6</option>
+							<option value="6">6-7</option>
+
+							<option value="7">7-8</option>
+						
+
+						
+
+							</select>
+
+						</div>
+			
+		 </div><br>
+
+		 
+		 <div class="row">
+			 <div class="col-lg-12">
+			 	<h5>Gift-Wrap:</h5>
+			 	<p style="display: flex;"><input type="checkbox" style="width: 20px;"><span style="padding-left: 10px;">Add Gift wrap(+₹35.00)</span></p>
+			 </div>
+		 </div>
+		 <div class="row">
+			 <div class="col-lg-12">
+			 	<h5>Any Other Comments?:</h5>
+			 	<p><input type="text" class="inputclass" style="width:100%;height:100px;"></p>
+			 </div>
+		 </div>
+		 <div class="row">
+			 <div class="col-lg-12">
+			 	<h5  class="any">For any Queries - Get in Touch</h5>
+			 	
+			 </div>
+		 </div>
+		 <div class="row">
+		 <div class="col-lg-12">
+						
+							
+							<button class="logbtn">ADD TO CART</button>
+						
+					</div>
+		 </div>
+		</div>
+
+   
+    
+	  
+	 
+						
+						
+
+		
+
+  
+    
+     	  </div>
+			  
+  
+  </div>
+		</div>
+		
+</div>	
+
+ 
+
+ 
+      
+ <div class="row px-xl-5">
+            <div class="col">
+                <div class="bg-light p-30">
+                    <div class="nav nav-tabs mb-4">
+                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Specifications </a>
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Delivery Information</a>
+                          <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-4">Color Disclaimer </a>
+                            <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-5">Return Policy </a>
+                              <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-6">Reviews(1) </a>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show" id="tab-pane-1">
+                            <h4 class="mb-3">Product Description</h4>
+                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                         
+                        </div>
+                         <div class="tab-pane fade show " id="tab-pane-4">
+                            <h4 class="mb-3">Product Description</h4>
+                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                         
+                        </div>
+                         <div class="tab-pane fade show active" id="tab-pane-5">
+                            <h4 class="mb-3">Product Description</h4>
+                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                         
+                        </div>
+                         <div class="tab-pane fade show " id="tab-pane-6">
+                            <h4 class="mb-3">Product Description</h4>
+                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                         
+                        </div>
+                        <div class="tab-pane fade" id="tab-pane-2">
+                            <h4 class="mb-3">Additional Information</h4>
+                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item px-0">
+                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
+                                        </li>
+                                      </ul> 
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item px-0">
+                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
+                                        </li>
+                                      </ul> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-pane-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">1 review for "Product Name"</h4>
+                                    <div class="media mb-4">
+                                        <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                        <div class="media-body">
+                                            <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
+                                            <div class="text-primary mb-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                            <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">Leave a review</h4>
+                                    <small>Your email address will not be published. Required fields are marked *</small>
+                                    <div class="d-flex my-3">
+                                        <p class="mb-0 mr-2">Your Rating * :</p>
+                                        <div class="text-primary">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Detail End -->
+ <div class="container-fluid pt-5 pb-3">
+	<div align="right"><a href="" class="btn btn-primary">View All</a></div>
+        <h2 class="section-title position-relative text-center mx-xl-5 mb-4 data-aos="fade-up" data-aos-delay="400"" >You May Also Like</h2>
+		
+        <div class="row px-xl-5">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-left" data-aos-delay="200">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="img/tp1.png" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square bluey" href=""><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-outline-dark btn-square yehr" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                          
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+					 <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>₹123.00 - ₹123.00</h5>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                       <img class="img-fluid w-100" src="img/tp2.png" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square bluey" href=""><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-outline-dark btn-square yehr" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                          
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+					 <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>₹123.00 - ₹123.00</h5>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-down" data-aos-delay="400">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                       <img class="img-fluid w-100" src="img/tp3.png" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square bluey" href=""><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-outline-dark btn-square yehr" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                          
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+					 <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>₹123.00 - ₹123.00</h5>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-right" data-aos-delay="500">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                       <img class="img-fluid w-100" src="img/tp4.png" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square bluey" href=""><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-outline-dark btn-square yehr" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                          
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+					 <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>₹123.00 - ₹123.00</h5>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	 <div class="container-fluid pt-5 pb-3">
+	<div align="right"><a href="" class="btn btn-primary">View All</a></div>
+        <h2 class="section-title position-relative text-center mx-xl-5 mb-4 data-aos="fade-up" data-aos-delay="400"" >Trending Products</h2>
+		
+        <div class="row px-xl-5">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-left" data-aos-delay="200">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="img/tp1.png" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square bluey" href=""><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-outline-dark btn-square yehr" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                          
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+					 <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>₹123.00 - ₹123.00</h5>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                       <img class="img-fluid w-100" src="img/tp2.png" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square bluey" href=""><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-outline-dark btn-square yehr" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                          
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+					 <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>₹123.00 - ₹123.00</h5>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-down" data-aos-delay="400">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                       <img class="img-fluid w-100" src="img/tp3.png" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square bluey" href=""><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-outline-dark btn-square yehr" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                          
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+					 <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>₹123.00 - ₹123.00</h5>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-right" data-aos-delay="500">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                       <img class="img-fluid w-100" src="img/tp4.png" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square bluey" href=""><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-outline-dark btn-square yehr" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                          
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+					 <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>₹123.00 - ₹123.00</h5>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<div class="what-people">
+	  <div align="center">
+   <h3 class="heading" data-aos="fade-up" data-aos-delay="300">What People are saying?</h3>
+   </div><br>
+<br>
+
+	<div class="row px-xl-5">
+	
+	<div class="col-sm-4 box" data-aos="fade-left" data-aos-delay="100">
+	<div class="test-img"><span class="aname">A</span> <p class="clicl">Click Name Here <span class="our">Our Happy Clients</span></p>
+	<p class="tes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur auctor. Aliquam nec ultricies dolor. Aliquam ornare posuere purus, sed gravida magna venenatis eu.</p>
+	<div class="d-flex align-items-center justify-content-left mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+	</div>
+	</div>
+	
+	<div class="col-sm-4 box " data-aos="fade-down" data-aos-delay="200">
+	<div class="test-img"><span class="aname">B</span> <p class="clicl">Click Name Here<span class="our">Our Happy Clients</span></p>
+	<p class="tes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur auctor. Aliquam nec ultricies dolor. Aliquam ornare posuere purus, sed gravida magna venenatis eu.</p>
+	<div class="d-flex align-items-center justify-content-left mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+	</div>
+	</div>
+	
+	<div class="col-sm-4 box" data-aos="fade-right" data-aos-delay="300">
+	<div class="test-img"><span class="aname">C</span> <p class="clicl">Click Name Here<span class="our">Our Happy Clients</span></p>
+	<p class="tes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur auctor. Aliquam nec ultricies dolor. Aliquam ornare posuere purus, sed gravida magna venenatis eu.</p>
+	<div class="d-flex align-items-center justify-content-left mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                          
+                        </div>
+	</div>
+	</div>
+	
+	</div>
+	</div>
+	
+	
+<div class="foot-top">
+	
+	 <div class="row" style="text-align: center;">
+	
+	  
+	 <div class="col-sm-2"></div>
+	
+	 <div class="col-sm-3">
+	 <center><img src="img/e1.png"></center>
+	<center> <p class="event">PAN India Delivery</p></center>
+	 </div>
+	 
+	 <div class="col-sm-3">
+	 <center><img src="img/e2.png"></center>
+	  <center><p class="event">100% Safe and Secure Payments</p></center>
+	 </div>
+	 
+	 <div class="col-sm-3">
+	 <center><img src="img/e3.png"></center>
+	  <center><p class="event">Dedicated Help Center</p></center>
+	 </div>
+	 </div>
+	 
+	  <div class="col-sm-1"></div>
+	 </div>
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-secondary mt-5 pt-5" style="background-color: #002a5c !important;">
+        <div class="row px-xl-5 pt-5">
+		 <div class="col-lg-12 col-md-12">
+                <div class="row">
+            <div class="col-sm-3">
+                        <h5 class="text-secondary text-Capitallise mb-4">Our Company</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#"><!--<i class="fa fa-angle-right mr-2"></i>-->About Us</a>
+                            <a class="text-secondary mb-2" href="#">Media Coverage</a>
+                            <a class="text-secondary mb-2" href="#">Customer Reviews</a>
+                            <a class="text-secondary mb-2" href="#">Corporate Gifts</a>
+                            <a class="text-secondary mb-2" href="#">Events</a>
+                           
+                        </div>
+                    </div>
+           
+                  <div class="col-sm-3">
+                        <h5 class="text-secondary text-Capitallise mb-4">Help</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#">My Account</a>
+                            <a class="text-secondary mb-2" href="#">Cancellation & Refund</a>
+                            <a class="text-secondary mb-2" href="#">Shipping & Delivery Details</a>
+                            <a class="text-secondary mb-2" href="#">Terms & Conditions</a>
+                            <a class="text-secondary mb-2" href="#">Disclamer Policy</a>
+                            <a class="text-secondary" href="#">Privacy Policy</a>
+                        </div>
+                    </div>
+                  <div class="col-sm-3">
+                        <h5 class="text-secondary text-Capitallise mb-4">Whats News</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#">Offers</a>
+                            <a class="text-secondary mb-2" href="#">Gift Vochers</a>
+                          
+                        </div><br>
+
+						 <h5 class="text-secondary text-Capitallise mb-4">Spead The Love</h5>
+                        <div class="d-flex">
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                   <div class="col-sm-3">
+                       <h5 class="text-secondary text-Capitallise mb-4">Other</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#">Blogs</a>
+                            <a class="text-secondary mb-2" href="#">Client</a>
+                            <a class="text-secondary mb-2" href="#">Career Opportunity</a>
+                           
+                            <a class="text-secondary mb-2" href="#">Contact Us</a>
+							 <a class="text-secondary mb-2" href="#">Shopping Cart</a>
+                            <a class="text-secondary mb-2" href="#">FAQ</a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div><br>
+<br>
+
+        <div class="row border-top" style="border-color: rgba(256, 256, 256, .1) !important; background:black;">
+            <div class="col-md-12 px-xl-0">
+			<div align="center">
+                <p class="mb-md-0 text-center text-secondary">
+                    &copy; 2022 Customwish All Rights Reserved. </p>
+            </div>
+			</div>
+            
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+	
+	  <script src="js/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<script>
+const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
+
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        imgId = imgItem.dataset.id;
+        slideImage();
+    });
+});
+
+function slideImage(){
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
+
+window.addEventListener('resize', slideImage);
+
+
+
+
+
+</script>
+
+<script>
+
+$(function() {
+  //default intialize
+  $('#dp0').datetimepicker();
+  // Date only
+  $('#dp1').datetimepicker({
+    format: 'L'
+  });
+  //Disable past dates
+   $('#dp2').datetimepicker({
+      minDate: moment().add(2)
+  });
+  //only show 15 days
+   $('#dp3').datetimepicker({
+      minDate: moment().add(1),
+      maxDate: moment().add(15,'days')
+  });
+});
+
+</script>
+</body>
+
+</html>
