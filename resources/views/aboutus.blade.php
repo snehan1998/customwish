@@ -7,15 +7,17 @@
     <div class="container">
         <div class="row">
         <div class="col-sm-12">
-            <div align="center">
+            <div class="text-center">
                 <h1 class="heading-page text-center-xs">About Us</h1>
-            </div></div>
-            <div class="col-sm-6"></div>
+            </div>
+        </div>
+            
         </div>
     </div>
 </div>
 <div class="ps-section pdb0 page-about">
-    <div id="shopify-section-template-about-us" class="shopify-section"><div class="ps-about-features">
+    <div id="shopify-section-template-about-us" class="shopify-section">
+        <div class="ps-about-features">
         <div class="section1">
             <div class="container">
                 <div class="row">
@@ -45,10 +47,10 @@
             <div class="row">
                 <div class="col-md-12 members">
                     <div class="ps-section__header a-center no-af">
-                    <h4 class="ps-section__top">Our Record</h4>
-                    <h3 class="ps-section__title ps-section__title--full">WINNER AWARDS</h3>
+                        <h4 class="ps-section__top">Our Record</h4>
+                        <h3 class="ps-section__title ps-section__title--full">WINNER AWARDS</h3>
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-center">
                         @foreach($ourrecord as $record)
                         <div class="col-sm-4">
                             <div class="ps-award text-center">
@@ -80,7 +82,7 @@
                         <h4 class="ps-section__top">Golden Hand</h4>
                         <h3 class="ps-section__title ps-section__title--full">OUR TEAM</h3>
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-center">
                         @foreach ($ourteam as $team)
                         <div class="col-sm-4">
                             <div class="ps-post--vertical">
@@ -111,18 +113,18 @@
 
 
 <div class="foot-top">
-    <div class="row" style="text-align: center;">
-        <div class="col-sm-2"></div>
-            @foreach($section8 as $section8)
-            <div class="col-sm-3">
-                <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
-                <p class="event">{{$section8->section_name}}</p>
-            </div>
-            @endforeach
+    <div class="container">
+        <div class="row justify-content-center align-items-center" >
+            
+                @foreach($section8 as $section8)
+                <div class="col-md-3 text-center">
+                    <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
+                    <p class="event">{{$section8->section_name}}</p>
+                </div>
+                @endforeach
         </div>
-        <div class="col-sm-1"></div>
     </div>
-</div>
+	 
 </div>
 @push('after-scripts')
 @endpush

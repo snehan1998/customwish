@@ -8,11 +8,10 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <div align="center">
+        <div class="text-center">
           <h1 class="heading-page text-center-xs">Blog</h1>
         </div>
       </div>
-      <div class="col-sm-6"> </div>
     </div>
   </div>
 </div>

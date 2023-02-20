@@ -8,12 +8,10 @@
       <div class="container">
         <div class="row">
             <div class="col-sm-12">
-            <div align="center">
-                <h1 class="heading-page text-center-xs">Contact Us</h1>
+                <div class="text-center">
+                    <h1 class="heading-page text-center-xs">Contact Us</h1>
+                </div>
             </div>
-            </div>
-		  <div class="col-sm-6">
-		  </div>
         </div>
       </div>
     </div>
@@ -85,19 +83,21 @@
 </div>
 
 <div class="foot-top">
-    <div class="row" style="text-align: center;">
-        <div class="col-sm-2"></div>
-            @foreach($section8 as $section8)
-            <div class="col-sm-3">
-                <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
-                <p class="event">{{$section8->section_name}}</p>
-            </div>
-            @endforeach
+    <div class="container">
+        <div class="row justify-content-center align-items-center" >
+            
+                @foreach($section8 as $section8)
+                <div class="col-md-3 text-center">
+                    <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
+                    <p class="event">{{$section8->section_name}}</p>
+                </div>
+                @endforeach
         </div>
-        <div class="col-sm-1"></div>
     </div>
+	 
 </div>
-</div>
+
+
 @push('after-scripts')
 @endpush
 @endsection

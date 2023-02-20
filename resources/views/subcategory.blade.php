@@ -15,8 +15,8 @@
 
 
 <!-- Breadcrumb Start -->
-<div class="container-fluid">
-    <div class="row px-xl-5">
+<div class="container">
+    <div class="row">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
                 <a class="breadcrumb-item text-dark" href="{{url('/')}}">Home</a>
@@ -29,30 +29,35 @@
 <!-- Breadcrumb End -->
 
 <!-- Category Products Start -->
-<div class="container-fluid pt-5 pb-3">
-    <div class="row px-xl-5">
-        @foreach($child as $child)
-        <div class="col-lg-4 col-md-4 col-sm-6 pb-1" data-aos="fade-left" data-aos-delay="200">
-            <div class="product-item bg-light mb-4">
-                <div class="product-img position-relative overflow-hidden">
-                    <img src="{{asset('/uploads/images')}}/{{$child->childcat_logo}}" class="img-responsive" width="100%" height="100%">
-                </div>
-                <div class="text-center py-4">
-                    <a class="h6 text-decoration-none text-truncate" href="{{url('/p')}}/{{$child->id}}">{{$child->childcat_name}}</a>
+<div class="subcat_sec">
+    <div class="container pt-5 pb-3 mb-5">
+        <div class="row justify-content-center">
+            @foreach($child as $child)
+            <div class="col-lg-4 col-md-4 col-sm-6 pb-1" data-aos="fade-left" data-aos-delay="200">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img src="{{asset('/uploads/images')}}/{{$child->childcat_logo}}" class="img-responsive" width="100%" height="100%">
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="{{url('/p')}}/{{$child->id}}">{{$child->childcat_name}}</a>
+                    </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
 </div>
 <!--Category Products End -->
 
 <!--================================================You May Also Like ===========================================-------->
 @if($youmay->count() > 0)
-<div class="container-fluid pt-5 pb-3">
-    <div align="right"><a href="{{url('/cp/youmayalsolike')}}" class="btn btn-primary">View All</a></div>
-    <h2 class="section-title position-relative text-center mx-xl-5 mb-4 data-aos="fade-up" data-aos-delay="400"" >You May Also Like</h2>
-    <div class="row px-xl-5">
+<div class="you_mayalso">
+<div class="container pt-5 pb-3">
+    
+    <h2 class="section-title position-relative text-center mb-4" data-aos="fade-up" data-aos-delay="400" >You May Also Like
+    <div class="right_viewall"><a href="{{url('/cp/youmayalsolike')}}" class="btn btn-primary mr-0">View All</a></div>
+    </h2>
+    <div class="row justify-content-center">
         @foreach($youmay as $product)
         <?php
         if($product->is_variation == '1'){
@@ -83,50 +88,50 @@
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$product->slug}}"><i class="fa fa-eye"></i></a>
                         <a class="btn btn-outline-dark btn-square yehr wishlistproduct{{$product->id}}"><i class="far fa-heart"></i></a>
-<script>
-$(document).ready(function(){
- function loadwish(){
-     $.ajax({
-         method: "GET",
-         url: '{{url('/load-wishlist-data')}}',
-         success: function (response) {
-             $('.wishlist_count').html('');
-             $('.wishlist_count').html(response.count);
-         }
-     });
- }
+                            <script>
+                            $(document).ready(function(){
+                            function loadwish(){
+                                $.ajax({
+                                    method: "GET",
+                                    url: '{{url('/load-wishlist-data')}}',
+                                    success: function (response) {
+                                        $('.wishlist_count').html('');
+                                        $('.wishlist_count').html(response.count);
+                                    }
+                                });
+                            }
 
- $('.wishlistproduct<?php echo $product->id; ?>').click(function(e){
-     var session_id = $('.session_id').val();
-     var product_id = $('.product_id<?php echo $product->id; ?>').val();
-     var product_name = $('.product_name<?php echo $product->id; ?>').val();
-     var product_price = $('.product_price<?php echo $product->id; ?>').val();
-     $.ajax({
-         url: '{{url('addwishlist')}}',
-         method: "POST",
-         data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-         dataType: "json",
-         success: function (response) {
-             if(response.status == 'success'){
-                 loadwish();
-             Swal.fire(
-               'Added!',
-               'Product Added to Wishlist',
-               'success'
-             )
-         }else if(response.status == 'exists'){
-              Swal.fire(
-               'Already Exists',
-               'success'
-             )
-         }else if(response.status == 'failure'){
-             window.location.replace('http://127.0.0.1:8000/login')
-         }
-         }
-     });
- });
-});
-</script>
+                            $('.wishlistproduct<?php echo $product->id; ?>').click(function(e){
+                                var session_id = $('.session_id').val();
+                                var product_id = $('.product_id<?php echo $product->id; ?>').val();
+                                var product_name = $('.product_name<?php echo $product->id; ?>').val();
+                                var product_price = $('.product_price<?php echo $product->id; ?>').val();
+                                $.ajax({
+                                    url: '{{url('addwishlist')}}',
+                                    method: "POST",
+                                    data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                    dataType: "json",
+                                    success: function (response) {
+                                        if(response.status == 'success'){
+                                            loadwish();
+                                        Swal.fire(
+                                        'Added!',
+                                        'Product Added to Wishlist',
+                                        'success'
+                                        )
+                                    }else if(response.status == 'exists'){
+                                        Swal.fire(
+                                        'Already Exists',
+                                        'success'
+                                        )
+                                    }else if(response.status == 'failure'){
+                                        window.location.replace('http://127.0.0.1:8000/login')
+                                    }
+                                    }
+                                });
+                            });
+                            });
+                            </script>
 
                         @if($product->is_variation == 0)
                         <input type="hidden" value="{{@$product->id}}" name="product_id" class="product_id{{$product->id}}" />
@@ -258,8 +263,8 @@ $(document).ready(function(){
 
                     </div>
                 </div>
-                <div class="text-center py-4">
-                 <div class="d-flex align-items-center justify-content-center mb-1">
+                <div class="text-center py-2">
+                 <div class="d-flex align-items-center justify-content-center review_star mb-1">
                     <?php $ratingg = App\Models\Review::where('product_id',$product->id)->avg('rating'); ?>
                     @if($ratingg != null)<p>
                         @foreach(range(1,5) as $i)
@@ -288,46 +293,52 @@ $(document).ready(function(){
         @endforeach
     </div>
 </div>
+</div>
 @endif
 <!--================================================End You May Also Like ===========================================-------->
 
 
 <div class="what-people">
-  <div align="center">
-   <h3 class="heading" data-aos="fade-up" data-aos-delay="300">What People are saying?</h3>
-  </div><br>
- <br>
-<div class="row px-xl-5">
-    @foreach($testimonial as $testimonial)
-    <div class="col-sm-4 box" data-aos="fade-left" data-aos-delay="100">
-        <div class="test-img"><span class="aname">{{$testimonial->letter}}</span>
-            <p class="clicl">{{$testimonial->name}}<span class="our">{{$testimonial->designation}}</span></p>
-            <p class="tes">{!!$testimonial->description!!}</p>
-            <div class="d-flex align-items-center justify-content-left mb-1">
-                @if($testimonial->rating != null)
-                @for($i=1; $i<=$testimonial->rating; $i++)
-                <small class="fa fa-star text-primary mr-1"></small>
-                @endfor
-                @endif
-            </div>
+    <div class="container">
+        <div class="text-center">
+            <h3 class="heading mb-5" data-aos="fade-up" data-aos-delay="300">What People are saying?</h3>
         </div>
+            <div class="row justify-content-center">
+                @foreach($testimonial as $testimonial)
+                <div class="col-lg-4 col-md-6 col-12 box box" data-aos="fade-left" data-aos-delay="100">
+                    <div class="test-img">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="aname">{{$testimonial->letter}}</span>
+                        <p class="clicl">{{$testimonial->name}}<span class="our">{{$testimonial->designation}}</span></p>
+                    </div>
+                        <p class="tes">{!!$testimonial->description!!}</p>
+                        <div class="d-flex align-items-center justify-content-left mb-1">
+                            @if($testimonial->rating != null)
+                            @for($i=1; $i<=$testimonial->rating; $i++)
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            @endfor
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
     </div>
-    @endforeach
-</div>
 </div>
 
 <div class="foot-top">
- <div class="row" style="text-align: center;">
-    <div class="col-sm-2"></div>
-        @foreach($section8 as $section8)
-        <div class="col-sm-3">
-            <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
-            <p class="event">{{$section8->section_name}}</p>
+    <div class="container">
+        <div class="row justify-content-center align-items-center" >
+            
+                @foreach($section8 as $section8)
+                <div class="col-md-3 text-center">
+                    <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
+                    <p class="event">{{$section8->section_name}}</p>
+                </div>
+                @endforeach
         </div>
-        @endforeach
     </div>
-    <div class="col-sm-1"></div>
-</div>
+	 
 </div>
 
 

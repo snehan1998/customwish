@@ -35,11 +35,11 @@
 <!-- Carousel End -->
 
  <!-- Offer Start -->
-<div class="container-fluid pt-5 pb-3">
-    <div class="row px-xl-5">
+<div class="container pt-5 pb-3">
+    <div class="row justify-content-center align-items-center ">
         @foreach ($section2 as $section2)
         <div class="col-md-4" data-aos="fade-down" data-aos-delay="300">
-            <div class="product-offer mb-30" style="height: 300px;">
+            <div class="product-offer mb-30">
                 <img class="img-fluid" src="{{asset('uploads/images')}}/{{$section2->image}}" alt="">
                 <div class="offer-text">
                     <h3 class="text-white mb-3">{{$section2->title}}</h3>
@@ -52,30 +52,31 @@
 </div>
 <!-- Offer End -->
 
-<div class="tab-sec">
-	<div class="container">
-    	<div class="row">
-            <div align="center">
-                <h3 class="heading" data-aos="fade-up" data-aos-delay="300">Fall in love with our cakes</h3>
-                <div class="tabset">
-                    <!-- Tab 1 -->
-                    <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
-                    <label for="tab1">Birthday</label>
-                    <!-- Tab 2 -->
-                    <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
-                    <label for="tab2">Anniversary</label>
-                    <!-- Tab 3 -->
-                    <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
-                    <label for="tab3">Wedding</label>
-                    <!-- Tab 3 -->
-                    <input type="radio" name="tabset" id="tab4" aria-controls="specialdays">
-                    <label for="tab4">Special Days</label>
-                    <!-- Tab 3 -->
-                    <input type="radio" name="tabset" id="tab5" aria-controls="others">
-                    <label for="tab5">Otrhers</label>
-                <div class="tab-panels">
-                    <section id="marzen" class="tab-panel">
-                        <div class="row px-xl-5">
+<div class="section_tab fall_inlove">
+    <div class="container">
+        <div class="fall_inlove_inner text-center">
+            <h3 data-aos="fade-up" data-aos-delay="300">Fall in love with our cakes</h3>
+            <ul class="nav justify-content-center nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="pills-birthday-tab" data-toggle="pill" href="#pills-birthday" role="tab" aria-controls="pills-birthday" aria-selected="true">Birthday</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-anniversary-tab" data-toggle="pill" href="#pills-anniversary" role="tab" aria-controls="pills-anniversary" aria-selected="false">Anniversary</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-wedding-tab" data-toggle="pill" href="#pills-wedding" role="tab" aria-controls="pills-wedding" aria-selected="false">Wedding</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-special-tab" data-toggle="pill" href="#pills-special" role="tab" aria-controls="pills-special" aria-selected="false">Special Days</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-others-tab" data-toggle="pill" href="#pills-others" role="tab" aria-controls="pills-others" aria-selected="false">Others</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-birthday" role="tabpanel" aria-labelledby="pills-birthday-tab">
+                    <div class="container">
+                    <div class="row justify-content-center">
                             @foreach($cake as $cake)
                             <?php
                             if($cake->is_variation == '1'){
@@ -102,55 +103,55 @@
                                             <div class="product-action">
                                                 <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$cake->slug}}"><i class="fa fa-eye"></i></a>
                                                 <a class="btn btn-outline-dark btn-square yehr wishlistcake{{$cake->id}}"><i class="far fa-heart"></i></a>
-                    <script>
-                     $(document).ready(function(){
-                         function loadwish(){
-                             $.ajax({
-                                 method: "GET",
-                                 url: '{{url('/load-wishlist-data')}}',
-                                 success: function (response) {
-                                     $('.wishlist_count').html('');
-                                     $('.wishlist_count').html(response.count);
-                                 }
-                             });
-                         }
+                                                    <script>
+                                                    $(document).ready(function(){
+                                                        function loadwish(){
+                                                            $.ajax({
+                                                                method: "GET",
+                                                                url: '{{url('/load-wishlist-data')}}',
+                                                                success: function (response) {
+                                                                    $('.wishlist_count').html('');
+                                                                    $('.wishlist_count').html(response.count);
+                                                                }
+                                                            });
+                                                        }
 
-                         $('.wishlistcake<?php echo $cake->id; ?>').click(function(e){
-                             var session_id = $('.session_id').val();
-                             var product_id = $('.product_id<?php echo $cake->id; ?>').val();
-                             var product_name = $('.product_name<?php echo $cake->id; ?>').val();
-                             var product_price = $('.product_price<?php echo $cake->id; ?>').val();
-                             $.ajax({
-                                 url: '{{url('addwishlist')}}',
-                                 method: "POST",
-                                 data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-                                 dataType: "json",
-                                 success: function (response) {
-                                     if(response.status == 'success'){
-                                         loadwish();
-                                     Swal.fire(
-                                       'Added!',
-                                       'Product Added to Wishlist',
-                                       'success'
-                                     )
-                                 }else if(response.status == 'exists'){
-                                      Swal.fire(
-                                       'Already Exists',
-                                       'success'
-                                     )
-                                 }else if(response.status == 'failure'){
-                                     window.location.replace('http://127.0.0.1:8000/login')
-                                 }
-                                 }
-                             });
-                         });
-                     });
-                     </script>
+                                                        $('.wishlistcake<?php echo $cake->id; ?>').click(function(e){
+                                                            var session_id = $('.session_id').val();
+                                                            var product_id = $('.product_id<?php echo $cake->id; ?>').val();
+                                                            var product_name = $('.product_name<?php echo $cake->id; ?>').val();
+                                                            var product_price = $('.product_price<?php echo $cake->id; ?>').val();
+                                                            $.ajax({
+                                                                url: '{{url('addwishlist')}}',
+                                                                method: "POST",
+                                                                data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                                                dataType: "json",
+                                                                success: function (response) {
+                                                                    if(response.status == 'success'){
+                                                                        loadwish();
+                                                                    Swal.fire(
+                                                                    'Added!',
+                                                                    'Product Added to Wishlist',
+                                                                    'success'
+                                                                    )
+                                                                }else if(response.status == 'exists'){
+                                                                    Swal.fire(
+                                                                    'Already Exists',
+                                                                    'success'
+                                                                    )
+                                                                }else if(response.status == 'failure'){
+                                                                    window.location.replace('http://127.0.0.1:8000/login')
+                                                                }
+                                                                }
+                                                            });
+                                                        });
+                                                    });
+                                                    </script>
                                         <!--<a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
                                         </div>
                                     </div>
-                                    <div class="text-center py-4">
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <div class="text-center py-2">
+                                    <div class="d-flex align-items-center justify-content-center review_star mb-1">
                                         <?php $ratingcc11 = App\Models\Review::where('product_id',$cake->id)->avg('rating'); ?>
                                         @if($ratingcc11 != null)<p>
                                             @foreach(range(1,5) as $i)
@@ -179,9 +180,11 @@
                             </div>
                             @endforeach
                         </div>
-                    </section>
-                    <section id="rauchbier" class="tab-panel">
-                        <div class="row px-xl-5">
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-anniversary" role="tabpanel" aria-labelledby="pills-anniversary-tab">
+                <div class="container">
+                <div class="row justify-content-center">
 
                             @foreach($cake1 as $cake1)
                             <?php
@@ -213,56 +216,56 @@
                                             <div class="product-action">
                                                 <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$cake1->slug}}"><i class="fa fa-eye"></i></a>
                                                 <a class="btn btn-outline-dark btn-square yehr wishlistcake1{{$cake1->id}}"><i class="far fa-heart"></i></a>
-                    <script>
-                     $(document).ready(function(){
-                         function loadwish(){
-                             $.ajax({
-                                 method: "GET",
-                                 url: '{{url('/load-wishlist-data')}}',
-                                 success: function (response) {
-                                     $('.wishlist_count').html('');
-                                     $('.wishlist_count').html(response.count);
-                                 }
-                             });
-                         }
+                                                    <script>
+                                                    $(document).ready(function(){
+                                                        function loadwish(){
+                                                            $.ajax({
+                                                                method: "GET",
+                                                                url: '{{url('/load-wishlist-data')}}',
+                                                                success: function (response) {
+                                                                    $('.wishlist_count').html('');
+                                                                    $('.wishlist_count').html(response.count);
+                                                                }
+                                                            });
+                                                        }
 
-                         $('.wishlistcake1<?php echo $cake1->id; ?>').click(function(e){
-                             var session_id = $('.session_id').val();
-                             var product_id = $('.product_id<?php echo $cake1->id; ?>').val();
-                             var product_name = $('.product_name<?php echo $cake1->id; ?>').val();
-                             var product_price = $('.product_price<?php echo $cake1->id; ?>').val();
-                             $.ajax({
-                                 url: '{{url('addwishlist')}}',
-                                 method: "POST",
-                                 data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-                                 dataType: "json",
-                                 success: function (response) {
-                                     if(response.status == 'success'){
-                                         loadwish();
-                                     Swal.fire(
-                                       'Added!',
-                                       'Product Added to Wishlist',
-                                       'success'
-                                     )
-                                 }else if(response.status == 'exists'){
-                                      Swal.fire(
-                                       'Already Exists',
-                                       'success'
-                                     )
-                                 }else if(response.status == 'failure'){
-                                     window.location.replace('http://127.0.0.1:8000/login')
-                                 }
-                                 }
-                             });
-                         });
-                     });
-                     </script>
-                               <!--<a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
+                                                        $('.wishlistcake1<?php echo $cake1->id; ?>').click(function(e){
+                                                            var session_id = $('.session_id').val();
+                                                            var product_id = $('.product_id<?php echo $cake1->id; ?>').val();
+                                                            var product_name = $('.product_name<?php echo $cake1->id; ?>').val();
+                                                            var product_price = $('.product_price<?php echo $cake1->id; ?>').val();
+                                                            $.ajax({
+                                                                url: '{{url('addwishlist')}}',
+                                                                method: "POST",
+                                                                data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                                                dataType: "json",
+                                                                success: function (response) {
+                                                                    if(response.status == 'success'){
+                                                                        loadwish();
+                                                                    Swal.fire(
+                                                                    'Added!',
+                                                                    'Product Added to Wishlist',
+                                                                    'success'
+                                                                    )
+                                                                }else if(response.status == 'exists'){
+                                                                    Swal.fire(
+                                                                    'Already Exists',
+                                                                    'success'
+                                                                    )
+                                                                }else if(response.status == 'failure'){
+                                                                    window.location.replace('http://127.0.0.1:8000/login')
+                                                                }
+                                                                }
+                                                            });
+                                                        });
+                                                    });
+                                                    </script>
+                            <!--<a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
 
                                         </div>
                                     </div>
-                                    <div class="text-center py-4">
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <div class="text-center py-2">
+                                    <div class="d-flex align-items-center justify-content-center review_star mb-1">
                                         <?php $ratingc11 = App\Models\Review::where('product_id',$cake1->id)->avg('rating'); ?>
                                         @if($ratingc11 != null)<p>
                                             @foreach(range(1,5) as $i)
@@ -290,12 +293,13 @@
                                     </div>
                                 </div>
                             </div>
-                           @endforeach
-                        </div>
-                    </section>
-
-                    <section id="dunkles" class="tab-panel">
-                        <div class="row px-xl-5">
+                            @endforeach
+                            </div>
+                </div>
+                </div>
+                <div class="tab-pane fade" id="pills-wedding" role="tabpanel" aria-labelledby="pills-wedding-tab">
+                    <div class="container">
+                    <div class="row justify-content-center">
                             @foreach($cake2 as $cake2)
                             <?php
                             if($cake2->is_variation == '1'){
@@ -326,56 +330,56 @@
                                             <div class="product-action">
                                                 <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$cake2->slug}}"><i class="fa fa-eye"></i></a>
                                                 <a class="btn btn-outline-dark btn-square yehr wishlistcake2{{$cake2->id}}"><i class="far fa-heart"></i></a>
-                    <script>
-                     $(document).ready(function(){
-                         function loadwish(){
-                             $.ajax({
-                                 method: "GET",
-                                 url: '{{url('/load-wishlist-data')}}',
-                                 success: function (response) {
-                                     $('.wishlist_count').html('');
-                                     $('.wishlist_count').html(response.count);
-                                 }
-                             });
-                         }
+                                                        <script>
+                                                        $(document).ready(function(){
+                                                            function loadwish(){
+                                                                $.ajax({
+                                                                    method: "GET",
+                                                                    url: '{{url('/load-wishlist-data')}}',
+                                                                    success: function (response) {
+                                                                        $('.wishlist_count').html('');
+                                                                        $('.wishlist_count').html(response.count);
+                                                                    }
+                                                                });
+                                                            }
 
-                         $('.wishlistcake2<?php echo $cake2->id; ?>').click(function(e){
-                             var session_id = $('.session_id').val();
-                             var product_id = $('.product_id<?php echo $cake2->id; ?>').val();
-                             var product_name = $('.product_name<?php echo $cake2->id; ?>').val();
-                             var product_price = $('.product_price<?php echo $cake2->id; ?>').val();
-                             $.ajax({
-                                 url: '{{url('addwishlist')}}',
-                                 method: "POST",
-                                 data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-                                 dataType: "json",
-                                 success: function (response) {
-                                     if(response.status == 'success'){
-                                         loadwish();
-                                     Swal.fire(
-                                       'Added!',
-                                       'Product Added to Wishlist',
-                                       'success'
-                                     )
-                                 }else if(response.status == 'exists'){
-                                      Swal.fire(
-                                       'Already Exists',
-                                       'success'
-                                     )
-                                 }else if(response.status == 'failure'){
-                                     window.location.replace('http://127.0.0.1:8000/login')
-                                 }
-                                 }
-                             });
-                         });
-                     });
-                     </script>
+                                                            $('.wishlistcake2<?php echo $cake2->id; ?>').click(function(e){
+                                                                var session_id = $('.session_id').val();
+                                                                var product_id = $('.product_id<?php echo $cake2->id; ?>').val();
+                                                                var product_name = $('.product_name<?php echo $cake2->id; ?>').val();
+                                                                var product_price = $('.product_price<?php echo $cake2->id; ?>').val();
+                                                                $.ajax({
+                                                                    url: '{{url('addwishlist')}}',
+                                                                    method: "POST",
+                                                                    data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                                                    dataType: "json",
+                                                                    success: function (response) {
+                                                                        if(response.status == 'success'){
+                                                                            loadwish();
+                                                                        Swal.fire(
+                                                                        'Added!',
+                                                                        'Product Added to Wishlist',
+                                                                        'success'
+                                                                        )
+                                                                    }else if(response.status == 'exists'){
+                                                                        Swal.fire(
+                                                                        'Already Exists',
+                                                                        'success'
+                                                                        )
+                                                                    }else if(response.status == 'failure'){
+                                                                        window.location.replace('http://127.0.0.1:8000/login')
+                                                                    }
+                                                                    }
+                                                                });
+                                                            });
+                                                        });
+                                                        </script>
                                         <!--<a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
 
                                         </div>
                                     </div>
-                                    <div class="text-center py-4">
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <div class="text-center py-2">
+                                    <div class="d-flex align-items-center justify-content-center review_star mb-1">
                                         <?php $ratingc2 = App\Models\Review::where('product_id',$cake2->id)->avg('rating'); ?>
                                         @if($ratingc2 != null)<p>
                                             @foreach(range(1,5) as $i)
@@ -405,10 +409,11 @@
                             </div>
                             @endforeach
                         </div>
-                    </section>
-
-                    <section id="specialdays" class="tab-panel">
-                        <div class="row px-xl-5">
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-special" role="tabpanel" aria-labelledby="pills-special-tab">
+                    <div class="container">
+                    <div class="row justify-content-center">
                             @foreach($cake3 as $cake3)
                             <?php
                             if($cake3->is_variation == '1'){
@@ -439,56 +444,56 @@
                                                 <div class="product-action">
                                                     <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$cake3->slug}}"><i class="fa fa-eye"></i></a>
                                                     <a class="btn btn-outline-dark btn-square yehr wishlistcake3{{$cake3->id}}"><i class="far fa-heart"></i></a>
-                        <script>
-                         $(document).ready(function(){
-                             function loadwish(){
-                                 $.ajax({
-                                     method: "GET",
-                                     url: '{{url('/load-wishlist-data')}}',
-                                     success: function (response) {
-                                         $('.wishlist_count').html('');
-                                         $('.wishlist_count').html(response.count);
-                                     }
-                                 });
-                             }
+                                                <script>
+                                                $(document).ready(function(){
+                                                    function loadwish(){
+                                                        $.ajax({
+                                                            method: "GET",
+                                                            url: '{{url('/load-wishlist-data')}}',
+                                                            success: function (response) {
+                                                                $('.wishlist_count').html('');
+                                                                $('.wishlist_count').html(response.count);
+                                                            }
+                                                        });
+                                                    }
 
-                             $('.wishlistcake3<?php echo $cake3->id; ?>').click(function(e){
-                                 var session_id = $('.session_id').val();
-                                 var product_id = $('.product_id<?php echo $cake3->id; ?>').val();
-                                 var product_name = $('.product_name<?php echo $cake3->id; ?>').val();
-                                 var product_price = $('.product_price<?php echo $cake3->id; ?>').val();
-                                 $.ajax({
-                                     url: '{{url('addwishlist')}}',
-                                     method: "POST",
-                                     data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-                                     dataType: "json",
-                                     success: function (response) {
-                                         if(response.status == 'success'){
-                                             loadwish();
-                                         Swal.fire(
-                                           'Added!',
-                                           'Product Added to Wishlist',
-                                           'success'
-                                         )
-                                     }else if(response.status == 'exists'){
-                                          Swal.fire(
-                                           'Already Exists',
-                                           'success'
-                                         )
-                                     }else if(response.status == 'failure'){
-                                         window.location.replace('http://127.0.0.1:8000/login')
-                                     }
-                                     }
-                                 });
-                             });
-                         });
-                         </script>
+                                                    $('.wishlistcake3<?php echo $cake3->id; ?>').click(function(e){
+                                                        var session_id = $('.session_id').val();
+                                                        var product_id = $('.product_id<?php echo $cake3->id; ?>').val();
+                                                        var product_name = $('.product_name<?php echo $cake3->id; ?>').val();
+                                                        var product_price = $('.product_price<?php echo $cake3->id; ?>').val();
+                                                        $.ajax({
+                                                            url: '{{url('addwishlist')}}',
+                                                            method: "POST",
+                                                            data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                                            dataType: "json",
+                                                            success: function (response) {
+                                                                if(response.status == 'success'){
+                                                                    loadwish();
+                                                                Swal.fire(
+                                                                'Added!',
+                                                                'Product Added to Wishlist',
+                                                                'success'
+                                                                )
+                                                            }else if(response.status == 'exists'){
+                                                                Swal.fire(
+                                                                'Already Exists',
+                                                                'success'
+                                                                )
+                                                            }else if(response.status == 'failure'){
+                                                                window.location.replace('http://127.0.0.1:8000/login')
+                                                            }
+                                                            }
+                                                        });
+                                                    });
+                                                });
+                                                </script>
                               <!--<a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
 
                                         </div>
                                     </div>
-                                    <div class="text-center py-4">
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <div class="text-center py-2">
+                                    <div class="d-flex align-items-center justify-content-center review_star mb-1">
                                         <?php $ratingc3 = App\Models\Review::where('product_id',$cake3->id)->avg('rating'); ?>
                                         @if($ratingc3 != null)<p>
                                             @foreach(range(1,5) as $i)
@@ -518,10 +523,11 @@
                             </div>
                             @endforeach
                         </div>
-                    </section>
-
-                    <section id="others" class="tab-panel">
-                        <div class="row px-xl-5">
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-others" role="tabpanel" aria-labelledby="pills-others-tab">
+                    <div class="container">
+                    <div class="row justify-content-center">
                             @foreach($cake4 as $cake4)
                             <?php
                             if($cake4->is_variation == '1'){
@@ -552,56 +558,56 @@
                                             <div class="product-action">
                                                 <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$cake4->slug}}"><i class="fa fa-eye"></i></a>
                                                 <a class="btn btn-outline-dark btn-square yehr wishlistcake4{{$cake4->id}}"><i class="far fa-heart"></i></a>
-                    <script>
-                     $(document).ready(function(){
-                         function loadwish(){
-                             $.ajax({
-                                 method: "GET",
-                                 url: '{{url('/load-wishlist-data')}}',
-                                 success: function (response) {
-                                     $('.wishlist_count').html('');
-                                     $('.wishlist_count').html(response.count);
-                                 }
-                             });
-                         }
+                                            <script>
+                                            $(document).ready(function(){
+                                                function loadwish(){
+                                                    $.ajax({
+                                                        method: "GET",
+                                                        url: '{{url('/load-wishlist-data')}}',
+                                                        success: function (response) {
+                                                            $('.wishlist_count').html('');
+                                                            $('.wishlist_count').html(response.count);
+                                                        }
+                                                    });
+                                                }
 
-                         $('.wishlistcake4<?php echo $cake4->id; ?>').click(function(e){
-                             var session_id = $('.session_id').val();
-                             var product_id = $('.product_id<?php echo $cake4->id; ?>').val();
-                             var product_name = $('.product_name<?php echo $cake4->id; ?>').val();
-                             var product_price = $('.product_price<?php echo $cake4->id; ?>').val();
-                             $.ajax({
-                                 url: '{{url('addwishlist')}}',
-                                 method: "POST",
-                                 data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-                                 dataType: "json",
-                                 success: function (response) {
-                                     if(response.status == 'success'){
-                                         loadwish();
-                                     Swal.fire(
-                                       'Added!',
-                                       'Product Added to Wishlist',
-                                       'success'
-                                     )
-                                 }else if(response.status == 'exists'){
-                                      Swal.fire(
-                                       'Already Exists',
-                                       'success'
-                                     )
-                                 }else if(response.status == 'failure'){
-                                     window.location.replace('http://127.0.0.1:8000/login')
-                                 }
-                                 }
-                             });
-                         });
-                     });
-                     </script>
+                                                $('.wishlistcake4<?php echo $cake4->id; ?>').click(function(e){
+                                                    var session_id = $('.session_id').val();
+                                                    var product_id = $('.product_id<?php echo $cake4->id; ?>').val();
+                                                    var product_name = $('.product_name<?php echo $cake4->id; ?>').val();
+                                                    var product_price = $('.product_price<?php echo $cake4->id; ?>').val();
+                                                    $.ajax({
+                                                        url: '{{url('addwishlist')}}',
+                                                        method: "POST",
+                                                        data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                                        dataType: "json",
+                                                        success: function (response) {
+                                                            if(response.status == 'success'){
+                                                                loadwish();
+                                                            Swal.fire(
+                                                            'Added!',
+                                                            'Product Added to Wishlist',
+                                                            'success'
+                                                            )
+                                                        }else if(response.status == 'exists'){
+                                                            Swal.fire(
+                                                            'Already Exists',
+                                                            'success'
+                                                            )
+                                                        }else if(response.status == 'failure'){
+                                                            window.location.replace('http://127.0.0.1:8000/login')
+                                                        }
+                                                        }
+                                                    });
+                                                });
+                                            });
+                                            </script>
                                             <!--<a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
 
                                         </div>
                                     </div>
-                                    <div class="text-center py-4">
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <div class="text-center py-2">
+                                    <div class="d-flex align-items-center justify-content-center review_star mb-1">
                                         <?php $ratingc = App\Models\Review::where('product_id',$cake4->id)->avg('rating'); ?>
                                         @if($ratingc != null)<p>
                                             @foreach(range(1,5) as $i)
@@ -629,6 +635,52 @@
                             </div>
                             @endforeach
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-sec" style="display:none;">
+	<div class="container">
+    	<div class="row">
+            <div align="center">
+                <h3 class="heading" data-aos="fade-up" data-aos-delay="300">Fall in love with our cakes</h3>
+                <div class="tabset">
+                    <!-- Tab 1 -->
+                    <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+                    <label for="tab1">Birthday</label>
+                    <!-- Tab 2 -->
+                    <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+                    <label for="tab2">Anniversary</label>
+                    <!-- Tab 3 -->
+                    <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+                    <label for="tab3">Wedding</label>
+                    <!-- Tab 3 -->
+                    <input type="radio" name="tabset" id="tab4" aria-controls="specialdays">
+                    <label for="tab4">Special Days</label>
+                    <!-- Tab 3 -->
+                    <input type="radio" name="tabset" id="tab5" aria-controls="others">
+                    <label for="tab5">Otrhers</label>
+                <div class="tab-panels">
+                    <section id="marzen" class="tab-panel">
+                        
+                    </section>
+                    <section id="rauchbier" class="tab-panel">
+                        
+                    </section>
+
+                    <section id="dunkles" class="tab-panel">
+                        
+                    </section>
+
+                    <section id="specialdays" class="tab-panel">
+                        
+                    </section>
+
+                    <section id="others" class="tab-panel">
+                        
                     </section>
                 </div>
             </div>
@@ -639,10 +691,14 @@
 
 <!--======================================= Trending Products============================================--->
 @if($trend->count() > 0)
-<div class="container-fluid pt-5 pb-3">
-	<div align="right"><a href="{{url('/cp/trend')}}" class="btn btn-primary">View All</a></div>
-        <h2 class="section-title position-relative text-center mx-xl-5 mb-4 data-aos="fade-up" data-aos-delay="400"" >Trending Products</h2>
-        <div class="row px-xl-5">
+<div class="trending_sec">
+<div class="container pt-5 pb-3">
+	
+        <h2 class="section-title position-relative text-center mb-4" data-aos="fade-up" data-aos-delay="400" >Trending Products
+
+        <div class="right_viewall"><a href="{{url('/cp/trend')}}" class="btn btn-primary mr-0">View All</a></div>
+        </h2>
+        <div class="row justify-content-center ">
             @foreach($trend as $trend)
             <?php
             if($trend->is_variation == '1'){
@@ -673,55 +729,55 @@
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$trend->slug}}"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-outline-dark btn-square yehr wishlisttrend{{$trend->id}}"><i class="far fa-heart"></i></a>
-<script>
- $(document).ready(function(){
-     function loadwish(){
-         $.ajax({
-             method: "GET",
-             url: '{{url('/load-wishlist-data')}}',
-             success: function (response) {
-                 $('.wishlist_count').html('');
-                 $('.wishlist_count').html(response.count);
-             }
-         });
-     }
+                            <script>
+                            $(document).ready(function(){
+                                function loadwish(){
+                                    $.ajax({
+                                        method: "GET",
+                                        url: '{{url('/load-wishlist-data')}}',
+                                        success: function (response) {
+                                            $('.wishlist_count').html('');
+                                            $('.wishlist_count').html(response.count);
+                                        }
+                                    });
+                                }
 
-     $('.wishlisttrend<?php echo $trend->id; ?>').click(function(e){
-         var session_id = $('.session_id').val();
-         var product_id = $('.product_id<?php echo $trend->id; ?>').val();
-         var product_name = $('.product_name<?php echo $trend->id; ?>').val();
-         var product_price = $('.product_price<?php echo $trend->id; ?>').val();
-         $.ajax({
-             url: '{{url('addwishlist')}}',
-             method: "POST",
-             data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-             dataType: "json",
-             success: function (response) {
-                 if(response.status == 'success'){
-                     loadwish();
-                 Swal.fire(
-                   'Added!',
-                   'Product Added to Wishlist',
-                   'success'
-                 )
-             }else if(response.status == 'exists'){
-                  Swal.fire(
-                   'Already Exists',
-                   'success'
-                 )
-             }else if(response.status == 'failure'){
-                 window.location.replace('http://127.0.0.1:8000/login')
-             }
-             }
-         });
-     });
- });
- </script>
+                                $('.wishlisttrend<?php echo $trend->id; ?>').click(function(e){
+                                    var session_id = $('.session_id').val();
+                                    var product_id = $('.product_id<?php echo $trend->id; ?>').val();
+                                    var product_name = $('.product_name<?php echo $trend->id; ?>').val();
+                                    var product_price = $('.product_price<?php echo $trend->id; ?>').val();
+                                    $.ajax({
+                                        url: '{{url('addwishlist')}}',
+                                        method: "POST",
+                                        data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                        dataType: "json",
+                                        success: function (response) {
+                                            if(response.status == 'success'){
+                                                loadwish();
+                                            Swal.fire(
+                                            'Added!',
+                                            'Product Added to Wishlist',
+                                            'success'
+                                            )
+                                        }else if(response.status == 'exists'){
+                                            Swal.fire(
+                                            'Already Exists',
+                                            'success'
+                                            )
+                                        }else if(response.status == 'failure'){
+                                            window.location.replace('http://127.0.0.1:8000/login')
+                                        }
+                                        }
+                                    });
+                                });
+                            });
+                            </script>
                          <!--  <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
                         </div>
                     </div>
-                    <div class="text-center py-4">
-					 <div class="d-flex align-items-center justify-content-center mb-1">
+                    <div class="text-center py-2">
+					 <div class="d-flex align-items-center justify-content-center review_star mb-1">
                         <?php $rating = App\Models\Review::where('product_id',$trend->id)->avg('rating'); ?>
                         @if($rating != null)<p>
                             @foreach(range(1,5) as $i)
@@ -753,14 +809,19 @@
             @endforeach
         </div>
     </div>
+</div>
 @endif
 <!--======================================= End Trending Products============================================--->
 
     <!-- Products Start -->
-<div class="container-fluid pt-5 pb-3">
-	<div align="right"><a href="{{url('/cp/newarrival')}}" class="btn btn-primary">View All</a></div>
-        <h2 class="section-title position-relative text-center mx-xl-5 mb-4" data-aos="fade-up" data-aos-delay="300">New Arrival Gifts</h2>
-        <div class="row px-xl-5">
+<div class="new_arrivals_sec">
+    <div class="container pt-5 pb-3">
+	
+        <h2 class="section-title position-relative text-center mb-4" data-aos="fade-up" data-aos-delay="300">New Arrival Gifts
+
+        <div class="right_viewall" ><a href="{{url('/cp/newarrival')}}" class="btn btn-primary mr-0">View All</a></div>
+        </h2>
+        <div class="row justify-content-center">
             @foreach($new as $new)
             <?php
             if($new->is_variation == '1'){
@@ -791,55 +852,55 @@
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$new->slug}}"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-outline-dark btn-square yehr wishlistnew{{$new->id}}"><i class="far fa-heart"></i></a>
-<script>
- $(document).ready(function(){
-     function loadwish(){
-         $.ajax({
-             method: "GET",
-             url: '{{url('/load-wishlist-data')}}',
-             success: function (response) {
-                 $('.wishlist_count').html('');
-                 $('.wishlist_count').html(response.count);
-             }
-         });
-     }
+                                <script>
+                                $(document).ready(function(){
+                                    function loadwish(){
+                                        $.ajax({
+                                            method: "GET",
+                                            url: '{{url('/load-wishlist-data')}}',
+                                            success: function (response) {
+                                                $('.wishlist_count').html('');
+                                                $('.wishlist_count').html(response.count);
+                                            }
+                                        });
+                                    }
 
-     $('.wishlistnew<?php echo $new->id; ?>').click(function(e){
-         var session_id = $('.session_id').val();
-         var product_id = $('.product_id<?php echo $new->id; ?>').val();
-         var product_name = $('.product_name<?php echo $new->id; ?>').val();
-         var product_price = $('.product_price<?php echo $new->id; ?>').val();
-         $.ajax({
-             url: '{{url('addwishlist')}}',
-             method: "POST",
-             data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-             dataType: "json",
-             success: function (response) {
-                 if(response.status == 'success'){
-                     loadwish();
-                 Swal.fire(
-                   'Added!',
-                   'Product Added to Wishlist',
-                   'success'
-                 )
-             }else if(response.status == 'exists'){
-                  Swal.fire(
-                   'Already Exists',
-                   'success'
-                 )
-             }else if(response.status == 'failure'){
-                 window.location.replace('http://127.0.0.1:8000/login')
-             }
-             }
-         });
-     });
- });
- </script>
+                                    $('.wishlistnew<?php echo $new->id; ?>').click(function(e){
+                                        var session_id = $('.session_id').val();
+                                        var product_id = $('.product_id<?php echo $new->id; ?>').val();
+                                        var product_name = $('.product_name<?php echo $new->id; ?>').val();
+                                        var product_price = $('.product_price<?php echo $new->id; ?>').val();
+                                        $.ajax({
+                                            url: '{{url('addwishlist')}}',
+                                            method: "POST",
+                                            data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                            dataType: "json",
+                                            success: function (response) {
+                                                if(response.status == 'success'){
+                                                    loadwish();
+                                                Swal.fire(
+                                                'Added!',
+                                                'Product Added to Wishlist',
+                                                'success'
+                                                )
+                                            }else if(response.status == 'exists'){
+                                                Swal.fire(
+                                                'Already Exists',
+                                                'success'
+                                                )
+                                            }else if(response.status == 'failure'){
+                                                window.location.replace('http://127.0.0.1:8000/login')
+                                            }
+                                            }
+                                        });
+                                    });
+                                });
+                                </script>
                             <!--<a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
                         </div>
                     </div>
-                    <div class="text-center py-4">
-					 <div class="d-flex align-items-center justify-content-center mb-1">
+                    <div class="text-center py-2">
+					 <div class="d-flex align-items-center justify-content-center review_star mb-1">
                         <?php $ratingg = App\Models\Review::where('product_id',$new->id)->avg('rating'); ?>
                         @if($ratingg != null)<p>
                             @foreach(range(1,5) as $i)
@@ -868,11 +929,56 @@
             @endforeach
         </div>
     </div>
+</div>
     <!-- Products End -->
 
+    <div class="perfect_gift_sec" >
+        <div class="container text-center">
+        <h3 class="heading mb-4" style="color:white;" data-aos="fade-up" data-aos-delay="300">Perfect Gifts for all Occasions</h3><br>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-2 col-md-4 col-6 ">
+                    <div class="bg-light p-4">
+                        <img src="{{asset('img/fd.png')}}" alt="">
+                        <p class="ll">Fathers Day</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="bg-light p-4">
+                        <img src="{{asset('img/md.png')}}" alt="">
+                        <p class="ll">Mothers Day</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="bg-light p-4">
+                        <img src="{{asset('img/ffd.png')}}" alt="">
+                        <p class="ll">Friendship Day</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="bg-light p-4">
+                        <img src="{{asset('img/vd.png')}}" alt="">
+                        <p class="ll">Valentine's Day</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="bg-light p-4">
+                        <img src="{{asset('img/wd.png')}}" alt="">
+                        <p class="ll">Womens Day</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="bg-light p-4">
+                        <img src="{{asset('img/ny.png')}}" alt="">
+                        <p class="ll">New Year</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Vendor Start -->
-<div class="container-fluid py-5">
+<div class="container-fluid py-5" style="display:none">
    <div align="center">
        <div align="right"><a href="" class="btn btn-primary">View All</a></div>
         <h3 class="heading" style="color:white;" data-aos="fade-up" data-aos-delay="300">Perfect Gifts for all Occasions</h3><br>
@@ -912,41 +1018,48 @@
 </div>
 <!-- Vendor End -->
 <div class="what-people">
-	  <div align="center">
-       <h3 class="heading" data-aos="fade-up" data-aos-delay="300">What People are saying?</h3>
-      </div><br>
-     <br>
-	<div class="row px-xl-5">
-        @foreach($testimonial as $testimonial)
-    	<div class="col-sm-4 box" data-aos="fade-left" data-aos-delay="100">
-	        <div class="test-img"><span class="aname">{{$testimonial->letter}}</span>
-                <p class="clicl">{{$testimonial->name}}<span class="our">{{$testimonial->designation}}</span></p>
-	            <p class="tes">{!!$testimonial->description!!}</p>
-	            <div class="d-flex align-items-center justify-content-left mb-1">
-                    @if($testimonial->rating != null)
-                    @for($i=1; $i<=$testimonial->rating; $i++)
-                    <small class="fa fa-star text-primary mr-1"></small>
-                    @endfor
-                    @endif
-                </div>
-	        </div>
-	    </div>
-        @endforeach
-	</div>
-</div>
+    <div class="container">
+	  <div class="text-center">
+       <h3 class="heading mb-5" data-aos="fade-up" data-aos-delay="300">What People are saying?</h3>
+      </div>
 
-<div class="foot-top">
-	 <div class="row" style="text-align: center;">
-        <div class="col-sm-2"></div>
-            @foreach($section8 as $section8)
-            <div class="col-sm-3">
-                <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
-                <p class="event">{{$section8->section_name}}</p>
+        <div class="row justify-content-center">
+            @foreach($testimonial as $testimonial)
+            <div class="col-lg-4 col-md-6 col-12 box" data-aos="fade-left" data-aos-delay="100">
+                <div class="test-img">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="aname">{{$testimonial->letter}}</span>
+                        <p class="clicl">{{$testimonial->name}}<span class="our">{{$testimonial->designation}}</span></p>
+                    </div>
+                    
+                    <p class="tes">{!!$testimonial->description!!}</p>
+                    <div class="d-flex align-items-center justify-content-left mb-1">
+                        @if($testimonial->rating != null)
+                        @for($i=1; $i<=$testimonial->rating; $i++)
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        @endfor
+                        @endif
+                    </div>
+                </div>
             </div>
             @endforeach
         </div>
-        <div class="col-sm-1"></div>
+</div>
+</div>
+
+<div class="foot-top">
+    <div class="container">
+        <div class="row justify-content-center align-items-center" >
+            
+                @foreach($section8 as $section8)
+                <div class="col-md-3 text-center">
+                    <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
+                    <p class="event">{{$section8->section_name}}</p>
+                </div>
+                @endforeach
+        </div>
     </div>
+	 
 </div>
 
 @push('after-scripts')
