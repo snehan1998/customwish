@@ -973,7 +973,11 @@ input[type="radio"].btn.btn-primary-sign {
                 @endif
                 @if($product->timee == 1)
                 <div class="col-lg-6">
-                    <input   type="time" name="timee" class="timecss timee{{$product->id}}" placeholder="Select Delivery Time"  onfocus = "(this.type = 'time')"  id = "time" @if($proreq->timee_required == 1) required @endif>
+                    <select name="timee" id="timee" class="timecss timee{{$product->id}}" id = "time">
+                        @foreach($time as $time)
+                            <option value="{{$time->button_name}}">{{$time->button_name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 @endif
             </div>
@@ -1727,7 +1731,11 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             @endif
             @if($product->timee == 1)
             <div class="col-lg-6">
-                <input   type="time" name="timee" class="timecss timee{{$product->id}}" placeholder="Select Delivery Time"  onfocus = "(this.type = 'time')"  id = "time">
+                <select name="timee" id="timee" class="timecss timee{{$product->id}}" id = "timee"  @if($proreq->timee_required == 1) required @endif>
+                    @foreach($time as $time)
+                        <option value="{{$time->button_name}}">{{$time->button_name}}</option>
+                    @endforeach
+                </select>
             </div>
             @endif
         </div>

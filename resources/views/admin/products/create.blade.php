@@ -360,6 +360,27 @@
                                                 <label class="custom-control-label" for="timee">Time Section</label>
                                             </div>
                                         </div>
+                                        <br>
+                                     <div class="row">
+                                        <div class="form-group">
+                                            <div class="dynamicRadioobutton">
+                                            <div class="row">
+                                                <div class="col-md-6"><label>Time</label>
+                                                    <input name="button_name[]" type="text"  class="form-control" Placeholder="Enter Time" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>&nbsp;</label><br>
+                                                    <input id="btnCakePriceebutton" class="btn-primary" type="button" value="Add More" />
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div id="ProductContainerrbutton"></div>
+                                            <br>
+                                        </div>
+                                     </div>
+                                    </div>
+
                                         <div class="custom-control custom-checkbox  pure-vegg">
                                             <div class="checkbox d-inline mr-3 pure-vegg">
                                                 <input type="checkbox" class="custom-control-input" id="timee_required" name="timee_required" >
@@ -588,33 +609,13 @@
                                      </div>
 
 
-                                     <div class="custom-control custom-checkbox  pure-veggg">
+                                     <!--<div class="custom-control custom-checkbox  pure-veggg">
                                         <div class="checkbox d-inline mr-3 pure-veggg">
                                             <input type="checkbox" class="custom-control-input" id="button_type_option" name="button_type_option" >
                                             <label class="custom-control-label" for="button_type_option">Button Type Section</label>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <br>
-
-                                     <div class="row">
-                                        <div class="form-group">
-                                            <div class="dynamicRadioobutton">
-                                            <div class="row">
-                                                <div class="col-md-6"><label>Button</label>
-                                                    <input name="button_name[]" type="text"  class="form-control" Placeholder="Enter Name" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label>&nbsp;</label><br>
-                                                    <input id="btnCakePriceebutton" class="btn-primary" type="button" value="Add More" />
-                                                </div>
-                                                <div>
-                                                </div>
-                                            </div>
-                                            <div id="ProductContainerrbutton"></div>
-                                            <br>
-                                        </div>
-                                     </div>
-                                    </div>
 
 
                                      <div class="custom-control custom-checkbox  pure-veg">
@@ -814,7 +815,7 @@ function mycomboFunction(){
             $(this).closest(".dynamicRadioobutton").remove();
         });
         function GetDynamicProductPriceWeightbutton(value) {
-            return '<div class="dynamicRadioobutton"> <div class="row"> <div class="col-md-6"> <br> <input name ="button_name[]" type="text"  class="form-control" Placeholder="Enter Name" /></div><div class="col-md-2"> <br> <input type="button" value="Remove" class="removeRadioobutton btn btn-danger"></div> </div></div>'
+            return '<div class="dynamicRadioobutton"> <div class="row"> <div class="col-md-6"> <br> <input name ="button_name[]" type="text"  class="form-control" Placeholder="Enter Time Slot" /></div><div class="col-md-2"> <br> <input type="button" value="Remove" class="removeRadioobutton btn btn-danger"></div> </div></div>'
         }
       </script>
 @endpush

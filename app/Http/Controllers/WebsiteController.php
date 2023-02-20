@@ -32,6 +32,7 @@ use App\Models\ProductImage;
 use App\Models\ProductRequired;
 use App\Models\ProductSelectHeading;
 use App\Models\ProductSelectOption;
+use App\Models\ProductVariationButton;
 use App\Models\Review;
 use App\Models\Section2;
 use App\Models\Section8;
@@ -375,13 +376,14 @@ class WebsiteController extends Controller
     public function productdetail(Request $request,$slug)
     {
         $product = Product::where('status','Active')->where('slug',$slug)->first();
+        $time = ProductVariationButton::where('product_id',$product->id)->get();
         $proreq = ProductRequired::where('product_id',$product->id)->first();
         $testimonial = Testimonial::OrderBy('id','DESC')->get();
         $review = Review::where('status','Active')->where('product_id',$product->id)->get();
         $trend = Product::where('category_id',$product->category_id)->where('status','Active')->orderBy('id','DESC')->where('trending','1')->limit('4')->get();
         $youmay = Product::where('category_id',$product->category_id)->where('status','Active')->orderBy('id','DESC')->where('youmayalsolike','1')->limit('4')->get();
-        return view('productdetails',compact('proreq','product','testimonial','review','youmay','trend'));
-    }
+        return view('productdetails',compact('proreq','product','testimonial','review','youmay','trend','time'));
+     }
 
     public function wishlist(Request $request)
     {
@@ -481,14 +483,14 @@ class WebsiteController extends Controller
         $datt[] = $dat;
         $request->attr2;
          $tags;
-      return $dataa = AddSubVariation::where("main_attr_value",$tags)->where('product_id',$request->productdd)->get(["main_attr_id","main_attr_value","price","strike_price", "product_id", "stock", "def", "quantity","skucode","id"]);
+       $dataa = AddSubVariation::where("main_attr_value",$tags)->where('product_id',$request->productdd)->get(["main_attr_id","main_attr_value","price","strike_price", "product_id", "stock", "def", "quantity","skucode","id"]);
 
         return response()->json($dataa);
     }
 
     public function fetchimages(Request $request)
     {
-        return $request->all();
+        $request->all();
         $var = StoreCartAttribute::where('session_id',Session::getId())->where('product_id',$request->productdd)->get();
         foreach($var as $var){
         $vari[] = $var->att_id;

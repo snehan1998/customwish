@@ -336,6 +336,12 @@
                                                 <label class="custom-control-label" for="location">Location Section</label>
                                             </div>
                                         </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="location_required" name="location_required" >
+                                                <label class="custom-control-label" for="location_required">Location Section Is Mandatory Field</label>
+                                            </div>
+                                        </div>
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="datee" name="datee" >
@@ -344,8 +350,41 @@
                                         </div>
                                         <div class="custom-control custom-checkbox  pure-vegg">
                                             <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="datee_required" name="datee_required" >
+                                                <label class="custom-control-label" for="datee_required">Date Section Is Mandatory Field</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
                                                 <input type="checkbox" class="custom-control-input" id="timee" name="timee" >
                                                 <label class="custom-control-label" for="timee">Time Section</label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                     <div class="row">
+                                        <div class="form-group">
+                                            <div class="dynamicRadioobutton">
+                                            <div class="row">
+                                                <div class="col-md-6"><label>Time</label>
+                                                    <input name="button_name[]" type="text"  class="form-control" Placeholder="Enter Time" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>&nbsp;</label><br>
+                                                    <input id="btnCakePriceebutton" class="btn-primary" type="button" value="Add More" />
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div id="ProductContainerrbutton"></div>
+                                            <br>
+                                        </div>
+                                     </div>
+                                    </div>
+
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="timee_required" name="timee_required" >
+                                                <label class="custom-control-label" for="timee_required">Time Section Is Mandatory Field</label>
                                             </div>
                                         </div>
                                         <div class="custom-control custom-checkbox  pure-veggg">
@@ -372,6 +411,18 @@
                                                 <label class="custom-control-label" for="self_pickup">Self Pickup Section</label>
                                             </div>
                                         </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="selfpickup_required" name="selfpickup_required" >
+                                                <label class="custom-control-label" for="selfpickup_required">Seft Pickup Is Mandatory Field</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="textarea_required" name="textarea_required" >
+                                                <label class="custom-control-label" for="textarea_required">Textarea Is Mandatory Field</label>
+                                            </div>
+                                        </div>
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="textareaa" name="textareaa" >
@@ -387,6 +438,12 @@
                                             <label>Textarea Field Validation</label>
                                             <input type="number" class="form-control" name="textarea_validation" id="textarea_validation" value="{{old('textarea_validation')}}">
                                         </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="eggoreggless_required" name="eggoreggless_required" >
+                                                <label class="custom-control-label" for="eggoreggless_required">Eggoreggless Is Mandatory Field</label>
+                                            </div>
+                                        </div>
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="eggoreggless" name="eggoreggless" >
@@ -397,6 +454,12 @@
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="imageuploadoption" name="imageuploadoption" >
                                                 <label class="custom-control-label" for="imageuploadoption">Image Upload Option</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="imageupload_required" name="imageupload_required" >
+                                                <label class="custom-control-label" for="imageupload_required">Image upload Is Mandatory Field</label>
                                             </div>
                                         </div>
                                         <br>
@@ -412,7 +475,12 @@
                                             <label>Image Upload Option Size</label>
                                             <input type="text" class="form-control" name="imageuploadoption_size" id="imageuploadoption_size" value="{{old('imageuploadoption_size')}}">
                                         </div>
-
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="textfield_required" name="textfield_required" >
+                                                <label class="custom-control-label" for="textfield_required">Textfield Is Mandatory Field</label>
+                                            </div>
+                                        </div>
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="text_field" name="text_field" >
@@ -458,11 +526,16 @@
                                                 <label class="custom-control-label" for="single_option">Single Color</label>
                                             </div>
                                         </div>
-
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="haveadesigninmind_option" name="haveadesigninmind_option" >
                                                 <label class="custom-control-label" for="haveadesigninmind_option">Have A Design In Mind Option</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="logoupload_required" name="logoupload_required" >
+                                                <label class="custom-control-label" for="logoupload_required">Upload Logo Is Mandatory Field</label>
                                             </div>
                                         </div>
                                         <div class="custom-control custom-checkbox  pure-veggg">
@@ -483,11 +556,16 @@
                                             <label>Logo Upload Option Size</label>
                                             <input type="text" class="form-control" name="uploadlogo_size" id="uploadlogo_size" value="{{old('uploadlogo_size')}}">
                                         </div>
-
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="addatext_option" name="addatext_option" >
                                                 <label class="custom-control-label" for="addatext_option">Add Text Option</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="addtext_required" name="addtext_required" >
+                                                <label class="custom-control-label" for="addtext_required">Add Text Is Mandatory Field</label>
                                             </div>
                                         </div>
                                         <br>
@@ -503,6 +581,12 @@
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="flower_type_option" name="flower_type_option" >
                                                 <label class="custom-control-label" for="flower_type_option">Flower Type Section</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-checkbox  pure-vegg">
+                                            <div class="checkbox d-inline mr-3 pure-vegg">
+                                                <input type="checkbox" class="custom-control-input" id="flowertype_required" name="flowertype_required" >
+                                                <label class="custom-control-label" for="flowertype_required">Flower Type Is Mandatory Field</label>
                                             </div>
                                         </div>
                                         <br>
@@ -525,33 +609,13 @@
                                      </div>
 
 
-                                     <div class="custom-control custom-checkbox  pure-veggg">
+                                     <!--<div class="custom-control custom-checkbox  pure-veggg">
                                         <div class="checkbox d-inline mr-3 pure-veggg">
                                             <input type="checkbox" class="custom-control-input" id="button_type_option" name="button_type_option" >
                                             <label class="custom-control-label" for="button_type_option">Button Type Section</label>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <br>
-
-                                     <div class="row">
-                                        <div class="form-group">
-                                            <div class="dynamicRadioobutton">
-                                            <div class="row">
-                                                <div class="col-md-6"><label>Button</label>
-                                                    <input name="button_name[]" type="text"  class="form-control" Placeholder="Enter Name" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label>&nbsp;</label><br>
-                                                    <input id="btnCakePriceebutton" class="btn-primary" type="button" value="Add More" />
-                                                </div>
-                                                <div>
-                                                </div>
-                                            </div>
-                                            <div id="ProductContainerrbutton"></div>
-                                            <br>
-                                        </div>
-                                     </div>
-                                    </div>
 
 
                                      <div class="custom-control custom-checkbox  pure-veg">
@@ -751,7 +815,7 @@ function mycomboFunction(){
             $(this).closest(".dynamicRadioobutton").remove();
         });
         function GetDynamicProductPriceWeightbutton(value) {
-            return '<div class="dynamicRadioobutton"> <div class="row"> <div class="col-md-6"> <br> <input name ="button_name[]" type="text"  class="form-control" Placeholder="Enter Name" /></div><div class="col-md-2"> <br> <input type="button" value="Remove" class="removeRadioobutton btn btn-danger"></div> </div></div>'
+            return '<div class="dynamicRadioobutton"> <div class="row"> <div class="col-md-6"> <br> <input name ="button_name[]" type="text"  class="form-control" Placeholder="Enter Time Slot" /></div><div class="col-md-2"> <br> <input type="button" value="Remove" class="removeRadioobutton btn btn-danger"></div> </div></div>'
         }
       </script>
 @endpush

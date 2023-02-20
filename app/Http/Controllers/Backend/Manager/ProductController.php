@@ -11,6 +11,7 @@ use App\Models\ProductComboVariation;
 use App\Models\ProductFlower;
 use App\Models\ProductImage;
 use App\Models\ProductPrice;
+use App\Models\ProductRequired;
 use App\Models\ProductVariation;
 use App\Models\ProductVariationButton;
 use App\Models\SubCategory;
@@ -123,6 +124,7 @@ class ProductController extends Controller
             $product->textarea_validation = $request->textarea_validation;
             $product->imageuploadoption_heading = $request->imageuploadoption_heading;
             $product->imageuploadoption_validation = $request->imageuploadoption_validation;
+            $product->imageuploadoption_size = $request->imageuploadoption_size;
             $product->text_heading = $request->text_heading;
             $product->text_validation = $request->text_validation;
             $product->giftwrapper_price = $request->giftwrapper_price;
@@ -130,6 +132,7 @@ class ProductController extends Controller
             $product->addatext_validation = $request->addatext_validation;
             $product->uploadlogo_heading = $request->uploadlogo_heading;
             $product->uploadlogo_validation = $request->uploadlogo_validation;
+            $product->uploadlogo_size = $request->uploadlogo_size;
             if($request->frontandbackprint_option ==''){
                 $product->frontandbackprint_option = '0';
             }else if($request->frontandbackprint_option == 'on'){
@@ -280,6 +283,65 @@ class ProductController extends Controller
             }
             $product->save();
 
+            $productreq = new ProductRequired();
+            $productreq->product_id = $product->id;
+            if($request->location_required ==''){
+                $productreq->location_required = '0';
+            }else if($request->location_required == 'on'){
+                $productreq->location_required = '1';
+            }
+            if($request->datee_required ==''){
+                $productreq->datee_required = '0';
+            }else if($request->datee_required == 'on'){
+                $productreq->datee_required = '1';
+            }
+            if($request->timee_required ==''){
+                $productreq->timee_required = '0';
+            }else if($request->timee_required == 'on'){
+                $productreq->timee_required = '1';
+            }
+            if($request->textarea_required ==''){
+                $productreq->textarea_required = '0';
+            }else if($request->textarea_required == 'on'){
+                $productreq->textarea_required = '1';
+            }
+            if($request->eggoreggless_required ==''){
+                $productreq->eggoreggless_required = '0';
+            }else if($request->eggoreggless_required == 'on'){
+                $productreq->eggoreggless_required = '1';
+            }
+            if($request->imageupload_required ==''){
+                $productreq->imageupload_required = '0';
+            }else if($request->imageupload_required == 'on'){
+                $productreq->imageupload_required = '1';
+            }
+            if($request->textfield_required ==''){
+                $productreq->textfield_required = '0';
+            }else if($request->textfield_required == 'on'){
+                $productreq->textfield_required = '1';
+            }
+            if($request->logoupload_required ==''){
+                $productreq->logoupload_required = '0';
+            }else if($request->logoupload_required == 'on'){
+                $productreq->logoupload_required = '1';
+            }
+            if($request->addtext_required ==''){
+                $productreq->addtext_required = '0';
+            }else if($request->addtext_required == 'on'){
+                $productreq->addtext_required = '1';
+            }
+            if($request->flowertype_required ==''){
+                $productreq->flowertype_required = '0';
+            }else if($request->flowertype_required == 'on'){
+                $productreq->flowertype_required = '1';
+            }
+            if($request->selfpickup_required ==''){
+                $productreq->selfpickup_required = '0';
+            }else if($request->selfpickup_required == 'on'){
+                $productreq->selfpickup_required = '1';
+            }
+            $productreq->save();
+
             if($request->hasfile('images'))
             {
                 foreach(($request->file('images')) as $image)
@@ -394,6 +456,7 @@ class ProductController extends Controller
     public function edit($id,Request $request)
     {
         $data = Product::findOrFail($id);
+        $proreq = ProductRequired::where('product_id',$id)->first();
         $images = ProductImage::where('product_id',$id)->get();
         $item_rel_ids = explode(',',$data->related_products);
         $item_rel_ids =[ ];
@@ -458,7 +521,7 @@ class ProductController extends Controller
       //  else{
       //      $subcategory = Subcategory::where('status','Active')->where('category_id',$data->category_id)->get();
       //  }
-        return View('manager.products.edit',compact('cake_desc','butt','childcategory','treat','maincategory','item_attr_ids','firstcategory','data','subcategory','item_rel_ids','images','subchildcategory','item_attr_idsc'));
+        return View('manager.products.edit',compact('proreq','cake_desc','butt','childcategory','treat','maincategory','item_attr_ids','firstcategory','data','subcategory','item_rel_ids','images','subchildcategory','item_attr_idsc'));
     }
 
     /**
@@ -505,6 +568,7 @@ class ProductController extends Controller
         $product->textarea_validation = $request->textarea_validation;
         $product->imageuploadoption_heading = $request->imageuploadoption_heading;
         $product->imageuploadoption_validation = $request->imageuploadoption_validation;
+        $product->imageuploadoption_size = $request->imageuploadoption_size;
         $product->text_heading = $request->text_heading;
         $product->text_validation = $request->text_validation;
         $product->giftwrapper_price = $request->giftwrapper_price;
@@ -512,6 +576,7 @@ class ProductController extends Controller
         $product->addatext_validation = $request->addatext_validation;
         $product->uploadlogo_heading = $request->uploadlogo_heading;
         $product->uploadlogo_validation = $request->uploadlogo_validation;
+        $product->uploadlogo_size = $request->uploadlogo_size;
         if($request->frontandbackprint_option ==''){
             $product->frontandbackprint_option = '0';
         }else if($request->frontandbackprint_option == 'on'){
@@ -662,6 +727,79 @@ class ProductController extends Controller
             $product->pro_combo_attributes  =  $request->input('pro_combo_attributes');
         }
         $product->save();
+
+        if($request->location_required ==''){
+            $location_required = '0';
+        }else if($request->location_required == 'on'){
+            $location_required = '1';
+        }
+        if($request->datee_required ==''){
+            $datee_required = '0';
+        }else if($request->datee_required == 'on'){
+            $datee_required = '1';
+        }
+        if($request->timee_required ==''){
+            $timee_required = '0';
+        }else if($request->timee_required == 'on'){
+            $timee_required = '1';
+        }
+        if($request->textarea_required ==''){
+            $textarea_required = '0';
+        }else if($request->textarea_required == 'on'){
+            $textarea_required = '1';
+        }
+        if($request->eggoreggless_required ==''){
+            $eggoreggless_required = '0';
+        }else if($request->eggoreggless_required == 'on'){
+            $eggoreggless_required = '1';
+        }
+        if($request->imageupload_required ==''){
+            $imageupload_required = '0';
+        }else if($request->imageupload_required == 'on'){
+            $imageupload_required = '1';
+        }
+        if($request->textfield_required ==''){
+            $textfield_required = '0';
+        }else if($request->textfield_required == 'on'){
+            $textfield_required = '1';
+        }
+        if($request->logoupload_required ==''){
+            $logoupload_required = '0';
+        }else if($request->logoupload_required == 'on'){
+            $logoupload_required = '1';
+        }
+        if($request->addtext_required ==''){
+            $addtext_required = '0';
+        }else if($request->addtext_required == 'on'){
+            $addtext_required = '1';
+        }
+        if($request->flowertype_required ==''){
+            $flowertype_required = '0';
+        }else if($request->flowertype_required == 'on'){
+            $flowertype_required = '1';
+        }
+        if($request->selfpickup_required ==''){
+            $selfpickup_required = '0';
+        }else if($request->selfpickup_required == 'on'){
+            $selfpickup_required = '1';
+        }
+//dd($id);
+        $productreq = ProductRequired::where('product_id',$id)->update([
+            'product_id' => $id,
+            'selfpickup_required' => $selfpickup_required,
+            'flowertype_required' => $flowertype_required,
+            'addtext_required' => $addtext_required,
+            'logoupload_required' => $logoupload_required,
+            'textfield_required' => $textfield_required,
+            'imageupload_required' => $imageupload_required,
+            'eggoreggless_required' => $eggoreggless_required,
+            'textarea_required' => $textarea_required,
+            'timee_required' => $timee_required,
+            'datee_required' => $datee_required,
+            'location_required' => $location_required,
+        ]);
+
+
 
         if($product->is_variation != 1){
         $product_price= ProductPrice::updateOrCreate(['product_id'=> $id],[
