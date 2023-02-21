@@ -7,7 +7,7 @@
 @section('content')
 <div class="shop-ccc">
     <div class="container">
-        <div class="row loginbox">
+        <div class="row loginbox mt-5 mx-5">
             <div class="col-lg-6" >
                 <div class="row" >
                     <div class="col-lg-4">
@@ -41,6 +41,7 @@
             <form method="POST" action="{{route('login.custom')}}">
             @csrf
 
+            <div class="row">
             <div class="col-lg-12">
             <!--    <x-jet-label for="email" value="{{ __('Email') }}" />-->
                 <x-jet-input id="email" class="inputclass" type="email" name="email" :value="old('email')" placeholder="Email" required autofocus />
@@ -50,6 +51,8 @@
             <!--    <x-jet-label for="password" value="{{ __('Password') }}" />-->
                 <x-jet-input id="password" class="inputclass" type="password" name="password" placeholder="Password" required autocomplete="current-password" />
             </div>
+            </div>
+        
 
             <!--<div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
@@ -62,13 +65,13 @@
                     <button class="logbtn">{{ __('LOGIN') }}</button>
                 <!--</x-jet-button>-->
             </div>
-            <div class="row" style="padding-left:15px;">
+            <div class="row">
                 <div class="col-lg-8 d-flex">
                     <input type="checkbox" > <span class="newuser" style="font-size:12px;">By Continuing, you agree Term & Privacy Policy</span>
                 </div>
                 <div class="col-lg-4">
                     @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 " href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 forgot_text " href="{{ route('password.request') }}">
                         {{ __('Forgot password?') }}
                     </a>
                 @endif
@@ -91,8 +94,8 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="facelog">
-            <a href="{{ url('/redirect') }}"  class="ml-2 d-flex">
-            <img src="{{asset('image/google.png')}}" style="margin-left: -2em;width:30px;" >
+            <a href="{{ url('/redirect') }}"  class="ml-1 d-flex">
+            <img src="{{asset('image/google.png')}}" style="width:40px;padding:2px" >
             <span class="loginf">Login with Google</span>
             </a>
         </div>

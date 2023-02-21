@@ -1,18 +1,5 @@
 @push('after-styles')
 <style>
-    .navigation-box a {
-    background: #FFF;
-    border: 1px solid #eeeeee;
-    padding-bottom: 15px;
-    color: #555555;
-    text-transform: none;
-    letter-spacing: unset;
-    font-size: 120%;
-    padding: 50px 0;
-    display: block;
-    text-align: center;
-    margin: 30px 0px;
-}
 </style>
 @endpush
 @extends('layouts.app')
@@ -25,7 +12,7 @@
        <div class="container-fluid">
            <div class="row px-xl-5">
                @include('user.layouts.sidemenu')
-                <div class="col-xl-8 col-lg-8">
+                <div class="col-xl-9 col-lg-9">
                 <div class="dashboard-box">
                 <div>
                     <p>Hello, <strong>Custom Wish</strong> (If Not <strong>Custom Wish!</strong><a href="{{ route('logout') }}"
@@ -70,6 +57,7 @@
             </div><!-- Main row end -->
             </div><!-- Conatiner end -->
         </div><!-- Main container end -->
+</div>
 
 
 @push('after-scripts')

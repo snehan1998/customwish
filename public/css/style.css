@@ -65,7 +65,7 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
-html, body {
+html {
     overflow-x: hidden;
 }
 body {

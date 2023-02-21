@@ -392,10 +392,10 @@ nav.bg-light{
                 @foreach($testimonial as $testimonial)
                 <div class="col-lg-4 col-md-6 col-12 box box" data-aos="fade-left" data-aos-delay="100">
                     <div class="test-img">
-                    <div class="d-flex align-items-center justify-content-start">
-                        <span class="aname">{{$testimonial->letter}}</span>
-                        <p class="clicl">{{$testimonial->name}}<span class="our">{{$testimonial->designation}}</span></p>
-                    </div>
+                        <div class="d-flex align-items-center justify-content-start">
+                            <span class="aname">{{$testimonial->letter}}</span>
+                            <p class="clicl">{{$testimonial->name}}<span class="our">{{$testimonial->designation}}</span></p>
+                        </div>
                         <p class="tes">{!!$testimonial->description!!}</p>
                         <div class="d-flex align-items-center justify-content-left mb-1">
                             @if($testimonial->rating != null)

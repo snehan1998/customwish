@@ -78,14 +78,14 @@ margin: 0 !important;
 }
 
 .swiper-testimonial {
-padding: 100px 20px;
+padding: 60px 20px;
 padding-top: 30px;
 }
 
 .half-color-box {
 background: linear-gradient(#dc354542, #f9cbcf);
 height: 300px;
-margin-bottom: 312px;
+margin-bottom: 360px;
 }
 
 .test-arrowbox .swiper-button-next-test,
@@ -149,24 +149,41 @@ transform: translateX(-15px);
             <div class="swiper-wrapper">
                 @foreach($testi as $testi)
                 <div class="swiper-slide">
-                    <div class="review-box">
-                        <div class="media">
-                             <div class="test-img"><span class="aname">{{$testi->letter}}</span></div>
-                            <div class="media-body">
-                             <h5>
-                                <a href="">{{$testi->name}}</a></h5>
-                            </div>
+                    <div class="test-img" >
+                        <div class="d-flex align-items-center justify-content-start">
+                            <span class="aname">{{$testi->letter}}</span>
+                            <p class="clicl"><a href="">{{$testi->name}}</a></p>
                         </div>
-                        <div class="read">
-                       <p>{!!$testi->description!!}</p>
-                       <div class="d-flex align-items-center justify-content-left mb-1">
+                        <p class="tes">{!!$testi->description!!}</p>
+                        <div class="d-flex align-items-center justify-content-left mb-1">
                             @if($testi->rating != null)
                             @for($i=1; $i<=$testi->rating; $i++)
                             <small class="fa fa-star text-primary mr-1"></small>
                             @endfor
                             @endif
                         </div>
-                     </div>
+                    </div>
+                    <div class="review-box" style="display:none" >
+                        <div class="media">
+                            
+                            <div class="test-img">
+                                <span class="aname">{{$testi->letter}}</span>
+                            </div>
+                            <div class="media-body">
+                                <h5><a href="">{{$testi->name}}</a></h5>
+                            </div>
+                        </div>
+                        <div class="read">
+                            <p>{!!$testi->description!!}</p>
+                            <div class="d-flex align-items-center justify-content-left mb-1">
+                                @if($testi->rating != null)
+                                @for($i=1; $i<=$testi->rating; $i++)
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                @endfor
+                                @endif
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 @endforeach
@@ -179,16 +196,15 @@ transform: translateX(-15px);
 
 
 <div class="foot-top">
-    <div class="row" style="text-align: center;">
-        <div class="col-sm-2"></div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center" >
             @foreach($section8 as $section8)
-            <div class="col-sm-3">
+            <div class="col-md-3 text-center">
                 <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
                 <p class="event">{{$section8->section_name}}</p>
             </div>
             @endforeach
         </div>
-        <div class="col-sm-1"></div>
     </div>
 </div>
 

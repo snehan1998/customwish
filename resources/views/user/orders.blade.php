@@ -7,10 +7,10 @@
 
 <div class="shop-ccc">
     <h1 class="shopping-crt">Orders</h1>
-       <div class="container-fluid">
-           <div class="row px-xl-5">
+       <div class="container">
+           <div class="row">
                @include('user.layouts.sidemenu')
-                <div class="col-lg-9 col-md-8">
+                <div class="col-lg-9 col-md-9">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">

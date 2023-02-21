@@ -7,7 +7,7 @@
 @section('content')
 <div class="shop-ccc">
     <div class="container">
-        <div class="row loginbox">
+        <div class="row loginbox mt-5">
             <div class="col-lg-6" >
                 <div class="row" >
                     <div class="col-lg-4">
@@ -31,7 +31,7 @@
                             <form method="POST" action="{{ url('/registerNewUser') }}">
                         <!--<form method="POST" action="{{ route('register') }}">-->
                             @csrf
-
+                        <div class="row">
                             <div class="col-lg-12">
                                 <x-jet-label for="name" value="{{ __('Name') }}" />
                                 <x-jet-input id="name" class="block mt-1 w-full inputclass" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
@@ -51,6 +51,7 @@
                                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                                 <x-jet-input id="password_confirmation" class="block mt-1 w-full inputclass" type="password" name="password_confirmation" required autocomplete="new-password" />
                             </div>
+                        </div>
 
                             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                                 <div class="mt-4">

@@ -28,6 +28,7 @@
 
 	<link rel="stylesheet" href="{{asset('css/aos.css')}}" />
 	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="{{asset('css/style_custom.css')}}" />
 
 @stack('after-styles')
 </head>
@@ -36,38 +37,39 @@
   <div class="shop-ccc">
     <h1 class="shopping-crt">Order Details</h1>
         <div class="container">
-        <div class="row">
-            <div class="col-xl-8 col-lg-8">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 col-lg-9">
             	<div class="dashboard-box">
         		<div><div class="card-box">
                     <div class="card-body p-0">
-                        <div class="row p-4">
+                        <div class="row p-4 justify-content-between">
                             <div class="col-md-6">
-                                <img src="{{asset('img/l1.jpg')}}" class="text-left" style="
-                                width: 150px;
-                                height: 72px;
-                            "><br>
+                                <img src="{{asset('img/l1.jpg')}}" class="text-left" ><br>
                                     <?php $coo = App\Models\Contact::where('id','1')->first(); ?>
-                                    <p>{{$coo->address}}</p>
+                                    <p class="add_text">{{$coo->address}}</p>
                             </div>
                             <div class="col-md-6 text-right">
-                                <p class="font-weight-bold mb-1">Invoice : </p> {{$order->order_id}}
-                                <p class="text-muted font-weight-bold">Order Date : </p> {{$order->created_at}}
+                                <p class="inv_text ">Invoice <span>{{$order->order_id}}</span> </p> 
+                                <p class="inv_text ">Order Date <span>{{$order->created_at}}</span> </p> 
                             </div>
                         </div>
                     <hr class="my-3">
                     <div class="row pb-5 p-4">
                         <div class="col-md-6">
-                            <p class="font-weight-bold mb-4">Shipping Information</p>
-                            <p class="mb-1">{{$order->firstname}}</p>
-                            <p>{{$order->address}} </p>
-                            <p class="mb-1">{{$order->city}}</p>
-                            <p class="mb-1">{{$order->state}}</p>
-                            <p class="mb-1">{{$order->pincode}}</p>
+                            <div class="ship_info">
+                                <p class="font-weight-bold mb-4">Shipping Information</p>
+                                <p class="mb-1">{{$order->firstname}}</p>
+                                <p>{{$order->address}} </p>
+                                <p class="mb-1">{{$order->city}}</p>
+                                <p class="mb-1">{{$order->state}}</p>
+                                <p class="mb-1">{{$order->pincode}}</p>
+                            </div>
                         </div>
                         <div class="col-md-6 text-right">
-                            <p class="font-weight-bold mb-4">Payment Details</p>
-                            <p class="mb-1"><span class="text-muted">Payment Type: </span> {{$order->payment_type}}</p>
+                            <div class="payment_info">
+                                <p class="font-weight-bold mb-4">Payment Details</p>
+                                <p class="mb-1"><span class="text-muted">Payment Type: </span> {{$order->payment_type}}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="row p-4">
@@ -254,16 +256,16 @@
                         </div>
                     </div>
                 </div>
-                    <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                    <div class="d-flex flex-row-reverse bg-dark grand_total p-3">
                         <div class="p-r-20 p-l-20 text-right">
-                            <div class="mb-2">Grand Total</div>
-                            <div class="h2 font-weight-light">₹{{$order->payable_price}}</div>
+                            <p class="mb-2">Grand Total: <span>₹{{$order->payable_price}}</span></p>
+                            <!-- <div class="h2 font-weight-light"></div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-right mb-3"><button class="btn btn-danger btn-sm mr-5" type="button" onclick="window.print()">Print</button></div>
+        <div class="text-center mb-3"><button class="btn btn-danger btn-sm mx-auto w-50 mt-3" type="button" onclick="window.print()">Print</button></div>
 
 	</article>
 
