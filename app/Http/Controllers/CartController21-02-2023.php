@@ -23,8 +23,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class CartController extends Controller
 {
@@ -51,59 +49,57 @@ class CartController extends Controller
 
     public function checkoutaddToCart(Request $request)
     {
-        if (!empty($request->imageval)) {
-            $allowedfileExtension = ['jpeg','jpg','png'];
-            if ($request->imageupload > $request->imageval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
+        $allowedfileExtension = ['jpeg','jpg','png'];
+        if ($request->imageupload > $request->imageval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
+
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $len = $request->imageupload;
-                for ($i = 0; $i < $len; $i++) {
-                    if ($request->hasfile('imageupload'.$i)) {
-                        $image = $request->file('imageupload'.$i);
-                        $sizeofimg = $request->file('imageupload'.$i)->getSize();
-                        $extension = $image->getClientOriginalExtension();
-                        $check = in_array($extension, $allowedfileExtension);
-                        // Checking the image extension
-                        if (!$check) {
-                            return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeofimg > $request->imagesiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $len = $request->imageupload;
+            for ($i = 0; $i < $len; $i++) {
+                if ($request->hasfile('imageupload'.$i)) {
+                    $image = $request->file('imageupload'.$i);
+                    $sizeofimg = $request->file('imageupload'.$i)->getSize();
+                    $extension = $image->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    // Checking the image extension
+                    if (!$check) {
+                        return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeofimg > $request->imagesiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
         }
-        if (!empty($request->logoval)) {
-            $allowedfileExtensionn = ['jpeg','jpg','png'];
-            $request->logoval;
-            if ($request->logoupload > $request->logoval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
+        $allowedfileExtensionn = ['jpeg','jpg','png'];
+         $request->logoval;
+        if ($request->logoupload > $request->logoval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $loglen = $request->logoupload;
-                for ($j = 0; $j < $loglen; $j++) {
-                    if ($request->hasfile('logoupload'.$j)) {
-                        $logoo = $request->file('logoupload'.$j);
-                        $sizeoflogo = $request->file('logoupload'.$j)->getSize();
-                        $extensionlogo = $logoo->getClientOriginalExtension();
-                        $checklogo = in_array($extensionlogo, $allowedfileExtensionn);
-                        // Checking the image extension
-                        if (!$checklogo) {
-                            return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeoflogo > $request->logosiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $loglen = $request->logoupload;
+            for ($j = 0; $j < $loglen; $j++) {
+                if ($request->hasfile('logoupload'.$j)) {
+                    $logoo = $request->file('logoupload'.$j);
+                    $sizeoflogo = $request->file('logoupload'.$j)->getSize();
+                    $extensionlogo = $logoo->getClientOriginalExtension();
+                    $checklogo = in_array($extensionlogo,$allowedfileExtensionn);
+                    // Checking the image extension
+                    if (!$checklogo) {
+                        return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeoflogo > $request->logosiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
         }
+
         if (Auth::check()) {
             $user = User::where('id',Auth::user()->id)->where('role_id','3')->first();
             if ($user) {
@@ -995,56 +991,52 @@ class CartController extends Controller
 
     public function checkoutvaraddToCart(Request $request)
     {
+        $allowedfileExtension = ['jpeg','jpg','png'];
+        if ($request->imageupload > $request->imageval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
 
-        if (!empty($request->imageval)) {
-            $allowedfileExtension = ['jpeg','jpg','png'];
-            if ($request->imageupload > $request->imageval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $len = $request->imageupload;
-                for ($i = 0; $i < $len; $i++) {
-                    if ($request->hasfile('imageupload'.$i)) {
-                        $image = $request->file('imageupload'.$i);
-                        $sizeofimg = $request->file('imageupload'.$i)->getSize();
-                        $extension = $image->getClientOriginalExtension();
-                        $check = in_array($extension, $allowedfileExtension);
-                        // Checking the image extension
-                        if (!$check) {
-                            return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeofimg > $request->imagesiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $len = $request->imageupload;
+            for ($i = 0; $i < $len; $i++) {
+                if ($request->hasfile('imageupload'.$i)) {
+                    $image = $request->file('imageupload'.$i);
+                    $sizeofimg = $request->file('imageupload'.$i)->getSize();
+                    $extension = $image->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    // Checking the image extension
+                    if (!$check) {
+                        return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeofimg > $request->imagesiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
         }
-        if (!empty($request->logoval)) {
-            $allowedfileExtensionn = ['jpeg','jpg','png'];
-            $request->logoval;
-            if ($request->logoupload > $request->logoval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
+        $allowedfileExtensionn = ['jpeg','jpg','png'];
+         $request->logoval;
+        if ($request->logoupload > $request->logoval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $loglen = $request->logoupload;
-                for ($j = 0; $j < $loglen; $j++) {
-                    if ($request->hasfile('logoupload'.$j)) {
-                        $logoo = $request->file('logoupload'.$j);
-                        $sizeoflogo = $request->file('logoupload'.$j)->getSize();
-                        $extensionlogo = $logoo->getClientOriginalExtension();
-                        $checklogo = in_array($extensionlogo, $allowedfileExtensionn);
-                        // Checking the image extension
-                        if (!$checklogo) {
-                            return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeoflogo > $request->logosiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $loglen = $request->logoupload;
+            for ($j = 0; $j < $loglen; $j++) {
+                if ($request->hasfile('logoupload'.$j)) {
+                    $logoo = $request->file('logoupload'.$j);
+                    $sizeoflogo = $request->file('logoupload'.$j)->getSize();
+                    $extensionlogo = $logoo->getClientOriginalExtension();
+                    $checklogo = in_array($extensionlogo,$allowedfileExtensionn);
+                    // Checking the image extension
+                    if (!$checklogo) {
+                        return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeoflogo > $request->logosiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
@@ -1056,9 +1048,6 @@ class CartController extends Controller
                 $prodd = Product::where('status','Active')->where('stock_status', 'outofstock')->where('id', $request->product_id)->first();
 
                 $varr3 = StoreCartAttribute::where('session_id',Session::getId())->where('product_id',$request->product_id)->get();
-                if($varr3->count() <= 0) {
-                    return response()->json(['status'=>'attribute','msg' => 'Please select attribute']);
-                }
                 foreach($varr3 as $varr3){
                     $vari[] = $varr3->att_id;
                 }
@@ -1081,9 +1070,6 @@ class CartController extends Controller
                                     return response()->json(['status'=>'out','msg' => 'Selected Product Is outofstock']);
                                 } else {
                                     $var2 = StoreCartAttribute::where('session_id', Session::getId())->where('product_id', $request->product_id)->get();
-                                    if($var2->count() <= 0) {
-                                        return response()->json(['status'=>'attribute','msg' => 'Please select attribute']);
-                                    }
                                     foreach ($var2 as $var2) {
                                         $vari2[] = $var2->att_id;
                                     }
@@ -1528,9 +1514,6 @@ class CartController extends Controller
                                 return response()->json(['status'=>'out','msg' => 'Selected Product Is outofstock']);
                             } else {
                                 $var2 = StoreCartAttribute::where('session_id', Session::getId())->where('product_id', $request->product_id)->get();
-                                if($var2->count() <= 0) {
-                                    return response()->json(['status'=>'attribute','msg' => 'Please select attribute']);
-                                }
                                 foreach ($var2 as $var2) {
                                     $vari2[] = $var2->att_id;
                                 }
@@ -1990,65 +1973,56 @@ class CartController extends Controller
 
 
 
+
+
+
     public function varaddToCart(Request $request)
     {
-        //return $request->all();
-        //$validator = Validator::make($request->all(), [
-          //  'datee' => 'requiredIf:$request->datee_required,1',
-           // 'timee' => 'requiredIf:$request->timee_required,1',
-           // 'eggtypee' => 'requiredIf:$request->eggoreggless_required,1'
-       // ]);
-
-       //return $request->imageval;
-        if (!empty($request->imageval)) {
-            $allowedfileExtension = ['jpeg','jpg','png'];
-            if ($request->imageupload > $request->imageval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
+        $allowedfileExtension = ['jpeg','jpg','png'];
+        if ($request->imageupload > $request->imageval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $len = $request->imageupload;
-                for ($i = 0; $i < $len; $i++) {
-                    if ($request->hasfile('imageupload'.$i)) {
-                        $image = $request->file('imageupload'.$i);
-                        $sizeofimg = $request->file('imageupload'.$i)->getSize();
-                        $extension = $image->getClientOriginalExtension();
-                        $check = in_array($extension, $allowedfileExtension);
-                        // Checking the image extension
-                        if (!$check) {
-                            return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeofimg > $request->imagesiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $len = $request->imageupload;
+            for ($i = 0; $i < $len; $i++) {
+                if ($request->hasfile('imageupload'.$i)) {
+                    $image = $request->file('imageupload'.$i);
+                    $sizeofimg = $request->file('imageupload'.$i)->getSize();
+                    $extension = $image->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    // Checking the image extension
+                    if (!$check) {
+                        return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeofimg > $request->imagesiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
         }
-        if (!empty($request->logoval)) {
-            $allowedfileExtensionn = ['jpeg','jpg','png'];
-            $request->logoval;
-            if ($request->logoupload > $request->logoval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
+        $allowedfileExtensionn = ['jpeg','jpg','png'];
+         $request->logoval;
+        if ($request->logoupload > $request->logoval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $loglen = $request->logoupload;
-                for ($j = 0; $j < $loglen; $j++) {
-                    if ($request->hasfile('logoupload'.$j)) {
-                        $logoo = $request->file('logoupload'.$j);
-                        $sizeoflogo = $request->file('logoupload'.$j)->getSize();
-                        $extensionlogo = $logoo->getClientOriginalExtension();
-                        $checklogo = in_array($extensionlogo, $allowedfileExtensionn);
-                        // Checking the image extension
-                        if (!$checklogo) {
-                            return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeoflogo > $request->logosiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $loglen = $request->logoupload;
+            for ($j = 0; $j < $loglen; $j++) {
+                if ($request->hasfile('logoupload'.$j)) {
+                    $logoo = $request->file('logoupload'.$j);
+                    $sizeoflogo = $request->file('logoupload'.$j)->getSize();
+                    $extensionlogo = $logoo->getClientOriginalExtension();
+                    $checklogo = in_array($extensionlogo,$allowedfileExtensionn);
+                    // Checking the image extension
+                    if (!$checklogo) {
+                        return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeoflogo > $request->logosiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
@@ -2057,10 +2031,8 @@ class CartController extends Controller
             $user = User::where('id',Auth::user()->id)->where('role_id','3')->first();
             if ($user) {
                 $prodd = Product::where('status','Active')->where('stock_status', 'outofstock')->where('id', $request->product_id)->first();
-                 $varr3 = StoreCartAttribute::where('session_id',Session::getId())->where('product_id',$request->product_id)->get();
-                if($varr3->count() <= 0) {
-                    return response()->json(['status'=>'attribute','msg' => 'Please select attribute']);
-                }
+
+                $varr3 = StoreCartAttribute::where('session_id',Session::getId())->where('product_id',$request->product_id)->get();
                 foreach($varr3 as $varr3){
                     $vari[] = $varr3->att_id;
                 }
@@ -2083,9 +2055,6 @@ class CartController extends Controller
                                     return response()->json(['status'=>'out','msg' => 'Selected Product Is outofstock']);
                                 } else {
                                     $var2 = StoreCartAttribute::where('session_id', Session::getId())->where('product_id', $request->product_id)->get();
-                                    if($var2->count() <= 0) {
-                                        return response()->json(['status'=>'attribute','msg' => 'Please select attribute']);
-                                    }
                                     foreach ($var2 as $var2) {
                                         $vari2[] = $var2->att_id;
                                     }
@@ -2529,9 +2498,6 @@ class CartController extends Controller
                                 return response()->json(['status'=>'out','msg' => 'Selected Product Is outofstock']);
                             } else {
                                 $var2 = StoreCartAttribute::where('session_id', Session::getId())->where('product_id', $request->product_id)->get();
-                                if($var2->count() <= 0) {
-                                    return response()->json(['status'=>'attribute','msg' => 'Please select attribute']);
-                                }
                                 foreach ($var2 as $var2) {
                                     $vari2[] = $var2->att_id;
                                 }
@@ -2957,6 +2923,7 @@ class CartController extends Controller
                                     $cart->product_logos_id = $cklo;
                                 }
                                 $cart->save();
+
                                 $cart_counter = Cart::where('user_id', Auth::user()->id)->count('id');
                                 //$desch = StoreCartCharm::where('session_id', Session::getId())->where('product_id', $request->product_id)->delete();
                                 $des = StoreCartAttribute::where('session_id', Session::getId())->where('product_id', $request->product_id)->delete();
@@ -2978,55 +2945,52 @@ class CartController extends Controller
 // Simple Product Add to Cart
     public function addToCart(Request $request)
     {
-        if (!empty($request->imageval)) {
-            $allowedfileExtension = ['jpeg','jpg','png'];
-            if ($request->imageupload > $request->imageval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
+        $allowedfileExtension = ['jpeg','jpg','png'];
+        if ($request->imageupload > $request->imageval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
+
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $len = $request->imageupload;
-                for ($i = 0; $i < $len; $i++) {
-                    if ($request->hasfile('imageupload'.$i)) {
-                        $image = $request->file('imageupload'.$i);
-                        $sizeofimg = $request->file('imageupload'.$i)->getSize();
-                        $extension = $image->getClientOriginalExtension();
-                        $check = in_array($extension, $allowedfileExtension);
-                        // Checking the image extension
-                        if (!$check) {
-                            return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeofimg > $request->imagesiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $len = $request->imageupload;
+            for ($i = 0; $i < $len; $i++) {
+                if ($request->hasfile('imageupload'.$i)) {
+                    $image = $request->file('imageupload'.$i);
+                    $sizeofimg = $request->file('imageupload'.$i)->getSize();
+                    $extension = $image->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    // Checking the image extension
+                    if (!$check) {
+                        return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeofimg > $request->imagesiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
         }
-        if (!empty($request->logoval)) {
-            $allowedfileExtensionn = ['jpeg','jpg','png'];
-            $request->logoval;
-            if ($request->logoupload > $request->logoval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
+        $allowedfileExtensionn = ['jpeg','jpg','png'];
+         $request->logoval;
+        if ($request->logoupload > $request->logoval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $loglen = $request->logoupload;
-                for ($j = 0; $j < $loglen; $j++) {
-                    if ($request->hasfile('logoupload'.$j)) {
-                        $logoo = $request->file('logoupload'.$j);
-                        $sizeoflogo = $request->file('logoupload'.$j)->getSize();
-                        $extensionlogo = $logoo->getClientOriginalExtension();
-                        $checklogo = in_array($extensionlogo, $allowedfileExtensionn);
-                        // Checking the image extension
-                        if (!$checklogo) {
-                            return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeoflogo > $request->logosiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $loglen = $request->logoupload;
+            for ($j = 0; $j < $loglen; $j++) {
+                if ($request->hasfile('logoupload'.$j)) {
+                    $logoo = $request->file('logoupload'.$j);
+                    $sizeoflogo = $request->file('logoupload'.$j)->getSize();
+                    $extensionlogo = $logoo->getClientOriginalExtension();
+                    $checklogo = in_array($extensionlogo,$allowedfileExtensionn);
+                    // Checking the image extension
+                    if (!$checklogo) {
+                        return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeoflogo > $request->logosiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
@@ -4178,55 +4142,52 @@ class CartController extends Controller
 
     public function comboaddToCart(Request $request)
     {
-        if (!empty($request->imageval)) {
-            $allowedfileExtension = ['jpeg','jpg','png'];
-            if ($request->imageupload > $request->imageval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
+        $allowedfileExtension = ['jpeg','jpg','png'];
+        if ($request->imageupload > $request->imageval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->imageval]);
+
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $len = $request->imageupload;
-                for ($i = 0; $i < $len; $i++) {
-                    if ($request->hasfile('imageupload'.$i)) {
-                        $image = $request->file('imageupload'.$i);
-                        $sizeofimg = $request->file('imageupload'.$i)->getSize();
-                        $extension = $image->getClientOriginalExtension();
-                        $check = in_array($extension, $allowedfileExtension);
-                        // Checking the image extension
-                        if (!$check) {
-                            return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeofimg > $request->imagesiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $len = $request->imageupload;
+            for ($i = 0; $i < $len; $i++) {
+                if ($request->hasfile('imageupload'.$i)) {
+                    $image = $request->file('imageupload'.$i);
+                    $sizeofimg = $request->file('imageupload'.$i)->getSize();
+                    $extension = $image->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    // Checking the image extension
+                    if (!$check) {
+                        return response()->json(['status'=>'error','msg' => 'Images must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeofimg > $request->imagesiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }
         }
-        if (!empty($request->logoval)) {
-            $allowedfileExtensionn = ['jpeg','jpg','png'];
-            $request->logoval;
-            if ($request->logoupload > $request->logoval) {
-                return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
+        $allowedfileExtensionn = ['jpeg','jpg','png'];
+         $request->logoval;
+        if ($request->logoupload > $request->logoval) {
+            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed images are'.$request->logoval]);
             //return 'Sorry! Maximum allowed images are'.$request->imageval;
-            } else {
-                $loglen = $request->logoupload;
-                for ($j = 0; $j < $loglen; $j++) {
-                    if ($request->hasfile('logoupload'.$j)) {
-                        $logoo = $request->file('logoupload'.$j);
-                        $sizeoflogo = $request->file('logoupload'.$j)->getSize();
-                        $extensionlogo = $logoo->getClientOriginalExtension();
-                        $checklogo = in_array($extensionlogo, $allowedfileExtensionn);
-                        // Checking the image extension
-                        if (!$checklogo) {
-                            return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
-                            //return 'Images must be  jpeg or jpg or png!';
-                        }
-                        if ($sizeoflogo > $request->logosiz) {
-                            return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
-                            //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
-                        }
+        }else{
+            $loglen = $request->logoupload;
+            for ($j = 0; $j < $loglen; $j++) {
+                if ($request->hasfile('logoupload'.$j)) {
+                    $logoo = $request->file('logoupload'.$j);
+                    $sizeoflogo = $request->file('logoupload'.$j)->getSize();
+                    $extensionlogo = $logoo->getClientOriginalExtension();
+                    $checklogo = in_array($extensionlogo,$allowedfileExtensionn);
+                    // Checking the image extension
+                    if (!$checklogo) {
+                        return response()->json(['status'=>'error','msg' => 'Image must be  jpeg or jpg or png!']);
+                        //return 'Images must be  jpeg or jpg or png!';
+                    }
+                    if ($sizeoflogo > $request->logosiz) {
+                        return response()->json(['status'=>'error','msg' => 'Sorry! Maximum allowed size for an image is'.$request->logosiz.'bytes']);
+                        //return 'Sorry! Maximum allowed size for an image is'.$request->imagesiz.'bytes';
                     }
                 }
             }

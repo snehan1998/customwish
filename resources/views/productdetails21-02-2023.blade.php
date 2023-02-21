@@ -470,12 +470,7 @@ input[type="radio"].btn.btn-primary-sign {
 .boxed input[type="radio"] {
   display: none;
 }
-.LargeOptionRadio--checked {
-    background: #c2272d !important;
-    color: white !important;
-    border-radius: 4px !important;
-    border: none !important;
-}
+
 .boxed input[type="radio"]:checked + label {
   background: #c2272d;
     color: white;
@@ -609,7 +604,7 @@ input[type="radio"].btn.btn-primary-sign {
                         <div class="fomright">
                             @if($product->eggoreggless == 1)
                             <div class="custom-control custom-radio custom-control-inline al-lft">
-                                <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-1" value="Egg" name="egg_type">
+                                <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-1" value="Egg" name="egg_type" @if($proreq->eggoreggless_requiredrequired == 1) required @endif>
                                 <label class="custom-control-label" for="size-1"> <img src="{{ asset('img/egg.png')}}" class="egg">Egg</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
@@ -656,7 +651,7 @@ input[type="radio"].btn.btn-primary-sign {
                             $fetchvariant = App\Models\AddSubVariation::where('id',$variant->var_id)->first();
                             $producimgs = App\Models\ProductImage::where('product_id',$fetchvariant->product_id)->where('variation_product_id',$fetchvariant->id)->first();
                         ?>
-                        <label class="LargeOptionRadio__label  LargeOptionRadio LargeOptionRadio{{$attvalue->id}}">
+                        <label class="LargeOptionRadio__label">
                             <input class="form-control sradioatt sradio{{$attvalue->id}} product-filter-item sradioo{{$product->id}}" value="{{$attvalue->id}}" name="attsname{{$attvalue->attr_id}}" type="radio" id="sradioatt" data-at="{{$attvalue->attr_id}}" data-attr="{{$attvalue->var_id}}"  onclick="getattr(); getclass(); getimages();">
                             <span class="sradio" data-name="{{$attname->attr_name}}"  data-price="{{$fetchvariant->price}}"  data-skucode="{{$fetchvariant->skucode}}" data-quantity="{{$fetchvariant->quantity}}" data-stock="{{$fetchvariant->stock}}">
                             {{$attvalue->attr_value_title}}
@@ -841,7 +836,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @if($product->imageuploadoption == 1)
                 <div class="col-lg-6">
                     <h5>{{$product->imageuploadoption_heading}}</h5>
-                    <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" ></p>
+                    <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" @if($proreq->imageupload_required == 1) required @endif></p>
                     <div id="uploadimage_preview" style="width:100%;">
                     </div>
                 </div>
@@ -850,7 +845,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @else
                 <div class="col-lg-6" style="display:none">
                     <h5>{{$product->imageuploadoption_heading}}</h5>
-                    <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" ></p>
+                    <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" @if($proreq->imageupload_required == 1) required @endif></p>
                     <div id="uploadimage_preview" style="width:100%;"></div>
                 </div>
                     <input type="hidden" name="imageuploadoption_validation" id="imageuploadoption_validation" class="imageuploadoption_validation{{$product->id}}" value="{{$product->imageuploadoption_validation}}">
@@ -859,7 +854,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @if($product->uploadlogo_option == 1)
                 <div class="col-lg-6">
                     <h5>{{$product->uploadlogo_heading}}</h5>
-                    <p style="display: flex;"> <input type="file" name="logoupload[]" multiple id="logouploadd" class="logoupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" ></p>
+                    <p style="display: flex;"> <input type="file" name="logoupload[]" multiple id="logouploadd" class="logoupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" @if($proreq->logoupload_required == 1) required @endif></p>
                     <div id="logoimage_preview" style="width:100%;"></div>
                 </div>
                 <input type="hidden" name="uploadlogo_validation" id="uploadlogo_validation" class="uploadlogo_validation{{$product->id}}" value="{{$product->uploadlogo_validation}}">
@@ -867,7 +862,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @else
                 <div class="col-lg-6" style="display:none;">
                     <h5>{{$product->uploadlogo_heading}}</h5>
-                    <p style="display: flex;"> <input type="file" name="logoupload[]" multiple id="logouploadd" class="logoupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" ></p>
+                    <p style="display: flex;"> <input type="file" name="logoupload[]" multiple id="logouploadd" class="logoupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" @if($proreq->logoupload_required == 1) required @endif></p>
                     <div id="logoimage_preview" style="width:100%;"></div>
                 </div>
                 <input type="hidden" name="uploadlogo_validation" id="uploadlogo_validation" class="uploadlogo_validation{{$product->id}}" value="{{$product->uploadlogo_validation}}">
@@ -878,7 +873,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @if($product->text_field == 1)
                 <div class="col-lg-12">
                     <h5 class="song">{{$product->text_heading}}<span class="char">@if($product->text_validation != "")(Max {{$product->text_validation}} characters ) @endif</span></h5><br>
-                    <p style="display: flex;"><input type="text" class="inputclass11 addtext1{{$product->id}}" name="addtext1" maxlength="{{$product->text_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;" ></p>
+                    <p style="display: flex;"><input type="text" class="inputclass11 addtext1{{$product->id}}" name="addtext1" maxlength="{{$product->text_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;" @if($proreq->textfield_required == 1) required @endif></p>
                 </div>
                 @endif
             </div>
@@ -889,7 +884,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @endif
                 <div class="col-lg-12">
                     <h5 class="song">{{$product->addatext_heading}}<span class="char">@if($product->addatext_validation != "")(Max {{$product->addatext_validation}} characters ) @endif</span></h5><br>
-                    <p style="display: flex;"><input type="text" class="inputclass11 addtext2{{$product->id}}" name="addtext2" maxlength="{{$product->addatext_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;" ></p>
+                    <p style="display: flex;"><input type="text" class="inputclass11 addtext2{{$product->id}}" name="addtext2" maxlength="{{$product->addatext_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;" @if($proreq->addtext_required == 1) required @endif></p>
                 </div>
                 @endif
             </div>
@@ -940,7 +935,7 @@ input[type="radio"].btn.btn-primary-sign {
                 <div class="col-lg-10">
                     <form class="mb-30 loc" action="">
                         <div class="input-group">
-                            <input type="text" class="form-control border-0 p-4 timecss location{{$product->id}}" name="location" placeholder="Pincode/Location (only Bangalore)" style="color:#000!important;">
+                            <input type="text" class="form-control border-0 p-4 timecss location{{$product->id}}" name="location" placeholder="Pincode/Location (only Bangalore)" style="color:#000!important;" @if($proreq->location_required == 1) required @endif>
                             <div class="input-group-append1">
                                 <i class="fa-thin fa-location-dot fa-fw" aria-hidden="true"></i>
                             </div>
@@ -960,7 +955,7 @@ input[type="radio"].btn.btn-primary-sign {
                     ?>
                     @foreach($flow as $flow)
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input flowerss_type{{$product->id}}" id="flowerr{{$f}}" name="flowerss_type" value="{{$flow->product_flower_name}}"  >
+                        <input type="radio" class="custom-control-input flowerss_type{{$product->id}}" id="flowerr{{$f}}" name="flowerss_type" value="{{$flow->product_flower_name}}"  @if($proreq->flowertype_required == 1) required @endif>
                         <label class="custom-control-label" for="flowerr{{$f}}" style="color:#000;font-size:18px;">{{$flow->product_flower_name}}</label>
                     </div>
                     <?php $f++; ?>
@@ -973,7 +968,7 @@ input[type="radio"].btn.btn-primary-sign {
             <div class="row">
                 @if($product->datee == 1)
                 <div class="col-lg-6">
-                    <input type="date"  name="datee" class="datecss datee{{$product->id}}" placeholder="Select Delivery Date"  onfocus = "(this.type = 'date')"  id = "date" >
+                    <input type="date"  name="datee" class="datecss datee{{$product->id}}" placeholder="Select Delivery Date"  onfocus = "(this.type = 'date')"  id = "date" @if($proreq->datee_required == 1) required @endif>
                 </div>
                 @endif
                 @if($product->timee == 1)
@@ -991,7 +986,7 @@ input[type="radio"].btn.btn-primary-sign {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Self Pickup" id="selfpickup" name="pickup_type" >
+                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Self Pickup" id="selfpickup" name="pickup_type" @if($proreq->selfpickup_required == 1) required @endif>
                         <label class="custom-control-label" for="selfpickup" style="color:#000;font-size:18px;">Self Pickup</label>
                     </div>
 
@@ -1017,16 +1012,11 @@ input[type="radio"].btn.btn-primary-sign {
             <p>Any specific design?<a href="{{url('/contactus')}}" style="color:#33cfff">Contact Us</a></p>
             @endif
             @if($product->giftwrapper_option == 1)
-            <div class="row pure-veg">
-                <div class="col-lg-12 pure-veg">
+            <div class="row">
+                <div class="col-lg-12">
                     <h5>Gift-Wrap:</h5>
-                    <p style="display: flex;"><input type="checkbox" name="giftwrap" data-gif="{{$product->giftwrapper_price}}" id="giftwrap" class="giftwrap{{$product->id}}" style="width: 20px;" onclick="myFunction(); gettotal();"><span style="padding-left: 10px;">Add Gift wrap(+₹{{$product->giftwrapper_price}})</span></p>
-                    <input type="hidden" class="giftwrap_price{{$product->id}}" id="giftwrappr"  name="giftwrap_price" value="{{$product->giftwrapper_price}}">
-                </div>
-            </div>
-            <div class="row" id="nonvegprice">
-                <div class="col-lg-12" id="text" style="display:none;">
-                    <input type="text" value="" name="giftwrap">
+                    <p style="display: flex;"><input type="checkbox" name="giftwrap" class="giftwrap{{$product->id}}" style="width: 20px;"><span style="padding-left: 10px;">Add Gift wrap(+₹{{$product->giftwrapper_price}})</span></p>
+                    <input type="hidden" class="giftwrap_price{{$product->id}}"  name="giftwrap_price" value="{{$product->giftwrapper_price}}">
                 </div>
             </div>
             @endif
@@ -1037,7 +1027,7 @@ input[type="radio"].btn.btn-primary-sign {
             @if($product->textareaa == 1)
             <div class="form-group">
                 <h5>{{$product->textarea_name}} <span class="text-danger1">@if($product->textarea_validation != "")(Max {{$product->textarea_validation}} characters) @endif</span></h5>
-                <textarea class="form-control description{{$product->id}}" name="description" required id="message_popup" maxlength="{{$product->textarea_validation}}" cols="30" rows="4" tabindex="1" style="border: 1px solid #767676;"></textarea>
+                <textarea class="form-control description{{$product->id}}" name="description" required id="message_popup" maxlength="{{$product->textarea_validation}}" cols="30" rows="4" tabindex="1" style="border: 1px solid #767676;" @if($proreq->textarea_required == 1) required @endif></textarea>
             </div>
             @endif
 
@@ -1109,17 +1099,6 @@ input[type="radio"].btn.btn-primary-sign {
             <button type = "button" class = "logbtn add-to-varcartt1{{$product->id}}"  style="background: #f2f2f2; color: black;  border: none;width: 100%;">ADD TO CART</button>
             </div>
 
-            <input type="hidden" name="location_required" value="{{$proreq->location_required}}" class="location_required{{$product->id}}">
-            <input type="hidden" name="datee_required" value="{{$proreq->datee_required}}" class="datee_required{{$product->id}}">
-            <input type="hidden" name="timee_required" value="{{$proreq->timee_required}}" class="timee_required{{$product->id}}">
-            <input type="hidden" name="textarea_required" value="{{$proreq->textarea_required}}" class="textarea_required{{$product->id}}">
-            <input type="hidden" name="eggoreggless_required" value="{{$proreq->eggoreggless_required}}" class="eggoreggless_required{{$product->id}}">
-            <input type="hidden" name="imageupload_required" value="{{$proreq->imageupload_required}}" class="imageupload_required{{$product->id}}">
-            <input type="hidden" name="textfield_required" value="{{$proreq->textfield_required}}" class="textfield_required{{$product->id}}">
-            <input type="hidden" name="logoupload_required" value="{{$proreq->logoupload_required}}" class="logoupload_required{{$product->id}}">
-            <input type="hidden" name="addtext_required" value="{{$proreq->addtext_required}}" class="addtext_required{{$product->id}}">
-            <input type="hidden" name="flowertype_required" value="{{$proreq->flowertype_required}}" class="flowertype_required{{$product->id}}">
-            <input type="hidden" name="selfpickup_required" value="{{$proreq->selfpickup_required}}" class="selfpickup_required{{$product->id}}">
 
             <input type="hidden" value="{{@$product->id}}" name="product_id" class="product_id{{$product->id}}"/>
             <input type="hidden" name="session_id" class="session_id" value="{{\Session::getId() }}">
@@ -1196,26 +1175,6 @@ input[type="radio"].btn.btn-primary-sign {
     for (var i = 0; i < logoupload; i++) {
         formData.append('logoupload' + i, logo.files[i]);
     }
-
-    var location_required = $('.location_required<?php echo $product->id; ?>').val();
-    var datee_required = $('.datee_required<?php echo $product->id; ?>').val();
-    var timee_required = $('.timee_required<?php echo $product->id; ?>').val();
-    var textarea_required = $('.textarea_required<?php echo $product->id; ?>').val();
-    var eggoreggless_required = $('.eggoreggless_required<?php echo $product->id; ?>').val();
-    var imageupload_required = $('.imageupload_required<?php echo $product->id; ?>').val();
-    var textfield_required = $('.textfield_required<?php echo $product->id; ?>').val();
-    var logoupload_required = $('.logoupload_required<?php echo $product->id; ?>').val();
-    var addtext_required = $('.addtext_required<?php echo $product->id; ?>').val();
-    var flowertype_required = $('.flowertype_required<?php echo $product->id; ?>').val();
-    var selfpickup_required = $('.selfpickup_required<?php echo $product->id; ?>').val();
-
-    formData.append('location_required', location_required);formData.append('datee_required', datee_required);
-    formData.append('timee_required', timee_required);formData.append('textarea_required', textarea_required);
-    formData.append('eggoreggless_required', eggoreggless_required);formData.append('imageupload_required', imageupload_required);
-    formData.append('textfield_required', textfield_required);formData.append('logoupload_required', logoupload_required);
-    formData.append('addtext_required', addtext_required);formData.append('flowertype_required', flowertype_required);
-    formData.append('selfpickup_required', selfpickup_required);
-
     formData.append('logosiz', logosiz);formData.append('logoval', logoval);
     formData.append('imageval', imageval);formData.append('imagesiz', imagesiz);
     formData.append('imageupload', imageupload);formData.append('eggtype', eggtype);
@@ -1542,19 +1501,14 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                     <form>
                         @if($product->eggoreggless == 1)
                         <div class="custom-control custom-radio custom-control-inline al-lft">
-                            <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="eggtype" value="Egg" name="egg_type">
+                            <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-1" value="Egg" name="egg_type">
                             <label class="custom-control-label" for="size-1"> <img src="{{ asset('img/egg.png')}}" class="egg">Egg</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="eggtype" value="Egg Less" name="egg_type">
+                            <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-2" value="Egg Less" name="egg_type">
                         <label class="custom-control-label" for="size-2">  <img src="{{ asset('img/eggless.png')}}" class="eggless">Eggless</label>
                         </div>
                         @endif
-                        @if ($errors->has('eggtype'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('eggtype') }}</strong>
-                        </span>
-                    @endif
                     </form>
                     </div>
                 </div>
@@ -1772,13 +1726,8 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         <div class="row">
             @if($product->datee == 1)
             <div class="col-lg-6">
-                <input type="date"  name="datee" class="datecss datee{{$product->id}}" placeholder="Select Delivery Date"  onfocus = "(this.type = 'date')"  id = "datee">
+                <input type="date"  name="datee" class="datecss datee{{$product->id}}" placeholder="Select Delivery Date"  onfocus = "(this.type = 'date')"  id = "date">
             </div>
-            @endif
-            @if ($errors->has('datee'))
-            <span class="text-danger">
-                <strong>{{ $errors->first('datee') }}</strong>
-            </span>
             @endif
             @if($product->timee == 1)
             <div class="col-lg-6">
@@ -1789,11 +1738,6 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                 </select>
             </div>
             @endif
-            @if ($errors->has('timee'))
-            <span class="text-danger">
-                <strong>{{ $errors->first('timee') }}</strong>
-            </span>
-            @endif
         </div>
 
         @if($product->self_pickup == 1)
@@ -1803,15 +1747,18 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                     <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Self Pickup" id="selfpickup" name="pickup_type" checked>
                     <label class="custom-control-label" for="selfpickup" style="color:#000;font-size:18px;">Self Pickup</label>
                 </div>
+
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Delivery" id="delivery" name="pickup_type">
                     <label class="custom-control-label" for="delivery" style="color:#000;font-size:18px;">Delivery</label>
                 </div>
-                <div class="custom-control custom-radio custom-control-inline">
+
+                    <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Ola" id="ola" name="pickup_type">
                     <label class="custom-control-label" for="ola" style="color:#000;font-size:18px;">Ola</label>
                 </div>
-                <div class="custom-control custom-radio custom-control-inline">
+
+                    <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Uber"  id="uber" name="pickup_type">
                     <label class="custom-control-label" for="uber" style="color:#000;font-size:18px;">Uber</label>
                 </div>
@@ -2009,14 +1956,6 @@ $('.add-to-procartt11<?php echo $product->id; ?>').click(function(e){
                 Swal.fire(
                       'Added!',
                       'Please Login As A Vendor To Add More Products',
-                      'success'
-                )
-
-
-            }else if(response.status == 'attribute'){
-                Swal.fire(
-                      'Added!',
-                      'Please select attribute',
                       'success'
                 )
 
@@ -2918,46 +2857,5 @@ $(document).ready(function() {
               }
       });
       </script>
-
-
-<script type='text/javascript'>
-
-    $('input:radio').on('change',function(){
-            $d = $(this).attr('value');
-                if ($('.sradio'+$d)){
-                    $(".LargeOptionRadio").removeClass('LargeOptionRadio--checked');
-                    $(".LargeOptionRadio"+$d).addClass('LargeOptionRadio--checked');
-                }
-            });
-
-    </script>
-    <script type='text/javascript'>
-
-        $('input:radio').on('change',function(){
-                $d = $(this).attr('value');
-                    if ($('.cradio'+$d)){
-                        $(".coRadio").removeClass('active');
-                        $(".coRadio"+$d).addClass('active');
-                    }
-                });
-
-    </script>
-<script>
-    function myFunction() {
-      var checkBox = document.getElementById("giftwrap");
-      var text = document.getElementById("text");
-      if (checkBox.checked == true){
-        text.style.display = "block";
-      } else {
-         text.style.display = "none";
-      }
-    }
-    </script>
-<script>
-function gettotal(){
-    var gif = document.getElementById("giftwrappr").value();
-    alert(gif);
-}
-</script>
 @endpush
 @endsection
