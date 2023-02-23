@@ -10,16 +10,17 @@
  <h1 class="shopping-crt">Shopping Cart</h1>
     <!-- Cart Start -->
     @if($carts->count() > 0)
-    <div class="container-fluid">
-        <div class="row px-xl-5">
+    <div class="container">
+        <div class="row">
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table text-center">
                     <thead>
                         <tr>
-                        <th scope="col">Item Description</th>
+                        <th scope="col" width="180px">Item Description</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Extra Price</th>
+                        <th scope="col">Attributes</th>
+                        <th scope="col" width="100px">Extra Price</th>
                         <th scope="col">Remove</th>
                         </tr>
                     </thead>
@@ -161,7 +162,7 @@
                             </td>
                             <td class="align-middle">
                                 <a href="{{url('del/')}}/{{$cat->id}}/user_id/{{$cat->user_id}}" title="">
-                                    <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                                    <button class="btn btn-sm btn-danger btn_remove"><i class="fa fa-times"></i></button>
                                 </a>
                             </td>
                         </tr>
@@ -170,7 +171,7 @@
 						    <td class="align-middle">  <a href="{{url('deletecartalldata/')}}/{{$cat->id}}/user_id/{{$cat->user_id}}" title="">
                                 <i class="fas fa-shopping-cart" style="color:#c2272d;"></i> Clear Shopping Cart
                             </a></td>
-						    <td colspan="3"> </td>
+						    <td colspan="5"> </td>
 						</tr>
 	                </tbody>
 	            </table>
@@ -243,7 +244,7 @@
                 @if(Session::has('coupon_removed'))
                     {{ Session::get('coupon_removed') }}
                 @endif
-                        <a href="{{url('/checkout')}}"><button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button></a>
+                        <a href="{{url('/checkout')}}"><button class="btn btn-block btn-primary font-weight-bold my-3 py-3 proceed_btn">Proceed To Checkout</button></a>
                     </div>
                 </div>
             </div>

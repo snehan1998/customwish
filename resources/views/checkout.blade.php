@@ -7,9 +7,9 @@
 input[type='radio'] {
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: 35px;
-    height: 35px;
-    margin: 5px 16px 5px 0px;
+    width: 20px;
+    height: 20px;
+    margin: 3px 8px 0px 0px;
     /* background-size: 225px 70px; */
     position: relative;
     float: left;
@@ -19,7 +19,7 @@ input[type='radio'] {
     z-index: 99999;
     cursor: pointer;
     /* box-shadow: 0px 1px 1px #000; */
-    border: 6px double #c2272d;
+    border: 5px solid #ccc;
 }
 </style>
 @endpush
@@ -27,10 +27,12 @@ input[type='radio'] {
 @section('title', 'Checkout')
 @section('content')
 <div class="shop-ccc">
+    <div class="checkout_sec">
     <!-- Cart Start -->
-    <div class="container-fluid" >
-        <div class="row ">
-            <div class="col-lg-8 loginbox" style="padding:30px;">
+    <div class="container" >
+        <div class="row mt-5">
+            <div class="col-lg-8 ">
+            <div class="loginbox m-0">
 				<div class="row" style="">
 					<div class="col-lg-8">
 						<h2 class="per">PERSONAL INFORMATION</h2>
@@ -86,18 +88,18 @@ input[type='radio'] {
 						<label>Adress Type</label>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row mb-3">
 					<div class="col-lg-2">
 						<input type="radio" class="form-control" value="home"  placeholder="" name="address_type" id="home" checked>
-                        <label for="home"> Home</label>
+                        <label for="home" class="mb-0"> Home</label>
 					</div>
 					<div class="col-lg-2">
 						<input type="radio" class="form-control" value="office" name="address_type" id="office"  placeholder="">
-                        <label for="office"> Office </label>
+                        <label for="office" class="mb-0"> Office </label>
 					</div>
 					<div class="col-lg-2">
 						<input type="radio" class="form-control" value="other" placeholder="" name="address_type" id="other">
-                        <label for="other"> Other </label>
+                        <label for="other" class="mb-0"> Other </label>
 					</div>
                 </div>
 				<div class="row">
@@ -106,11 +108,13 @@ input[type='radio'] {
 					</div>
 				</div>
 			<!--form-->
-		</div>
-	</div>
+		    </div>
+	    </div>
+    </div>
 </div>
 
-            <div class="col-lg-3 loginbox">
+            <div class="col-lg-4">
+                <div class="loginbox m-0">
                 @foreach($carts as $cart)
                 <?php $pro = App\Models\Product::where('status','Active')->where('id',$cart->product_id)->first();
                       if($cart->variation_id == null){
@@ -172,7 +176,7 @@ input[type='radio'] {
                 <div class="row">
                     <div class="col-12">
                         <center><img src="{{asset('uploads/images/')}}/{{$proim->images}}" class="img-fluid"></center>
-                        <h4 style="font-size:20px;">{{$pro->product_name}}</h4><br>
+                        <h4 class="mt-2" style="font-size:20px;">{{$pro->product_name}}</h4><br>
                         <h4><b>Cart Subtotat</b></h4>
                     </div>
                 </div>
@@ -204,20 +208,22 @@ input[type='radio'] {
                     </div>
                 </div>
                 @endif
-                <hr class="hrcss">
+                    <hr class="hrcss">
                     <div class="row">
-                    <div class="col-lg-6">
-                        <p class="pcss">Amount Payable</p>
+                        <div class="col-lg-6">
+                            <p class="pcss">Amount Payable</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="amount1" name="payable_price" type="hidden" value="{{ \App\Http\Controllers\CartController::getSubTotalPrice(\Auth::user()->id,\App\Http\Controllers\CartController::getCouponDiscount(array_sum($subtotal)) ) }}" readonly>
+                            <p class="price">₹ {{ \App\Http\Controllers\CartController::getSubTotalPrice(\Auth::user()->id,\App\Http\Controllers\CartController::getCouponDiscount(array_sum($subtotal)) ) }}</p>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <input id="amount1" name="payable_price" type="hidden" value="{{ \App\Http\Controllers\CartController::getSubTotalPrice(\Auth::user()->id,\App\Http\Controllers\CartController::getCouponDiscount(array_sum($subtotal)) ) }}" readonly>
-                        <p class="price">₹ {{ \App\Http\Controllers\CartController::getSubTotalPrice(\Auth::user()->id,\App\Http\Controllers\CartController::getCouponDiscount(array_sum($subtotal)) ) }}</p>
-                    </div>
-                </div>
-                <hr class="hrcss">
+                    <hr class="hrcss">
             </div>
+                </div>
         </div>
     </div>
+                </div>
 </div>
 
 <input type="hidden"  id="order_price" name="order_price" value="{{$sub}}">

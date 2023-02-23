@@ -18,8 +18,8 @@
                     <p>Hello, <strong>Custom Wish</strong> (If Not <strong>Custom Wish!</strong><a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }})
-                    </a>.</p></div>
+                    {{ __('Logout') }}
+                    </a>).</p></div>
                     <p>From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
 
                     <div class="row">

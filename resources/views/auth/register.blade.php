@@ -74,7 +74,7 @@
                                 <!--<x-jet-button class="ml-4">-->
                                     <button class="logbtn">{{ __('Register') }}</button>
                                <!-- </x-jet-button>-->
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900 color_black" href="{{ route('login') }}">
                                     {{ __('Already registered?') }}
                                 </a>
                             </div>

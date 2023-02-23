@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
   <!------ image links-------->
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 <!---image link end---->
 <style>
 
@@ -512,8 +512,8 @@ input[type="radio"].btn.btn-primary-sign {
 @section('title', 'Product Detail')
 @section('content')
 <!-- Breadcrumb Start -->
-<div class="container-fluid">
-    <div class="row px-xl-5">
+<div class="container">
+    <div class="row mb-3">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
                 <a class="breadcrumb-item text-dark" href="#">Gifts</a>
@@ -526,23 +526,23 @@ input[type="radio"].btn.btn-primary-sign {
 <!-- Breadcrumb End -->
 <!-- Carousel End -->
 <div class="container">
-@if($product->is_variation == '1')
-<?php
-    $attribute = App\Models\ProductVariation::where('product_id', $product->id)->get();
-    $variationsss = App\Models\AddSubVariation::where('product_id', $product->id)->first();
-    $provar = App\Models\AddSubVariation::where('product_id',$product->id)->get();
-    $productimg = App\Models\ProductImage::where('product_id', $product->id)->where('variation_product_id',$variationsss->id)->get();
-    $producimg = App\Models\ProductImage::where('product_id', $product->id)->where('variation_product_id',$variationsss->id)->get();
-?>
+    @if($product->is_variation == '1')
+    <?php
+        $attribute = App\Models\ProductVariation::where('product_id', $product->id)->get();
+        $variationsss = App\Models\AddSubVariation::where('product_id', $product->id)->first();
+        $provar = App\Models\AddSubVariation::where('product_id',$product->id)->get();
+        $productimg = App\Models\ProductImage::where('product_id', $product->id)->where('variation_product_id',$variationsss->id)->get();
+        $producimg = App\Models\ProductImage::where('product_id', $product->id)->where('variation_product_id',$variationsss->id)->get();
+    ?>
 
-<div class="row">
+    <div class="row align-items-start">
             <!-- card left -->
-        <div class = "col-lg-5 product-imgs mrt">
-            <div class = "img-display">
+        <div class="col-lg-5 product-imgs mrt">
+            <div class="img-display">
                 <div id="imggs">
-                    <div class = "img-showcase" id="imggs">
+                    <div class="img-showcase" id="imggs">
                     @foreach($productimg as $productimg)
-                        <img src = "{{ asset('uploads/images/') }}/{{$productimg->images}}">
+                        <img src="{{ asset('uploads/images/') }}/{{$productimg->images}}">
                     @endforeach
                     </div>
                 </div>
@@ -602,39 +602,41 @@ input[type="radio"].btn.btn-primary-sign {
                 @endif
             </div>
             </h2>
-            <div class = "product-price">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p class = "new-price" id="pric-dd">₹{{$variationsss->price}}<span> (Inclusive of GST)</span></p>
-                        <div class="fomright">
-                            @if($product->eggoreggless == 1)
-                            <div class="custom-control custom-radio custom-control-inline al-lft">
-                                <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-1" value="Egg" name="egg_type">
-                                <label class="custom-control-label" for="size-1"> <img src="{{ asset('img/egg.png')}}" class="egg">Egg</label>
+            <div class="product-price">
+                <div class="container px-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class = "new-price" id="pric-dd">₹{{$variationsss->price}}<span> (Inclusive of GST)</span></p>
+                            <div class="fomright">
+                                @if($product->eggoreggless == 1)
+                                <div class="custom-control custom-radio custom-control-inline al-lft">
+                                    <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-1" value="Egg" name="egg_type">
+                                    <label class="custom-control-label" for="size-1"> <img src="{{ asset('img/egg.png')}}" class="egg">Egg</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-2" value="Egg Less" name="egg_type">
+                                <label class="custom-control-label" for="size-2">  <img src="{{ asset('img/eggless.png')}}" class="eggless">Eggless</label>
+                                </div>
+                                @endif
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-2" value="Egg Less" name="egg_type">
-                            <label class="custom-control-label" for="size-2">  <img src="{{ asset('img/eggless.png')}}" class="eggless">Eggless</label>
+
+                            @if($product->quantity_show == 1)
+                            <h4 class="qun">Quantity</h4>
+                            <div class="input-group quantity" style="width: 100px; border:1px solid gray;color:#000;">
+                                <div class="input-group-btn">
+                                    <button class="btnn btn-sm btn-primary1 btn-minus" >
+                                    <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control form-control-sm bg-secondary1 text-center quantity{{$product->id}}" name="quantity" value="1" style="border-color:#fff;font-size:20px; color:#000;">
+                                <div class="input-group-btn">
+                                    <button class="btnn btn-sm btn-primary1 btn-plus">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                             @endif
                         </div>
-
-                        @if($product->quantity_show == 1)
-                        <h4 class="qun">Quantity</h4>
-                        <div class="input-group quantity" style="width: 100px; border:1px solid gray;color:#000;">
-                            <div class="input-group-btn">
-                                <button class="btnn btn-sm btn-primary1 btn-minus" >
-                                <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <input type="text" class="form-control form-control-sm bg-secondary1 text-center quantity{{$product->id}}" name="quantity" value="1" style="border-color:#fff;font-size:20px; color:#000;">
-                            <div class="input-group-btn">
-                                <button class="btnn btn-sm btn-primary1 btn-plus">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -749,7 +751,7 @@ input[type="radio"].btn.btn-primary-sign {
                         @if($procombopart->combo_text_field == 1)
                         <div class="col-lg-12">
                             <h5 class="song">{{$procombopart->combo_text_heading}}<span class="char">@if($procombopart->combo_text_validation != "")(Max {{$procombopart->variation_text_validation}} characters ) @endif</span></h5><br>
-                            <p style="display: flex;"><input type="text" class="inputclass11 comboaddtext1{{$procombopart->id}}" value="" id="comboaddtext1{{$procombopart->id}}" name="comboaddtext1" maxlength="{{$procombopart->combo_text_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;"></p>
+                            <p style="display: flex;"><input type="text" class="inputclass11 comboaddtext1{{$procombopart->id}}" value="" id="comboaddtext1{{$procombopart->id}}" name="comboaddtext1" maxlength="{{$procombopart->combo_text_validation}}" placeholder="Type here" style=""></p>
                         </div>
                         @endif
                     </div>
@@ -837,11 +839,11 @@ input[type="radio"].btn.btn-primary-sign {
 
 
 
-            <div class="row">
+            <div class="row img_upload_sec">
                 @if($product->imageuploadoption == 1)
                 <div class="col-lg-6">
                     <h5>{{$product->imageuploadoption_heading}}</h5>
-                    <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" ></p>
+                    <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="" accept="image/png, image/jpeg,image/jpg" ></p>
                     <div id="uploadimage_preview" style="width:100%;">
                     </div>
                 </div>
@@ -850,7 +852,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @else
                 <div class="col-lg-6" style="display:none">
                     <h5>{{$product->imageuploadoption_heading}}</h5>
-                    <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" ></p>
+                    <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="" accept="image/png, image/jpeg,image/jpg" ></p>
                     <div id="uploadimage_preview" style="width:100%;"></div>
                 </div>
                     <input type="hidden" name="imageuploadoption_validation" id="imageuploadoption_validation" class="imageuploadoption_validation{{$product->id}}" value="{{$product->imageuploadoption_validation}}">
@@ -859,7 +861,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @if($product->uploadlogo_option == 1)
                 <div class="col-lg-6">
                     <h5>{{$product->uploadlogo_heading}}</h5>
-                    <p style="display: flex;"> <input type="file" name="logoupload[]" multiple id="logouploadd" class="logoupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" ></p>
+                    <p style="display: flex;"> <input type="file" name="logoupload[]" multiple id="logouploadd" class="logoupload{{$product->id}}" style="" accept="image/png, image/jpeg,image/jpg" ></p>
                     <div id="logoimage_preview" style="width:100%;"></div>
                 </div>
                 <input type="hidden" name="uploadlogo_validation" id="uploadlogo_validation" class="uploadlogo_validation{{$product->id}}" value="{{$product->uploadlogo_validation}}">
@@ -867,7 +869,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @else
                 <div class="col-lg-6" style="display:none;">
                     <h5>{{$product->uploadlogo_heading}}</h5>
-                    <p style="display: flex;"> <input type="file" name="logoupload[]" multiple id="logouploadd" class="logoupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg" ></p>
+                    <p style="display: flex;"> <input type="file" name="logoupload[]" multiple id="logouploadd" class="logoupload{{$product->id}}" style="" accept="image/png, image/jpeg,image/jpg" ></p>
                     <div id="logoimage_preview" style="width:100%;"></div>
                 </div>
                 <input type="hidden" name="uploadlogo_validation" id="uploadlogo_validation" class="uploadlogo_validation{{$product->id}}" value="{{$product->uploadlogo_validation}}">
@@ -878,7 +880,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @if($product->text_field == 1)
                 <div class="col-lg-12">
                     <h5 class="song">{{$product->text_heading}}<span class="char">@if($product->text_validation != "")(Max {{$product->text_validation}} characters ) @endif</span></h5><br>
-                    <p style="display: flex;"><input type="text" class="inputclass11 addtext1{{$product->id}}" name="addtext1" maxlength="{{$product->text_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;" ></p>
+                    <p style="display: flex;"><input type="text" class="inputclass11 addtext1{{$product->id}}" name="addtext1" maxlength="{{$product->text_validation}}" placeholder="Type here" style="" ></p>
                 </div>
                 @endif
             </div>
@@ -889,7 +891,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @endif
                 <div class="col-lg-12">
                     <h5 class="song">{{$product->addatext_heading}}<span class="char">@if($product->addatext_validation != "")(Max {{$product->addatext_validation}} characters ) @endif</span></h5><br>
-                    <p style="display: flex;"><input type="text" class="inputclass11 addtext2{{$product->id}}" name="addtext2" maxlength="{{$product->addatext_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;" ></p>
+                    <p style="display: flex;"><input type="text" class="inputclass11 addtext2{{$product->id}}" name="addtext2" maxlength="{{$product->addatext_validation}}" placeholder="Type here" style="" ></p>
                 </div>
                 @endif
             </div>
@@ -936,16 +938,19 @@ input[type="radio"].btn.btn-primary-sign {
                 </div>
             @endif
             @if($product->location == 1)
-            <div class="row">
+            <div class="row pincode_sec">
                 <div class="col-lg-10">
+                <div class="input-group-append1">
                     <form class="mb-30 loc" action="">
                         <div class="input-group">
+                            <span class="input-group-text bg-transparent text-primary1">
+                                <i class="fa fa-map-marker-alt"></i>
+                            </span>
                             <input type="text" class="form-control border-0 p-4 timecss location{{$product->id}}" name="location" placeholder="Pincode/Location (only Bangalore)" style="color:#000!important;">
-                            <div class="input-group-append1">
-                                <i class="fa-thin fa-location-dot fa-fw" aria-hidden="true"></i>
-                            </div>
+                            
                         </div>
                     </form>
+                </div>
                 </div>
                 <div class="col-lg-2">
                     <button class="check">Check</button>
@@ -1017,7 +1022,7 @@ input[type="radio"].btn.btn-primary-sign {
             <p>Any specific design?<a href="{{url('/contactus')}}" style="color:#33cfff">Contact Us</a></p>
             @endif
             @if($product->giftwrapper_option == 1)
-            <div class="row pure-veg">
+            <div class="row pure-veg gift_wrap ">
                 <div class="col-lg-12 pure-veg">
                     <h5>Gift-Wrap:</h5>
                     <p style="display: flex;"><input type="checkbox" name="giftwrap" data-gif="{{$product->giftwrapper_price}}" id="giftwrap" class="giftwrap{{$product->id}}" style="width: 20px;" onclick="myFunction(); gettotal();"><span style="padding-left: 10px;">Add Gift wrap(+₹{{$product->giftwrapper_price}})</span></p>
@@ -1042,10 +1047,10 @@ input[type="radio"].btn.btn-primary-sign {
             @endif
 
             @if($product->comment == 1)
-            <div class="row">
+            <div class="row comment_sec">
                 <div class="col-lg-12">
                     <h5>{{$product->comment_heading}}</h5>
-                    <p><input type="text" name="comment" class="form-control comment{{$product->id}}" style="width:100%;height:100px;"></p>
+                    <p><input type="text" name="comment" class="inputclass  comment{{$product->id}}" style="width:100%;height:100px;"></p>
                 </div>
             </div>
             @endif
@@ -1053,7 +1058,7 @@ input[type="radio"].btn.btn-primary-sign {
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Button trigger modal -->
-                    <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: darkturquoise;font-size: 23px;">
+                    <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: darkturquoise;font-size: 18px;">
                         For any Queries - Get in Touch
                     </a>
                 </div>
@@ -1444,10 +1449,10 @@ $productimg = App\Models\ProductImage::where('product_id', $product->id)->whereN
 $producimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull('variation_product_id')->get();
 $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull('variation_product_id')->first();
 ?>
-    <div class="row">
+    <div class="row align-items-start">
         <!-- card left -->
-    <div class = "col-lg-5 product-imgs mrtp">
-        <div class = "img-display">
+    <div class="col-lg-5 product-imgs mrtp">
+        <div class="img-display">
             <div id="imggs">
                 <div class = "img-showcase">
                 @foreach($productimg as $productimg)
@@ -1509,53 +1514,55 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             @endif
         </div>
         </h2>
-        <div class = "product-price">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class = "new-price" id="pric-dd">₹{{$product->price}}<span> (Inclusive of GST)</span></p>
-                    <br>
-                    @if($product->quantity_show == 1)
-                    <h4 class="qun">Quantity</h4><br>
-                    <div class="input-group quantity" style="width: 100px; border:1px solid gray;color:#000;">
-                        <div class="input-group-btn">
-                            <button class="btnn btn-sm btn-primary1 btn-minus" >
-                            <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                        <input type="text" class="form-control form-control-sm bg-secondary1 text-center quantity{{$product->id}}" name="quantity" value="1" style="border-color:#fff;font-size:20px; color:#000;">
-                        <div class="input-group-btn">
-                            <button class="btnn btn-sm btn-primary1 btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    @endif
-
-                    @if($product->textareaa == 1)
-                    <div class="form-group">
-                        <h5>{{$product->textarea_name}} <span class="text-danger1">@if($product->textarea_validation != "")(Max {{$product->textarea_validation}} characters) @endif</span></h5>
-                        <textarea class="form-control description{{$product->id}}" name="description" required id="message_popup" maxlength="{{$product->textarea_validation}}" cols="30" rows="4" tabindex="1" style="border: 1px solid #767676; "></textarea>
-                    </div>
-                    @endif
-
-                    <div class="fomright">
-                    <form>
-                        @if($product->eggoreggless == 1)
-                        <div class="custom-control custom-radio custom-control-inline al-lft">
-                            <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="eggtype" value="Egg" name="egg_type">
-                            <label class="custom-control-label" for="size-1"> <img src="{{ asset('img/egg.png')}}" class="egg">Egg</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="eggtype" value="Egg Less" name="egg_type">
-                        <label class="custom-control-label" for="size-2">  <img src="{{ asset('img/eggless.png')}}" class="eggless">Eggless</label>
+        <div class="product-price">
+            <div class="container px-0">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class = "new-price" id="pric-dd">₹{{$product->price}}<span> (Inclusive of GST)</span></p>
+                        <br>
+                        @if($product->quantity_show == 1)
+                        <h4 class="qun">Quantity</h4><br>
+                        <div class="input-group quantity" style="width: 100px; border:1px solid gray;color:#000;">
+                            <div class="input-group-btn">
+                                <button class="btnn btn-sm btn-primary1 btn-minus" >
+                                <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="form-control form-control-sm bg-secondary1 text-center quantity{{$product->id}}" name="quantity" value="1" style="border-color:#fff;font-size:20px; color:#000;">
+                            <div class="input-group-btn">
+                                <button class="btnn btn-sm btn-primary1 btn-plus">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
                         @endif
-                        @if ($errors->has('eggtype'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('eggtype') }}</strong>
-                        </span>
-                    @endif
-                    </form>
+
+                        @if($product->textareaa == 1)
+                        <div class="form-group">
+                            <h5>{{$product->textarea_name}} <span class="text-danger1">@if($product->textarea_validation != "")(Max {{$product->textarea_validation}} characters) @endif</span></h5>
+                            <textarea class="form-control description{{$product->id}}" name="description" required id="message_popup" maxlength="{{$product->textarea_validation}}" cols="30" rows="4" tabindex="1" style="border: 1px solid #767676; "></textarea>
+                        </div>
+                        @endif
+
+                        <div class="fomright">
+                        <form>
+                            @if($product->eggoreggless == 1)
+                            <div class="custom-control custom-radio custom-control-inline al-lft">
+                                <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="eggtype" value="Egg" name="egg_type">
+                                <label class="custom-control-label" for="size-1"> <img src="{{ asset('img/egg.png')}}" class="egg">Egg</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="eggtype" value="Egg Less" name="egg_type">
+                            <label class="custom-control-label" for="size-2">  <img src="{{ asset('img/eggless.png')}}" class="eggless">Eggless</label>
+                            </div>
+                            @endif
+                            @if ($errors->has('eggtype'))
+                            <span class="text-danger">
+                                <strong>{{ $errors->first('eggtype') }}</strong>
+                            </span>
+                        @endif
+                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1582,7 +1589,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                     @if($procombopart->combo_text_field == 1)
                     <div class="col-lg-12">
                         <h5 class="song">{{$procombopart->combo_text_heading}}<span class="char">@if($procombopart->combo_text_validation != "")(Max {{$procombopart->variation_text_validation}} characters ) @endif</span></h5><br>
-                        <p style="display: flex;"><input type="text" class="inputclass11 comboaddtext1{{$procombopart->id}}" value="" id="comboaddtext1{{$procombopart->id}}" name="comboaddtext1" maxlength="{{$procombopart->combo_text_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;"></p>
+                        <p style="display: flex;"><input type="text" class="inputclass11 comboaddtext1{{$procombopart->id}}" value="" id="comboaddtext1{{$procombopart->id}}" name="comboaddtext1" maxlength="{{$procombopart->combo_text_validation}}" placeholder="Type here" style=""></p>
                     </div>
                     @endif
                 </div>
@@ -1667,11 +1674,11 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             <div id="variationn-dd">
             </div>
 
-        <div class="row">
+        <div class="row img_upload_sec">
             @if($product->imageuploadoption == 1)
             <div class="col-lg-6">
                 <h5>{{$product->imageuploadoption_heading}}</h5>
-                <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg"></p>
+                <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="" accept="image/png, image/jpeg,image/jpg"></p>
                 <div id="uploadimage_preview" style="width:100%;"></div>
             </div>
             <input type="hidden" name="imageuploadoption_validation" id="imageuploadoption_validation" class="imageuploadoption_validation{{$product->id}}" value="{{$product->imageuploadoption_validation}}">
@@ -1679,7 +1686,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             @else
             <div class="col-lg-6" style="display:none">
                 <h5>{{$product->imageuploadoption_heading}}</h5>
-                <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg"></p>
+                <p style="display: flex;"> <input type="file" name="imageupload[]" multiple id="imageuploadd" class="imageupload{{$product->id}}" style="" accept="image/png, image/jpeg,image/jpg"></p>
                 <div id="uploadimage_preview" style="width:100%;"></div>
             </div>
             <input type="hidden" name="imageuploadoption_validation" id="imageuploadoption_validation" class="imageuploadoption_validation{{$product->id}}" value="{{$product->imageuploadoption_validation}}">
@@ -1688,7 +1695,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             @if($product->uploadlogo_option == 1)
             <div class="col-lg-6">
                 <h5>{{$product->uploadlogo_heading}}</h5>
-                <p style="display: flex;"> <input type="file" name="logoupload[]"  multiple id="logouploadd" class="logoupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg"></p>
+                <p style="display: flex;"> <input type="file" name="logoupload[]"  multiple id="logouploadd" class="logoupload{{$product->id}}" style="" accept="image/png, image/jpeg,image/jpg"></p>
                 <div id="logoimage_preview" style="width:100%;"></div>
             </div>
             <input type="hidden" name="uploadlogo_validation" id="uploadlogo_validation" class="uploadlogo_validation{{$product->id}}" value="{{$product->uploadlogo_validation}}">
@@ -1696,7 +1703,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             @else
             <div class="col-lg-6" style="display:none;">
                 <h5>{{$product->uploadlogo_heading}}</h5>
-                <p style="display: flex;"> <input type="file" name="logoupload[]"  multiple id="logouploadd" class="logoupload{{$product->id}}" style="padding-left:10px;" accept="image/png, image/jpeg,image/jpg"></p>
+                <p style="display: flex;"> <input type="file" name="logoupload[]"  multiple id="logouploadd" class="logoupload{{$product->id}}" style="" accept="image/png, image/jpeg,image/jpg"></p>
                 <div id="logoimage_preview" style="width:100%;"></div>
             </div>
             <input type="hidden" name="uploadlogo_validation" id="uploadlogo_validation" class="uploadlogo_validation{{$product->id}}" value="{{$product->uploadlogo_validation}}">
@@ -1707,7 +1714,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             @if($product->text_field == 1)
             <div class="col-lg-12">
                 <h5 class="song">{{$product->text_heading}}<span class="char">@if($product->text_validation != "")(Max {{$product->text_validation}} characters ) @endif</span></h5><br>
-                <p style="display: flex;"><input type="text" class="inputclass11 addtext1{{$product->id}}" name="addtext1" maxlength="{{$product->text_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;"></p>
+                <p style="display: flex;"><input type="text" class="inputclass11 addtext1{{$product->id}}" name="addtext1" maxlength="{{$product->text_validation}}" placeholder="Type here" style=""></p>
             </div>
             @endif
         </div>
@@ -1715,7 +1722,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             @if($product->addatext_option == 1)
             <div class="col-lg-12">
                 <h5 class="song">{{$product->addatext_heading}}<span class="char">@if($product->addatext_validation != "")(Max {{$product->addatext_validation}} characters ) @endif</span></h5><br>
-                <p style="display: flex;"><input type="text" class="inputclass11 addtext2{{$product->id}}" name="addtext2" maxlength="{{$product->addatext_validation}}" placeholder="Type here" style="margin:0px 0px 0px 10px;"></p>
+                <p style="display: flex;"><input type="text" class="inputclass11 addtext2{{$product->id}}" name="addtext2" maxlength="{{$product->addatext_validation}}" placeholder="Type here" style=""></p>
             </div>
             @endif
         </div>
@@ -1737,12 +1744,15 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         @endforeach
     </div>
       @if($product->location == 1)
-        <div class="row">
+        <div class="row pincode_sec">
             <div class="col-lg-10">
-                <div class="input-group">
-                    <input type="text" class="form-control border-0 p-4 timecss location{{$product->id}}" id="location" name="location" placeholder="Pincode/Location (only Bangalore)" style="color:#000!important;">
-                    <div class="input-group-append1">
-                        <i class="fa-thin fa-location-dot fa-fw" aria-hidden="true"></i>
+                <div class="input-group-append1">
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent text-primary1">
+                            <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control location{{$product->id}}" id="location" name="location" placeholder="Pincode/Location (only Bangalore)" style="color:#000!important;">
+                        
                     </div>
                 </div>
             </div>
@@ -1823,7 +1833,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         <p>Any specific design?<a href="{{url('/contactus')}}" style="color:#33cfff">Contact Us</a></p>
         @endif
         @if($product->giftwrapper_option == 1)
-        <div class="row">
+        <div class="row gift_wrap">
             <div class="col-lg-12">
                 <h5 class="gift">Gift-Wrap:</h5>
                 <p style="display: flex;"><input type="checkbox" class="giftwrap{{$product->id}}" name="giftwrap" style="width: 20px;"><span style="padding-left: 10px;">Add Gift wrap(+₹{{$product->giftwrapper_price}})</span></p>
@@ -1836,7 +1846,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         @endif
 
         @if($product->comment == 1)
-        <div class="row">
+        <div class="row comment_sec">
             <div class="col-lg-12">
                 <h5>{{$product->comment_heading}}</h5>
                 <p><input type="text" name="comment" class="inputclass comment{{$product->id}}" style="width:100%;height:100px;"></p>
@@ -1847,7 +1857,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         <div class="row">
             <div class="col-lg-12">
                 <!-- Button trigger modal -->
-                <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: darkturquoise;font-size: 23px;">
+                <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: darkturquoise;font-size: 18px;">
                     For any Queries - Get in Touch
                 </a>
             </div>
@@ -2187,127 +2197,132 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
 
     @endif
 </div>
-
-<div class="row px-xl-5">
-    <div class="col">
-        <div class="bg-light p-30">
-            <div class="nav nav-tabs mb-4">
-                <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Specifications </a>
-                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Delivery Information</a>
-                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-4">Color Disclaimer </a>
-                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-5">Return Policy </a>
-                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-6">Reviews</a>
-            </div>
-            <div class="tab-content">
-                <div class="tab-pane fade show" id="tab-pane-1">
-                    <p>{!!$product->pro_long_desc!!}</p>
-
+<div class="container desc_sec_details">
+    <div class="row">
+        <div class="col">
+            <div class="bg-light">
+                <div class="nav nav-tabs mb-4 justify-content-center">
+                    <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Specifications </a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Delivery Information</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-4">Color Disclaimer </a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-5">Return Policy </a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-6">Reviews</a>
                 </div>
-                    <div class="tab-pane fade show " id="tab-pane-2">
-                    <p>{!!$product->specification!!}</p>
+                <div class="tab-content">
+                    <div class="tab-pane fade show" id="tab-pane-1">
+                        <p>{!!$product->pro_long_desc!!}</p>
 
-                </div>
-                    <div class="tab-pane fade show active" id="tab-pane-3">
-                    <p>{!!$product->delivery_info!!}</p>
+                    </div>
+                        <div class="tab-pane fade " id="tab-pane-2">
+                        <p>{!!$product->specification!!}</p>
 
-                </div>
-                    <div class="tab-pane fade show " id="tab-pane-4">
-                    <p>{!!$product->color_desclaimer!!}</p>
+                    </div>
+                        <div class="tab-pane fade" id="tab-pane-3">
+                        <p>{!!$product->delivery_info!!}</p>
 
-                </div>
-                <div class="tab-pane fade" id="tab-pane-5">
-                    <p>{!!$product->return_policy!!}</p>
-                </div>
-                <div class="tab-pane fade" id="tab-pane-6">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="mb-4">Review</h4>
-                            <div class="media" >
-                                <div class="media-body">
-                                    @foreach($review as $review)
-                                        @foreach(range(1,5) as $i)
-                                        <span class="fa-stack" style="width:1em">
-                                            <i class="far fa-star fa-stack-1x"></i>
+                    </div>
+                        <div class="tab-pane fade " id="tab-pane-4">
+                        <p>{!!$product->color_desclaimer!!}</p>
 
-                                            @if($review->rating >0)
-                                                @if($review->rating >0.5)
-                                                    <i class="fas fa-star fa-stack-1x"></i>
-                                                @else
-                                                    <i class="fas fa-star-half fa-stack-1x"></i>
+                    </div>
+                    <div class="tab-pane fade" id="tab-pane-5">
+                        <p>{!!$product->return_policy!!}</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab-pane-6">
+                        <div class="row mx-0">
+                            <div class="col-md-12 p-3">
+                                <h4 class="mb-4" style="display:none;">Review</h4>
+                                <div class="media" >
+                                    <div class="media-body">
+                                        @foreach($review as $review)
+                                            @foreach(range(1,5) as $i)
+                                            <span class="fa-stack" style="width:1em">
+                                                <i class="far fa-star fa-stack-1x"></i>
+
+                                                @if($review->rating >0)
+                                                    @if($review->rating >0.5)
+                                                        <i class="fas fa-star fa-stack-1x"></i>
+                                                    @else
+                                                        <i class="fas fa-star-half fa-stack-1x"></i>
+                                                    @endif
                                                 @endif
-                                            @endif
-                                            @php $review->rating--; @endphp
-                                        </span>
-                                        @endforeach
-                                    <h6>{{$review->name}}<small> - <i>{{ \Carbon\Carbon::parse($review->datee)->format('j F Y')}}</i></small></h6>
-                                    <p>{!!$review->comment!!}</p>
+                                                @php $review->rating--; @endphp
+                                            </span>
+                                            @endforeach
+                                        <h6>{{$review->name}}<small> - <i>{{ \Carbon\Carbon::parse($review->datee)->format('j F Y')}}</i></small></h6>
+                                        <p>{!!$review->comment!!}</p>
+                                    </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>
+                        <div class="col-lg-12">
+                        <h2>Leave a comment here</h2>
+                        <form id="contact-form" action="{{url('/productreview')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                        <input type="hidden" name="productid" id="productid" value="{{$product->id}}">
+
+                                <div class="flex-w flex-m p-t-50 p-b-23">
+                                    <span class="stext-102 cl3 m-r-16">
+                                        Your Rating
+                                    </span>
+                                </div>
+                                <div class="error-container"></div>
+                                <div class="row">
+                                <div class="col-md-12">
+                                    <div class="rating" id="btn-writereview">
+
+                                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
+                                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
+                                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
+                                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                                </div>
+                                </div>
+                                <br>
+                                    <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input class="form-control form-control-name" name="name" id="name" placeholder="Enter Name" type="text" required>
+                                    </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input class="form-control form-control-email" name="email" id="email" placeholder="Enter Email" type="email" required>
+                                    </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control form-control-message" name="review" id="message" placeholder="Your Comments" rows="3" required></textarea>
+                                    </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <x-honey/>
+
+                                <div class="form-group">
+                                    <button type="submit" name="submit" class="btn btn-primary mx-0">Submit</button>
+                                </div>
+                            </form>
                         </div>
-                     <div class="col-lg-12">
-                      <h2>Leave a comment here</h2>
-                      <form id="contact-form" action="{{url('/productreview')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                       <input type="hidden" name="productid" id="productid" value="{{$product->id}}">
-
-                            <div class="flex-w flex-m p-t-50 p-b-23">
-                                <span class="stext-102 cl3 m-r-16">
-                                    Your Rating
-                                </span>
-                            </div>
-                            <div class="error-container"></div>
-                            <div class="row">
-                            <div class="col-md-12">
-                                <div class="rating pl-2" id="btn-writereview">
-
-                                   <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
-                                   <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
-                                   <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
-                                   <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
-                                   <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-                               </div>
-                               </div>
-                               <br>
-                                <div class="col-md-12">
-                                <div class="form-group">
-                                    <input class="form-control form-control-name" name="name" id="name" placeholder="Enter Name" type="text" required>
-                                </div>
-                                </div>
-                                <br>
-                                <div class="col-md-12">
-                                <div class="form-group">
-                                    <input class="form-control form-control-email" name="email" id="email" placeholder="Enter Email" type="email" required>
-                                </div>
-                                </div>
-                                <br>
-                                <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea class="form-control form-control-message" name="review" id="message" placeholder="Your Comments" rows="3" required></textarea>
-                                </div>
-                                </div>
-                                <br>
-                            </div>
-                            <x-honey/>
-
-                            <div class="form-group"><br>
-                            <button type="submit" name="submit" class="btn">Submit</button>
-                            </div>
-                        </form>
-                     </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+</div>
 <!--================================================You May Also Like ===========================================-------->
 @if($youmay->count() > 0)
-<div class="container-fluid pt-5 pb-3">
-    <div align="right"><a href="{{url('/cp/youmayalsolike')}}" class="btn btn-primary">View All</a></div>
-    <h2 class="section-title position-relative text-center mx-xl-5 mb-4 data-aos="fade-up" data-aos-delay="400"" >You May Also Like</h2>
-    <div class="row px-xl-5">
+<div class="container pt-5 pb-3">
+    <h2 class="section-title position-relative text-center mb-5 mt-3" data-aos="fade-up" data-aos-delay="400" >You May Also Like
+        <div class="right_viewall"><a href="{{url('/cp/youmayalsolike')}}" class="btn btn-primary mr-0">View All</a></div>
+
+    </h2>
+    <div class="row justify-content-center">
         @foreach($youmay as $youmay)
         <?php
         if($youmay->is_variation == '1'){
@@ -2338,57 +2353,57 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$youmay->slug}}"><i class="fa fa-eye"></i></a>
                         <a class="btn btn-outline-dark btn-square yehr wishlistproduct{{$youmay->id}}"><i class="far fa-heart"></i></a>
-<script>
-$(document).ready(function(){
- function loadwish(){
-     $.ajax({
-         method: "GET",
-         url: '{{url('/load-wishlist-data')}}',
-         success: function (response) {
-             $('.wishlist_count').html('');
-             $('.wishlist_count').html(response.count);
-         }
-     });
- }
+                            <script>
+                            $(document).ready(function(){
+                            function loadwish(){
+                                $.ajax({
+                                    method: "GET",
+                                    url: '{{url('/load-wishlist-data')}}',
+                                    success: function (response) {
+                                        $('.wishlist_count').html('');
+                                        $('.wishlist_count').html(response.count);
+                                    }
+                                });
+                            }
 
- $('.wishlistproduct<?php echo $youmay->id; ?>').click(function(e){
-     var session_id = $('.session_id').val();
-     var product_id = $('.product_id<?php echo $youmay->id; ?>').val();
-     var product_name = $('.product_name<?php echo $youmay->id; ?>').val();
-     var product_price = $('.product_price<?php echo $youmay->id; ?>').val();
-     $.ajax({
-         url: '{{url('addwishlist')}}',
-         method: "POST",
-         data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-         dataType: "json",
-         success: function (response) {
-             if(response.status == 'success'){
-                 loadwish();
-             Swal.fire(
-               'Added!',
-               'Product Added to Wishlist',
-               'success'
-             )
-         }else if(response.status == 'exists'){
-              Swal.fire(
-               'Already Exists',
-               'success'
-             )
-         }else if(response.status == 'failure'){
-             window.location.replace('http://127.0.0.1:8000/login')
-         }
-         }
-     });
- });
-});
-</script>
+                            $('.wishlistproduct<?php echo $youmay->id; ?>').click(function(e){
+                                var session_id = $('.session_id').val();
+                                var product_id = $('.product_id<?php echo $youmay->id; ?>').val();
+                                var product_name = $('.product_name<?php echo $youmay->id; ?>').val();
+                                var product_price = $('.product_price<?php echo $youmay->id; ?>').val();
+                                $.ajax({
+                                    url: '{{url('addwishlist')}}',
+                                    method: "POST",
+                                    data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                    dataType: "json",
+                                    success: function (response) {
+                                        if(response.status == 'success'){
+                                            loadwish();
+                                        Swal.fire(
+                                        'Added!',
+                                        'Product Added to Wishlist',
+                                        'success'
+                                        )
+                                    }else if(response.status == 'exists'){
+                                        Swal.fire(
+                                        'Already Exists',
+                                        'success'
+                                        )
+                                    }else if(response.status == 'failure'){
+                                        window.location.replace('http://127.0.0.1:8000/login')
+                                    }
+                                    }
+                                });
+                            });
+                            });
+                            </script>
 
                            <!-- <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
 
                     </div>
                 </div>
-                <div class="text-center py-4">
-                 <div class="d-flex align-items-center justify-content-center mb-1">
+                <div class="text-center py-2">
+                 <div class="d-flex align-items-center justify-content-center review_star mb-1">
                     <?php $ratingg = App\Models\Review::where('product_id',$youmay->id)->avg('rating'); ?>
                     @if($ratingg != null)<p>
                         @foreach(range(1,5) as $i)
@@ -2424,10 +2439,11 @@ $(document).ready(function(){
 
 <!--======================================= Trending Products============================================--->
 @if($trend->count() > 0)
-<div class="container-fluid pt-5 pb-3">
-	<div align="right"><a href="{{url('/cp/trend')}}" class="btn btn-primary">View All</a></div>
-        <h2 class="section-title position-relative text-center mx-xl-5 mb-4 data-aos="fade-up" data-aos-delay="400"" >Trending Products</h2>
-        <div class="row px-xl-5">
+<div class="container pt-5 pb-3">
+        <h2 class="section-title position-relative text-center mb-5 mt-3" data-aos="fade-up" data-aos-delay="400" >Trending Products
+            <div class="right_viewall"><a href="{{url('/cp/trend')}}" class="btn btn-primary mr-0">View All</a></div>
+        </h2>
+        <div class="row justify-content-center">
             @foreach($trend as $trend)
             <?php
             if($trend->is_variation == '1'){
@@ -2459,56 +2475,56 @@ $(document).ready(function(){
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square bluey" href="{{url('/pro')}}/{{$trend->slug}}"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-outline-dark btn-square yehr wishlisttrend{{$trend->id}}"><i class="far fa-heart"></i></a>
-<script>
- $(document).ready(function(){
-     function loadwish(){
-         $.ajax({
-             method: "GET",
-             url: '{{url('/load-wishlist-data')}}',
-             success: function (response) {
-                 $('.wishlist_count').html('');
-                 $('.wishlist_count').html(response.count);
-             }
-         });
-     }
+                            <script>
+                            $(document).ready(function(){
+                                function loadwish(){
+                                    $.ajax({
+                                        method: "GET",
+                                        url: '{{url('/load-wishlist-data')}}',
+                                        success: function (response) {
+                                            $('.wishlist_count').html('');
+                                            $('.wishlist_count').html(response.count);
+                                        }
+                                    });
+                                }
 
-     $('.wishlisttrend<?php echo $trend->id; ?>').click(function(e){
-         var session_id = $('.session_id').val();
-         var product_id = $('.product_id<?php echo $trend->id; ?>').val();
-         var product_name = $('.product_name<?php echo $trend->id; ?>').val();
-         var product_price = $('.product_price<?php echo $trend->id; ?>').val();
-         $.ajax({
-             url: '{{url('addwishlist')}}',
-             method: "POST",
-             data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
-             dataType: "json",
-             success: function (response) {
-                 if(response.status == 'success'){
-                     loadwish();
-                 Swal.fire(
-                   'Added!',
-                   'Product Added to Wishlist',
-                   'success'
-                 )
-             }else if(response.status == 'exists'){
-                  Swal.fire(
-                   'Already Exists',
-                   'success'
-                 )
-             }else if(response.status == 'failure'){
-                 window.location.replace('http://127.0.0.1:8000/login')
-             }
-             }
-         });
-     });
- });
- </script>
+                                $('.wishlisttrend<?php echo $trend->id; ?>').click(function(e){
+                                    var session_id = $('.session_id').val();
+                                    var product_id = $('.product_id<?php echo $trend->id; ?>').val();
+                                    var product_name = $('.product_name<?php echo $trend->id; ?>').val();
+                                    var product_price = $('.product_price<?php echo $trend->id; ?>').val();
+                                    $.ajax({
+                                        url: '{{url('addwishlist')}}',
+                                        method: "POST",
+                                        data: {_token: '{{ csrf_token() }}',"session_id":session_id, "product_id":product_id,"product_name":product_name,"product_price":product_price},
+                                        dataType: "json",
+                                        success: function (response) {
+                                            if(response.status == 'success'){
+                                                loadwish();
+                                            Swal.fire(
+                                            'Added!',
+                                            'Product Added to Wishlist',
+                                            'success'
+                                            )
+                                        }else if(response.status == 'exists'){
+                                            Swal.fire(
+                                            'Already Exists',
+                                            'success'
+                                            )
+                                        }else if(response.status == 'failure'){
+                                            window.location.replace('http://127.0.0.1:8000/login')
+                                        }
+                                        }
+                                    });
+                                });
+                            });
+                            </script>
                           <!--  <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>-->
 
                         </div>
                     </div>
-                    <div class="text-center py-4">
-					 <div class="d-flex align-items-center justify-content-center mb-1">
+                    <div class="text-center py-2">
+					 <div class="d-flex align-items-center justify-content-center review_star mb-1">
                         <?php $ratinggg = App\Models\Review::where('product_id',$trend->id)->avg('rating'); ?>
                         @if($ratinggg != null)<p>
                             @foreach(range(1,5) as $i)
@@ -2544,28 +2560,32 @@ $(document).ready(function(){
 
 
 <div class="what-people">
-    <div align="center">
-        <h3 class="heading" data-aos="fade-up" data-aos-delay="300">What People are saying?</h3>
-    </div><br>
-    <br>
-      <div class="row px-xl-5">
-          @foreach($testimonial as $testimonial)
-          <div class="col-sm-4 box" data-aos="fade-left" data-aos-delay="100">
-              <div class="test-img"><span class="aname">{{$testimonial->letter}}</span>
-                  <p class="clicl">{{$testimonial->name}}<span class="our">{{$testimonial->designation}}</span></p>
-                  <p class="tes">{!!$testimonial->description!!}</p>
-                  <div class="d-flex align-items-center justify-content-left mb-1">
-                      @if($testimonial->rating != null)
-                      @for($i=1; $i<=$testimonial->rating; $i++)
-                      <small class="fa fa-star text-primary mr-1"></small>
-                      @endfor
-                      @endif
-                  </div>
-              </div>
-          </div>
-          @endforeach
-      </div>
-  </div>
+    <div class="container">
+        <div class="text-center">
+            <h3 class="heading mb-5" data-aos="fade-up" data-aos-delay="300">What People are saying?</h3>
+        </div>
+            <div class="row justify-content-center">
+                @foreach($testimonial as $testimonial)
+                <div class="col-lg-4 col-md-6 col-12 box box" data-aos="fade-left" data-aos-delay="100">
+                    <div class="test-img">
+                        <div class="d-flex align-items-center justify-content-start">
+                            <span class="aname">{{$testimonial->letter}}</span>
+                            <p class="clicl">{{$testimonial->name}}<span class="our">{{$testimonial->designation}}</span></p>
+                        </div>
+                        <p class="tes">{!!$testimonial->description!!}</p>
+                        <div class="d-flex align-items-center justify-content-left mb-1">
+                            @if($testimonial->rating != null)
+                            @for($i=1; $i<=$testimonial->rating; $i++)
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            @endfor
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+    </div>
+</div>
 
 
 <!-- Modal -->

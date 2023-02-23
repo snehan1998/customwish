@@ -39,7 +39,7 @@
     <!-- Topbar Start -->
     <div class="bg-secondary">
         <div class="container">
-            <div class="row py-1 justify-content-end mx-0">
+            <div class="row py-0 justify-content-end mx-0">
                 <!-- <div class="col-lg-6 d-none d-lg-block">
                 </div> -->
                 <div class="col-lg-12 text-lg-right pr-0 align-self-end">
@@ -74,11 +74,12 @@
                 </div>
                 <div class="pincode_sec px-0 loc-align">
                     <div class="input-group-append1">
-                        <span class="input-group-text bg-transparent text-primary1">
-                            <i class="fa fa-map-marker-alt"></i>
-                        </span>
+                        
                         <form action="">
                             <div class="input-group">
+                            <span class="input-group-text bg-transparent text-primary1">
+                            <i class="fa fa-map-marker-alt"></i>
+                        </span>
                                 <input type="text" class="form-control delivery" placeholder="Select Delivery Location">
                             </div>
                         </form>

@@ -18,7 +18,6 @@
       	<p class="orderpara">Your Order has been confirmed and will be shipping soon.</p>
       </div>
        </div>
-       <br>
        <hr class="hrcss">
         <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-6 col-xs-13">
@@ -48,7 +47,7 @@
        <?php $productimg = App\Models\ProductImage::where('product_id',$orderlist->product_id)->first();
                 $product = App\Models\Product::where('id',$orderlist->product_id)->first();
        ?>
-         <div class="row">
+         <div class="row align-items-center">
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-13">
                 <img src="{{asset('uploads/images')}}/{{$productimg->images}}" class="img-fluid" style="width:200px;height:100px;">
             </div>

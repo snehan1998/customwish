@@ -36,7 +36,7 @@
                                                         <!--<td>{{$order->payment_status}}</td>-->
                                                         <td>{{$order->status}}</td>
                                                         <td>&#8377;&nbsp; {{$order->payable_price}}</td>
-                                                        <td><a href="{{url('user/order')}}/{{$order->order_id}}">View</a></td>
+                                                        <td><a href="{{url('user/order')}}/{{$order->order_id}}" class="view_order_a">View</a></td>
                                                     </tr>
                                                     @endforeach
                                                     @else

@@ -48,16 +48,16 @@
                             </div>
                         </div>
                     </div>
-				  <br>
+				  
         		   <div class="form-group">
                         <input type="text" name="experience" class="form-control" id="experience" placeholder="Subject" required>
-                   </div><br>
+                   </div>
         		   <div class="form-group">
                         <textarea class="form-control" name="message" id="message_popup" cols="30" rows="4" tabindex="1" placeholder="Message"  style="overflow: hidden; outline: none;" required></textarea>
-                    </div><br>
+                    </div>
                     <x-honey/>
 
-                    <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <div class="modal-footer border-top-0 d-flex justify-content-center p-0">
                       <button type="submit" class="btn btn-primary-submit">Submit</button>
                     </div>
                 </form>

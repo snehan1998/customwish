@@ -51,7 +51,7 @@ nav.bg-light{
 
     <!-- Carousel End -->
     <div class="container">
-        <div class="row">
+        <div class="row mb-3">
             <div class="sort">
                 <h1 class="birth">{{$cat->cat_name}}  &nbsp;&nbsp;<span class="rate">4.6 <i class="fa fa-star"></i></span> &nbsp;&nbsp;<span class="review">1200 Reviews</span></h1>
                 <p class="sortb">Sort By:
@@ -64,7 +64,7 @@ nav.bg-light{
 		</div>
 	</div>
 <!----------------------------------------------Filter Start ------------------------------------------------>
-<div class="filter_sec">
+<div class="filter_sec" style="display:none">
     <div class="container">
         <article class="vendors-filter">
            <div class="row mt-3">
@@ -77,66 +77,9 @@ nav.bg-light{
         <article class="collapse sidebarnav mt-4 " id="top-filter">
 	    <div class="card card-body">
 		  <div class="container">
-		  <div class="row">
-		      <div class="col-12 p-0" id="catFilters"></div>
-
-              <div class="col-md-4 col-sm-12 col-lg-4 vendors-list scroll">
-                <h5>Price</h5>
-                <?php $pricee=App\Models\PriceRange::get(); ?>
-                <?php $counter1=0; ?>
-                @if(!empty($pricee))
-                @foreach ($pricee as $pricee)
-                <div class="custom-style">
-                    <input name="price" type="checkbox" value="{{$pricee->id}}" id="price{{$pricee->id}}">
-                    <label for="price{{$pricee->id}}">{{ $pricee->title }}</label>
-                </div>
-                @endforeach
-                @endif
-            </div>
-
-            <div class="col-md-4 col-sm-12 col-lg-4 vendors-list scroll">
-                <h5>Stock Status</h5>
-                <div class="custom-style">
-                <input name="stock" type="checkbox" value="instock" id="stock">
-                <label for="stock">Instock</label>
-                </div>
-                <div class="custom-style">
-                <input name="stock" type="checkbox" value="outofstock" id="stockk">
-                <label for="stockk">Outofstock</label>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-12 col-lg-4 vendors-list scroll">
-            <h5>Attribute</h5>
-            <?php $counter=0;
-            ?>
-                @if(!empty($attribute))
-                @foreach ($attribute as $attribute)
-                <h6 class="colorh">{{ $attribute->attr_name }}</h6>
-                <?php $attvalue = App\Models\AttributeValue::where('attr_id',$attribute->id)->get(); ?>
-                <div class="custom-style">
-                @foreach($attvalue as $attvalue)
-                <input name="attribute" type="checkbox" value="{{$attvalue->id}}" id="attval{{$attvalue->id}}">
-                <label for="attval{{$attvalue->id}}">{{ $attvalue->attr_value_title	 }}</label >
-                @endforeach
-                </div>
-                @endforeach
-                @endif
-            </div>
-
-           <div class="col-md-12 col-sm-12 text-center">
-		    <div class="buttom-gorup">
-		  <button type="submit" id="filter" class="submit-bnt">Submit</button>
-		  </div>
-
-	      <div class="buttom-gorup"><form method="get" action="{{url('/')}}/sub/{{$sub->id}}">
-                <button type="submit" class="submit-bnt">Reset</button>
-            </form> </div>
-		  </div>
-
-		  </div>
+		  
 		</div>
-		</div>
+	</div>
 
 	</article>
 </div>
@@ -147,7 +90,73 @@ nav.bg-light{
 
     <!-- Products Start -->
     <div class="container pt-5 pb-3">
-        <div class="row justify-content-center">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="filter_section">
+                    <div class="row mx-0">
+		                <div class="col-12 p-0" id="catFilters"></div>
+
+                        <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll">
+                            <h5>Price</h5>
+                            <?php $pricee=App\Models\PriceRange::get(); ?>
+                            <?php $counter1=0; ?>
+                            @if(!empty($pricee))
+                            @foreach ($pricee as $pricee)
+                            <div class="custom-style">
+                                <input name="price" type="checkbox" value="{{$pricee->id}}" id="price{{$pricee->id}}">
+                                <label for="price{{$pricee->id}}">{{ $pricee->title }}</label>
+                            </div>
+                            @endforeach
+                            @endif
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll">
+                            <h5>Stock Status</h5>
+                            <div class="custom-style">
+                            <input name="stock" type="checkbox" value="instock" id="stock">
+                            <label for="stock">Instock</label>
+                            </div>
+                            <div class="custom-style">
+                            <input name="stock" type="checkbox" value="outofstock" id="stockk">
+                            <label for="stockk">Outofstock</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-lg-12 vendors-list ven_last scroll" style="display:none;">
+                        <h5>Attribute</h5>
+                        <?php $counter=0;
+                        ?>
+                            @if(!empty($attribute))
+                            @foreach ($attribute as $attribute)
+                            <h6 class="colorh">{{ $attribute->attr_name }}</h6>
+                            <?php $attvalue = App\Models\AttributeValue::where('attr_id',$attribute->id)->get(); ?>
+                            <div class="custom-style">
+                            @foreach($attvalue as $attvalue)
+                            <input name="attribute" type="checkbox" value="{{$attvalue->id}}" id="attval{{$attvalue->id}}">
+                            <label for="attval{{$attvalue->id}}">{{ $attvalue->attr_value_title	 }}</label >
+                            @endforeach
+                            </div>
+                            @endforeach
+                            @endif
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 text-center">
+                                <div class="buttom-gorup">
+                                <button type="submit" id="filter" class="submit-bnt">Submit</button>
+                                </div>
+
+                                <div class="buttom-gorup"><form method="get" action="{{url('/')}}/sub/{{$sub->id}}">
+                                        <button type="submit" class="submit-bnt">Reset</button>
+                                    </form> </div>
+                                </div>
+
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="product_list_section">
+                <div class="row justify-content-start">
             @foreach($products as $product)
             <?php
             if($product->is_variation == '1'){
@@ -160,7 +169,7 @@ nav.bg-light{
             }
             $pronewtre = App\Models\Product::where('status','Active')->where('id',$product->id)->first();
             ?>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" data-aos="fade-left" data-aos-delay="200">
+            <div class="col-lg-4 col-md-4 col-sm-6 pb-1" data-aos="fade-left" data-aos-delay="200">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
                         <a href="{{url('/pro')}}/{{$product->slug}}">
@@ -256,7 +265,12 @@ nav.bg-light{
             </div>
             @endforeach
         </div>
-		<div class="text-center"> <a href="" class="btn btn-primary mx-0">Show More Products</a></div>
+        <div class="text-center"> <a href="" class="btn btn-primary mx-0">Show More Products</a></div>
+                </div>
+            </div> 
+        </div>
+        
+		
     </div>
     <!-- Products End -->
 

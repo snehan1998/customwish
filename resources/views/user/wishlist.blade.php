@@ -12,8 +12,8 @@
 <div class="shop-ccc">
  <h1 class="shopping-crt">WishList</h1>
     <!-- Cart Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
+    <div class="container">
+        <div class="row">
             @include('user.layouts.sidemenu')
             <div class="col-lg-9 table-responsive mb-5">
                 <table class="table text-center">
@@ -51,7 +51,7 @@
                             <td class="align-middle">₹{{$prod->price}}</td>
                             <td class="align-middle">
                                 <a href="{{url('/delwish')}}/{{$wish->id}}" title="">
-                                    <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                                    <button type="button" class="btn btn-sm btn-danger btn_remove"><i class="fa fa-times"></i></button>
                                 </a>
                             </td>
                             </tr>

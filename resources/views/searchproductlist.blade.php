@@ -220,7 +220,7 @@
                                     });
                                 });
                                 </script>
-                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                            <!-- <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a> -->
                         </div>
                     </div>
                     <div class="text-center py-2">
@@ -341,7 +341,7 @@
                                     });
                                 });
                                 </script>
-                            <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a>
+                            <!-- <a class="btn btn-outline-dark btn-square botadd" href="">Add To Cart</a> -->
 
                         </div>
                     </div>

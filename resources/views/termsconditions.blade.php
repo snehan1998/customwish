@@ -19,20 +19,22 @@
     </div>
 <br>
 <br>
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12 shadowbox">
-			<p class="pjustify">
-				{!!$page->content!!}
-			</p>
-		</div>
-	</div>
+<div class="content_sect">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-12 shadowbox">
+                <p class="pjustify">
+                    {!!$page->content!!}
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 
 
-<form id="submitform">
+<!-- <form id="submitform">
     @csrf
     <div class="form-group">
         <label for="name">Name</label>
@@ -50,7 +52,7 @@
         <span class="">Submit</span>
     </button>
 
-</form>
+</form> -->
 @push('after-scripts')
 
 <script>
