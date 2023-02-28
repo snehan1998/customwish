@@ -38,12 +38,13 @@ class Location extends Model
         curl_setopt($c, CURLOPT_HTTPHEADER,array('Content-Type:application/json','Authorization: Bearer'.$server_output['token'].''));
         $result = curl_exec($c);
         curl_close($c);
-        $result = json_decode($result,true);
-        //print_r($result);
-            $status = $result['status'];
-            $message = $result['message'];
+        $resultt = json_decode($result,true);
+        //print_r($resultt); die();
+           // $status = $resultt['status'];
+            //$message = $resultt['msg'];
            // print_r($message);
-         return (['status'=>$result['status'],'message'=>$result['message']]);
+         return ($resultt);
+       //  return (['status'=>$result['status'],'message'=>$result['message']]);
     }
 
 }

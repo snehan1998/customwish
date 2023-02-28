@@ -21,6 +21,7 @@ use App\Models\Faq;
 use App\Models\LandingCakes;
 use App\Models\LeaveComment;
 use App\Models\Location;
+use App\Models\LocationPincode;
 use App\Models\MediaCoverage;
 use App\Models\Notifyme;
 use App\Models\Order;
@@ -56,7 +57,14 @@ class WebsiteController extends Controller
     {
         $location = $request->locationdd;
         $getresult=Location::pushchecklocation($location);
-        return response()->json(['status'=>$getresult['status'],'message'=>$getresult['message']]);
+        $pindata = LocationPincode::where('pincode',$location)->first();
+        if ($pindata != null) {
+            return response()->json(['status'=>'success','pincode'=>$pindata->pincode,'city'=>$pindata->city,'country'=>$pindata->country]);
+        }else{
+            return response()->json(['status'=>'failure','message'=>'we are not providing service to the specified location']);
+        }
+        //dd($getresult);
+        //return response()->json(['status'=>$getresult['status'],'message'=>$getresult['message']]);
     }
     public function google()
     {

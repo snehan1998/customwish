@@ -113,6 +113,7 @@ class ProductController extends Controller
             $product->return_policy = $request->return_policy;
             $product->review = $request->review;
             $product->price = $request->price;
+            $product->discount = $request->discount;
             $product->status = $request->status;
             $product->stock_status = $request->stock_status;
             $product->quantity = $request->quantity;
@@ -557,6 +558,7 @@ class ProductController extends Controller
         $product->return_policy = $request->return_policy;
         $product->review = $request->review;
         $product->price = $request->price;
+        $product->discount = $request->discount;
         $product->status = $request->status;
         $product->stock_status = $request->stock_status;
         $product->quantity = $request->quantity;

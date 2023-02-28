@@ -28,6 +28,12 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
+Route::get('/corporategift', function () {
+    return view('corporategift');
+});
+Route::get('/giftvoucher', function () {
+    return view('giftvoucher');
+});
 Route::get('google-autocomplete', [WebsiteController::class, 'google']);
 Route::post('/locationcheck',[WebsiteController::class, 'pushlocation']);
 

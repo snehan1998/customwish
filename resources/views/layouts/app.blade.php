@@ -45,7 +45,7 @@
                 <div class="col-lg-12 text-lg-right pr-0 align-self-end">
                     <a class="text-body mr-3" href="{{url('/contactus')}}">Contact Us</a>
                     <a class="text-body mr-3" href="{{url('/blogs')}}">Blog</a>
-                    <a class="text-body pr-0" href="" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
+                    <a class="text-body pr-0" href="{{url('/corporategift')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="pincode_sec px-0 loc-align">
                     <div class="input-group-append1">
-                        
+
                         <form action="">
                             <div class="input-group">
                             <span class="input-group-text bg-transparent text-primary1">
@@ -175,7 +175,7 @@
     </div>
 <div class="nav_header">
     <div class="container d-flex justify-content-center align-items-center">
-        
+
     <nav id="navbar" class="custom navbar" >
     <ul>
     <!--    <li><a href="#">Home</a></li>
@@ -241,7 +241,7 @@
                             <a class="text-secondary foottext mb-2" href="{{url('/aboutus')}}"><!--<i class="fa fa-angle-right mr-2"></i>-->About Us</a>
                             <a class="text-secondary foottext mb-2" href="{{url('/media')}}">Media Coverage</a>
                             <a class="text-secondary foottext mb-2" href="#">Customer Reviews</a>
-                            <a class="text-secondary foottext mb-2" href="#">Corporate Gifts</a>
+                            <a class="text-secondary foottext mb-2" href="{{url('/corporategift')}}">Corporate Gifts</a>
                             <a class="text-secondary foottext mb-2" href="{{url('/event')}}">Events</a>
                         </div>
                     </div>
@@ -259,7 +259,7 @@
                         <h5 class="text-secondary text-Capitallise mb-4">Whats News</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2 foottext" href="{{url('/offers')}}">Offers</a>
-                            <a class="text-secondary mb-2 foottext" href="#">Gift Vochers</a>
+                            <a class="text-secondary mb-2 foottext" href="{{url('/giftvoucher')}}">Gift Vochers</a>
                         </div><br>
                             <h5 class="text-secondary text-Capitallise mb-4">Spead The Love</h5>
                         <div class="d-flex">
@@ -298,7 +298,7 @@
         <a class="float" id="exampleRadios1" style="font-size: 30px;color: black;">
         <i class="fa fa-bars my-float"></i>
         </a>
-        
+
     </div>
 </div>
 <div class="footer_bottom">

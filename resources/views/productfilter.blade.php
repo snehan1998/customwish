@@ -137,7 +137,7 @@
     <article class="collapse sidebarnav" id="top-filter">
 	    <div class="card card-body">
 		  <div class="container">
-		  
+
 		</div>
 		</div>
 
@@ -188,8 +188,41 @@
                                 <label for="stockk">Outofstock</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll">
+                                <h5>Discount</h5>
+                                <?php $discount=App\Models\FilterDiscount::get(); ?>
+                                <?php $counter2=0; ?>
+                                @if(!empty($discount))
+                                @foreach ($discount as $discount)
+                                <div class="custom-style">
+                                    <input name="discount" type="checkbox" value="{{$discount->id}}" id="discount{{$discount->id}}" onclick="filterResults()"
+                                    @if (in_array($discount->id, explode(',', $discountt)))
+                                    checked
+                                    @endif>
+                                    <label for="discount{{$discount->id}}">{{ $discount->dtitle }}</label>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
 
-                            <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll" style="display:none;">
+                            <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll">
+                                <h5>Category</h5>
+                                <?php $category=App\Models\Category::get(); ?>
+                                <?php $counter3=0; ?>
+                                @if(!empty($category))
+                                @foreach ($category as $category)
+                                <div class="custom-style">
+                                    <input name="categoryy" type="checkbox" value="{{$category->id}}" id="categoryy{{$category->id}}" onclick="filterResults()"
+                                    @if (in_array($category->id, explode(',', $categoryy)))
+                                    checked
+                                    @endif>
+                                    <label for="categoryy{{$category->id}}">{{ $category->cat_name }}</label>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
+
+                        <!--    <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll" style="display:none;">
                             <h5>Attribute</h5>
                             <?php $counter=0;
                             ?>
@@ -219,7 +252,7 @@
                                     <form method="get" action="{{url('/')}}/sub/{{$sub->id}}">
                                         <button type="submit" class="submit-bnt">Reset</button>
                                     </form> </div>
-                                </div>
+                                </div>-->
 
 		            </div>
                 </div>
@@ -341,7 +374,7 @@
             </div>
         </div>
 
-        
+
     </div>
     <!-- Products End -->
 
@@ -349,7 +382,7 @@
 <!--======================================= Trending Products============================================--->
 @if($trend->count() > 0)
 <div class="container pt-5 pb-3">
-	
+
         <h2 class="section-title position-relative text-center mb-5" data-aos="fade-up" data-aos-delay="400" >Trending Products
         <div class="right_viewall"><a href="{{url('/cp/trend')}}" class="btn btn-primary mr-0">View All</a></div>
         </h2>
@@ -527,22 +560,28 @@ $("button").click(function() {
 
         let attributeIds = getIds("attribute");
 
+        let discountIds = getIds("discount");
+
+        let categoryyIds = getIds("categoryy");
+
         let href = '{{url('/')}}/products/{{$child->id}}?';
 
         if(priceIds.length) {
-            href += 'price=' + priceIds + '&stock=' + stockIds + '&attribute=' + attributeIds;
-        }if(attributeIds.length) {
-            href += 'price=' + priceIds + '&stock=' + stockIds + '&attribute=' + attributeIds;
+            href += 'price=' + priceIds + '&stock=' + stockIds + '&discount=' + discountIds + '&categoryy=' + categoryyIds;
+        }else if(discountIds.length) {
+            href += 'price=' + priceIds + '&stock=' + stockIds + '&discount=' + discountIds + '&categoryy=' + categoryyIds;
+        }else if(categoryyIds.length) {
+            href += 'price=' + priceIds + '&stock=' + stockIds + '&discount=' + discountIds + '&categoryy=' + categoryyIds;
         }else if(stockIds.length) {
-            href += 'price=' + priceIds + '&stock=' + stockIds + '&attribute=' + attributeIds;
-        }else if(priceIds.length && stockIds.length && attributeIds.length){
-            href += 'price=' + priceIds + '&stock=' + stockIds + '&attribute=' + attributeIds;
+            href += 'price=' + priceIds + '&stock=' + stockIds + '&discount=' + discountIds + '&categoryy=' + categoryyIds;
+        }else if(priceIds.length && stockIds.length && attributeIds.length && discountIds.length && categoryyIds.length) {
+            href += 'price=' + priceIds + '&stock=' + stockIds + '&discount=' + discountIds + '&categoryy=' + categoryyIds;
         }
 
         document.location.href=href;
     }
 
-    document.getElementById("filter").addEventListener("click", filterResults);
+   // document.getElementById("filter").addEventListener("click", filterResults);
 </script>
 
 @endpush

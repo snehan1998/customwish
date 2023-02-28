@@ -249,7 +249,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Discount</label>
@@ -260,7 +260,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                    </div>-->
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="custom-control custom-checkbox  pure-veggg">
@@ -351,12 +351,6 @@
                                                 <label class="custom-control-label" for="location">Location Section</label>
                                             </div>
                                         </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="location_required" name="location_required"  @if($proreq->location_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="location_required">Location Section Is Mandatory Field</label>
-                                            </div>
-                                        </div>
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="datee" name="datee"  @if($data->datee == '1') checked @endif>
@@ -365,20 +359,8 @@
                                         </div>
                                         <div class="custom-control custom-checkbox  pure-vegg">
                                             <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="datee_required" name="datee_required"  @if($proreq->datee_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="datee_required">Date Section Is Mandatory Field</label>
-                                            </div>
-                                        </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
                                                 <input type="checkbox" class="custom-control-input" id="timee" name="timee"  @if($data->timee == '1') checked @endif>
                                                 <label class="custom-control-label" for="timee">Time Section</label>
-                                            </div>
-                                        </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="timee_required" name="timee_required"  @if($proreq->timee_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="timee_required">Time Section Is Mandatory Field</label>
                                             </div>
                                         </div>
                                         <div class="custom-control custom-checkbox  pure-veggg">
@@ -404,12 +386,6 @@
                                                 <label class="custom-control-label" for="self_pickup">Self Pickup Section</label>
                                             </div>
                                         </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="selfpickup_required" name="selfpickup_required"  @if($proreq->selfpickup_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="selfpickup_required">Self Pickup Section Is Mandatory Field</label>
-                                            </div>
-                                        </div>
 
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
@@ -430,13 +406,6 @@
                                                 <label class="custom-control-label" for="textareaa">Text Area Section</label>
                                             </div>
                                         </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="textarea_required" name="textarea_required"  @if($proreq->textarea_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="textarea_required">Textarea Is Mandatory Field</label>
-                                            </div>
-                                        </div>
-
                                         <br>
                                         <div class="form-group">
                                             <label>Textarea Heading</label>
@@ -452,12 +421,6 @@
                                                 <label class="custom-control-label" for="eggoreggless">Egg or Eggless Section</label>
                                             </div>
                                         </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="eggoreggless_required" name="eggoreggless_required"  @if($proreq->eggoreggless_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="eggoreggless_required">Eggor Eggless Is Mandatory Field</label>
-                                            </div>
-                                        </div>
 
                                         <div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
@@ -465,13 +428,6 @@
                                                 <label class="custom-control-label" for="imageuploadoption">Image Upload Option</label>
                                             </div>
                                         </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="imageupload_required" name="imageupload_required"  @if($proreq->imageupload_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="imageupload_required">Image Upload Is Mandatory Field</label>
-                                            </div>
-                                        </div>
-
                                         <br>
                                         <div class="form-group">
                                             <label>Image Upload Option Heading</label>
@@ -490,12 +446,6 @@
                                             <div class="checkbox d-inline mr-3 pure-veggg">
                                                 <input type="checkbox" class="custom-control-input" id="text_field" name="text_field"  @if($data->text_field == '1') checked @endif>
                                                 <label class="custom-control-label" for="text_field">Text Field Section</label>
-                                            </div>
-                                        </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="textfield_required" name="textfield_required"  @if($proreq->textfield_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="textfield_required">Textfield Is Mandatory Field</label>
                                             </div>
                                         </div>
                                         <br>
@@ -537,13 +487,6 @@
                                                 <label class="custom-control-label" for="uploadlogo_option">Upload logo</label>
                                             </div>
                                         </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="logoupload_required" name="logoupload_required"  @if($proreq->logoupload_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="logoupload_required">Logoupload Is Mandatory Field</label>
-                                            </div>
-                                        </div>
-
                                         <div class="form-group">
                                             <label>Logo Upload Option Heading</label>
                                             <input type="text" class="form-control" name="uploadlogo_heading" id="uploadlogo_heading" value="{{$data->uploadlogo_heading}}">
@@ -562,12 +505,6 @@
                                                 <label class="custom-control-label" for="addatext_option">Add Text Option</label>
                                             </div>
                                         </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="addtext_required" name="addtext_required"  @if($proreq->addtext_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="addtext_required">Addtext Is Mandatory Field</label>
-                                            </div>
-                                        </div>
                                         <br>
                                         <div class="form-group">
                                             <label>Add Text Heading</label>
@@ -583,13 +520,6 @@
                                                 <label class="custom-control-label" for="flower_type_option">Flower Type Section</label>
                                             </div>
                                         </div>
-                                        <div class="custom-control custom-checkbox  pure-vegg">
-                                            <div class="checkbox d-inline mr-3 pure-vegg">
-                                                <input type="checkbox" class="custom-control-input" id="flowertype_required" name="flowertype_required"  @if($proreq->flowertype_required == '1') checked @endif>
-                                                <label class="custom-control-label" for="flowertype_required">Flower Type Is Mandatory Field</label>
-                                            </div>
-                                        </div>
-
                                         <br>
                                         <!--<div class="custom-control custom-checkbox  pure-veggg">
                                             <div class="checkbox d-inline mr-3 pure-veggg">
@@ -795,8 +725,8 @@
                                 <div class="form-group">
                                 <div class="dynamicRadioobutton">
                                     <div class="row">
-                                    <div class="col-md-2"><label>Time slot</label>
-                                        <input name = "button_name[]" type="text"  class="form-control" Placeholder="Enter Time slot" />
+                                    <div class="col-md-2"><label>Time Slot</label>
+                                        <input name = "button_name[]" type="text"  class="form-control" Placeholder="Enter Time Slot" />
                                     </div>
                                    <div class="col-md-2">
                                         <label>&nbsp;</label><br>
@@ -811,7 +741,7 @@
                                 <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
-                            <h3>Update Time slot</h3>
+                            <h3>Update Time Slot</h3>
                                 <label>&nbsp;</label>
                                 <table class="table table-bordered">
                                 <thead>

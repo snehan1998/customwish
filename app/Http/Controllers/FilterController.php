@@ -14,9 +14,19 @@ class FilterController extends Controller
 {
     public function list(Request $request,$id)
     {
-        $products = Product::where('status','Active')->where('childcategory_id',$id)->filter($request->all())->get();
+      if($request->categoryy == null){
+
+            $products = Product::where('status','Active')->where('childcategory_id',$id)->filter($request->all())->get();
+
+        }else{
+
+            $products = Product::where('status','Active')->filter($request->all())->get();
+
+        }
         $stockk= $request->stock;
         $priceee = $request->price;
+        $discountt = $request->discount;
+        $categoryy = $request->categoryy;
         $attribute = Attribute::all();
         $attvaluee = $request->attribute;
         $child = ChildCategory::where('id',$id)->first();
@@ -24,8 +34,9 @@ class FilterController extends Controller
         $cat = Category::where('id',$child->category_id)->first();
         $testimonial = Testimonial::OrderBy('id','DESC')->get();
         $trend = Product::where('childcategory_id',$id)->where('status','Active')->where('trending','1')->limit('4')->get();
-        return view('productfilter', compact('products','child','stockk','attribute','attvaluee','priceee','sub','cat','testimonial','trend'));
+        return view('productfilter', compact('discountt','categoryy','products','child','stockk','attribute','attvaluee','priceee','sub','cat','testimonial','trend'));
     }
+
     public function subproductlist(Request $request,$id)
     {
         $products = Product::where('status','Active')->where('subcategory_id',$id)->filter($request->all())->get();
