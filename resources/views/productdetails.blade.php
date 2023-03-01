@@ -516,9 +516,10 @@ input[type="radio"].btn.btn-primary-sign {
     <div class="row mb-3">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">Gifts</a>
-                <a class="breadcrumb-item text-dark" href="#">Cakes </a>
-                <span class="breadcrumb-item active">Regular Cakes</span>
+                <a class="breadcrumb-item text-dark" href="{{url('/cat')}}/{{$cat->id}}">{{$cat->cat_name}}</a>
+                @if($sub != "")<a class="breadcrumb-item text-dark" href="{{url('/sub')}}/{{$sub->id}}">{{$sub->subcat_name}}</a>@endif
+                @if($child != "")<a class="breadcrumb-item text-dark" href="">{{$child->childcat_name}}</a>@endif
+                <span class="breadcrumb-item active">{{$product->product_name}}</span>
             </nav>
         </div>
     </div>
@@ -742,7 +743,7 @@ input[type="radio"].btn.btn-primary-sign {
             <?php  $procombopart = App\Models\ProductCombo::where('product_id',$product->id)->get();?>
                 @foreach($procombopart as $procombopart)
                 <div class="col-lg-6 ">
-                    <p style="display: flex;">For {{$procombopart->button_name}}{{$procombopart->id}}:
+                    <p style="display: flex;">For {{$procombopart->button_name}}:
                     <button class="logbtn1" value="{{$procombopart->id}}" type="button" data-id="{{$procombopart->id}}" data-box="buttonattr{{$procombopart->id}}">Show</button></p>
                 </div>
                 <input type="hidden" name="comboname" value="{{$procombopart->id}}" id="comboname">
@@ -819,7 +820,7 @@ input[type="radio"].btn.btn-primary-sign {
                         <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->where('product_select_id',$optionheading->id)->where('combo_id',$procombopart->id)->get(); ?>
                         <div class="col-lg-12">
                             <p class="pflex">
-                                <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                                <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
                                 <option data-comboattrr="{{$optionheading->combo_id}}">{{$optionheading->product_select_title}}</option>
                                 @foreach($option as $option)
                                 <option value="{{$option->id}}" data-comboattrr="{{$optionheading->combo_id}}">{{$option->product_select_option}}</option>
@@ -901,7 +902,7 @@ input[type="radio"].btn.btn-primary-sign {
                 <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->whereNull('combo_id')->where('product_select_id',$optionheading->id)->get(); ?>
                 <div class="col-lg-12">
                     <p class="pflex">
-                        <select class="form-select inputclass12 charm_id{{$product->id}}" onclick="getcharmid();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                        <select class="form-select inputclass12 charm_id{{$product->id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
                         <option>{{$optionheading->product_select_title}}</option>
                         @foreach($option as $option)
                         <option value="{{$option->id}}">{{$option->product_select_option}}</option>
@@ -1033,8 +1034,11 @@ input[type="radio"].btn.btn-primary-sign {
                 </div>
             </div>
             <div class="row" id="nonvegprice">
+
                 <div class="col-lg-12" id="text" style="display:none;">
-                    <input type="text" value="" name="giftwrap">
+                    <div id="tprice">
+                    </div>
+                    <!--<input type="text" value="" name="giftwrap">-->
                 </div>
             </div>
             @endif
@@ -1659,7 +1663,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                     <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->where('product_select_id',$optionheading->id)->where('combo_id',$procombopart->id)->get(); ?>
                     <div class="col-lg-12">
                         <p class="pflex">
-                            <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                            <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
                             <option data-comboattrr="{{$optionheading->combo_id}}">{{$optionheading->product_select_title}}</option>
                             @foreach($option as $option)
                             <option value="{{$option->id}}" data-comboattrr="{{$optionheading->combo_id}}">{{$option->product_select_option}}</option>
@@ -1736,7 +1740,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->where('product_select_id',$optionheading->id)->whereNull('combo_id')->get(); ?>
         <div class="col-lg-12">
             <p class="pflex">
-                <select class="form-select inputclass12 charm_id{{$product->id}}" onclick="getcharmid();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                <select class="form-select inputclass12 charm_id{{$product->id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
                 <option>{{$optionheading->product_select_title}}</option>
                 @foreach($option as $option)
                 <option value="{{$option->id}}">{{$option->product_select_option}}</option>
@@ -1847,8 +1851,11 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             </div>
         </div>
         <div class="row" id="nonvegprice">
+
             <div class="col-lg-12" id="text" style="display:none;">
-                <input type="text" value="" name="giftwrap">
+                <div id="tprice">
+                </div>
+                <!--<input type="text" value="" name="giftwrap">-->
             </div>
         </div>
         @endif
@@ -2843,24 +2850,32 @@ $('.logbtn1').on('click', function () {
 });*/
 </script>
 <script>
-function checklocation(){
-    var locationdd = $('#location').val();
-    //alert(locationdd);
-    $.ajax({
-    url: "{{url('/locationcheck')}}",
-    type: "POST",
-    data: { 'locationdd': locationdd, _token: '{{csrf_token()}}' },
-    dataType: 'JSON',
-    success:function(data)
-    {
-        alert(data.status);
-        alert(data.message);
-    }
-    });
+    function checklocation(){
+        var locationdd = $('#location').val();
+        //alert(locationdd);
+        $.ajax({
+        url: "{{url('/locationcheck')}}",
+        type: "POST",
+        data: { 'locationdd': locationdd, _token: '{{csrf_token()}}' },
+        dataType: 'JSON',
+        success:function(data)
+        {
+            var pinres = "";
+         //   console.log(data);
+            $("#pinresult").html(data);
+            if(data.status == 'success'){
+                pinres += '<span class="text-danger"><strong>'+data.pincode+' '+data.city+'</strong></span>';
+            }else{
+                pinres += '<span class="text-danger"><strong>'+data.message+'</strong></span>';
+            }
+            $('#pinresult').append(pinres);
 
-}
-</script>
-<script>
+        }
+        });
+
+    }
+    </script>
+    <script>
 $(document).ready(function() {
     var fileArr = [];
      $("#imageuploadd").change(function(){
@@ -2988,11 +3003,52 @@ $(document).ready(function() {
     function gettotal(){
        var product_id = $('.giftwrap_price').val();
        var price = $('.price<?php echo $product->id; ?>').val();
-       var charm_id = $('.charm_id<?php echo $product->id; ?>').val();
-       alert(charm_id);
-       alert(product_id);
-       alert(price);
+       var charm_id = $('.charmmprice').val();
+       //alert(charm_id);
+       //alert(product_id);
+       //alert(price);
+       $.ajax({
+                url: "{{url('/totalpricepro')}}",
+                type: "POST",
+                data: { 'product_id':product_id, 'price': price,'charm_id':charm_id, _token: '{{csrf_token()}}' },
+                dataType: 'JSON',
+                success:function(data)
+                {
+                    console.log(data);
+                    var tprice = "";
+                    $("#tprice").html(data);
+                    tpri += '<input type="text" name="totalprice" class="form-control" value="'+data+'">';
+                    $('#tprice').append(tpri);
+                }
+            });
     }
-</script>
+    </script>
+    <script>
+        function getchamprice(){
+            $('select[name="charm_id"] option:selected').each(function () {
+                   var charm = $(this).attr('value');
+                var productdd = $('#productdd').val();
+                var combo_idd = $(this).data('comboattrr');
+                $("#charmprice").html('');
+                    $.ajax({
+                    url: "{{url('/charmmloadd')}}",
+                    type: "POST",
+                    data: { 'product':productdd, 'charmvalue': charm,'combo_idd':combo_idd, _token: '{{csrf_token()}}' },
+                    dataType: 'JSON',
+                    success:function(data)
+                    {
+                        console.log(data);
+                        var chrpri = "";
+                        $("#charmprice").html(data);
+                        chrpri += '<input type="hidden" name="charmprice" class="charmmprice" value="'+data+'">';
+                        $('#charmprice').append(chrpri);
+                    }
+                });
+
+            });
+
+        }
+    </script>
+
 @endpush
 @endsection

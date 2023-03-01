@@ -384,13 +384,16 @@ class WebsiteController extends Controller
     public function productdetail(Request $request,$slug)
     {
         $product = Product::where('status','Active')->where('slug',$slug)->first();
+        $sub = SubCategory::where('id',$product->subcategory_id)->first();
+        $cat = Category::where('id',$product->category_id)->first();
+        $child = ChildCategory::where('id',$product->childcategory_id)->first();
         $time = ProductVariationButton::where('product_id',$product->id)->get();
         $proreq = ProductRequired::where('product_id',$product->id)->first();
         $testimonial = Testimonial::OrderBy('id','DESC')->get();
         $review = Review::where('status','Active')->where('product_id',$product->id)->get();
         $trend = Product::where('category_id',$product->category_id)->where('status','Active')->orderBy('id','DESC')->where('trending','1')->limit('4')->get();
         $youmay = Product::where('category_id',$product->category_id)->where('status','Active')->orderBy('id','DESC')->where('youmayalsolike','1')->limit('4')->get();
-        return view('productdetails',compact('proreq','product','testimonial','review','youmay','trend','time'));
+        return view('productdetails',compact('cat','sub','child','proreq','product','testimonial','review','youmay','trend','time'));
      }
 
     public function wishlist(Request $request)
@@ -454,6 +457,23 @@ class WebsiteController extends Controller
             }
         }
         return response()->json($store);
+    }
+    public function charmmloadd(Request $request)
+    {
+        $tot = StoreCartCharm::where('user_id', Auth::user()->id)->where('product_id', $request->product)->get();
+        $totprice = 0;
+        foreach($tot as $tot){
+            $totprice += $tot->charm_price;
+        }
+        //return $totprice;
+        return response()->json($totprice);
+    }
+
+    public function totalpricepro(Request $request)
+    {
+         $request->all();
+        $pricetotal = $request->product_id + $request->price + $request->charm_id;
+        return response()->json($pricetotal);
     }
     public function comboloadd(Request $request)
     {

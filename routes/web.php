@@ -108,6 +108,9 @@ Route::post('/careerform',[WebsiteController::class,'careerform'])->middleware([
 Route::post('storerr',[CartController::class,'storerr']);
 
 Route::post('/comboloadd',[WebsiteController::class,'comboloadd']);
+Route::post('/charmmloadd',[WebsiteController::class,'charmmloadd']);//charm total price
+Route::post('/totalpricepro',[WebsiteController::class,'totalpricepro']);//total price of product before going to cart
+
 
 Route::post('/loadd',[WebsiteController::class,'loadd']);
 Route::post('/charmloadd',[WebsiteController::class,'charmloadd']);
