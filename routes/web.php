@@ -34,6 +34,9 @@ Route::get('/corporategift', function () {
 Route::get('/giftvoucher', function () {
     return view('giftvoucher');
 });
+Route::get('/corporateproductdetails', function () {
+    return view('corporateproductdetails');
+});
 Route::get('google-autocomplete', [WebsiteController::class, 'google']);
 Route::post('/locationcheck',[WebsiteController::class, 'pushlocation']);
 

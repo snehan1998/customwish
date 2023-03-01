@@ -181,6 +181,7 @@ nav.bg-light{
                         </div>-->
                 </div>
             </div>
+</div>
 
             <div class="col-lg-9">
                 <div class="product_list_section">

@@ -294,7 +294,7 @@
             </div>
         </div><br><br>
         <a href="https://wa.me/9886888572" target="_blank" class="float1" id="myDIV" style="display: none;"><img src="{{asset('img/wt.svg')}}" width="100%"></a>
-        <a href="sms:+919886888572" class="float2"  id="myDIV1"><img src="{{asset('img/icon-phone-png-8.jpg')}}" width="70%" style="border-radius:5px;"></a>
+        <a href="sms:+919886888572" class="float2"  id="myDIV1"><img src="{{asset('img/icon-phone-png-8.jpg')}}" width="100%" style="border-radius:5px;"></a>
         <a class="float" id="exampleRadios1" style="font-size: 30px;color: black;">
         <i class="fa fa-bars my-float"></i>
         </a>

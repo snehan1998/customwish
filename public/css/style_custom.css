@@ -1037,6 +1037,60 @@ h5.song {
 .desc_sec_details .tab-content{
     min-height: 150px;
 }
+
+.float2 {
+    position: fixed;
+   width: 43px;
+   height: 43px;
+   bottom: 33%;
+   right: 2%;
+}
+.float1 {
+   position: fixed;
+   width: 43px;
+   height: 43px;
+   bottom: 24%;
+   right: 2%;
+}
+.float {
+   position: fixed;
+   width: 43px;
+   height: 43px;
+   bottom: 15%;
+   right: 2%;
+   background-color: #c2272d!important;
+   color: #374047;
+   border-radius: 50px;
+   text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+}
+.my-float {
+   margin-top: 0px;
+   font-size: 20px;
+   color: #fff;
+}
+.back-to-top {
+   position: fixed;
+   display: none;
+   right: 2%;
+   bottom: 5%;
+   z-index: 11;
+   animation: action 1s infinite alternate;
+}
+.form_title{
+    font-size: 20px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    position: relative;
+    color: #000000;
+    margin: 0px 0 20px 0;
+    display: block;
+    padding: 0px 0px 10px 0px;
+    line-height: 30px;
+}
 @media only screen and (max-width: 600px){
     .container {
         padding: 0px 9px;
