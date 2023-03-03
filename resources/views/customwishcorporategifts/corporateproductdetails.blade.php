@@ -1,5 +1,4 @@
 @push('after-styles')
-
 <link href="{{asset('css/custstyle.css')}}" rel="stylesheet"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="_token" content="{{ csrf_token() }}">
@@ -516,46 +515,37 @@ input[type="radio"].btn.btn-primary-sign {
 @section('content')
 
 <div class="container mt-5 mb-5">
-    
     <div class="row align-items-start">
         <!-- card left -->
-        
+        <?php
+            $corporateimgs = App\Models\CorporateGiftImage::where('corporate_id', $corporate->id)->get();
+            $corporateimg = App\Models\CorporateGiftImage::where('corporate_id', $corporate->id)->get();
+        ?>
+
         <div class="col-lg-5 product-imgs">
             <div class="img-display">
                 <div class="img-showcase">
-                <img src="http://127.0.0.1:8000/uploads/images/167455698463cfb6381d43a.capture - Copy.PNG">
-                <img src="http://127.0.0.1:8000/uploads/images/167455698463cfb6381d43a.capture - Copy.PNG">
-                <img src="http://127.0.0.1:8000/uploads/images/167455698463cfb6381d43a.capture - Copy.PNG">
-                <img src="http://127.0.0.1:8000/uploads/images/167455698463cfb6381d43a.capture - Copy.PNG">
+                @foreach($corporateimgs as $img)
+                    <img src="{{asset('uploads/images')}}/{{$img->images}}">
+                @endforeach
                 </div>
             </div>
             <div class="img-select">
+                <?php $i = 1; ?>
+                @foreach($corporateimg as $imgs)
                 <div class="img-item">
-                    <a href="#" data-id="1">
-                        <img src="http://127.0.0.1:8000/uploads/images/167455698463cfb6381d43a.capture - Copy.PNG">
+                    <a href="#" data-id="{{$i}}">
+                        <img src="{{asset('uploads/images')}}/{{$imgs->images}}">
                     </a>
                 </div>
-                <div class="img-item">
-                    <a href="#" data-id="2">
-                        <img src="http://127.0.0.1:8000/uploads/images/167455698463cfb6381d43a.capture - Copy.PNG">
-                    </a>
-                </div>
-                <div class="img-item">
-                    <a href="#" data-id="3">
-                        <img src="http://127.0.0.1:8000/uploads/images/167455698463cfb6381d43a.capture - Copy.PNG">
-                    </a>
-                </div>
-                <div class="img-item">
-                    <a href="#" data-id="4">
-                        <img src="http://127.0.0.1:8000/uploads/images/167455698463cfb6381d43a.capture - Copy.PNG">
-                    </a>
-                </div>
+                <?php $i++; ?>
+                @endforeach
             </div>
             <br>
 
 	        <p>Share with loved ones </p>
 	        <div class="social-links">
-       
+
                 <a href="#">
                     <img src="img/icons/fb.png">
                 </a>
@@ -575,70 +565,47 @@ input[type="radio"].btn.btn-primary-sign {
         </div>
 
         <div class="col-lg-7 product-content">
-            <h2 class="product-title">Wanderlust - Travel Journal For Short Journey(15 Days)
-                <div class="product-rating">
-                    <p>
-                        <span class="fa-stack" style="width:1em">
-                            <i class="far fa-star fa-stack-1x"></i>
-                            <i class="fas fa-star fa-stack-1x"></i>
-                        </span>
-                        <span class="fa-stack" style="width:1em">
-                            <i class="far fa-star fa-stack-1x"></i>
-                            <i class="fas fa-star fa-stack-1x"></i>
-                        </span>
-                        <span class="fa-stack" style="width:1em">
-                            <i class="far fa-star fa-stack-1x"></i>
-                            <i class="fas fa-star fa-stack-1x"></i>
-                        </span>
-                        <span class="fa-stack" style="width:1em">
-                            <i class="far fa-star fa-stack-1x"></i>
-                            <i class="fas fa-star-half fa-stack-1x"></i>
-                        </span>
-                        <span class="fa-stack" style="width:1em">
-                            <i class="far fa-star fa-stack-1x"></i>
-                        </span>
-                    </p>
-                </div>
-            </h2>
+            <h2 class="product-title">{{$corporate->corp_product_name}}</h2>
             <div class="product_desc">
-                <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolororem elitr sancm invidunt duo dolororem elitr sancm invidunt duo dolororem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                <p>{!!$corporate->corp_product_desc!!}</p>
             </div>
+            <form method="post" action="{{url('customwishcorporategifts/corpenquiry')}}" enctype="multipart/form-data">
+                @csrf
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="form_title">Please fill the form for product enquiry:</h3>
                 </div>
+                <input type="hidden" name="corporate_id" value="{{$corporate->id}}">
                 <div class="col-lg-12">
                     <h5 class="song">Name</h5><br>
-                    <p style="display: flex;"><input type="text" class="inputclass11 addtext18" name="addtext1" maxlength="8" placeholder="Type here" style=""></p>
+                    <p style="display: flex;"><input type="text" class="inputclass11 addtext18" name="name" placeholder="Enter Name" required style=""></p>
                 </div>
                 <div class="col-lg-12">
                     <h5 class="song">Email</h5><br>
-                    <p style="display: flex;"><input type="email" class="inputclass11 email" name="addtext1" maxlength="8" placeholder="Type here" style=""></p>
+                    <p style="display: flex;"><input type="email" class="inputclass11 email" name="email" required placeholder="Enter Email" style=""></p>
                 </div>
                 <div class="col-lg-12">
                     <h5 class="song">Mobile Number</h5><br>
-                    <p style="display: flex;"><input type="number" class="inputclass11 addtext18" name="addtext1" maxlength="8" placeholder="Type here" style=""></p>
+                    <p style="display: flex;"><input type="tel" class="inputclass11 addtext18" pattern="[1-9]{1}[0-9]{9}" required name="phone" placeholder="Enter Phone number" style=""></p>
                 </div>
                 <div class="col-lg-12">
                     <h5 class="song">Quantity of Products</h5><br>
-                    <p style="display: flex;"><input type="number" class="inputclass11 addtext18" name="addtext1" maxlength="8" placeholder="Type here" style=""></p>
+                    <p style="display: flex;"><input type="number" class="inputclass11 addtext18" name="quantity" requiredplaceholder="Type here" style=""></p>
                 </div>
                 <div class="col-lg-12">
                     <h5 class="song">Message</h5><br>
-                    <p style="display: flex;"><textarea type="text" class="inputclass11 addtext18" name="addtext1" maxlength="8" placeholder="Type here" style=""></textarea></p>
+                    <p style="display: flex;"><textarea type="text" class="inputclass11 addtext18" name="message" placeholder="Enter Message" style=""></textarea></p>
                 </div>
+                <x-honey/>
+
                 <div class="col-lg-6">
-                <button type="button" class="logbtn checkadd-to-procart32" style="width: 100%; ">Enquire</button>
+                <button type="submit" class="logbtn checkadd-to-procart32" style="width: 100%; ">Enquire</button>
+                </div>
             </div>
-</div>
-
-        </div>
-
+        </form>
+    </div>
     </div>
 </div>
-
-
-
 
 @push('after-scripts')
 <script>
@@ -656,16 +623,10 @@ imgBtns.forEach((imgItem) => {
 
 function slideImage(){
     const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
-
     document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
 }
 
 window.addEventListener('resize', slideImage);
-
-
-
-
-
 </script>
 @endpush
 @endsection

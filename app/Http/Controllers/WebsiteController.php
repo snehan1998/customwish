@@ -15,6 +15,8 @@ use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\Contact;
 use App\Models\ContactForm;
+use App\Models\CorporateEnquiry;
+use App\Models\CorporateGift;
 use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\Faq;
@@ -137,13 +139,13 @@ class WebsiteController extends Controller
     {
         $events = Event::orderBy('id','DESC')->paginate(1);
         $recevent = Event::orderBy('id','DESC')->limit(5)->get();
-        return view('event',compact('events','recevent'));
+        return view('customwisheventplanner.event',compact('events','recevent'));
     }
     public function eventdetail(Request $request,$slug)
     {
         $event = Event::where('event_slug',$slug)->first();
         $recente = Event::orderBy('id','DESC')->limit(5)->get();
-        return view('eventdetail',compact('event','recente'));
+        return view('customwisheventplanner.eventdetail',compact('event','recente'));
     }
     public function faq(Request $request)
     {
@@ -161,6 +163,25 @@ class WebsiteController extends Controller
     {
         $page = Page::where('id',$id)->first();
         return view('termsconditions',compact('page'));
+    }
+
+    public function corporate(Request $request)
+    {
+        if(Auth::check()){
+            $corporates = CorporateGift::where('status','Active')->paginate(12);
+            return view('customwishcorporategifts.corporategift',compact('corporates'));
+        }else{
+            return redirect('/login');
+        }
+    }
+    public function corporatedetail(Request $request,$slug)
+    {
+        if(Auth::check()){
+            $corporate = CorporateGift::where('corp_product_slug',$slug)->first();
+            return view('customwishcorporategifts.corporateproductdetails',compact('corporate'));
+        }else{
+            return redirect('/login');
+        }
     }
 
     public function subcategory(Request $request,$id)
@@ -393,8 +414,8 @@ class WebsiteController extends Controller
         $review = Review::where('status','Active')->where('product_id',$product->id)->get();
         $trend = Product::where('category_id',$product->category_id)->where('status','Active')->orderBy('id','DESC')->where('trending','1')->limit('4')->get();
         $youmay = Product::where('category_id',$product->category_id)->where('status','Active')->orderBy('id','DESC')->where('youmayalsolike','1')->limit('4')->get();
-        return view('productdetails',compact('cat','sub','child','proreq','product','testimonial','review','youmay','trend','time'));
-     }
+        return view('productdetails',compact('child','sub','cat','proreq','product','testimonial','review','youmay','trend','time'));
+    }
 
     public function wishlist(Request $request)
     {
@@ -403,6 +424,7 @@ class WebsiteController extends Controller
     }
     public function charmloadd(Request $request)
     {
+        //return $request->charmvalue;
         $selectop = ProductSelectOption::where('id',$request->charmvalue)->where('product_id', $request->product)->first();
         if ($request->charmvalue) {
             $att = StoreCartCharm::where('product_select_id',$selectop->product_select_id)->where('user_id', Auth::user()->id)->where('product_id', $request->product)->first();
@@ -421,8 +443,28 @@ class WebsiteController extends Controller
                 $store->save();
             }
         }
+        //return $store;
         return response()->json($store);
     }
+
+    public function charmmloadd(Request $request)
+    {
+        $tot = StoreCartCharm::where('user_id', Auth::user()->id)->where('product_id', $request->product)->get();
+        $totprice = 0;
+        foreach($tot as $tot){
+            $totprice += $tot->charm_price;
+        }
+        //return $totprice;
+        return response()->json($totprice);
+    }
+
+    public function totalpricepro(Request $request)
+    {
+         $request->all();
+        $pricetotal = $request->product_id + $request->price + $request->charm_id;
+        return response()->json($pricetotal);
+    }
+
     public function loadd(Request $request)
     {
         if ($request->buttonid) {
@@ -457,23 +499,6 @@ class WebsiteController extends Controller
             }
         }
         return response()->json($store);
-    }
-    public function charmmloadd(Request $request)
-    {
-        $tot = StoreCartCharm::where('user_id', Auth::user()->id)->where('product_id', $request->product)->get();
-        $totprice = 0;
-        foreach($tot as $tot){
-            $totprice += $tot->charm_price;
-        }
-        //return $totprice;
-        return response()->json($totprice);
-    }
-
-    public function totalpricepro(Request $request)
-    {
-         $request->all();
-        $pricetotal = $request->product_id + $request->price + $request->charm_id;
-        return response()->json($pricetotal);
     }
     public function comboloadd(Request $request)
     {
@@ -528,6 +553,55 @@ class WebsiteController extends Controller
          $dataa = AddSubVariation::where("main_attr_value",$tags)->where('product_id',$request->productdd)->first(["main_attr_id","main_attr_value","price","strike_price", "product_id", "stock", "def", "quantity","skucode","id"]);
         $img = ProductImage::where('variation_product_id',$dataa->id)->where('product_id',$dataa->product_id)->get();
         return response()->json($img);
+    }
+    public function corenquiry(Request $request)
+    {
+        $data = new CorporateEnquiry();
+        $data->corporate_id = $request->corporate_id;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->quantity = $request->quantity;
+        $data->message = $request->message;
+        $data->save();
+        //return $mailData;
+        $cor = CorporateGift::where('id', $request->corporate_id)->first();
+        if($data){
+            $dataa = array(
+            'corp_name' =>$cor->corp_product_name,
+            'name' =>$request->name,
+            'email' =>$request->email,
+            'phone' =>$request->phone,
+            'quantity' =>$request->quantity,
+            'message1' =>$request->message,
+            'user'=>'user',
+            );
+
+            Mail::send(['html'=>'mail.corpenquiryformmail'], $dataa, function($message) use ($dataa) {
+                $message->to($dataa['email'])->subject
+                    ('Corporate Enquiry Form');
+                $message->from('sneha@telcopl.com','Customwish');
+            });
+            $dataaa = array(
+                'user'=>'admin',
+                'corp_name' =>$cor->corp_product_name,
+                'name' =>$request->name,
+                'email' =>$request->email,
+                'phone' =>$request->phone,
+                'quantity' =>$request->quantity,
+                'message1' =>$request->message,
+            );
+            Mail::send(['html'=>'mail.corpenquiryformmail'], $dataaa, function($message) {
+                $message->to('sneha@telcopl.com')->subject
+                    (' Corporate Enquiry Form');
+                $message->from('sneha@telcopl.com','Customwish');
+            });
+            return back()->with('success','Thank You Our Team will get back shortly!');
+        }else{
+            return back()->with('success','Something went wrong please try again later');
+        }
+
+
     }
 
     public function contactform(Request $request)
@@ -740,7 +814,21 @@ class WebsiteController extends Controller
                 $ntify->session_id = Session::getId();
                 $ntify->product_id = $request->product_id;
                 $ntify->save();
-                return response()->json(['status'=>'success','msg' => 'Submitted Successfully']);
+
+                $product_id= $request->input('product_id');
+                $pro = Product::where('id',$product_id)->first();
+                $session_id=Session::get('session_id');
+                    $wishlist=Wishlist::where('user_id', Auth::user()->id)->where('product_id', $product_id)->get();
+                    if ($wishlist->isEmpty()) {
+                        $wish = new Wishlist();
+                        $wish->product_id = $request->product_id;
+                        $wish->product_name = $pro->product_name;
+                        $wish->product_price = $pro->price;
+                        $wish->user_id = Auth::user()->id;
+                        $wish->session_id = $request->session_id;
+                        $wish->save();
+                        return response()->json(['status'=>'success','msg' => 'Submitted Successfully']);
+                    }
 
             }else{
                 return response()->json(['status'=>'failure','msg' => 'Please Login']);
@@ -762,14 +850,14 @@ class WebsiteController extends Controller
         $data->user_id = Auth::user()->id;
         $data->session_id = Session::getId();
         $data->save();
-
+        $pro = Product::where('id',$request->productid)->first();
         if($data){
             $dataa = array(
             'name' =>$request->name,
             'review' =>$request->review,
             'email' => $request->email,
             'rating' => $request->rating,
-            'product_id' => $request->productid,
+            'product_id' => $pro->product_name,
             'user_id' => $data->user_id,
             'session_id' => $data->session_id,
             'user'=>'user',
@@ -786,7 +874,7 @@ class WebsiteController extends Controller
                 'review' =>$request->review,
                 'email' => $request->email,
                 'rating' => $request->rating,
-                'product_id' => $request->productid,
+                'product_id' => $pro->product_name,
                 'user_id' => $data->user_id,
                 'session_id' => $data->session_id,
                 );

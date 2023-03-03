@@ -1,10 +1,5 @@
 @push('after-styles')
 <link href="{{ URL::asset('/managercss/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 @endpush
 @extends('manager.layouts.app')
 @section('title', 'Leave Comment')
@@ -60,11 +55,46 @@
                                         <td>{{ @$row->email }}</td>
                                         <td>{{ @$row->website }}</td>
                                         <td>{{ @$row->comment }}</td>
-                                        <td>
-                                            <input data-id="{{$row->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $row->status ? 'checked' : '' }}>
+                                        <td> @if($row->status == "Active") Active @endif @if($row->status == "Inactive") Inactive @endif
+                                            <button type="button" class="text-theme btn btn-lg btn-primary" data-catid="{{$row->id}}"  data-toggle="modal" data-target="#modal{{$row->id}}">
+                                                    Change Status
+                                            </button>
+                                                <div class="modal fade" id="modal{{$row->id}}">
+                                                    <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h4 class="modal-title">Change Status</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <div class="col-sm-12">
+                                                            <form method="post" action="{{url('/manager/changeStatus')}}">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label>Select Status</label>
+                                                                <select class="form-control" name="status">
+                                                                <option @if($row->status == "Active") selected @endif value="Active">Active</option>
+                                                                <option @if($row->status == "Inactive") selected @endif value="Inactive">Inactive</option>
+                                                                </select>
+                                                                <input type="hidden" name="leave_id" value="{{$row->id}}">
+                                                                <input type="hidden" name="leave_id" id="cat_id" value="{{$row->id}}">
+                                                            </div>
+                                                            <div class="text-center">
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                    </div>
+                                                </div>
+                                            <!-- /.modal -->
                                         </td>
                                             <td><button form="resource-delete-{{ $row->id }}" class="btn btn-danger btn-icon-style-2"><span>Delete</span></button>
-                                            <form id="resource-delete-{{ $row->id }}" action="{{url('/manager/careerdestroy')}}/{{$row->id}}" style="display: inline-block;" onSubmit="return confirm('Are you sure you want to delete this item?');" method="post">
+                                            <form id="resource-delete-{{ $row->id }}" action="{{url('/manager/leavecommentdestroy')}}/{{$row->id}}" style="display: inline-block;" onSubmit="return confirm('Are you sure you want to delete this item?');" method="post">
                                             @csrf
                                             @method('DELETE')
                                             </form>
@@ -97,24 +127,18 @@
  <!-- Datatable -->
 <script src="{{ URL::asset('/managercss/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{ URL::asset('/managercss/js/plugins-init/datatables.init.js')}}"></script>
-<script>
-    $(function() {
-      $('.toggle-class').change(function() {
-        alert('sdf');
-          var status = $(this).prop('checked') == true ? 1 : 0;
-          var user_id = $(this).data('id');
 
-          $.ajax({
-              type: "GET",
-              dataType: "json",
-              url: '/changeStatus',
-              data: {'status': status, 'user_id': user_id},
-              success: function(data){
-                console.log(data.success)
-              }
-          });
-      })
-    })
+  <script>
+
+    $('#modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var cat_id = button.data('catid')
+        var modal = $(this)
+        modal.find('.modal-body #cat_id ').val(cat_id);
+
+  });
+
   </script>
+
 @endpush
 @endsection

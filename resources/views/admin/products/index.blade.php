@@ -40,7 +40,6 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Brand Name</th>
                                                 <th>Category Name</th>
                                                 <th>SubCategory Name</th>
                                                 <th>ChildCategory Name</th>
@@ -56,7 +55,6 @@
                                             @foreach ($data as $row)
                                             <tr>
                                                 <td>{{$i++}}</td>
-                                                <td>@if($row->brands != null){{$row->brands->brand_name}}@endif</td>
                                                 <td>@if($row->category != null){{$row->category->cat_name}}@endif</td>
                                                 <td>@if($row->subcategory != null){{$row->subcategory->subcat_name}}@endif</td>
                                                 <td>@if($row->childcategory != null){{$row->childcategory->childcat_name}}@endif</td>
@@ -86,7 +84,6 @@
                                         <tfoot>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Brand Name</th>
                                                 <th>Category Name</th>
                                                 <th>SubCategory Name</th>
                                                 <th>ChildCategory Name</th>

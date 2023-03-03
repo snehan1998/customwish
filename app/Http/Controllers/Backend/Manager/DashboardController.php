@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Backend\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Models\CareerForm;
+use App\Models\ContactForm;
+use App\Models\CorporateEnquiry;
+use App\Models\LeaveComment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +34,7 @@ class DashboardController extends Controller
     public function applylist(Request $request)
     {
         $data=CareerForm::orderBy('id','DESC')->get();
-        return view('manager.careerlist',compact('data'));
+        return view('admin.careerlist',compact('data'));
     }
 
     public function applydestroy(Request $request,$id)
@@ -42,14 +45,51 @@ class DashboardController extends Controller
 
     public function leavecommentlist(Request $request)
     {
-        $data=CareerForm::orderBy('id','DESC')->get();
-        return view('manager.leavecomment',compact('data'));
+        $data=LeaveComment::orderBy('id','DESC')->get();
+        return view('admin.leavecomment',compact('data'));
     }
 
     public function leavecommentdestroy(Request $request,$id)
     {
-        $con = CareerForm::where('id',$id)->delete();
+        $con = LeaveComment::where('id',$id)->delete();
         return back()->with('flash_success','Deleted Successfully');
     }
+
+    public function changeStatus(Request $request)
+    {
+    	 $request->leave_id;
+    	 $order = LeaveComment::where('id',$request->leave_id)->first();
+    	if ($order) {
+    		$order->status = $request->status;
+    		$order->save();
+    		return back()->with('flash_success', 'Status updated successfully');
+    	}
+
+    }
+
+    public function contactlist(Request $request)
+    {
+        $data=ContactForm::orderBy('id','DESC')->get();
+        return view('admin.contactformlist',compact('data'));
+    }
+
+    public function contactlistdestroy(Request $request,$id)
+    {
+        $con = ContactForm::where('id',$id)->delete();
+        return back()->with('flash_success','Deleted Successfully');
+    }
+
+    public function corporatelist(Request $request)
+    {
+        $data=CorporateEnquiry::orderBy('id','DESC')->get();
+        return view('admin.corporateformlist',compact('data'));
+    }
+
+    public function corporatedestroy(Request $request,$id)
+    {
+        $con = CorporateEnquiry::where('id',$id)->delete();
+        return back()->with('flash_success','Deleted Successfully');
+    }
+
 
 }

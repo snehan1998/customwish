@@ -30,33 +30,50 @@
                         @endif
                             <form method="POST" action="{{ url('managerregistersubmit') }}">
                             @csrf
-                                        <div class="col-lg-12">
-                                            <input id="name" type="text" placeholder="Enter Name" class="inputclass  @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                            @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
+                                <div class="col-lg-12">
+                                    <input id="name" type="text" placeholder="Enter Name" class="inputclass  @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-12">
+                                    <input id="dob" type="date" placeholder="Enter DOB" class="inputclass  @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" required autocomplete="dob" autofocus>
+                                    @error('dob')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
 
-                                    <div class="col-lg-12">
-                                            <input id="email" type="email" placeholder="Enter Email" class="inputclass @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                    </div>
+                                <div class="col-lg-12">
+                                    <label for="male">Male
+                                    <input id="male" type="radio" placeholder="Enter Gender" class="form-control" name="gender" value="male" required>
+                                    </label>
+                                    <label for="male">Female
+                                    <input id="female" type="radio" placeholder="Enter Gender" class="form-control" name="gender" value="female">
+                                    </label>
+                                </div>
 
-                                        <div class="col-lg-12">
-                                            <input id="password" type="password" placeholder="Enter Password" class="inputclass @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="col-lg-12">
+                                    <input id="email" type="email" placeholder="Enter Email" class="inputclass @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
 
-                                            @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
+                                <div class="col-lg-12">
+                                    <input id="password" type="password" placeholder="Enter Password" class="inputclass @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
 
                                     <div class="col-lg-12">
                                             <input id="password-confirm" type="password" placeholder="{{ __('Confirm Password') }}" class="inputclass" name="password_confirmation" required autocomplete="new-password">

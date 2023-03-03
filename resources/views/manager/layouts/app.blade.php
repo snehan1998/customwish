@@ -171,6 +171,9 @@
                     </li>
                     <li><a href="{{url('/manager/orders')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Orders</span></a></li>
                     <li><a href="{{url('/manager/manager')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Manager</span></a></li>
+                    <li><a href="{{url('/manager/corporate')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Corporate</span></a></li>
+                    <li><a href="{{url('/manager/contactlist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Contact List</span></a></li>
+                    <li><a href="{{url('/manager/corporatelist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Corporate Form List</span></a></li>
                     <li><a href="{{url('/manager/careerlist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Career List</span></a></li>
                     <li><a href="{{url('/manager/leavecomment')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Leave Comment List</span></a></li>
                     <li><a href="{{url('/manager/contact/1/edit')}}"aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Contact Us</a></li>

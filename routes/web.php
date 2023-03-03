@@ -27,16 +27,16 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
-
-Route::get('/corporategift', function () {
-    return view('corporategift');
-});
 Route::get('/giftvoucher', function () {
     return view('giftvoucher');
 });
 Route::get('/corporateproductdetails', function () {
     return view('corporateproductdetails');
 });
+
+Route::get('/customwishcorporategifts/corporategift',[WebsiteController::class,'corporate']);
+Route::get('/co/{slug}',[WebsiteController::class,'corporatedetail']);
+
 Route::get('google-autocomplete', [WebsiteController::class, 'google']);
 Route::post('/locationcheck',[WebsiteController::class, 'pushlocation']);
 
@@ -70,8 +70,6 @@ Route::get('/callback',[GoogleController::class,'callback']); // Google Login
 Route::get('/facebook', [FacebookController::class, 'redirectToFacebook']); // Facebook Login
 Route::get('/facebook/callback', [FacebookController::class, 'handleFacebookCallback']); // Facebook Login
 
-Route::post('/productreview',[WebsiteController::class,'productreview'])->middleware(['honey']);
-
 Route::get('searcha',[WebsiteController::class,'search']);
 Route::get('products',[WebsiteController::class,'productindex'])->name('products.productindex');//sortby else condition redirection
 
@@ -98,22 +96,24 @@ Route::get('/client', [WebsiteController::class, 'testimonial']);
 Route::get('/careeropportunity', [WebsiteController::class, 'career']);
 Route::get('/media', [WebsiteController::class, 'medialist']);
 Route::get('/media/{slug}', [WebsiteController::class, 'mediadetail']);
-Route::get('/event', [WebsiteController::class, 'eventlist']);
-Route::get('/event/{slug}', [WebsiteController::class, 'eventdetail']);
+Route::get('/customwisheventplanner/event', [WebsiteController::class, 'eventlist']);
+Route::get('/customwisheventplanner/event/{slug}', [WebsiteController::class, 'eventdetail']);
 
 Route::post('/contactform',[WebsiteController::class,'contactform'])->middleware(['honey']);
 Route::post('/leaveacomment',[WebsiteController::class,'leaveacomment'])->middleware(['honey']);
 Route::post('/careerform',[WebsiteController::class,'careerform'])->middleware(['honey']);
+Route::post('/productreview',[WebsiteController::class,'productreview'])->middleware(['honey']);
+Route::post('/customwishcorporategifts/corpenquiry',[WebsiteController::class,'corenquiry'])->middleware(['honey']);
 
 Route::post('storerr',[CartController::class,'storerr']);
 
 Route::post('/comboloadd',[WebsiteController::class,'comboloadd']);
-Route::post('/charmmloadd',[WebsiteController::class,'charmmloadd']);//charm total price
-Route::post('/totalpricepro',[WebsiteController::class,'totalpricepro']);//total price of product before going to cart
-
 
 Route::post('/loadd',[WebsiteController::class,'loadd']);
 Route::post('/charmloadd',[WebsiteController::class,'charmloadd']);
+Route::post('/charmmloadd',[WebsiteController::class,'charmmloadd']);//charm total price
+Route::post('/totalpricepro',[WebsiteController::class,'totalpricepro']);//total price of product before going to cart
+
 
 Route::post('/fetchproduct', [WebsiteController::class,'fetchproduct']);
 Route::post('/fetchimages', [WebsiteController::class,'fetchimages']);
@@ -125,6 +125,12 @@ Route::post('add-to-cart',[CartController::class,'addToCart']);
 Route::post('comadd-to-cart',[CartController::class,'comboaddToCart']); // combo with simple product add to cart
 Route::post('checkoutadd-to-cart',[CartController::class,'checkoutaddToCart']); // direct checkout page buy now functionality for simple product
 Route::post('checkoutvaradd-to-cart',[CartController::class,'checkoutvaraddToCart']); // direct checkout page buy now functionality for variation product
+
+
+Route::get('/verifyotp',[LoginController::class,'verifyotp']);
+Route::post('otpverify',[LoginController::class,'otpverify']);
+Route::post('otpresendmail',[LoginController::class,'otpresendmail']);
+Route::get('/resendotp',[LoginController::class,'resendotp']);
 
 
 Route::post('registerNewUser',[RegisterNewUserController::class,'register']);

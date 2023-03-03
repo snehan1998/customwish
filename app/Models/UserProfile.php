@@ -15,7 +15,8 @@ class UserProfile extends Model
         'name',
         'email',
         'password',
-
+        'gender',
+        'dob'
     ];
 
     use HasApiTokens;

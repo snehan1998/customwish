@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\Admin\CategoryController;
 use App\Http\Controllers\Backend\Admin\ChildCategoryController;
 use App\Http\Controllers\Backend\Admin\ComboController;
 use App\Http\Controllers\Backend\Admin\ContactController;
+use App\Http\Controllers\Backend\Admin\CorporateController;
 use App\Http\Controllers\Backend\Admin\CouponController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Backend\Admin\EventController;
@@ -56,6 +57,10 @@ Route::resource('landingcake',LandingCakeController::class);
 Route::resource('review',ReviewController::class);
 Route::resource('media',MediaCoverageController::class);
 Route::resource('event',EventController::class);
+Route::resource('corporate',CorporateController::class);
+
+Route::post('corporate/addcorporateImages',[CorporateController::class,'addcorporateImages']);
+Route::post('corporate/corporatedeleteimage',[CorporateController::class,'corporatedeleteimage']);
 
 Route::get('order/{order_id}',[OrderController::class,'orderDetail']);
 Route::get('orders',[OrderController::class,'orders']);
@@ -110,3 +115,10 @@ Route::delete('careerdestroy/{id}', [DashboardController::class, 'applydestroy']
 
 Route::get('leavecomment', [DashboardController::class, 'leavecommentlist']);
 Route::delete('leavecommentdestroy/{id}', [DashboardController::class, 'leavecommentdestroy']);
+Route::post('changeStatus',[DashboardController::class,'changeStatus']);
+
+Route::get('contactlist', [DashboardController::class, 'contactlist']);
+Route::delete('contactlistdestroy/{id}', [DashboardController::class, 'contactlistdestroy']);
+
+Route::get('corporatelist', [DashboardController::class, 'corporatelist']);
+Route::delete('corporatedestroy/{id}', [DashboardController::class, 'corporatedestroy']);

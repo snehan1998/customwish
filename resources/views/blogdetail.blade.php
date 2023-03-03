@@ -70,7 +70,7 @@
 
                 <div class="row">
                   <div class="col form-group">
-                    <input name="website" type="text" class="form-control" placeholder="Your Website" required>
+                    <input name="website" type="url" class="form-control" placeholder="Your Website" required>
                   </div>
                 </div><br>
 

@@ -50,7 +50,7 @@
         <a class="nav-link @if($url == $dash) active  @endif"  href="{{url('/user/dashboard')}}" ><i class="fa fa-dashboard"></i> Dashboard</a>
         <a class="nav-link @if($url == $orders) active  @endif" href="{{url('/user/orders')}}" ><i class="fa fa-shopping-bag"></i> Orders</a>
         <a class="nav-link @if($url == $wishlist) active  @endif" href="{{url('/user/wishlist')}}" ><i class="fa fa-heart"></i> Wishlist</a>
-        <a class="nav-link @if($url == $accset) active  @endif" href="{{url('/user/profilesettings')}}" ><i class="fa fa-gear"></i> Profile Settings</a>
+        <a class="nav-link @if($url == $accset) active  @endif" href="{{url('/user/profilesettings')}}" ><i class="fa fa-gear"></i>Change Password</a>
         <a class="nav-link @if($url == $acc) active  @endif" href="{{url('/user/profiledetails')}}" ><i class="fa fa-user"></i> Profile Details</a>
         <button class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" type="button"><i class="fa fa-sign-out"></i> Logout</button>
            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

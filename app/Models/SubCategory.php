@@ -25,4 +25,9 @@ class SubCategory extends Model
     {
         return $this->hasMany(Product::class,'subcategory_id','id');
     }
+
+    public function corporate()
+    {
+        return $this->hasMany(CorporateGift::class,'subcategory_id','id');
+    }
 }

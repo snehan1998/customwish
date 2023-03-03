@@ -23,4 +23,8 @@ class Category extends Model
     {
         return $this->hasMany(Product::class,'category_id','id');
     }
+    public function corporate()
+    {
+        return $this->hasMany(CorporateGift::class,'category_id','id');
+    }
 }
