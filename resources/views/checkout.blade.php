@@ -34,73 +34,101 @@ input[type='radio'] {
             <div class="col-lg-8 ">
             <div class="loginbox m-0">
 				<div class="row" style="">
-					<div class="col-lg-8">
+					<div class="col-lg-12">
 						<h2 class="per">PERSONAL INFORMATION</h2>
 					</div>
+                    <div class="col-lg-12">
+                        <div class="ship_addres">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select Available Addresses</label>
+                            <select class="form-control inputclass" id="exampleFormControlSelect1">
+                                <option>Add new address...</option>
+                                <option>Jags, Bangalore, 560036</option>
+                            </select>
+                        </div>
+                        </div>
+                    </div>
 				</div>
 				<div class="row">
 				<div class="col-lg-12">
                 <form method="post" action="{{url('/placeorder')}}">
                 @csrf
-				<div class="row">
-					<div class="col-lg-6">
-						<input type="email" name="shipping_email" id="shipping_email" value="{{$user->email}}" class="inputclass" placeholder="Email" required>
-					</div>
-					<div class="col-lg-6">
-					    <input type="tel" name="shipping_phone" id="shipping_phone" value="{{$user->phone}}"  class="inputclass" placeholder="Number" required>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6">
-						<input type="text" name="shipping_firstname" id="shipping_firstname" value="{{$user->name}}" class="inputclass" placeholder="First Name" required>
-					</div>
-					<div class="col-lg-6">
-						<input type="text" name="shipping_lastname" id="shipping_lastname"  class="inputclass" placeholder="Last Name">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<textarea name="shipping_address1" id="shipping_address1" class="inputclass"  placeholder="Address Line 1">{{$user->address}}</textarea>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<textarea name="ship_address2" id="shipping_address2" class="inputclass" placeholder="Address Line 2"></textarea>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-3">
-						<input type="text" name="shipping_pincode" id="shipping_pincode" class="inputclass" value="{{$user->pincode}}" placeholder="Pincode">
-					</div>
-					<div class="col-lg-3">
-						<input type="text" name="shipping_city" id="shipping_city" class="inputclass" value="{{$user->city}}" placeholder="City">
-					</div>
-					<div class="col-lg-3">
-						<input type="text" name="shipping_country" id="shipping_country" value="{{$user->country}}" class="inputclass" placeholder="Country">
-					</div>
-					<div class="col-lg-3">
-						<input type="text" name="shipping_state" id="shipping_state" value="{{$user->state}}" class="inputclass" placeholder="State">
-					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-12">
-						<label>Adress Type</label>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-lg-2">
-						<input type="radio" class="form-control" value="home"  placeholder="" name="address_type" id="home" checked>
-                        <label for="home" class="mb-0"> Home</label>
-					</div>
-					<div class="col-lg-2">
-						<input type="radio" class="form-control" value="office" name="address_type" id="office"  placeholder="">
-                        <label for="office" class="mb-0"> Office </label>
-					</div>
-					<div class="col-lg-2">
-						<input type="radio" class="form-control" value="other" placeholder="" name="address_type" id="other">
-                        <label for="other" class="mb-0"> Other </label>
-					</div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="email" name="shipping_email" id="shipping_email" value="{{$user->email}}" class="inputclass" placeholder="Email" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="tel" name="shipping_phone" id="shipping_phone" value="{{$user->phone}}"  class="inputclass" placeholder="Number" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="text" name="shipping_firstname" id="shipping_firstname" value="{{$user->name}}" class="inputclass" placeholder="First Name" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" name="shipping_lastname" id="shipping_lastname"  class="inputclass" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <textarea name="shipping_address1" id="shipping_address1" class="inputclass"  placeholder="Address Line 1">{{$user->address}}</textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <textarea name="ship_address2" id="shipping_address2" class="inputclass" placeholder="Address Line 2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <input type="text" name="shipping_pincode" id="shipping_pincode" class="inputclass" value="{{$user->pincode}}" placeholder="Pincode">
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" name="shipping_city" id="shipping_city" class="inputclass" value="{{$user->city}}" placeholder="City">
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" name="shipping_country" id="shipping_country" value="{{$user->country}}" class="inputclass" placeholder="Country">
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" name="shipping_state" id="shipping_state" value="{{$user->state}}" class="inputclass" placeholder="State">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Adress Type</label>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-lg-2">
+                            <input type="radio" class="form-control" value="home"  placeholder="" name="address_type" id="home" checked>
+                            <label for="home" class="mb-0"> Home</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="radio" class="form-control" value="office" name="address_type" id="office"  placeholder="">
+                            <label for="office" class="mb-0"> Office </label>
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="radio" class="form-control" value="other" placeholder="" name="address_type" id="other">
+                            <label for="other" class="mb-0"> Other </label>
+                        </div>
+                    </div>
+                    
+
+                <div class="shipping_addbox">
+                    <div class="d-flex justify-content-between">
+                        <div class="add_left">
+                            <p><b>Jagadeesh</b></p>
+                            <p>
+                                <span>Bangalore, Bangalore, Karnataka, India , 572109</span>
+                                <span><label>Phone: </label>9876543210</span>
+                                <span><label>Email: </label>jags@customwish.com</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="add_right">Default</p>
+                        </div>
+                    </diV>
                 </div>
 				<div class="row">
 					<div class="col-lg-12">

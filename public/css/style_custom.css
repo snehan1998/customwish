@@ -2,6 +2,17 @@
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #000000;
 }
+body{
+    overflow: hidden;
+}
+p{
+    color: #000;
+    font-size: 14px;
+}
+p.tes {
+    margin: 20px 0 20px 0;
+    font-size: 14px;
+}
 img.account {
     margin: 0 0px 0px 0;
 }
@@ -46,7 +57,7 @@ nav ul li a {
     color: var(--white-color);
     line-height: 32px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
     padding: 15px 15px;
     transition: 0.3s all ease;
 }
@@ -178,6 +189,8 @@ a:hover {
     padding: 10px 0px;
     margin: 0px 20px;
     color: #000;
+    font-size: 16px;
+    font-weight: 500;
 }
 .nav-link:hover, .nav-link:focus {
     text-decoration: none;
@@ -206,7 +219,7 @@ a:hover {
 }
 .text-truncate {
     padding: 0px 10px;
-    font-size: 14px;
+    font-size: 15px;
     color: #000;
     margin: 0 0 2px;
     max-height: 34px;
@@ -685,6 +698,7 @@ button.btn.btn_remove {
     margin: 10px 0px;
     font-size: 14px;
     box-shadow: 0px 0px 4px #dcd2d2 !important;
+    height: auto;
 }
 .checkout_sec .form-control:focus {
     color: #495057;
@@ -892,12 +906,12 @@ details{
 }
 
 .product-content .product-price {
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0;
     font-size: 1rem;
     font-weight: 700;
 }
 .product-content .img_upload_sec {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 .product-content .img_upload_sec h5{
     font-size: 16px;
@@ -1003,6 +1017,7 @@ h5.song {
     border-radius: 6px;
     margin-left: 6px;
     margin-right: 0px;
+    font-family: 'Mulish', sans-serif;
 }
 .datecss{
     margin-bottom: 20px;
@@ -1091,6 +1106,204 @@ h5.song {
     padding: 0px 0px 10px 0px;
     line-height: 30px;
 }
+
+.ship_addres .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #383838;
+    outline: 0px solid #000;
+    box-shadow: none;
+    transition: all .2s;
+
+}
+
+.shipping_addbox {
+    padding: 20px;
+    border: 1px dashed #c2272d;
+}
+.shipping_addbox p span {
+    display: block;
+}
+.shipping_addbox p.add_right {
+    color: #c2272d;
+    font-weight: 500;
+}
+
+.saved_address {
+    padding: 0px;
+    border: 1px dashed #ccc;
+    margin-bottom: 30px;
+}
+.saved_head {
+    padding: 15px;
+    background-color: #ececec;
+}
+.saved_head p {
+    margin-bottom: 0px;
+    font-weight: 600;
+}
+.saved_head p span {
+    background-color: #c2272d;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.saved_body {
+    padding: 15px;
+    max-height: 180px;
+    min-height: 180px;
+}
+.saved_body p {
+    margin-bottom: 0px;
+}
+.saved_body p span {
+    display: block;
+    margin-bottom: 10px;
+}
+.saved_body p span label {
+    margin-bottom: 0px;
+}
+.saved_footer {
+    padding: 15px;
+    background-color: #ececec;
+    display: flex;
+    justify-content: space-between;
+}
+.saved_footer a {
+    font-size: 14px;
+    color: #c2272d;
+}
+a.add_new_add {
+    color: #c2272d;
+    margin-top: 0px;
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+}
+.boxed {
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+}
+.boxed label {
+    background: #f4f4f4;
+    color: black;
+    display: inline-block;
+    width: 100% !important;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+.boxed label:last-child {
+    margin-right: 0px;
+}
+a:hover{
+    color: #c2272d;
+}
+
+.custom-control.custom-radio.custom-control-inline.al-lft {
+    margin: 0 10px 0 52px;
+}
+.fomright input[type='radio'] {
+    width: 24px;
+    height: 24px;
+    margin: 5px 0px 5px 0px;
+}
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    margin: 0 0 0 0px;
+    font-size: 16px;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    color: #000;
+}
+.custom-control-label::before {
+    position: absolute;
+    top: 0.5rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    content: "";
+    background-color: #fff;
+    border: #adb5bd solid 1px;
+}
+img.egg {
+    width: 24px;
+    height: 24px;
+    margin: 0 12px 0 0px;
+}
+img.eggless {
+    width: 24px;
+    height: 24px;
+    margin: 0 12px 0 0px;
+}
+.custom-control-label::after{
+    top: 0.5rem;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #c2272d;
+    background-color: #c2272d;
+}
+
+.timecss {
+    width: 100%;
+    padding: 10px 20px;
+    color: #000;
+    background: #F2F2F2;
+    border-radius: 5px;
+    border: none;
+    height: 54px;
+}
+.datecss {
+    width: 100%;
+    padding: 10px 20px;
+    color: #fff;
+    background: #c2272d;
+    border-radius: 5px;
+    border: none;
+    height: 54px;
+}
+label.slect-varient {
+    margin: 0px 0 6px 0;
+    color: black;
+    font-size: 18px;
+}
+.img-display {
+    overflow: hidden;
+    box-shadow: 0px 1px 33px #ddd;
+}
+.img-select {
+    margin: 10px 0px;
+    display: flex;
+    width: 100% !important;
+}
+.img-item img {
+    width: 100% !important;
+    margin: 0.3rem ;
+}
+.custom-control{
+    padding-left: 0px;
+}
+.custom-control input[type='radio'] {
+    width: 24px;
+    height: 24px;
+    margin: 5px 0px 5px 0px;
+}
+.custom-control.pickupp{
+    margin-bottom: 20px !important;
+}
+
+
 @media only screen and (max-width: 600px){
     .container {
         padding: 0px 9px;

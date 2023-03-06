@@ -554,7 +554,7 @@ input[type="radio"].btn.btn-primary-sign {
                 @foreach($producimg as $producimg)
                 <div class = "img-item">
                     <a href = "#" data-id = "{{$i}}">
-                        <img src = "{{ asset('uploads/images/') }}/{{$producimg->images}}" onclick="currentSlide({{$i}})"  height="100px">
+                        <img src = "{{ asset('uploads/images/') }}/{{$producimg->images}}" onclick="currentSlide({{$i}})"  >
                     </a>
                 </div>
                 <?php $i++; ?>
@@ -607,18 +607,20 @@ input[type="radio"].btn.btn-primary-sign {
                 <div class="container px-0">
                     <div class="row">
                         <div class="col-lg-12">
-                            <p class = "new-price" id="pric-dd">₹{{$variationsss->price}}<span> (Inclusive of GST)</span></p>
-                            <div class="fomright">
-                                @if($product->eggoreggless == 1)
-                                <div class="custom-control custom-radio custom-control-inline al-lft">
-                                    <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-1" value="Egg" name="egg_type">
-                                    <label class="custom-control-label" for="size-1"> <img src="{{ asset('img/egg.png')}}" class="egg">Egg</label>
+                            <div class="d-flex align-items-center">
+                                <p class = "new-price" id="pric-dd">₹{{$variationsss->price}}<span> (Inclusive of GST)</span></p>
+                                <div class="fomright">
+                                    @if($product->eggoreggless == 1)
+                                    <div class="custom-control custom-radio custom-control-inline al-lft">
+                                        <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-1" value="Egg" name="egg_type">
+                                        <label class="custom-control-label" for="size-1"> <img src="{{ asset('img/egg.png')}}" class="egg">Egg</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-2" value="Egg Less" name="egg_type">
+                                    <label class="custom-control-label" for="size-2">  <img src="{{ asset('img/eggless.png')}}" class="eggless">Eggless</label>
+                                    </div>
+                                    @endif
                                 </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input eggtype{{$product->id}}" id="size-2" value="Egg Less" name="egg_type">
-                                <label class="custom-control-label" for="size-2">  <img src="{{ asset('img/eggless.png')}}" class="eggless">Eggless</label>
-                                </div>
-                                @endif
                             </div>
 
                             @if($product->quantity_show == 1)
@@ -941,8 +943,9 @@ input[type="radio"].btn.btn-primary-sign {
             @if($product->location == 1)
             <div class="row pincode_sec">
                 <div class="col-lg-10">
+                <form class="mb-30 loc" action="">
                 <div class="input-group-append1">
-                    <form class="mb-30 loc" action="">
+                    
                         <div class="input-group">
                             <span class="input-group-text bg-transparent text-primary1">
                                 <i class="fa fa-map-marker-alt"></i>
@@ -950,14 +953,14 @@ input[type="radio"].btn.btn-primary-sign {
                             <input type="text" class="form-control border-0 p-4 timecss location{{$product->id}}" id="location" value="" name="location" placeholder="Pincode/Location (only Bangalore)" style="color:#000!important;">
 
                         </div>
-                    </form>
                 </div>
+                </form>
+
                 </div>
                 <div class="col-lg-2">
                     <button class="check" onclick="checklocation()">Check</button>
                 </div>
             </div>
-            <br>
             <div id="pinresult">
             </div>
             @endif
@@ -999,24 +1002,26 @@ input[type="radio"].btn.btn-primary-sign {
             @if($product->self_pickup == 1)
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Self Pickup" id="selfpickup" name="pickup_type" >
-                        <label class="custom-control-label" for="selfpickup" style="color:#000;font-size:18px;">Self Pickup</label>
-                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="custom-control custom-radio custom-control-inline pickupp">
+                            <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Self Pickup" id="selfpickup" name="pickup_type" >
+                            <label class="custom-control-label" for="selfpickup" >Self Pickup</label>
+                        </div>
 
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Delivery" id="delivery" name="pickup_type">
-                        <label class="custom-control-label" for="delivery" style="color:#000;font-size:18px;">Delivery</label>
-                    </div>
+                        <div class="custom-control custom-radio custom-control-inline pickupp">
+                            <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Delivery" id="delivery" name="pickup_type">
+                            <label class="custom-control-label" for="delivery" >Delivery</label>
+                        </div>
 
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Ola/Uber"  id="Ola/Uber" name="pickup_type">
-                        <label class="custom-control-label" for="Ola/Uber" style="color:#000;font-size:18px;">Ola/Uber</label>
-                    </div>
+                        <div class="custom-control custom-radio custom-control-inline pickupp">
+                            <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Ola/Uber"  id="Ola/Uber" name="pickup_type">
+                            <label class="custom-control-label" for="Ola/Uber" >Ola/Uber</label>
+                        </div>
 
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Dunzo/Porter" id="Dunzo/Porter" name="pickup_type">
-                        <label class="custom-control-label" for="Dunzo/Porter" style="color:#000;font-size:18px;">Dunzo/Porter</label>
+                        <div class="custom-control custom-radio custom-control-inline pickupp">
+                            <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Dunzo/Porter" id="Dunzo/Porter" name="pickup_type">
+                            <label class="custom-control-label" for="Dunzo/Porter" >Dunzo/Porter</label>
+                        </div>
                     </div>
 
                 </div>
@@ -1473,7 +1478,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             @foreach($producimg as $producimg)
             <div class = "img-item">
                 <a href = "#" data-id = "{{$i}}">
-                    <img src = "{{ asset('uploads/images/') }}/{{$producimg->images}}" onclick="currentSlide({{$i}})"  height="100px">
+                    <img src = "{{ asset('uploads/images/') }}/{{$producimg->images}}" onclick="currentSlide({{$i}})"  >
                 </a>
             </div>
             <?php $i++; ?>
@@ -1819,21 +1824,23 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         @if($product->self_pickup == 1)
         <div class="row">
             <div class="col-lg-12">
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Self Pickup" id="selfpickup" name="pickup_type" checked>
-                    <label class="custom-control-label" for="selfpickup" style="color:#000;font-size:18px;">Self Pickup</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Delivery" id="delivery" name="pickup_type">
-                    <label class="custom-control-label" for="delivery" style="color:#000;font-size:18px;">Delivery</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Ola" id="ola" name="pickup_type">
-                    <label class="custom-control-label" for="ola" style="color:#000;font-size:18px;">Ola</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Uber"  id="uber" name="pickup_type">
-                    <label class="custom-control-label" for="uber" style="color:#000;font-size:18px;">Uber</label>
+                <div class="d-flex align-items-center">
+                    <div class="custom-control custom-radio custom-control-inline pickupp">
+                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Self Pickup" id="selfpickup" name="pickup_type" checked>
+                        <label class="custom-control-label" for="selfpickup" >Self Pickup</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline pickupp">
+                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Delivery" id="delivery" name="pickup_type">
+                        <label class="custom-control-label" for="delivery" >Delivery</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline pickupp">
+                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Ola" id="ola" name="pickup_type">
+                        <label class="custom-control-label" for="ola" >Ola</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline pickupp">
+                        <input type="radio" class="custom-control-input pickup_type{{$product->id}}" value="Uber"  id="uber" name="pickup_type">
+                        <label class="custom-control-label" for="uber" >Uber</label>
+                    </div>
                 </div>
 
             </div>
