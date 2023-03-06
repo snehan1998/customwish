@@ -1,264 +1,358 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>@yield('title') | Custom Wish</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('/managercss//images/favicon.png')}}">
-    <link rel="stylesheet" href="{{ URL::asset('/managercss/vendor/owl-carousel/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{ URL::asset('/managercss/vendor/owl-carousel/css/owl.theme.default.min.css')}}">
+    <title>CustomWish | @yield('title')</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-    <link href="{{ URL::asset('/managercss/vendor/jqvmap/css/jqvmap.min.css')}}" rel="stylesheet">
-    <link href="{{ URL::asset('/managercss/css/style.css')}}" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="{{asset('img/favicon.ico')}}" rel="icon">
 
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href='https://fonts.googleapis.com/css?family=Mulish' rel='stylesheet'>
+    <!-- <link rel="canonical" href="https://8font.com/quimera-font/" />-->
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    @stack('after-styles')
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
+    <!-- Libraries Stylesheet -->
+    <link href="{{asset('lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+
+	<link rel="stylesheet" href="{{asset('css/aos.css')}}" />
+	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
+
+    <link rel="stylesheet" href="{{asset('css/style_custom.css')}}" />
+<style>
+
+</style>
+@stack('after-styles')
 </head>
-
 <body>
-
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
-
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
-    <div id="main-wrapper">
-
-        <!--**********************************
-            Nav header start
-        ***********************************-->
-        <div class="nav-header">
-            <a href="{{url('/')}}" class="brand-logo">
-              <!--  <img class="logo-abbr" src="{{ URL::asset('/img/l1.jpg')}}" alt="">-->
-                <img class="logo-compact" src="{{ URL::asset('/img/l1.jpg')}}" alt="">
-                <img class="brand-title" src="{{ URL::asset('/img/l1.jpg')}}" alt="">
-            </a>
-
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
+    <!-- Topbar Start -->
+    <div class="bg-secondary">
+        <div class="container">
+            <div class="row py-0 justify-content-end mx-0">
+                <!-- <div class="col-lg-6 d-none d-lg-block">
+                </div> -->
+                <div class="col-lg-12 text-lg-right pr-0 align-self-end">
+                    <a class="text-body mr-3" href="{{url('/contactus')}}">Contact Us</a>
+                    <a class="text-body mr-3" href="{{url('/blogs')}}">Blog</a>
+                    <a class="text-body pr-0" href="{{url('/corporategift')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
                 </div>
             </div>
         </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
-
-        <!--**********************************
-            Header start
-        ***********************************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                      <div class="header-left">
-
+    </div>
+    <div class="header_main">
+        <div class="container">
+            <div class="row mx-0 align-items-center justify-content-between bg-light py-2 d-lg-flex">
+                <div class="logo_sec">
+                    <a href="{{url('/')}}" class="logo-head">
+                    <img src="{{asset('img/l1.jpg')}}">
+                        <!--<span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
+                        <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>-->
+                    </a>
+                </div>
+                <div class="search_product pl-0 serch">
+                    <form action="{{url('/searcha')}}" method="get">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control search" placeholder="Search for products">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-transparent text-primary">
+                                    <i class="fa fa-search"></i>&nbsp;Search
+                                </span>
+                            </div>
                         </div>
-                        <ul class="navbar-nav header-right">
-                        <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                     <span class="label label-warning">0</span>
-                                    <div class="pulse-css"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right scroll">
-                                    <ul class="list-unstyled">
-
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong></strong>
-                                                    </p>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <a href="#" class="all-notification">See all notifications <i class="ti-arrow-right"></i></a>
-
-                                </div>
-                            </li>
-
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-account"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
-
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
-        <div class="quixnav">
-            <div class="quixnav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Main Menu</li>
-                    <li><a  href="{{url('/manager/dashboard')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-app-store"></i><span class="nav-text">Landing Page Sections</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{url('/manager/banners')}}">Banner</a></li>
-                            <li><a href="{{url('/manager/section2')}}">Section2</a></li>
-                            <li><a href="{{url('/manager/testimonial')}}">Testimonial</a></li>
-                            <li><a href="{{url('/manager/section8')}}">Section8</a></li>
-                            <li><a href="{{url('/manager/landingcake')}}">Fall In Love With Cake Section</a></li>
-                         </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                            class="icon icon-app-store"></i><span class="nav-text">Product management</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{url('/manager/category')}}">Category</a></li>
-                            <li><a href="{{url('/manager/subcategory')}}">Subcategory</a></li>
-                            <li><a href="{{url('/manager/childcategory')}}">Childcategory</a></li>
-                            <li><a href="{{url('/manager/subchildcategory')}}">SubChildcategory</a></li>
-                            <li><a href="{{url('/manager/coupons')}}">Coupon</a></li>
-                            <li><a href="{{url('/manager/attribute')}}">Attribute</a></li>
-                            <li><a href="{{url('/manager/products')}}">Product</a></li>
-                            <li><a href="{{url('/manager/productselectoption')}}">Product Charm</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                        class="icon icon-app-store"></i><span class="nav-text">About</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{url('/manager/about/1/edit')}}">AboutUs</a></li>
-                            <li><a href="{{url('/manager/ourrecord')}}">Our Record</a></li>
-                            <li><a href="{{url('/manager/ourteam')}}">Our Team</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                        class="icon icon-app-store"></i><span class="nav-text">Blog</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{url('/manager/blogcategory')}}">BlogCategory</a></li>
-                            <li><a href="{{url('/manager/blog')}}">Blog</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{url('/manager/orders')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Orders</span></a></li>
-                    <li><a href="{{url('/manager/manager')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Manager</span></a></li>
-                    <li><a href="{{url('/manager/corporate')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Corporate</span></a></li>
-                    <li><a href="{{url('/manager/giftcard')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Gift Voucher</span></a></li>
-                    <li><a href="{{url('/manager/contactlist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Contact List</span></a></li>
-                    <li><a href="{{url('/manager/corporatelist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Corporate Form List</span></a></li>
-                    <li><a href="{{url('/manager/careerlist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Career List</span></a></li>
-                    <li><a href="{{url('/manager/leavecomment')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Leave Comment List</span></a></li>
-                    <li><a href="{{url('/manager/contact/1/edit')}}"aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Contact Us</a></li>
-                    <li><a href="{{url('/manager/faq')}}"aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Faq</a></li>
-                    <li><a href="{{url('/manager/pages')}}"aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Dynamic Pages</a></li>
-                    <li><a href="{{url('/manager/review')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Review</span></a></li>
-                    <li><a href="{{url('/manager/media')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Media</span></a></li>
-                    <li><a href="{{url('/manager/event')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Event</span></a></li>
-                    <li><a href="{{url('/manager/changepassword')}}"aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Change Password</a></li>
+                    </form>
                 </div>
-        </div>
-        <!--**********************************
-            Sidebar end
-        ***********************************-->
-        <!--**********************************
-            Content body start
-        ***********************************-->
-        @yield('content')
+                <div class="pincode_sec px-0 loc-align">
+                    <div class="input-group-append1">
 
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Custom Wish 2023 </p>
+                        <form action="">
+                            <div class="input-group">
+                            <span class="input-group-text bg-transparent text-primary1">
+                            <i class="fa fa-map-marker-alt"></i>
+                        </span>
+                                <input type="text" class="form-control delivery" placeholder="Select Delivery Location">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="cart_sec text-right">
+                    <p class="nab laphone"><img src="{{asset('img/icons/p.png')}}" class="phone"><br>1234567898</p>
+                    @if(Auth::check())
+                    <?php $userr1= App\Models\User::where('id',Auth::user()->id)->first();
+                            $carr = App\Models\Cart::where('user_id',Auth::user()->id)->count(); ?>
+                        @if($userr1->role_id == '3')
+                            <a href="{{url('/cart')}}"><p class="nab"><img src="{{asset('img/icons/c.png')}}">
+                                <span class="badge text-secondary border border-secondary rounded-circle cart_count"> {{$carr}}</span><br>Cart</p></a>
+                        @else
+                            <a href="{{url('login')}}"><p class="nab"><img src="{{asset('img/icons/c.png')}}">
+                                <span class="badge text-secondary border border-secondary rounded-circle cart_count">0</span><br>Cart</p></a>
+                        @endif
+                    @else
+                        <a href="{{url('login')}}"><p class="nab"><img src="{{asset('img/icons/c.png')}}">
+                        <span class="badge text-secondary border border-secondary rounded-circle cart_count">0</span><br>Cart</p></a>
+                    @endif
+                    @guest
+                        @if(Auth::check())
+                        <?php $user= App\Models\User::where('id',Auth::user()->id)->first(); ?>
+                            @if($user->role_id == '3')
+                                <a href="{{url('user/dashboard')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                            @elseif($user->role_id == '2')
+                                <a href="{{url('manager/dashboard')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                            @elseif($user->role_id == '1')
+                                <a href="{{url('admin/dashboard')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                            @else
+                                <a href="{{url('/')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                            @endif
+                        @else
+                            <a href="{{url('login')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                        @endif
+                    @else
+                        <?php $user= App\Models\User::where('id',Auth::user()->id)->first(); ?>
+                            @if($user->role_id == '3')
+                            <a href="{{url('user/dashboard')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                            @elseif($user->role_id == '2')
+                            <a href="{{url('manager/dashboard')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                            @elseif($user->role_id == '1')
+                                <a href="{{url('admin/dashboard')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                            @else
+                                <a href="{{url('/')}}"><p class="nab des"><img src="{{asset('img/icons/a.png')}}" class="account"><br>Account</p></a>
+                            @endif
+                    @endguest
+                </div>
             </div>
         </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
+    </div>
+    <!-- Topbar End -->
 
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
 
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
 
+    <div class="container" style="display:none;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+            </nav>
+    </div>
+<div class="nav_header">
+    <div class="container d-flex justify-content-center align-items-center">
+
+    <nav id="navbar" class="custom navbar" >
+    <ul>
+    <!--    <li><a href="#">Home</a></li>
+        <li>
+            <label for="btn-1" class="show">Features +</label>
+            <a href="#">Features</a>
+            <input type="checkbox" id="btn-1">
+            <ul>
+              <li><a  href="#">Pages</a></li>
+              <li><a  href="#">Members</a></li>
+              <li><a  href="#">Offers</a></li>
+            </ul>
+          </li>-->
+          <?php $maincategory = App\Models\Category::where('status','Active')->get(); ?>
+          @foreach($maincategory as $maincategory)
+          <?php $subcategory = App\Models\SubCategory::where('category_id',$maincategory->id)->where('status','Active')->get(); ?>
+          @if($subcategory->count() > 0)
+          <li>
+            <a href="{{url('/')}}/cat/{{$maincategory->id}}">{{$maincategory->cat_name}} <span class="fa-thin fa-chevron-down" ></span></a>
+            <ul>
+            @if($subcategory->count() > 0)
+            @foreach($subcategory as $subcategory)
+              <li>
+                <?php $cate = App\Models\ChildCategory::where('subcategory_id',$subcategory->id)->whereNotNull('subcategory_id')->where('status','Active')->get(); ?>
+                @if($cate->count() > 0)
+                <a href="{{url('/')}}/sub/{{$subcategory->id}}">{{$subcategory->subcat_name}} <span class="fa-thin fa-chevron-right arrowcss" ></span></a>
+                <ul>
+                  <li>
+                    @foreach($cate as $cate)
+                    <li><a href="{{url('/')}}/p/{{$cate->id}}">{{$cate->childcat_name}}</a></li>
+                    @endforeach
+                  </li>
+                </ul>
+                @else
+                <a href="{{url('/')}}/sp/{{$subcategory->id}}">{{$subcategory->subcat_name}} </a>
+                @endif
+              </li>
+              @endforeach
+              @endif
+            </ul>
+          </li>
+          @endif
+          @endforeach
+        </ul>
+      </nav>
+</div>
+</div>
+
+
+    @yield('content')
+
+
+
+    <!-- Footer Start -->
+<div class="footer_section">
+    <div class="container text-secondary pt-5">
+        <div class="row pt-5">
+            <div class="col-lg-12 col-md-12">
+                <div class="row">
+                    <div class="col-sm-3 com">
+                        <h5 class="text-secondary text-Capitallise mb-4">Our Company</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary foottext mb-2" href="{{url('/aboutus')}}"><!--<i class="fa fa-angle-right mr-2"></i>-->About Us</a>
+                            <a class="text-secondary foottext mb-2" href="{{url('/media')}}">Media Coverage</a>
+                            <a class="text-secondary foottext mb-2" href="#">Customer Reviews</a>
+                            <a class="text-secondary foottext mb-2" href="{{url('/corporategift')}}">Corporate Gifts</a>
+                            <a class="text-secondary foottext mb-2" href="{{url('/event')}}">Events</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 help">
+                        <h5 class="text-secondary text-Capitallise mb-4">Help</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary foottext mb-2" href="#">My Account</a>
+                            <?php $pagess = App\Models\Page::get(); ?>
+                            @foreach ($pagess as $pagess)
+                            <a class="text-secondary foottext mb-2" href="{{url('/pages')}}/{{$pagess->id}}">{{$pagess->title}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-sm-3 what">
+                        <h5 class="text-secondary text-Capitallise mb-4">Whats News</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2 foottext" href="{{url('/offers')}}">Offers</a>
+                            <a class="text-secondary mb-2 foottext" href="{{url('/giftvoucher')}}">Gift Vochers</a>
+                        </div><br>
+                            <h5 class="text-secondary text-Capitallise mb-4">Spead The Love</h5>
+                        <div class="d-flex">
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 other">
+                        <h5 class="text-secondary text-Capitallise mb-4">Other</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary foottext mb-2" href="{{url('/blogs')}}">Blogs</a>
+                            <a class="text-secondary foottext mb-2" href="{{url('/client')}}">Client</a>
+                            <a class="text-secondary  foottext mb-2" href="{{url('/careeropportunity')}}">Career Opportunity</a>
+                            <a class="text-secondary foottext mb-2" href="{{url('/contactus')}}">Contact Us</a>
+                                <a class="text-secondary foottext mb-2" href="#">Shopping Cart</a>
+                            <a class="text-secondary foottext mb-2" href="{{url('/faq')}}">FAQ</a>
+
+                            <a  href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br><br>
+        <a href="https://wa.me/9886888572" target="_blank" class="float1" id="myDIV" style="display: none;"><img src="{{asset('img/wt.svg')}}" width="100%"></a>
+        <a href="sms:+919886888572" class="float2"  id="myDIV1"><img src="{{asset('img/icon-phone-png-8.jpg')}}" width="100%" style="border-radius:5px;"></a>
+        <a class="float" id="exampleRadios1" style="font-size: 30px;color: black;">
+        <i class="fa fa-bars my-float"></i>
+        </a>
 
     </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
-
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <!-- Required vendors -->
-    <script src="{{ URL::asset('/managercss/vendor/global/global.min.js') }}"></script>
-    <script src="{{ URL::asset('/managercss/js/quixnav-init.js') }}"></script>
-    <script src="{{ URL::asset('/managercss/js/custom.min.js') }}"></script>
-
-
-    <!-- Vectormap -->
-    <script src="{{ URL::asset('/managercss/vendor/raphael/raphael.min.js') }}"></script>
+</div>
+<div class="footer_bottom">
+    <div class="container">
+        <div class="row border-top">
+            <div class="col-md-12 px-xl-0">
+                <div class="text-center">
+                    <p class="mb-md-0 text-center text-secondary py-2">&copy; 2022 Customwish All Rights Reserved. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
 
 
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-    <!--  flot-chart js -->
-    <script src="{{ URL::asset('/managercss/vendor/flot/jquery.flot.js') }}"></script>
-    <script src="{{ URL::asset('/managercss/vendor/flot/jquery.flot.resize.js') }}"></script>
+    <!-- Contact Javascript File -->
+    <script src="{{asset('mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{asset('mail/contact.js') }}"></script>
 
-    <!-- Owl Carousel -->
-    <script src="{{ URL::asset('/managercss/vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
+    <!-- Template Javascript -->
+    <script src="{{asset('js/main.js')}}"></script>
+	<script src="{{asset('js/aos.js') }}"></script>
+<script>
+  AOS.init();
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $('.icon').click(function(){
+      $('span').toggleClass('cancel');
+    })
+  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+         $("#myDIV").hide();
+         $("#myDIV1").hide();
+     $("#exampleRadios1").click(function(){
+       $("#myDIV").toggle();
+        $("#myDIV1").toggle();
+     });
+    });
+    </script>
+@stack('after-scripts')
 
-    <!-- Counter Up -->
-    <script src="{{ URL::asset('/managercss/vendor/jqvmap/js/jquery.vmap.min.js') }}"></script>
-    <script src="{{ URL::asset('/managercss/vendor/jqvmap/js/jquery.vmap.usa.js') }}"></script>
-    <script src="{{ URL::asset('/managercss/vendor/jquery.counterup/jquery.counterup.min.js') }}"></script>
-
-
-    <script src="{{ URL::asset('/managercss/js/dashboard/dashboard-1.js')}}"></script>
-
-
-
-
-    @stack('after-scripts')
 </body>
 
 </html>
