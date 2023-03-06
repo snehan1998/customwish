@@ -27,12 +27,8 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
-Route::get('/giftvoucher', function () {
-    return view('giftvoucher');
-});
-Route::get('/corporateproductdetails', function () {
-    return view('corporateproductdetails');
-});
+Route::get('/giftvoucher',[WebsiteController::class,'giftcards']);
+Route::get('/gif/{id}',[WebsiteController::class,'giftcarddetails']);
 
 Route::get('/customwishcorporategifts/corporategift',[WebsiteController::class,'corporate']);
 Route::get('/co/{slug}',[WebsiteController::class,'corporatedetail']);
@@ -104,6 +100,8 @@ Route::post('/leaveacomment',[WebsiteController::class,'leaveacomment'])->middle
 Route::post('/careerform',[WebsiteController::class,'careerform'])->middleware(['honey']);
 Route::post('/productreview',[WebsiteController::class,'productreview'])->middleware(['honey']);
 Route::post('/customwishcorporategifts/corpenquiry',[WebsiteController::class,'corenquiry'])->middleware(['honey']);
+Route::post('/customwishcorporategifts/corpenquiry',[WebsiteController::class,'corenquiry'])->middleware(['honey']);
+Route::post('/giftcardbuy',[WebsiteController::class,'giftcardbuy'])->middleware(['honey']);
 
 Route::post('storerr',[CartController::class,'storerr']);
 

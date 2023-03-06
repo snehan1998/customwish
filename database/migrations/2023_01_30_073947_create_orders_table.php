@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('order_price',1000)->nullable();
             $table->string('payable_price',1000)->nullable();
             $table->string('order_date',1000)->nullable();
+            $table->string('giftcard_id',1000)->nullbale();
+            $table->string('giftcard_amount',1000)->nullbale();
             $table->string('coupon_id',1000)->nullbale();
             $table->string('coupon_amount',1000)->nullbale();
             $table->string('delivery_charge')->nullbale();

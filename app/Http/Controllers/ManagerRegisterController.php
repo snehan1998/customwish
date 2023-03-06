@@ -90,9 +90,9 @@ class ManagerRegisterController extends Controller
         }else{
             return back()->with('flash_error','Something went wrong please try again later');
         }
-        return redirect('/verifyotp');
+        //return redirect('/verifyotp');
 
-        //return redirect('managerlogin');
+        return redirect('managerlogin');
 
         }
     }

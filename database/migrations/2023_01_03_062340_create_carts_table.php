@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('quantity',1000)->nullable();
             $table->string('price',1000)->nullable();
             $table->string('coupon_id',1000)->nullable();
+            $table->string('giftcard_id',1000)->nullable();
             $table->string('product_button_id',1000)->nullable();
             $table->string('product_images_id',1000)->nullable();
             $table->string('product_logos_id',1000)->nullable();

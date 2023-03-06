@@ -20,6 +20,8 @@ use App\Models\CorporateGift;
 use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\Faq;
+use App\Models\GiftCard;
+use App\Models\GiftCardBuy;
 use App\Models\LandingCakes;
 use App\Models\LeaveComment;
 use App\Models\Location;
@@ -146,6 +148,16 @@ class WebsiteController extends Controller
         $event = Event::where('event_slug',$slug)->first();
         $recente = Event::orderBy('id','DESC')->limit(5)->get();
         return view('customwisheventplanner.eventdetail',compact('event','recente'));
+    }
+    public function giftcards(Request $request)
+    {
+        $gifts = GiftCard::where('giftvoucher_status','Active')->orderBy('id','DESC')->paginate('20');
+        return view('giftvoucher',compact('gifts'));
+    }
+    public function giftcarddetails(Request $request,$id)
+    {
+        $gifts = GiftCard::where('id',$id)->first();
+        return view('giftvoucherdetails',compact('gifts'));
     }
     public function faq(Request $request)
     {
@@ -866,7 +878,7 @@ class WebsiteController extends Controller
             Mail::send(['html'=>'mail.reviewmail'], $dataa, function($message) use ($dataa) {
                 $message->to($dataa['email'])->subject
                     ('Review Form');
-                $message->from('sneha@telcopl.com','Pow Store');
+                $message->from('sneha@telcopl.com','Customwish');
             });
             $dataaa = array(
                 'user'=>'admin',
@@ -882,12 +894,74 @@ class WebsiteController extends Controller
             Mail::send(['html'=>'mail.reviewmail'], $dataaa, function($message) {
                 $message->to('sneha@telcopl.com')->subject
                     ('Review Form');
-                $message->from('sneha@telcopl.com','Pow Store');
+                $message->from('sneha@telcopl.com','Customwish');
             });
             return back()->with('flash_success','Thank You Our Team will get back shortly!');
         }else{
             return back()->with('flash_success','Something went wrong please try again later');
         }
+    }
+
+    public function giftcardbuy(Request $request)
+    {
+       // dd(date('Y'));
+        $userid=Auth::user()->id;
+        $generateorderid = 'CW'.$this->generateBarcodeNumber(5);
+        $data=$request->all();
+        $session_id=Session::get('sessionid');
+        $orderdate = date('d-m-Y');
+        $confirmorder = new  GiftCardBuy();
+        $confirmorder->generated_code = $generateorderid;
+        $confirmorder->order_date = $orderdate;
+        $confirmorder->user_id = Auth::user()->id;
+        $confirmorder->giftcard_id = $request->input('giftcard_id');
+        $confirmorder->giftcard_name = $request->input('giftcard_name');
+        $confirmorder->giftcard_price = $request->input('giftcard_price');
+        $confirmorder->to_email = $request->input('to_email');
+        $confirmorder->from_name = $request->input('from_name');
+        $confirmorder->message = $request->input('message');
+        $confirmorder->delivery_date = $request->input('delivery_date');
+        $confirmorder->firstname =$request->input('shipping_firstname');
+        $confirmorder->lastname =$request->input('shipping_lastname');
+        $confirmorder->phone =$request->input('shipping_phone');
+        $confirmorder->email =$request->input('shipping_email');
+        $confirmorder->country =$request->input('shipping_country');
+        $confirmorder->state =$request->input('shipping_state');
+        $confirmorder->city =$request->input('shipping_city');
+        $confirmorder->address =$request->input('shipping_address1');
+        $confirmorder->address2 =$request->input('shipping_address2');
+        $confirmorder->pincode =$request->input('shipping_pincode');
+        $confirmorder->address_type =$request->input('address_type');
+        $confirmorder->save();
+        $users = GiftCardBuy::whereMonth('delivery_date',date('m'))->whereDay('delivery_date',date('d'))
+        ->whereYear('delivery_date',date('Y'))->get();
+        //dd($users);
+        if ($users->count() > 0) {
+            foreach ($users as $user) {
+                $dataa = array(
+                    'giftcard_price' => $user->giftcard_price,
+                    'generated_code' => $user->generated_code,
+                    'to_email' => $user->to_email,
+                    'from_name' => $user->from_name,
+                    'messages' => $user->message,
+                    );
+
+                $km= Mail::send(['html'=>'mail.giftvochercode'], $dataa, function($message) use ($dataa) {
+                    $message->to($dataa['to_email'])->subject
+                        ('Customwish Gift Voucher');
+                    $message->from('sneha@telcopl.com','Customwish');
+                });
+                //dd($km);
+                $gif = GiftCardBuy::where('id',$user->id)->update(['mail_sent'=>'sent']);
+
+            }
+        }
+        return back()->with('flash_success','Thank You Our Team will get back shortly!');
+    }
+
+    function generateBarcodeNumber() {
+        $number = mt_rand(10000, 99999); // better than rand()
+        return $number;
     }
 
 }

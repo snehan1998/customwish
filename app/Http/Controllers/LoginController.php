@@ -25,7 +25,7 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
-        $user = User::where('email',$request->email)->where('status','Active')->first();
+        $user = User::where('email',$request->email)->where('otp_status','Active')->first();
         if (!empty($user))
         {
             if(Auth::attempt([
@@ -43,7 +43,7 @@ class LoginController extends Controller
 
       }else{
 
-              return redirect('/login')->with('flash_error', 'Your Account is not Activated !!!');
+              return redirect('/login')->with('flash_error', 'Your Account is not Activated . Please verify your account sent to your registered email id !!!');
       }
 
     }
@@ -94,6 +94,7 @@ class LoginController extends Controller
         }
 
     }
+
 
     public function generateOTP(){
         $otp = mt_rand(1000,9999);

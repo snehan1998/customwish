@@ -36,7 +36,8 @@
            @if($user=='user')
               Hi,{{$name}}
             </p>
-            <p>Thank you for registering with Customwish! Please Verify your OTP {{$otp}} Befor Login !</p>
+            <p>Thank you for registering with Customwish! Please Verify your OTP {{$otp}} Befor Login </p>
+            <p><a href="http://127.0.0.1:8000/verifyotp" class="btn btn-primary">Verify your OTP</a></p>
             <br>
             <p>
             Thank you</p>

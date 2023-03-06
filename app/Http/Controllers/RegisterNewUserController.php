@@ -84,8 +84,8 @@ class RegisterNewUserController extends Controller
         }else{
             return back()->with('flash_error','Something went wrong please try again later');
         }
-        return redirect('/verifyotp');
-        //return redirect('login');
+        //return redirect('/verifyotp');
+        return redirect('login');
 
         }
     }

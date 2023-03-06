@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\Admin\CouponController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Backend\Admin\EventController;
 use App\Http\Controllers\Backend\Admin\FaqController;
+use App\Http\Controllers\Backend\Admin\GiftVoucherController;
 use App\Http\Controllers\Backend\Admin\LandingCakeController;
 use App\Http\Controllers\Backend\Admin\ManagerController;
 use App\Http\Controllers\Backend\Admin\MediaCoverageController;
@@ -61,6 +62,8 @@ Route::resource('corporate',CorporateController::class);
 
 Route::post('corporate/addcorporateImages',[CorporateController::class,'addcorporateImages']);
 Route::post('corporate/corporatedeleteimage',[CorporateController::class,'corporatedeleteimage']);
+
+Route::resource('giftcard',GiftVoucherController::class);
 
 Route::get('order/{order_id}',[OrderController::class,'orderDetail']);
 Route::get('orders',[OrderController::class,'orders']);

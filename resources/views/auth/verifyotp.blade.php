@@ -13,9 +13,9 @@
                     <div class="col-lg-4">
                         <h2>OTP</h2>
                     </div>
-                    <div class="col-lg-6 padding">
+                    <!--<div class="col-lg-6 padding">
                         <a href="{{url('/resendotp')}}" class="newuser">Resend OTP</a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="row">
                     <div class="col-lg-12">

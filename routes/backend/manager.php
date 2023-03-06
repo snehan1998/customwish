@@ -57,6 +57,8 @@ Route::resource('media',MediaCoverageController::class);
 Route::resource('event',EventController::class);
 Route::resource('corporate',CorporateController::class);
 
+Route::resource('giftcard',GiftVoucherController::class);
+
 Route::post('corporate/addcorporateImages',[CorporateController::class,'addcorporateImages']);
 Route::post('corporate/corporatedeleteimage',[CorporateController::class,'corporatedeleteimage']);
 
