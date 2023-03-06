@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AddSubVariation;
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\GiftCard;
+use App\Models\GiftCardBuy;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductCart;
@@ -43,7 +45,16 @@ class CartController extends Controller
                     $isCoupon = 0;
                     $coupon = '';
                 }
-                return view('cart',compact('checkoutcart','carts','isCoupon','coupon'));
+                $isgiftCheck = Cart::where('user_id',Auth::user()->id)->wherenotNull('giftcard_id')->first();
+                if ($isgiftCheck) {
+                    $isGiftcard = 1;
+                    $gift = GiftCardBuy::where('id',$isgiftCheck->giftcard_id)->first();
+                }
+                else{
+                    $isGiftcard = 0;
+                    $gift = '';
+                }
+                return view('cart',compact('checkoutcart','carts','isCoupon','coupon','isGiftcard','gift'));
         }else{
                 return redirect('login');
         }
@@ -2000,6 +2011,23 @@ class CartController extends Controller
        // ]);
 
        //return $request->imageval;
+       /*if($request->location_required == 1){
+
+        $validated = $request->validate([
+            'location' => 'required',
+        ]);
+        return back()->with(['error'=>'errors','msg' => 'Location fieldis required']);
+
+    }
+
+    if($request->datee_required == 1){
+        dd('df');
+        $validated = $request->validate([
+            'datee' => 'required',
+        ]);
+        return back()->with(['error'=>'errors','msg' => 'Date fieldis required']);
+    }*/
+
         if (!empty($request->imageval)) {
             $allowedfileExtension = ['jpeg','jpg','png'];
             if ($request->imageupload > $request->imageval) {
@@ -3923,6 +3951,7 @@ class CartController extends Controller
         ->where('minimum_order','<=',array_sum($subtotal))
         ->where('status','Active')
         ->first();
+        $giftcode = GiftCardBuy::where('generated_code',$request->couponcode)->where('coupon','notused')->first();
         if ($couponcode) {
             if($couponcode->allow_multiple_use == "Yes"){
                  if (isset($couponcode->id) && $couponcode->coupon_code === $request->couponcode) {
@@ -3950,10 +3979,15 @@ class CartController extends Controller
                 }
             }
             }
-
-        }
-        else
-        {
+        }elseif($giftcode){
+                if ($giftcode->generated_code === $request->couponcode) {
+                    Cart::where('user_id',Auth::user()->id)
+                ->update(['giftcard_id'=>$giftcode->id]);
+                    return back()->with('coupon_success', 'Coupon Applied');
+                }else{
+                    return back()->with('coupon_danger', 'Not a valid Coupon');
+                }
+        }else{
             return back()->with('coupon_danger', 'Not a valid Coupon');
         }
     }
@@ -3963,6 +3997,8 @@ class CartController extends Controller
         $cart = Cart::where('user_id',Auth::user()->id)->first();
         if ($cart) {
             $couponcode = Coupon::find($cart->coupon_id);
+            $giftcode = GiftCardBuy::where('id',$cart->giftcard_id)->first();
+           // dd($couponcode, $giftcode);
             if ($couponcode) {
                 if ($couponcode->discount_type == 'Percentage') {
                     $discount_amount = ($total_amount * $couponcode->discount_amount)/100;
@@ -3975,7 +4011,16 @@ class CartController extends Controller
                 $discount_amount = round($discount_amount);
                 $discount_type = $couponcode->discount_type;
                 $payable_amount = round($payable_amount);
+            }elseif($giftcode){
+                    $gif = GiftCard::where('id',$giftcode->giftcard_id)->first();
+                    $discount_amount = $gif->giftvoucher_price;
+                    $payable_amount = $total_amount - $discount_amount;
+
+                $discount_amount = round($discount_amount);
+                $discount_type = null;
+                $payable_amount = round($payable_amount);
             }
+
         }
 
         return $discount_amount;
@@ -3984,7 +4029,7 @@ class CartController extends Controller
      public function removeCoupon(Request $request,$user_id)
      {
         Cart::where('user_id',Auth::user()->id)
-                ->update(['coupon_id'=>NULL]);
+                ->update(['coupon_id'=>NULL , 'giftcard_id'=>NULL]);
         return back()->with('coupon_removed', 'Coupon Removed');
      }
 

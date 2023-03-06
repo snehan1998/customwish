@@ -45,7 +45,11 @@
                 <div class="col-lg-12 text-lg-right pr-0 align-self-end">
                     <a class="text-body mr-3" href="{{url('/contactus')}}">Contact Us</a>
                     <a class="text-body mr-3" href="{{url('/blogs')}}">Blog</a>
-                    <a class="text-body pr-0" href="{{url('/corporategift')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
+                    @if(Auth::check())
+                        <a class="text-body mr-3" href="{{url('/customwishcorporategifts/corporategift')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
+                     @else
+                     <a class="text-body mr-3" href="{{url('/login')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
+                     @endif
                 </div>
             </div>
         </div>
@@ -74,17 +78,19 @@
                 </div>
                 <div class="pincode_sec px-0 loc-align">
                     <div class="input-group-append1">
-
-                        <form action="">
+                        <form class="checklocationss">
                             <div class="input-group">
                             <span class="input-group-text bg-transparent text-primary1">
                             <i class="fa fa-map-marker-alt"></i>
-                        </span>
-                                <input type="text" class="form-control delivery" placeholder="Select Delivery Location">
+                            </span>
+                            <input type="text" class="form-control delivery" placeholder="Select Delivery Location" id="location" name="location" value="">
                             </div>
                         </form>
                     </div>
+                    <div id="pinresulttt">
+                    </div>
                 </div>
+
                 <div class="cart_sec text-right">
                     <p class="nab laphone"><img src="{{asset('img/icons/p.png')}}" class="phone"><br>1234567898</p>
                     @if(Auth::check())
@@ -142,7 +148,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -240,16 +245,46 @@
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary foottext mb-2" href="{{url('/aboutus')}}"><!--<i class="fa fa-angle-right mr-2"></i>-->About Us</a>
                             <a class="text-secondary foottext mb-2" href="{{url('/media')}}">Media Coverage</a>
-                            <a class="text-secondary foottext mb-2" href="#">Customer Reviews</a>
-                            <a class="text-secondary foottext mb-2" href="{{url('/corporategift')}}">Corporate Gifts</a>
-                            <a class="text-secondary foottext mb-2" href="{{url('/event')}}">Events</a>
+                            <a class="text-secondary foottext mb-2" href="{{url('/client')}}">Customer Reviews</a>
+                            @if(Auth::check())
+                                <a class="text-secondary foottext mb-2" href="{{url('/customwishcorporategifts/corporategift')}}">Corporate Gifts</a>
+                            @else
+                                <a class="text-secondary foottext mb-2" href="{{url('/login')}}">Corporate Gifts</a>
+                            @endif
+                            <a class="text-secondary foottext mb-2" href="{{url('/customwisheventplanner/event')}}">Events</a>
                         </div>
                     </div>
                     <div class="col-sm-3 help">
                         <h5 class="text-secondary text-Capitallise mb-4">Help</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary foottext mb-2" href="#">My Account</a>
-                            <?php $pagess = App\Models\Page::get(); ?>
+                            @guest
+                            @if(Auth::check())
+                                <?php $user= App\Models\User::where('id',Auth::user()->id)->first(); ?>
+                                    @if($user->role_id == '3')
+                                        <a href="{{url('user/dashboard')}}" class="text-secondary foottext mb-2">My Account</a>
+                                    @elseif($user->role_id == '2')
+                                        <a href="{{url('manager/dashboard')}}" class="text-secondary foottext mb-2">My Account</a>
+                                    @elseif($user->role_id == '1')
+                                        <a href="{{url('admin/dashboard')}}" class="text-secondary foottext mb-2">My Account</a>
+                                    @else
+                                        <a href="{{url('/')}}" class="text-secondary foottext mb-2">My Account</a>
+                                    @endif
+                                @else
+                                    <a href="{{url('login')}}" class="text-secondary foottext mb-2">My Account</a>
+                                @endif
+                            @else
+                                <?php $user= App\Models\User::where('id',Auth::user()->id)->first(); ?>
+                                    @if($user->role_id == '3')
+                                    <a href="{{url('user/dashboard')}}" class="text-secondary foottext mb-2">My Account</a>
+                                    @elseif($user->role_id == '2')
+                                    <a href="{{url('manager/dashboard')}}" class="text-secondary foottext mb-2">My Account</a>
+                                    @elseif($user->role_id == '1')
+                                        <a href="{{url('admin/dashboard')}}" class="text-secondary foottext mb-2">My Account</a>
+                                    @else
+                                        <a href="{{url('/')}}" class="text-secondary foottext mb-2">My Account</a>
+                                    @endif
+                            @endguest
+                                <?php $pagess = App\Models\Page::get(); ?>
                             @foreach ($pagess as $pagess)
                             <a class="text-secondary foottext mb-2" href="{{url('/pages')}}/{{$pagess->id}}">{{$pagess->title}}</a>
                             @endforeach
@@ -273,10 +308,8 @@
                         <h5 class="text-secondary text-Capitallise mb-4">Other</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary foottext mb-2" href="{{url('/blogs')}}">Blogs</a>
-                            <a class="text-secondary foottext mb-2" href="{{url('/client')}}">Client</a>
                             <a class="text-secondary  foottext mb-2" href="{{url('/careeropportunity')}}">Career Opportunity</a>
                             <a class="text-secondary foottext mb-2" href="{{url('/contactus')}}">Contact Us</a>
-                                <a class="text-secondary foottext mb-2" href="#">Shopping Cart</a>
                             <a class="text-secondary foottext mb-2" href="{{url('/faq')}}">FAQ</a>
 
                             <a  href="{{ route('logout') }}"
@@ -351,6 +384,33 @@
      });
     });
     </script>
+<script>
+document.querySelector('.checklocationss')?.addEventListener('submit', e => {
+  e.preventDefault();
+  var locationdd = $('#location').val();
+        //alert(locationdd);
+        $.ajax({
+        url: "{{url('/locationcheck')}}",
+        type: "POST",
+        data: { 'locationdd': locationdd, _token: '{{csrf_token()}}' },
+        dataType: 'JSON',
+        success:function(data)
+        {
+            var pinres = "";
+         //   console.log(data);
+            $("#pinresulttt").html(data);
+            if(data.status == 'success'){
+                pinres += '<span class="text-danger"><strong>'+data.pincode+' '+data.city+'</strong></span>';
+            }else{
+                pinres += '<span class="text-danger"><strong>'+data.message+'</strong></span>';
+            }
+            $('#pinresulttt').append(pinres);
+
+        }
+        });
+
+});
+</script>
 @stack('after-scripts')
 
 </body>

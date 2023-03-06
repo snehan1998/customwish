@@ -52,6 +52,7 @@
                             <a href="{{url('/user/profiledetails')}}"> <i class="fa fa-user" aria-hidden="true" style="color:#555555"></i>Profile Details</a>
                             </div>
                             </div>
+
                     </div>
                 </div>
             </div><!-- Main row end -->

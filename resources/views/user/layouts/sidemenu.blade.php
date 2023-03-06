@@ -44,6 +44,7 @@
   $compare=$siteName.'/user/compare';
   $acc=$siteName.'/user/profiledetails';
   $accset=$siteName.'/user/profilesettings';
+  $add=$siteName.'/user/address';
 @endphp
 <div class="col-lg-3">
     <div class="myaccount-tab-menu nav nav-tabs " id="nav-tab" role="tablist">
@@ -52,6 +53,7 @@
         <a class="nav-link @if($url == $wishlist) active  @endif" href="{{url('/user/wishlist')}}" ><i class="fa fa-heart"></i> Wishlist</a>
         <a class="nav-link @if($url == $accset) active  @endif" href="{{url('/user/profilesettings')}}" ><i class="fa fa-gear"></i>Change Password</a>
         <a class="nav-link @if($url == $acc) active  @endif" href="{{url('/user/profiledetails')}}" ><i class="fa fa-user"></i> Profile Details</a>
+        <a class="nav-link @if($url == $add) active  @endif" href="{{url('/user/address')}}" ><i class="fa fa-user"></i> Address</a>
         <button class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" type="button"><i class="fa fa-sign-out"></i> Logout</button>
            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf

@@ -46,22 +46,23 @@
                                             <th colspan="2">Action</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     <?php $i=1; ?>
                                     @foreach($data as $row)
+                                    <?php $gi = App\Models\GiftCard::where('id',$row['giftcard_id'])->first(); ?>
                                     <tr>
                                         <td>{{$i++}}</td>
                                         <td>{{ @$row->generated_code }}</td>
                                         <td>{{ @$row->from_name }}</td>
                                         <td>{{ @$row->to_email }}</td>
-                                        <td>{{ @$row->giftcard_name }}</td>
-                                        <td>{{ @$row->giftcard_price }}</td>
+                                        <td>{{ @$gi->giftvoucher_name }}</td>
+                                        <td>{{ @$gi->giftvoucher_price }}</td>
                                         <td>{{ @$row->delivery_date }}</td>
                                         <td>{{ @$row->message }}</td>
                                         <td><button form="resource-delete-{{ $row->id }}" class="btn btn-danger btn-icon-style-2"><span>Delete</span></button>
                                             <form id="resource-delete-{{ $row->id }}" action="{{url('/admin/deletegiftpurchased')}}/{{$row->id}}" style="display: inline-block;" onSubmit="return confirm('Are you sure you want to delete this item?');" method="post">
                                             @csrf
-                                            @method('DELETE')
                                             </form>
                                         </td>
                                     </tr>

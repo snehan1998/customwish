@@ -65,9 +65,13 @@ Route::post('corporate/corporatedeleteimage',[CorporateController::class,'corpor
 
 Route::resource('giftcard',GiftVoucherController::class);
 
+Route::get('giftvoucherpurchased',[OrderController::class,'giftpurchased']);
+Route::post('deletegiftpurchased/{id}',[OrderController::class,'deletegiftpurchased']);
+
 Route::get('order/{order_id}',[OrderController::class,'orderDetail']);
 Route::get('orders',[OrderController::class,'orders']);
 Route::post('changeOrderStatus',[OrderController::class,'changeOrderStatus']);
+
 
 Route::resource('productselectoption',ProductSelectOptionController::class);
 Route::post('productselectoption/addMoreselection',[ProductSelectOptionController::class,'addmoreselection']);
