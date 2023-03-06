@@ -8,6 +8,7 @@ Route::get('/profilesettings', function () {
     return view('/user/profilesettings');
 });
 Route::get('/profiledetails', [UserDashboardController::class, 'profiledetails']);
+Route::get('/address', [UserDashboardController::class, 'address']);
 
 Route::post('changepassword',[UserDashboardController::class,'changepassword']);
 Route::post('updateuserprofile',[UserDashboardController::class,'updateuserpro']);

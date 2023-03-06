@@ -208,13 +208,15 @@
                                 <input class="form-control @error('couponcode') is-invalid @enderror" type="text" name="couponcode" placeholder="Have a coupon code?"
                                 @if($isCoupon == 1)
                                 value="{{@$coupon->coupon_code}}"
+                                @elseif($isGiftcard == 1)
+                                value="{{@$gift->generated_code}}"
                                 @else
                                 value="{{ old('couponcode') }}"
                                 @endif
                                 style="border: none"
                                 >
                                 <div class="input-group-append" style="margin-left:3px">
-                                    <button type="submit" class="btn ">@if($isCoupon == 1) Applied @else Apply @endif </button>
+                                    <button type="submit" class="btn ">@if($isCoupon == 1) Applied @elseif($isGiftcard == 1) Applied @else Apply @endif </button>
                                     @if ($errors->has('couponcode'))
                                         <span class="text-danger">
                                             <strong>{{ $errors->first('couponcode') }}</strong>
@@ -223,24 +225,37 @@
                                 </div>
                             </div>
                         </form>
-                    @if($isCoupon == 1)
-                    <div class="msg-coupon pt-3">
-                        <h5 style="letter-spacing: 1px;">Coupon Applied !! &#8377;
-                        {{ \App\Http\Controllers\CartController::getCouponDiscount(array_sum($subtotal)) }} off
-                        <a href="{{url('delCoupon/')}}/{{$cat->user_id}}" title="Remove Coupon">
-                                <i class="fa fa-trash" style="color: #c2272d;"></i>
-                            </a>
-                        </h5>
-                    </div>
-                    @else
-                @endif
-                @if(Session::has('coupon_danger'))
+                        @if($isCoupon == 1)
+                        <div class="msg-coupon pt-3">
+                            <h5 style="letter-spacing: 1px;">Coupon Applied !! &#8377;
+                            {{ \App\Http\Controllers\CartController::getCouponDiscount(array_sum($subtotal)) }} off
+                            <a href="{{url('delCoupon/')}}/{{$cat->user_id}}" title="Remove Coupon">
+                                    <i class="fa fa-trash" style="color: #c2272d;"></i>
+                                </a>
+                            </h5>
+                        </div>
+                        @elseif($isGiftcard == 1)
+                        <div class="msg-coupon pt-3">
+                            <h5 style="letter-spacing: 1px;">Gift Card  Applied !! &#8377;
+                            {{ \App\Http\Controllers\CartController::getCouponDiscount(array_sum($subtotal)) }} off
+                            <a href="{{url('delCoupon/')}}/{{$cat->user_id}}" title="Remove Coupon">
+                                    <i class="fa fa-trash" style="color: #c2272d;"></i>
+                                </a>
+                            </h5>
+                        </div>
+                    @endif
+                    @if(Session::has('coupon_danger'))
                     <div class="msg-coupon pt-3">
                         <h5 style="letter-spacing: 1px; color: red;">{{ Session::get('coupon_danger') }}</h5>
                         </div>
                     </div>
                 @endif
-
+                @if(Session::has('coupon_success'))
+                <div class="msg-coupon pt-3">
+                    <h5 style="letter-spacing: 1px; color: red;">{{ Session::get('coupon_success') }}</h5>
+                    </div>
+                </div>
+            @endif
                 @if(Session::has('coupon_removed'))
                     {{ Session::get('coupon_removed') }}
                 @endif

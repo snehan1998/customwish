@@ -89,4 +89,9 @@ class UserDashboardController extends Controller
             return view('user.print', compact('order', 'orderitems'));
         }
     }
+
+    public function address(Request $request)
+    {
+        return view('user.address');
+    }
 }

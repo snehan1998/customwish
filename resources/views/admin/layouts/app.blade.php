@@ -173,6 +173,7 @@
                     <li><a href="{{url('/admin/manager')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Manager</span></a></li>
                     <li><a href="{{url('/admin/corporate')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Corporate</span></a></li>
                     <li><a href="{{url('/admin/giftcard')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Gift Voucher</span></a></li>
+                    <li><a href="{{url('/admin/giftvoucherpurchased')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Gift Voucher Purchased</span></a></li>
                     <li><a href="{{url('/admin/careerlist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Career List</span></a></li>
                     <li><a href="{{url('/admin/contactlist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Contact List</span></a></li>
                     <li><a href="{{url('/admin/corporatelist')}}" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Corporate Form List</span></a></li>
