@@ -36,7 +36,9 @@
 @stack('after-styles')
 </head>
 <body>
+
     <!-- Topbar Start -->
+
     <div class="bg-secondary">
         <div class="container">
             <div class="row py-0 justify-content-end mx-0">
