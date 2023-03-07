@@ -1,5 +1,10 @@
 @push('after-styles')
 <link href="{{asset('css/custstyle.css')}}" rel="stylesheet"/>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="_token" content="{{ csrf_token() }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <style>
     h2.per {
   font-size: 22px;
@@ -37,22 +42,27 @@ input[type='radio'] {
 					<div class="col-lg-12">
 						<h2 class="per">PERSONAL INFORMATION</h2>
 					</div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" id="newshowdiss" style="display: block">
                         <div class="ship_addres">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Select Available Addresses</label>
-                            <select class="form-control inputclass" id="exampleFormControlSelect1">
-                                <option>Add new address...</option>
-                                <option>Jags, Bangalore, 560036</option>
+                            <select class="form-control inputclass" name="address_select" id="exampleFormControlSelect1" onclick="displayaddresss();">
+                                <option><a class="add_new_add">+ Add a new address </a></option>
+                                @foreach($address as $address)
+                                <option value="{{$address->id}}" >{{$address->address}}</option>
+                                @endforeach
                             </select>
                         </div>
                         </div>
                     </div>
 				</div>
+
+
 				<div class="row">
 				<div class="col-lg-12">
                 <form method="post" action="{{url('/placeorder')}}">
                 @csrf
+                    <div id="newshow" style="display: none">
                     <div class="row">
                         <div class="col-lg-6">
                             <input type="email" name="shipping_email" id="shipping_email" value="{{$user->email}}" class="inputclass" placeholder="Email" required>
@@ -113,10 +123,10 @@ input[type='radio'] {
                             <label for="other" class="mb-0"> Other </label>
                         </div>
                     </div>
-                    
+                    </div>
 
-                <div class="shipping_addbox">
-                    <div class="d-flex justify-content-between">
+                <div class="shipping_addbox" id="displayaddres">
+                    <!--<div class="d-flex justify-content-between">
                         <div class="add_left">
                             <p><b>Jagadeesh</b></p>
                             <p>
@@ -128,7 +138,7 @@ input[type='radio'] {
                         <div>
                             <p class="add_right">Default</p>
                         </div>
-                    </diV>
+                    </diV>-->
                 </div>
 				<div class="row">
 					<div class="col-lg-12">
@@ -265,5 +275,50 @@ input[type='radio'] {
 
 
 @push('after-scripts')
+<script>
+function displayaddresss() {
+    $('select[name="address_select"] option:selected').each(function () {
+        var add_select = $(this).attr('value');
+        $("#displayaddres").html('');
+            $.ajax({
+            url: "{{url('/displayaddress')}}",
+            type: "POST",
+            data: { 'add_select':add_select, _token: '{{csrf_token()}}' },
+            dataType: 'JSON',
+            success:function(data)
+            {
+                if(data.name == undefined){
+                    console.log(data.name);
+
+                    document.getElementById("newshow").style.display="block";
+                    document.getElementById("newshowdiss").style.display="none";
+
+                }else{
+                    document.getElementById("newshow").style.display="none";
+                    document.getElementById("newshowdiss").style.display="block";
+
+                    var dispchrpri = "";
+                    $("#displayaddres").html(data);
+                    dispchrpri += '<input type="hidden" name="charmprice" class="charmmprice" value="'+data+'">'+
+                                    '<div class="d-flex justify-content-between">'+
+                                    '<div class="add_left">'+
+                                        '<p><b>'+data.name+'</b></p>'+
+                                            '<p>'+
+                                                '<span>'+data.address+','+data.city+', '+data.state+', '+data.country+' , '+data.pincode+'</span>'+
+                                                '<span><label>Phone: </label> '+data.phone+'</span>'+
+                                                '<span><label>Email: </label> '+data.email+'</span>'+
+                                            '</p>'+
+                                        '</div>'+
+                                        '<div>'+
+                                        '</div>'+
+                                    '</diV>';
+                    $('#displayaddres').append(dispchrpri);
+                }
+            }
+        });
+
+    });
+}
+</script>
 @endpush
 @endsection

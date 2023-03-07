@@ -11,7 +11,7 @@
                 <h1 class="heading-page text-center-xs">About Us</h1>
             </div>
         </div>
-            
+
         </div>
     </div>
 </div>
@@ -27,9 +27,9 @@
                         </div>
                         <div class="ps-section__content text-center">
                             <p>{!!$about->description!!}</p>
-                            <div class="ps-about__sign text-center mb-30 mt-40">
+                            <!--<div class="ps-about__sign text-center mb-30 mt-40">
                                <img src="{{asset('uploads/images/')}}/{{$about->sign_image}}" class="" alt="">
-                            </div>
+                            </div>-->
                             <p class="ps-about-sign">{{$about->founder}}</p>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
 <div class="foot-top">
     <div class="container">
         <div class="row justify-content-center align-items-center" >
-            
+
                 @foreach($section8 as $section8)
                 <div class="col-md-3 text-center">
                     <img src="{{asset('uploads/images')}}/{{$section8->section_image}}">
@@ -124,7 +124,7 @@
                 @endforeach
         </div>
     </div>
-	 
+
 </div>
 @push('after-scripts')
 @endpush

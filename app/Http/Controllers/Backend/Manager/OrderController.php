@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Models\GiftCardBuy;
 use App\Models\Order;
 use App\Models\OrderList;
 use Illuminate\Http\Request;
@@ -55,4 +56,15 @@ class OrderController extends Controller
         }
     }
 
+    public function giftpurchased(Request $request)
+    {
+        $data = GiftCardBuy::orderBy('id','DESC')->get();
+        return view('admin.giftvocherpurchased',compact('data'));
+    }
+    public function deletegiftpurchased(Request $request,$id)
+    {
+        $dataa = GiftCardBuy::find($id);
+        $dataa->delete();
+        return back()->with('flash_success', 'Deleted Successfully!');
+    }
 }

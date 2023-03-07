@@ -67,4 +67,5 @@ class OrderController extends Controller
         $dataa->delete();
         return back()->with('flash_success', 'Deleted Successfully!');
     }
+
 }

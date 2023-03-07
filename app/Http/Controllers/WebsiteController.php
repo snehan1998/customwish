@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Address;
 use App\Models\AddSubVariation;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
@@ -57,6 +58,13 @@ use Illuminate\Support\Facades\Session;
 
 class WebsiteController extends Controller
 {
+    public function displayaddress(Request $request)
+    {
+        $data =  Address::where('id',$request->add_select)->first();
+        return response()->json($data);
+
+    }
+
     public function pushlocation(Request $request)
     {
         $location = $request->locationdd;
@@ -777,7 +785,7 @@ class WebsiteController extends Controller
         $carts = Cart::where('user_id',Auth::user()->id)->get();
         $use = User::where('id',Auth::user()->id)->first();
         $user = UserProfile::where('user_id',Auth::user()->id)->first();
-
+        $address = Address::where('user_id',Auth::user()->id)->get();
         $isCouponCheck = Cart::where('user_id',Auth::user()->id)->wherenotNull('coupon_id')->first();
 
         if ($isCouponCheck) {
@@ -788,7 +796,7 @@ class WebsiteController extends Controller
             $isCoupon = 0;
             $coupon = '';
         }
-        return view('checkout',compact('carts','isCoupon','user'));
+        return view('checkout',compact('carts','isCoupon','user','address'));
     }
     public function checkoutbuy(Request $request,$id)
     {

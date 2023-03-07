@@ -27,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+
+Route::post('/displayaddress',[WebsiteController::class,'displayaddress']);
+
 Route::get('/giftvoucher',[WebsiteController::class,'giftcards']);
 Route::get('/gif/{id}',[WebsiteController::class,'giftcarddetails']);
 

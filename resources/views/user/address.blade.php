@@ -5,6 +5,19 @@
 @section('content')
 
 
+@if (Session::has('flash_success'))
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    {{ Session::get('flash_success') }}
+</div>
+@endif
+@if (Session::has('flash_error'))
+<div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    {{ Session::get('flash_error') }}
+</div>
+@endif
+
 
 
 <div class="shop-ccc">
@@ -17,48 +30,32 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
+                                @foreach($data as $data)
                                 <div class="col-lg-6">
                                     <div class="saved_address">
                                         <div class="saved_head">
-                                            <p>Jagadeesh <span>Default</span></p>
+                                            <p>{{$data->name}}@if($data->default_address == 1)<span>Default</span> @endif</p>
                                         </div>
                                         <div class="saved_body">
                                             <p>
-                                                <span>Bangalore, Bangalore, Karnataka, India , 572109</span>
-                                                <span><label>Phone: </label>9876543210</span>
-                                                <span><label>Email: </label>jags@customwish.com</span>
+                                                <span>{{$data->address}},{{$data->city}},{{$data->state}},{{$data->country}} ,{{$data->pincode}}</span>
+                                                <span><label>Phone: </label>{{$data->phone}}</span>
+                                                <span><label>Email: </label>{{$data->email}}</span>
                                             </p>
                                         </div>
                                         <div class="saved_footer">
-                                            <a href="">Edit</a>
-                                            <a href="">Remove</a>
+                                            <a href="{{url('/user/editaddress/')}}/{{$data->id}}">Edit</a>
+                                            <button form="resource-delete-{{ $data->id }}" class="btn btn-danger btn-icon-style-2"><span>Remove</span></button>
+                                            <form id="resource-delete-{{ $data->id }}" action="{{url('/user/deleteuseraddress')}}/{{$data->id}}" style="display: inline-block;" onSubmit="return confirm('Are you sure you want to delete this item?');" method="post">
+                                            @csrf
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
 
-                                <div class="col-lg-6">
-                                    <div class="saved_address">
-                                        <div class="saved_head">
-                                            <p>Sneha</p>
-                                        </div>
-                                        <div class="saved_body">
-                                            <p>
-                                                <span>Bangalore, Bangalore,<br> Karnataka, India , 572109</span>
-                                                <span><label>Phone: </label>9876543210</span>
-                                                <span><label>Email: </label>jags@customwish.com</span>
-                                            </p>
-                                        </div>
-                                        <div class="saved_footer">
-                                            <a href="">Edit</a>
-                                            <a href="">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                
-                                
                             </div>
-                            <a href="" class="add_new_add">+ Add a new address </a>
+                            <a href="{{url('/user/addnewaddress')}}" class="add_new_add">+ Add a new address </a>
                         </div>
                     </div>
                 </div>

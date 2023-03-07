@@ -39,7 +39,7 @@
                                     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label class="control-label">Email</label><span class="text-danger">*</span>
-                                            <input type="email" readonly class="form-control" id="email" placeholder="Enter Email" value="{{$user->email}}" name="email" required>
+                                            <input type="email" readonly class="form-control" readonly id="email" placeholder="Enter Email" value="{{$user->email}}" name="email" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
@@ -47,6 +47,20 @@
                                             <label class="control-label">Phone</label><span class="text-danger">*</span>
                                             <input type="tel" pattern="[1-9]{1}[0-9]{9}"   class="form-control" id="phone" placeholder="Enter Phone" name="phone" required value="{{ $user->phone}}">
                                         </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
+                                        <label class="control-label">Date of Birth</label><span class="text-danger">*</span>
+                                        <input class="form-control" type="date" name="dob" value="{{$user->dob}}" required/>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
+                                        <label>Male
+                                        <input class="form-control" type="radio" name="gender" value="male" required @if($user->gender == 'male') checked @endif/>
+                                        </label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
+                                        <label>Female
+                                        <input class="form-control" type="radio" name="gender" value="female" @if($user->gender == 'female') checked @endif/>
+                                        </label>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">

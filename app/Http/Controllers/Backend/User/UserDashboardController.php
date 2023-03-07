@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderList;
 use App\Models\User;
@@ -58,6 +59,8 @@ class UserDashboardController extends Controller
             'state'=>$request->state,
             'city'=>$request->city,
             'pincode'=>$request->pincode,
+            'gender'=>$request->gender,
+            'dob'=>$request->dob,
         ]);
 
             $user = User::find($id);
@@ -92,6 +95,67 @@ class UserDashboardController extends Controller
 
     public function address(Request $request)
     {
-        return view('user.address');
+        $data = Address::where('user_id',Auth::user()->id)->get();
+        return view('user.address',compact('data'));
     }
+    public function addaddress(Request $request)
+    {
+        $data = new Address();
+        $data->user_id = Auth::user()->id;
+        $data->name = $request->name;
+        $data->email = $request->email;;
+        $data->phone = $request->phone;
+        $data->country = $request->country;
+        $data->state = $request->state;
+        $data->city = $request->city;
+        $data->address = $request->address;
+        $data->pincode = $request->pincode;
+        $data->address_type = $request->address_type;
+        if($request->default_address ==''){
+            $data->default_address = '0';
+        }else if($request->default_address == 'on'){
+            $data->default_address = '1';
+        }
+        $data->save();
+        if($data->default_address == 1){
+            $check = Address::whereNot('id',$data->id)->update(['default_address'=>'0']);
+        }
+        return back()->with('flash_success', 'Added Successfully');
+    }
+
+    public function editaddress(Request $request,$id)
+    {
+        $data = Address::where('id',$id)->first();
+        return view('user.editaddress',compact('data'));
+    }
+    public function updateaddress(Request $request,$id)
+    {
+        $data = Address::find($id);
+        $data->user_id = Auth::user()->id;
+        $data->name = $request->name;
+        $data->email = $request->email;;
+        $data->phone = $request->phone;
+        $data->country = $request->country;
+        $data->state = $request->state;
+        $data->city = $request->city;
+        $data->address = $request->address;
+        $data->pincode = $request->pincode;
+        $data->address_type = $request->address_type;
+        if($request->default_address ==''){
+            $data->default_address = '0';
+        }else if($request->default_address == 'on'){
+            $data->default_address = '1';
+        }
+        $data->save();
+        if($data->default_address == 1){
+            $check = Address::whereNot('id',$data->id)->update(['default_address'=>'0']);
+        }
+        return back()->with('flash_success', 'Updated Successfully');
+    }
+    public function deleteuseraddress(Request $request,$id)
+    {
+        $con = Address::where('id',$id)->delete();
+        return back()->with('flash_success','Deleted Successfully');
+    }
+
 }
