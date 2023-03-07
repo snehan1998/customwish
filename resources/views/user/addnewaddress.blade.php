@@ -83,26 +83,41 @@
                                             <input type="text" class="form-control" id="pincode" placeholder="Enter Pincode" name="pincode" value="" required>
                                         </div>
                                     </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12"><span class="text-danger">*</span>
-                                            <input type="radio" class="form-control" value="home"  placeholder="" name="address_type" id="home" required>
-                                            <label for="home" class="mb-0"> Home</label>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
-                                            <input type="radio" class="form-control" value="office" name="address_type" id="office"  placeholder="">
-                                            <label for="office" class="mb-0"> Office </label>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
-                                            <input type="radio" class="form-control" value="other" placeholder="" name="address_type" id="other">
-                                            <label for="other" class="mb-0"> Other </label>
-                                        </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group default_checkbox">
-                                            <label class="control-label" for="default_address">Use this address as default
-                                            <input type="checkbox" class="form-control" id="default_address" name="default_address">
-                                        </label>
+
+                                    <div class="col-lg-12">
+                                        <div class="address_type">
+                                            <label>Address Type </label>
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <input type="radio" class="form-control" value="home"  placeholder="" name="address_type" id="home" required>
+                                                    <label for="home" class="mb-0"> Home</label>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <input type="radio" class="form-control" value="office" name="address_type" id="office"  placeholder="">
+                                                    <label for="office" class="mb-0"> Office </label>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <input type="radio" class="form-control" value="other" placeholder="" name="address_type" id="other">
+                                                    <label for="other" class="mb-0"> Other </label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div><br>
+                                        
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
+                                        <!-- <div class="form-group default_checkbox">
+                                            <label class="control-label" for="default_address">Use this address as default
+                                                <input type="checkbox" class="form-control" id="default_address" name="default_address">
+                                            </label>
+                                        </div> -->
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Use this address as default</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                                 <button class="btn btn-primary-sub" type="submit" >Submit</button>
                             </form>
                         </div>

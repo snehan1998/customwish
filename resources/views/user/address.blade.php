@@ -45,12 +45,14 @@
                                         </div>
                                         <div class="saved_footer">
                                             <a href="{{url('/user/editaddress/')}}/{{$data->id}}">Edit</a>
-                                            <button form="resource-delete-{{ $data->id }}" class="btn btn-danger btn-icon-style-2"><span>Remove</span></button>
-                                            <form id="resource-delete-{{ $data->id }}" action="{{url('/user/deleteuseraddress')}}/{{$data->id}}" style="display: inline-block;" onSubmit="return confirm('Are you sure you want to delete this item?');" method="post">
+                                            <button form="resource-delete-{{ $data->id }}" class=""><span>Remove</span></button>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                    <form id="resource-delete-{{ $data->id }}" action="{{url('/user/deleteuseraddress')}}/{{$data->id}}" style="display: inline-block;" onSubmit="return confirm('Are you sure you want to delete this item?');" method="post">
                                             @csrf
                                             </form>
-                                        </div>
-                                    </div>
                                 </div>
                                 @endforeach
 

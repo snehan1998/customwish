@@ -1059,6 +1059,7 @@ h5.song {
    height: 43px;
    bottom: 33%;
    right: 2%;
+   z-index: 12;
 }
 .float1 {
    position: fixed;
@@ -1066,6 +1067,7 @@ h5.song {
    height: 43px;
    bottom: 24%;
    right: 2%;
+   z-index: 13;
 }
 .float {
    position: fixed;
@@ -1081,6 +1083,7 @@ h5.song {
    align-items: center;
    justify-content: center;
    cursor: pointer;
+   z-index: 11;
 }
 .my-float {
    margin-top: 0px;
@@ -1170,6 +1173,11 @@ h5.song {
     background-color: #ececec;
     display: flex;
     justify-content: space-between;
+}
+.saved_footer button{
+    border: none;
+    font-size: 14px;
+    color: #c2272d;
 }
 .saved_footer a {
     font-size: 14px;
@@ -1441,7 +1449,63 @@ button.logbtn1 {
     border: 1px solid #ddd;
     margin-left: 10px;
 }
+.address_type{
+    margin-bottom: 20px;
+}
+.form-check input[type="checkbox"]{
+    display: block;
+}
+.form-check{
+    margin-bottom: 20px;
+}
+.address_type input[type='radio'] {
 
+    width: 20px;
+    height: 20px;
+    margin: 3px 8px 0px 0px;
+    position: relative;
+    float: left;
+    display: inline;
+    top: 0;
+    border-radius: 19px;
+    z-index: 99999;
+    cursor: pointer;
+    border: 5px solid #ccc;
+}
+
+.address_type .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border: 5px solid #c2272d;
+    outline: 0px solid #000;
+    box-shadow: none;
+}
+.swal2-actions {
+    display: flex;
+    z-index: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 10px auto 0 !important;
+}
+.swal2-styled.swal2-confirm{
+    font-size: 16px !important;
+    padding: 6px 20px !important;
+}
+.swal2-content{
+    font-size: 14px !important;
+}
+.swal2-title{
+    font-size: 24px !important;
+}
+
+.review_items_inner {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px #cccccc85;
+}
 
 @media only screen and (max-width: 600px){
     .container {

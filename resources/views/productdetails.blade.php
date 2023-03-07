@@ -2254,36 +2254,11 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
                     </div>
                     <div class="tab-pane fade" id="tab-pane-6">
                         <div class="row mx-0">
-                            <div class="col-md-12 p-3">
-                                <h4 class="mb-4" style="display:none;">Review</h4>
-                                <div class="media" >
-                                    <div class="media-body">
-                                        @foreach($review as $review)
-                                            @foreach(range(1,5) as $i)
-                                            <span class="fa-stack" style="width:1em">
-                                                <i class="far fa-star fa-stack-1x"></i>
-
-                                                @if($review->rating >0)
-                                                    @if($review->rating >0.5)
-                                                        <i class="fas fa-star fa-stack-1x"></i>
-                                                    @else
-                                                        <i class="fas fa-star-half fa-stack-1x"></i>
-                                                    @endif
-                                                @endif
-                                                @php $review->rating--; @endphp
-                                            </span>
-                                            @endforeach
-                                        <h6>{{$review->name}}<small> - <i>{{ \Carbon\Carbon::parse($review->datee)->format('j F Y')}}</i></small></h6>
-                                        <p>{!!$review->comment!!}</p>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        <div class="col-lg-12">
-                        <h2>Leave a comment here</h2>
-                        <form id="contact-form" action="{{url('/productreview')}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                        <input type="hidden" name="productid" id="productid" value="{{$product->id}}">
+                        <div class="col-lg-6">
+                            <h2>Leave a comment here</h2>
+                            <form id="contact-form" action="{{url('/productreview')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                            <input type="hidden" name="productid" id="productid" value="{{$product->id}}">
 
                                 <div class="flex-w flex-m p-t-50 p-b-23">
                                     <span class="stext-102 cl3 m-r-16">
@@ -2329,6 +2304,34 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
                                 </div>
                             </form>
                         </div>
+                            <div class="col-lg-6 p-3">
+                                <h4 class="mb-4" style="display:none;">Review</h4>
+                                <div class="review_items" >
+                                    <div class="row mx-0">
+                                        @foreach($review as $review)
+                                            <div class="col-lg-12 review_items_inner">
+                                                    @foreach(range(1,5) as $i)
+                                                    <span class="fa-stack" style="width:1em">
+                                                        <i class="far fa-star fa-stack-1x"></i>
+
+                                                        @if($review->rating >0)
+                                                            @if($review->rating >0.5)
+                                                                <i class="fas fa-star fa-stack-1x"></i>
+                                                            @else
+                                                                <i class="fas fa-star-half fa-stack-1x"></i>
+                                                            @endif
+                                                        @endif
+                                                        @php $review->rating--; @endphp
+                                                    </span>
+                                                    @endforeach
+                                                <h6>{{$review->name}}<small> - <i>{{ \Carbon\Carbon::parse($review->datee)->format('j F Y')}}</i></small></h6>
+                                                <p>{!!$review->comment!!}</p>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                </div>
+                            </div>
+                        
                         </div>
                     </div>
                 </div>
