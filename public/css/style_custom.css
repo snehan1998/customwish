@@ -870,7 +870,7 @@ details{
     margin: 0px 0 0 0 !important;
 }
 .product-content .product-title {
-    font-size: 22px;
+    font-size: 20px;
     text-transform: capitalize;
     font-family: 'Mulish', sans-serif;
     font-weight: 700;
@@ -1198,6 +1198,7 @@ a.add_new_add {
     text-align: center;
     margin-right: 10px;
     margin-bottom: 0px;
+    cursor: pointer;
 }
 .boxed label:last-child {
     margin-right: 0px;
@@ -1226,7 +1227,7 @@ a:hover{
 }
 .custom-control-label::before {
     position: absolute;
-    top: 0.5rem;
+    top: 0.6rem;
     left: -1.5rem;
     display: block;
     width: 1rem;
@@ -1247,7 +1248,7 @@ img.eggless {
     margin: 0 12px 0 0px;
 }
 .custom-control-label::after{
-    top: 0.5rem;
+    top: 0.6rem;
 }
 .custom-control-input:checked ~ .custom-control-label::before {
     color: #fff;
@@ -1282,6 +1283,9 @@ label.slect-varient {
     overflow: hidden;
     box-shadow: 0px 1px 33px #ddd;
 }
+.img-display img{
+    width: 100%;
+}
 .img-select {
     margin: 10px 0px;
     display: flex;
@@ -1289,7 +1293,7 @@ label.slect-varient {
 }
 .img-item img {
     width: 100% !important;
-    margin: 0.3rem ;
+    margin: 0rem ;
 }
 .custom-control{
     padding-left: 0px;
@@ -1301,6 +1305,141 @@ label.slect-varient {
 }
 .custom-control.pickupp{
     margin-bottom: 20px !important;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.text-primary1{
+    border: none;
+}
+.pincode_sec input.form-control{
+    border: none;
+}
+.breadcrumb-item{
+    font-size: 14px;
+}
+#nonvegprice #tprice {
+    margin-bottom: 20px;
+    color: #000;
+}
+span.char {
+    float: right;
+    font-size: 13px;
+    color: grey;
+    margin: 0px 0 0 0;
+}
+h5.song {
+    margin: 0px 0 10px 0;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+}
+
+.input-group-btn button:focus{
+    outline: unset;
+}
+h4.qun {
+    font-size: 20px;
+    text-transform: capitalize;
+    font-family: 'Mulish', sans-serif;
+    position: relative;
+    color: #12263a;
+    margin: 10px 0 10px 0;
+}
+.inputclass:focus-visible{
+    outline: unset;
+}
+.product-content .inputclass11:focus-visible{
+    outline: unset;
+}
+button.havedesign {
+    background-color: #29ab1b;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 20px;
+    width: auto;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.gst {
+    color: #000;
+    font-size: 20px;
+    font-weight: 200;
+    margin-bottom: 10px;
+}
+.preview input[type='radio']{
+    height: 30px;
+    width: 30px;
+    margin: 0px 15px 0px 0px;
+}
+.form-group h5{
+    font-size: 16px;
+    color: #000;
+}
+.swal2-styled.swal2-confirm {
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #c2272d !important;
+    color: #fff;
+    font-size: 1.0625em;
+    border-color: #c2272d !important;
+}
+.swal2-styled:focus{
+    box-shadow: none !important;
+}
+.swal2-content{
+    padding: 0px 10px !important;
+}
+.swal2-title {
+    position: relative;
+    max-width: 100%;
+    margin: 0 0 0.4em !important;
+}
+.swal2-icon {
+    position: relative;
+    box-sizing: content-box;
+    justify-content: center;
+    width: 5em;
+    height: 5em;
+    margin: 0.25em auto 0.5em !important;
+    border: 0.25em solid transparent;
+    border-radius: 50%;
+    font-family: inherit;
+    line-height: 5em;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.swal2-popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    width: 25% !important;
+    max-width: 100%;
+    padding: 1.25em !important;
+    border: none;
+    border-radius: 0.3125em;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+}
+button:focus{
+    outline: unset;
+}
+button.logbtn1 {
+    background-color: #c2272d;
+    color: #fff;
+    padding: 5px 20px;
+    border: 1px solid #ddd;
+    margin-left: 10px;
 }
 
 

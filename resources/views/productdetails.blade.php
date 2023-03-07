@@ -184,15 +184,7 @@ button.btnn {
     width: 32%;
     border-radius: 0px!important;
 }
-button.havedesign{
-    background-color: #29ab1b;
-    color: #fff;
-    border-radius: 14px;
-    border: none;
-    padding: 5px 0 9px 0px;
-    width: 70%;
-    font-size: 24px;
-}
+
 </style>
 <style>
 	button.btn {
@@ -744,16 +736,18 @@ input[type="radio"].btn.btn-primary-sign {
             @if($product->is_combo == 1)
             <?php  $procombopart = App\Models\ProductCombo::where('product_id',$product->id)->get();?>
                 @foreach($procombopart as $procombopart)
-                <div class="col-lg-6 ">
-                    <p style="display: flex;">For {{$procombopart->button_name}}:
-                    <button class="logbtn1" value="{{$procombopart->id}}" type="button" data-id="{{$procombopart->id}}" data-box="buttonattr{{$procombopart->id}}">Show</button></p>
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <p style="display: flex;">For {{$procombopart->button_name}}:
+                        <button class="logbtn1" value="{{$procombopart->id}}" type="button" data-id="{{$procombopart->id}}" data-box="buttonattr{{$procombopart->id}}">Show</button></p>
+                    </div>
                 </div>
                 <input type="hidden" name="comboname" value="{{$procombopart->id}}" id="comboname">
                 <div class="showonlyclick{{$procombopart->id}}" style="display: none;"  id="buttonattr{{$procombopart->id}}">
                     <div class="row">
                         @if($procombopart->combo_text_field == 1)
                         <div class="col-lg-12">
-                            <h5 class="song">{{$procombopart->combo_text_heading}}<span class="char">@if($procombopart->combo_text_validation != "")(Max {{$procombopart->variation_text_validation}} characters ) @endif</span></h5><br>
+                            <h5 class="song">{{$procombopart->combo_text_heading}}<span class="char">@if($procombopart->combo_text_validation != "")(Max {{$procombopart->variation_text_validation}} characters ) @endif</span></h5>
                             <p style="display: flex;"><input type="text" class="inputclass11 comboaddtext1{{$procombopart->id}}" value="" id="comboaddtext1{{$procombopart->id}}" name="comboaddtext1" maxlength="{{$procombopart->combo_text_validation}}" placeholder="Type here" style=""></p>
                         </div>
                         @endif
@@ -882,7 +876,7 @@ input[type="radio"].btn.btn-primary-sign {
             <div class="row">
                 @if($product->text_field == 1)
                 <div class="col-lg-12">
-                    <h5 class="song">{{$product->text_heading}}<span class="char">@if($product->text_validation != "")(Max {{$product->text_validation}} characters ) @endif</span></h5><br>
+                    <h5 class="song">{{$product->text_heading}}<span class="char">@if($product->text_validation != "")(Max {{$product->text_validation}} characters ) @endif</span></h5>
                     <p style="display: flex;"><input type="text" class="inputclass11 addtext1{{$product->id}}" name="addtext1" maxlength="{{$product->text_validation}}" placeholder="Type here" style="" ></p>
                 </div>
                 @endif
@@ -893,7 +887,7 @@ input[type="radio"].btn.btn-primary-sign {
                 <h2 class="deco">Input Personalization Details</h2>
                 @endif
                 <div class="col-lg-12">
-                    <h5 class="song">{{$product->addatext_heading}}<span class="char">@if($product->addatext_validation != "")(Max {{$product->addatext_validation}} characters ) @endif</span></h5><br>
+                    <h5 class="song">{{$product->addatext_heading}}<span class="char">@if($product->addatext_validation != "")(Max {{$product->addatext_validation}} characters ) @endif</span></h5>
                     <p style="display: flex;"><input type="text" class="inputclass11 addtext2{{$product->id}}" name="addtext2" maxlength="{{$product->addatext_validation}}" placeholder="Type here" style="" ></p>
                 </div>
                 @endif
@@ -1054,7 +1048,7 @@ input[type="radio"].btn.btn-primary-sign {
             @if($product->textareaa == 1)
             <div class="form-group">
                 <h5>{{$product->textarea_name}} <span class="text-danger1">@if($product->textarea_validation != "")(Max {{$product->textarea_validation}} characters) @endif</span></h5>
-                <textarea class="form-control description{{$product->id}}" name="description" required id="message_popup" maxlength="{{$product->textarea_validation}}" cols="30" rows="4" tabindex="1" style="border: 1px solid #767676;"></textarea>
+                <textarea class="form-control inputclass description{{$product->id}} " name="description" required id="message_popup" maxlength="{{$product->textarea_validation}}" cols="30" rows="4" tabindex="1" ></textarea>
             </div>
             @endif
 
@@ -1062,7 +1056,7 @@ input[type="radio"].btn.btn-primary-sign {
             <div class="row comment_sec">
                 <div class="col-lg-12">
                     <h5>{{$product->comment_heading}}</h5>
-                    <p><input type="text" name="comment" class="inputclass  comment{{$product->id}}" style="width:100%;height:100px;"></p>
+                    <p><textarea type="text" name="comment" class="inputclass  comment{{$product->id}}" style="width:100%;height:100px;"></textarea></p>
                 </div>
             </div>
             @endif
@@ -1070,7 +1064,7 @@ input[type="radio"].btn.btn-primary-sign {
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Button trigger modal -->
-                    <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: darkturquoise;font-size: 18px;">
+                    <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: #c2272d;font-size: 18px;">
                         For any Queries - Get in Touch
                     </a>
                 </div>
@@ -1531,9 +1525,8 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                 <div class="row">
                     <div class="col-lg-12">
                         <p class = "new-price" id="pric-dd">₹{{$product->price}}<span> (Inclusive of GST)</span></p>
-                        <br>
                         @if($product->quantity_show == 1)
-                        <h4 class="qun">Quantity</h4><br>
+                        <h4 class="qun">Quantity</h4>
                         <div class="input-group quantity" style="width: 100px; border:1px solid gray;color:#000;">
                             <div class="input-group-btn">
                                 <button class="btnn btn-sm btn-primary1 btn-minus" >
@@ -1552,7 +1545,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                         @if($product->textareaa == 1)
                         <div class="form-group">
                             <h5>{{$product->textarea_name}} <span class="text-danger1">@if($product->textarea_validation != "")(Max {{$product->textarea_validation}} characters) @endif</span></h5>
-                            <textarea class="form-control description{{$product->id}}" name="description" required id="message_popup" maxlength="{{$product->textarea_validation}}" cols="30" rows="4" tabindex="1" style="border: 1px solid #767676; "></textarea>
+                            <textarea class="form-control inputclass description{{$product->id}}" name="description" required id="message_popup" maxlength="{{$product->textarea_validation}}" cols="30" rows="4" tabindex="1" ></textarea>
                         </div>
                         @endif
 
@@ -1587,101 +1580,107 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
 
 
 
-
+        
         @if($product->is_combo == 1)
         <?php  $procombopart = App\Models\ProductCombo::where('product_id',$product->id)->get();?>
+        <div class="row">
             @foreach($procombopart as $procombopart)
-            <div class="col-lg-6 ">
-                <p style="display: flex;">For {{$procombopart->button_name}}{{$procombopart->id}}:
-                <button class="logbtn1" value="{{$procombopart->id}}" type="button" data-id="{{$procombopart->id}}" data-box="buttonattr{{$procombopart->id}}">Show</button></p>
-            </div>
-            <input type="hidden" name="comboname" value="{{$procombopart->id}}" id="comboname">
-            <div class="showonlyclick{{$procombopart->id}}" style="display: none;"  id="buttonattr{{$procombopart->id}}">
-                <div class="row">
-                    @if($procombopart->combo_text_field == 1)
-                    <div class="col-lg-12">
-                        <h5 class="song">{{$procombopart->combo_text_heading}}<span class="char">@if($procombopart->combo_text_validation != "")(Max {{$procombopart->variation_text_validation}} characters ) @endif</span></h5><br>
-                        <p style="display: flex;"><input type="text" class="inputclass11 comboaddtext1{{$procombopart->id}}" value="" id="comboaddtext1{{$procombopart->id}}" name="comboaddtext1" maxlength="{{$procombopart->combo_text_validation}}" placeholder="Type here" style=""></p>
-                    </div>
-                    @endif
+           
+                <div class="col-lg-6 ">
+                    <p style="display: flex; align-items:center;">For {{$procombopart->button_name}}{{$procombopart->id}}:
+                    <button class="logbtn1" value="{{$procombopart->id}}" type="button" data-id="{{$procombopart->id}}" data-box="buttonattr{{$procombopart->id}}">Show</button></p>
                 </div>
-                <?php $attributecom = App\Models\ProductComboVariation::where('product_id', $product->id)->get();?>
-                @foreach($attributecom as $attributecom)
-                <?php
-                $attnamee1com = App\Models\Attribute::where('id',$attributecom->product_combo_attr_id)->first();
-                $varianttt1combo = App\Models\ProductCombooo::where('product_id',$product->id)->where('combo_attr_id',$attributecom->product_combo_attr_id)->where('combo_id',$procombopart->id)->get();
-                $variantt1combo = $varianttt1combo->unique('combo_attr_value');
-                $fetchvarianttext1com = App\Models\ProductCombo::where('product_id',$product->id)->where('combo_attr_id',$attributecom->product_combo_attr_id)->where('id',$procombopart->id)->first();
-                ?>
+            
+                <input type="hidden" name="comboname" value="{{$procombopart->id}}" id="comboname">
+                <div class="showonlyclick{{$procombopart->id}}" style="display: none;"  id="buttonattr{{$procombopart->id}}">
+                    <div class="row">
+                        @if($procombopart->combo_text_field == 1)
+                        <div class="col-lg-12">
+                            <h5 class="song">{{$procombopart->combo_text_heading}}<span class="char">@if($procombopart->combo_text_validation != "")(Max {{$procombopart->variation_text_validation}} characters ) @endif</span></h5>
+                            <p style="display: flex;"><input type="text" class="inputclass11 comboaddtext1{{$procombopart->id}}" value="" id="comboaddtext1{{$procombopart->id}}" name="comboaddtext1" maxlength="{{$procombopart->combo_text_validation}}" placeholder="Type here" style=""></p>
+                        </div>
+                        @endif
+                    </div>
+                    <?php $attributecom = App\Models\ProductComboVariation::where('product_id', $product->id)->get();?>
+                    @foreach($attributecom as $attributecom)
+                    <?php
+                    $attnamee1com = App\Models\Attribute::where('id',$attributecom->product_combo_attr_id)->first();
+                    $varianttt1combo = App\Models\ProductCombooo::where('product_id',$product->id)->where('combo_attr_id',$attributecom->product_combo_attr_id)->where('combo_id',$procombopart->id)->get();
+                    $variantt1combo = $varianttt1combo->unique('combo_attr_value');
+                    $fetchvarianttext1com = App\Models\ProductCombo::where('product_id',$product->id)->where('combo_attr_id',$attributecom->product_combo_attr_id)->where('id',$procombopart->id)->first();
+                    ?>
 
-                @if($attnamee1com->attr_label == 'color')
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p class="gst">Color </p>
-                        <div class="preview">
-                            @foreach($variantt1combo as $variantt1combo)
-                             @if($variantt1combo->combo_attr_id == $attributecom->product_combo_attr_id)
-                             <?php  $attvaluee1co = App\Models\AttributeValue::where('id',$variantt1combo->combo_attr_value)->first();
-                                    $fetchvariantt1co = App\Models\ProductCombo::where('id',$variantt1combo->combo_id)->first();
-                                ?>
-                                <label><!--name="attr_{{$attnamee1com->attr_name}}"-->
-                                <input type="hidden" name="productid" value="{{$product->id}}" id="productid{{$product->id}}"/>
-                                <input style="background-color:{{$attvaluee1co->attr_value_title}};" class="form-control comcradio{{$attvaluee1co->id}} product-filter-item colorradioo{{$product->id}}" value="{{$attvaluee1co->id}}"  name="comattsname" type="radio" id="comcolorradio" data-comboattr="{{$variantt1combo->combo_id}}" onclick="getcomboattr();">
-                                <span  class="comcolorradio" data-name="{{$attnamee1com->attr_name}}" data-bg-color="#{{$attvaluee1co->attr_value_title}}"  class="size-code">
-                                </label>
-                                @endif
-                            @endforeach
+                    @if($attnamee1com->attr_label == 'color')
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="gst">Color </p>
+                            <div class="preview">
+                                @foreach($variantt1combo as $variantt1combo)
+                                @if($variantt1combo->combo_attr_id == $attributecom->product_combo_attr_id)
+                                <?php  $attvaluee1co = App\Models\AttributeValue::where('id',$variantt1combo->combo_attr_value)->first();
+                                        $fetchvariantt1co = App\Models\ProductCombo::where('id',$variantt1combo->combo_id)->first();
+                                    ?>
+                                    <label><!--name="attr_{{$attnamee1com->attr_name}}"-->
+                                    <input type="hidden" name="productid" value="{{$product->id}}" id="productid{{$product->id}}"/>
+                                    <input style="background-color:{{$attvaluee1co->attr_value_title}};" class="form-control comcradio{{$attvaluee1co->id}} product-filter-item colorradioo{{$product->id}}" value="{{$attvaluee1co->id}}"  name="comattsname" type="radio" id="comcolorradio" data-comboattr="{{$variantt1combo->combo_id}}" onclick="getcomboattr();">
+                                    <span  class="comcolorradio" data-name="{{$attnamee1com->attr_name}}" data-bg-color="#{{$attvaluee1co->attr_value_title}}"  class="size-code">
+                                    </label>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
-                @endif
+                    @endif
 
-                <?php $attnamecom = App\Models\Attribute::where('id',$attributecom->product_combo_attr_id)->first();
-                $varianttcom = App\Models\ProductCombooo::where('product_id',$product->id)->where('combo_attr_id',$attributecom->product_combo_attr_id)->where('combo_id',$procombopart->id)->get();
-                $variantcom = $varianttcom->unique('combo_attr_value');
-                ?>
-                    @if($attnamecom->attr_label == 'label')
-                    <label class="slect-varient">Select Variant</label>
-                    <div class="boxed">
-                    @foreach($variantcom as $variantcom)
-                    @if($variantcom->combo_attr_id == $attributecom->product_combo_attr_id)
-                    <?php
-                        $attvaluecom = App\Models\AttributeValue::where('id',$variantcom->combo_attr_value)->first();
-                        $fetchvariantcom = App\Models\ProductCombo::where('id',$variantcom->combo_id)->where('id',$procombopart->id)->first();
+                    <?php $attnamecom = App\Models\Attribute::where('id',$attributecom->product_combo_attr_id)->first();
+                    $varianttcom = App\Models\ProductCombooo::where('product_id',$product->id)->where('combo_attr_id',$attributecom->product_combo_attr_id)->where('combo_id',$procombopart->id)->get();
+                    $variantcom = $varianttcom->unique('combo_attr_value');
                     ?>
-                        <input type="hidden" name="productid" value="{{$product->id}}" id="productid{{$product->id}}"/>
-                        <label class="LargeOptionRadio__label">
-                        <input class="form-control sradioatt comsradio{{$attvaluecom->id}} product-filter-item comsradioo{{$product->id}}" value="{{$attvaluecom->id}}" name="comboattsname" type="radio" id="comsradioatt" data-at="{{$attvaluecom->attr_id}}" data-attr="{{$attvaluecom->combo_id}}"  data-comboattr="{{$variantcom->combo_id}}" onclick="getcomboattr();">
-                        <span class="comsradio" data-name="{{$attnamecom->attr_name}}" >
-                        {{$attvaluecom->attr_value_title}}
-                    </label>
-                    @endif
-                    @endforeach
-                    </div>
-                    @endif
+                        @if($attnamecom->attr_label == 'label')
+                        <label class="slect-varient">Select Variant</label>
+                        <div class="boxed">
+                        @foreach($variantcom as $variantcom)
+                        @if($variantcom->combo_attr_id == $attributecom->product_combo_attr_id)
+                        <?php
+                            $attvaluecom = App\Models\AttributeValue::where('id',$variantcom->combo_attr_value)->first();
+                            $fetchvariantcom = App\Models\ProductCombo::where('id',$variantcom->combo_id)->where('id',$procombopart->id)->first();
+                        ?>
+                            <input type="hidden" name="productid" value="{{$product->id}}" id="productid{{$product->id}}"/>
+                            <label class="LargeOptionRadio__label">
+                            <input class="form-control sradioatt comsradio{{$attvaluecom->id}} product-filter-item comsradioo{{$product->id}}" value="{{$attvaluecom->id}}" name="comboattsname" type="radio" id="comsradioatt" data-at="{{$attvaluecom->attr_id}}" data-attr="{{$attvaluecom->combo_id}}"  data-comboattr="{{$variantcom->combo_id}}" onclick="getcomboattr();">
+                            <span class="comsradio" data-name="{{$attnamecom->attr_name}}" >
+                            {{$attvaluecom->attr_value_title}}
+                        </label>
+                        @endif
+                        @endforeach
+                        </div>
+                        @endif
 
-                @endforeach
-
-                <div class="row">
-                    <?php  $optionheading = App\Models\ProductSelectHeading::where('product_id',$product->id)->where('combo_id',$procombopart->id)->get();?>
-                    @foreach($optionheading as $optionheading)
-                    <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->where('product_select_id',$optionheading->id)->where('combo_id',$procombopart->id)->get(); ?>
-                    <div class="col-lg-12">
-                        <p class="pflex">
-                            <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
-                            <option data-comboattrr="{{$optionheading->combo_id}}">{{$optionheading->product_select_title}}</option>
-                            @foreach($option as $option)
-                            <option value="{{$option->id}}" data-comboattrr="{{$optionheading->combo_id}}">{{$option->product_select_option}}</option>
-                            @endforeach
-                            </select>
-                        </p>
-                    </div>
                     @endforeach
+
+                    <div class="row">
+                        <?php  $optionheading = App\Models\ProductSelectHeading::where('product_id',$product->id)->where('combo_id',$procombopart->id)->get();?>
+                        @foreach($optionheading as $optionheading)
+                        <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->where('product_select_id',$optionheading->id)->where('combo_id',$procombopart->id)->get(); ?>
+                        <div class="col-lg-12">
+                            <p class="pflex">
+                                <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                                <option data-comboattrr="{{$optionheading->combo_id}}">{{$optionheading->product_select_title}}</option>
+                                @foreach($option as $option)
+                                <option value="{{$option->id}}" data-comboattrr="{{$optionheading->combo_id}}">{{$option->product_select_option}}</option>
+                                @endforeach
+                                </select>
+                            </p>
+                        </div>
+                        @endforeach
+                    </div>
+
                 </div>
-
-            </div>
+        
                 @endforeach
+        </div>
             @endif
+
 
             <div id="variationn-dd">
             </div>
@@ -1725,7 +1724,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
          <div class="row">
             @if($product->text_field == 1)
             <div class="col-lg-12">
-                <h5 class="song">{{$product->text_heading}}<span class="char">@if($product->text_validation != "")(Max {{$product->text_validation}} characters ) @endif</span></h5><br>
+                <h5 class="song">{{$product->text_heading}}<span class="char">@if($product->text_validation != "")(Max {{$product->text_validation}} characters ) @endif</span></h5>
                 <p style="display: flex;"><input type="text" class="inputclass11 addtext1{{$product->id}}" name="addtext1" maxlength="{{$product->text_validation}}" placeholder="Type here" style=""></p>
             </div>
             @endif
@@ -1733,12 +1732,11 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         <div class="row">
             @if($product->addatext_option == 1)
             <div class="col-lg-12">
-                <h5 class="song">{{$product->addatext_heading}}<span class="char">@if($product->addatext_validation != "")(Max {{$product->addatext_validation}} characters ) @endif</span></h5><br>
+                <h5 class="song">{{$product->addatext_heading}}<span class="char">@if($product->addatext_validation != "")(Max {{$product->addatext_validation}} characters ) @endif</span></h5>
                 <p style="display: flex;"><input type="text" class="inputclass11 addtext2{{$product->id}}" name="addtext2" maxlength="{{$product->addatext_validation}}" placeholder="Type here" style=""></p>
             </div>
             @endif
         </div>
-    <br>
     <div class="row">
         <?php  $optionheading = App\Models\ProductSelectHeading::where('product_id',$product->id)->whereNull('combo_id')->get();?>
         @foreach($optionheading as $optionheading)
@@ -1874,7 +1872,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         <div class="row comment_sec">
             <div class="col-lg-12">
                 <h5>{{$product->comment_heading}}</h5>
-                <p><input type="text" name="comment" class="inputclass comment{{$product->id}}" style="width:100%;height:100px;"></p>
+                <p><textarea type="text" name="comment" class="inputclass comment{{$product->id}}" style="width:100%;height:100px;"></textarea></p>
             </div>
         </div>
         @endif
@@ -1882,7 +1880,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         <div class="row">
             <div class="col-lg-12">
                 <!-- Button trigger modal -->
-                <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: darkturquoise;font-size: 18px;">
+                <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: #c2272d;font-size: 18px;">
                     For any Queries - Get in Touch
                 </a>
             </div>
@@ -2812,7 +2810,7 @@ function getimages() {
             }
                 ress += '<div class = "img-item">'+
                             '<a href = "#" data-id = "'+i+'">'+
-                                '<img src = "http://127.0.0.1:8000/uploads/images/'+value.images+'" onclick="currentSlide('+i+')"  height="100px">'+
+                                '<img src = "http://127.0.0.1:8000/uploads/images/'+value.images+'" onclick="currentSlide('+i+')"  >'+
                             '</a>'+
                         '</div>';
                     i++;
