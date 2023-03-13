@@ -69,6 +69,7 @@ Route::post('corporate/corporatedeleteimage',[CorporateController::class,'corpor
 Route::get('order/{order_id}',[OrderController::class,'orderDetail']);
 Route::get('orders',[OrderController::class,'orders']);
 Route::post('changeOrderStatus',[OrderController::class,'changeOrderStatus']);
+Route::delete('orders/destroy/{id}',[OrderController::class,'destroy']);
 
 Route::resource('productselectoption',ProductSelectOptionController::class);
 Route::post('productselectoption/addMoreselection',[ProductSelectOptionController::class,'addmoreselection']);
@@ -126,3 +127,6 @@ Route::delete('contactlistdestroy/{id}', [DashboardController::class, 'contactli
 
 Route::get('corporatelist', [DashboardController::class, 'corporatelist']);
 Route::delete('corporatedestroy/{id}', [DashboardController::class, 'corporatedestroy']);
+
+Route::get('anyquerylist', [DashboardController::class, 'anyquerylist']);
+Route::delete('careerdestroy/{id}', [DashboardController::class, 'anyquerylistdestroy']);

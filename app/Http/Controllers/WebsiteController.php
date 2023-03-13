@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\About;
 use App\Models\Address;
 use App\Models\AddSubVariation;
+use App\Models\AnyQuery;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Models\Banner;
@@ -23,6 +24,7 @@ use App\Models\Event;
 use App\Models\Faq;
 use App\Models\GiftCard;
 use App\Models\GiftCardBuy;
+use Illuminate\Support\Str;
 use App\Models\LandingCakes;
 use App\Models\LeaveComment;
 use App\Models\Location;
@@ -909,12 +911,53 @@ class WebsiteController extends Controller
             return back()->with('flash_success','Something went wrong please try again later');
         }
     }
+    public function anyquery(Request $request)
+    {
+        $data = new AnyQuery();
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone =  $request->phone;
+        $data->message =  $request->message;
+        $data->save();
+        if($data){
+            $dataa = array(
+            'name' =>$request->name,
+            'phone' =>$request->phone,
+            'email' => $request->email,
+            'message1' => $request->message,
+            'user'=>'user',
+            );
+
+            Mail::send(['html'=>'mail.anyqueryform'], $dataa, function($message) use ($dataa) {
+                $message->to($dataa['email'])->subject
+                    ('Any Query Form');
+                $message->from('sneha@telcopl.com','Customwish');
+            });
+            $dataaa = array(
+                'user'=>'admin',
+                'name' =>$request->name,
+                'phone' =>$request->phone,
+                'email' => $request->email,
+                'message1' => $request->message,
+                );
+
+            Mail::send(['html'=>'mail.anyqueryform'], $dataaa, function($message) {
+                $message->to('sneha@telcopl.com')->subject
+                    ('Any Query Form');
+                $message->from('sneha@telcopl.com','Customwish');
+            });
+            return back()->with('flash_success','Thank You Our Team will get back shortly!');
+        }else{
+            return back()->with('flash_success','Something went wrong please try again later');
+        }
+    }
 
     public function giftcardbuy(Request $request)
     {
        // dd(date('Y'));
         $userid=Auth::user()->id;
-        $generateorderid = 'CW'.$this->generateBarcodeNumber(5);
+        $generateorderid = $this->generateBarcodeNumber(8);
+        // $generateorderid = 'CW'.$this->generateBarcodeNumber(5);
         $data=$request->all();
         $session_id=Session::get('sessionid');
         $orderdate = date('d-m-Y');
@@ -968,7 +1011,8 @@ class WebsiteController extends Controller
     }
 
     function generateBarcodeNumber() {
-        $number = mt_rand(10000, 99999); // better than rand()
+        $number = Str::random(8);
+        //$number = mt_rand(10000, 99999); // better than rand()
         return $number;
     }
 

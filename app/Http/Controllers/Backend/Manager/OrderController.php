@@ -16,7 +16,7 @@ class OrderController extends Controller
 
     public function orders(Request $request)
     {
-    	$orders = Order::orderBy('id','desc')->paginate(20);
+    	$orders = Order::orderBy('id','desc')->get();
     	return view('manager.orders.index',compact('orders'));
     }
 
@@ -66,5 +66,15 @@ class OrderController extends Controller
         $dataa = GiftCardBuy::find($id);
         $dataa->delete();
         return back()->with('flash_success', 'Deleted Successfully!');
+    }
+    public function destroy($id)
+    {
+        $data = Order::find($id);
+        $datt = OrderList::where('order_id',$data->order_id)->delete();
+      //  $datt = StoreProductCartLogo::where('product_id',$data->id)->delete();
+       // $datt = StoreProductCartImage::where('product_id',$data->id)->delete();
+       // @unlink(public_path('uploads/images/'.$data->images));
+        $data->delete();
+        return back()->with('flash_success', ' Deleted  Successfully!');
     }
 }

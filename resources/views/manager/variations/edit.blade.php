@@ -110,8 +110,8 @@
                                 <div class="row">
                                   <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Quantity</label>
-                                            <input type="number" class="form-control" name="quantity" id="quantity"value="{{$data->quantity}}" >
+                                            <label>Quantity</label><span class="text-danger">*</span>
+                                            <input type="number" class="form-control" required name="quantity" id="quantity"value="{{$data->quantity}}" >
                                             @if ($errors->has('quantity'))
                                                 <span class="text-danger">
                                                     <strong>{{ $errors->first('quantity') }}</strong>

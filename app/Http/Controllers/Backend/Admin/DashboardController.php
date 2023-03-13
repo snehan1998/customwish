@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnyQuery;
 use App\Models\CareerForm;
 use App\Models\ContactForm;
 use App\Models\CorporateEnquiry;
@@ -88,6 +89,18 @@ class DashboardController extends Controller
     public function corporatedestroy(Request $request,$id)
     {
         $con = CorporateEnquiry::where('id',$id)->delete();
+        return back()->with('flash_success','Deleted Successfully');
+    }
+
+    public function anyquerylist(Request $request)
+    {
+        $data=AnyQuery::orderBy('id','DESC')->get();
+        return view('admin.anyquerylist',compact('data'));
+    }
+
+    public function anyquerylistdestroy(Request $request,$id)
+    {
+        $con = AnyQuery::where('id',$id)->delete();
         return back()->with('flash_success','Deleted Successfully');
     }
 

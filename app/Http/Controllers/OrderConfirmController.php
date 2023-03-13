@@ -20,8 +20,17 @@ class OrderConfirmController extends Controller
     {
         $userid=Auth::user()->id;
         $coooup=Cart::where('user_id',$userid)->first();
-        $gifco = GiftCardBuy::where('id',$coooup->id)->first();
-        $generateorderid = $this->generateBarcodeNumber(5);
+        $gifco = GiftCardBuy::where('id',$coooup->giftcard_id)->first();
+        // Get the last order id
+        $lastorderId = Order::orderBy('id','DESC')->first()->id;
+
+        // Get last 3 digits of last order id
+        $lastIncreament = substr($lastorderId, -3);
+        //  dd($lastIncreament);
+        // Make a new order id with appending last increment + 1
+        $generateorderid = 'CW' . str_pad($lastIncreament + 1, 4, 0, STR_PAD_LEFT);
+        // $generateorderid ='CW'.$this->generateBarcodeNumber(5);
+        // $generateorderid = $this->generateBarcodeNumber(5);
         $data=$request->all();
         $session_id=Session::get('sessionid');
         $orderdate = date('d-m-Y');
@@ -144,7 +153,18 @@ class OrderConfirmController extends Controller
     {
         $userid=Auth::user()->id;
         $coooup=Cart::where('user_id',$userid)->where('id',$id)->first();
-        $generateorderid = $this->generateBarcodeNumber(5);
+        $gifco = GiftCardBuy::where('id',$coooup->giftcard_id)->first();
+
+        // Get the last order id
+        $lastorderId = Order::orderBy('id','DESC')->first()->id;
+
+        // Get last 3 digits of last order id
+        $lastIncreament = substr($lastorderId, -3);
+      //  dd($lastIncreament);
+        // Make a new order id with appending last increment + 1
+        $generateorderid = 'CW' . str_pad($lastIncreament + 1, 4, 0, STR_PAD_LEFT);
+    //    $generateorderid ='CW'.$this->generateBarcodeNumber(5);
+        // $generateorderid = $this->generateBarcodeNumber(5);
         $data=$request->all();
         $session_id=Session::get('sessionid');
         $orderdate = date('d-m-Y');
@@ -154,6 +174,8 @@ class OrderConfirmController extends Controller
         $confirmorder->user_id = Auth::user()->id;
         $confirmorder->order_price = $request->input('order_price');
         $confirmorder->payable_price= $request->input('payable_price');
+        $confirmorder->giftcard_id= $coooup->giftcard_id;
+        $confirmorder->giftcard_amount= $gifco->giftvoucher_price;
         $confirmorder->coupon_id= $coooup->coupon_id;
         $confirmorder->coupon_amount= $request->input('coupon_amount');
         $confirmorder->delivery_charge= $request->input('delivery_charge');
@@ -262,7 +284,9 @@ class OrderConfirmController extends Controller
     }
 
     function generateBarcodeNumber() {
-        $number = mt_rand(1000000000, 9999999999); // better than rand()
+        //$number = mt_rand(1000000000, 9999999999); // better than rand()
+        $number = mt_rand(10000, 99999); // better than rand()
+
         return $number;
     }
 

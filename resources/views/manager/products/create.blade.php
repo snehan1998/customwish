@@ -248,16 +248,16 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="custom-control custom-checkbox  pure-veggg">
+                                  <!--  <div class="custom-control custom-checkbox  pure-veggg">
                                         <div class="checkbox d-inline mr-3 pure-veggg">
                                             <input type="checkbox" class="custom-control-input" id="quantity_show" name="quantity_show" >
                                             <label class="custom-control-label" for="quantity_show">Quantity Section</label>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Quantity</label>
-                                            <input type="number" class="form-control" name="quantity" id="quantity"value="{{old('quantity')}}">
+                                            <label>Quantity</label><span class="text-danger">*</span>
+                                            <input type="number" class="form-control" name="quantity" required id="quantity"value="{{old('quantity')}}">
                                             @if ($errors->has('quantity'))
                                                 <span class="text-danger">
                                                     <strong>{{ $errors->first('quantity') }}</strong>

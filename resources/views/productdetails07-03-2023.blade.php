@@ -617,7 +617,7 @@ input[type="radio"].btn.btn-primary-sign {
                                 </div>
                             </div>
 
-                            <h4 class="qun">Quantity</h4>
+                           <h4 class="qun">Quantity</h4>
                             <div class="input-group quantity" style="width: 100px; border:1px solid gray;color:#000;">
                                 <div class="input-group-btn">
                                     <button class="btnn btn-sm btn-primary1 btn-minus" >
@@ -816,7 +816,7 @@ input[type="radio"].btn.btn-primary-sign {
                         <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->where('product_select_id',$optionheading->id)->where('combo_id',$procombopart->id)->get(); ?>
                         <div class="col-lg-12">
                             <p class="pflex">
-                                <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                                <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid(); getchamprice();gettotal();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
                                 <option data-comboattrr="{{$optionheading->combo_id}}">{{$optionheading->product_select_title}}</option>
                                 @foreach($option as $option)
                                 <option value="{{$option->id}}" data-comboattrr="{{$optionheading->combo_id}}">{{$option->product_select_option}}</option>
@@ -828,6 +828,7 @@ input[type="radio"].btn.btn-primary-sign {
                     </div>
                     <div id="charmprice">
                     </div>
+
                 </div>
                     @endforeach
                 @endif
@@ -899,7 +900,7 @@ input[type="radio"].btn.btn-primary-sign {
                 <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->whereNull('combo_id')->where('product_select_id',$optionheading->id)->get(); ?>
                 <div class="col-lg-12">
                     <p class="pflex">
-                        <select class="form-select inputclass12 charm_id{{$product->id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                        <select class="form-select inputclass12 charm_id{{$product->id}}" onclick="getcharmid(); getchamprice();gettotal();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
                         <option>{{$optionheading->product_select_title}}</option>
                         @foreach($option as $option)
                         <option value="{{$option->id}}">{{$option->product_select_option}}</option>
@@ -1037,17 +1038,16 @@ input[type="radio"].btn.btn-primary-sign {
                 </div>
             </div>
             <div class="row" id="nonvegprice">
-                <!-- <div class="col-lg-12" id="text" style="display:none;">-->
+               <!-- <div class="col-lg-12" id="text" style="display:none;">-->
 
-                 <div class="col-lg-12" id="text">
-                     <div id="tprice">
-                     </div>
-                     <!--<input type="text" value="" name="giftwrap">-->
-                 </div>
-             </div>
-            @endif
-            <div id="tprice">
+                <div class="col-lg-12" id="text">
+                    <div id="tprice">
+                    </div>
+                    <!--<input type="text" value="" name="giftwrap">-->
+                </div>
             </div>
+            @endif
+
             @if($product->haveadesigninmind_option == 1)
             <button type = "button" class ="havedesign">Have a design in mind? WhatsApp Us!</button>
             @endif
@@ -1123,7 +1123,7 @@ input[type="radio"].btn.btn-primary-sign {
                 </script>
 
                 @else
-            <div class="col-lg-6">
+                            <div class="col-lg-6">
             <button type = "button" class = "logbtn add-to-varcartt1{{$product->id}}"  style="background: #f2f2f2; color: black;  border: none;width: 100%;">ADD TO CART</button>
             </div>
 
@@ -1478,7 +1478,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             <?php $i = 1; ?>
             @foreach($producimg as $producimg)
             <div class = "img-item">
-                <a href = "" data-id = "{{$i}}">
+                <a href = "#" data-id = "{{$i}}">
                     <img src = "{{ asset('uploads/images/') }}/{{$producimg->images}}" onclick="currentSlide({{$i}})"  >
                 </a>
             </div>
@@ -1669,7 +1669,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                         <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->where('product_select_id',$optionheading->id)->where('combo_id',$procombopart->id)->get(); ?>
                         <div class="col-lg-12">
                             <p class="pflex">
-                                <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                                <select class="form-select inputclass12 charm_id{{$product->id}}" data-comboattrr="{{$optionheading->combo_id}}" onclick="getcharmid(); getchamprice();gettotal();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
                                 <option data-comboattrr="{{$optionheading->combo_id}}">{{$optionheading->product_select_title}}</option>
                                 @foreach($option as $option)
                                 <option value="{{$option->id}}" data-comboattrr="{{$optionheading->combo_id}}">{{$option->product_select_option}}</option>
@@ -1681,6 +1681,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
                     </div>
                     <div id="charmprice">
                     </div>
+
                 </div>
 
                 @endforeach
@@ -1749,7 +1750,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
         <?php $option = App\Models\ProductSelectOption::where('product_id',$product->id)->where('product_select_id',$optionheading->id)->whereNull('combo_id')->get(); ?>
         <div class="col-lg-12">
             <p class="pflex">
-                <select class="form-select inputclass12 charm_id{{$product->id}}" onclick="getcharmid(); getchamprice();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
+                <select class="form-select inputclass12 charm_id{{$product->id}}" onclick="getcharmid(); getchamprice();gettotal();" id="charm_idd" aria-label="Default select example" name="charm_id" style="color: gray;">
                 <option>{{$optionheading->product_select_title}}</option>
                 @foreach($option as $option)
                 <option value="{{$option->id}}">{{$option->product_select_option}}</option>
@@ -1761,6 +1762,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
     </div>
     <div id="charmprice">
     </div>
+
       @if($product->location == 1)
         <div class="row pincode_sec">
             <div class="col-lg-10">
@@ -1864,17 +1866,17 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             </div>
         </div>
         <div class="row" id="nonvegprice">
-            <!--  <div class="col-lg-12" id="text" style="display:none;">-->
+          <!--  <div class="col-lg-12" id="text" style="display:none;">-->
 
-              <div class="col-lg-12" id="text">
-                  <div id="tprice">
-                  </div>
-                  <!--<input type="text" value="" name="giftwrap">-->
-              </div>
-          </div>
-          @endif
-          <div id="tprice">
-          </div>
+            <div class="col-lg-12" id="text">
+                <div id="tprice">
+                </div>
+                <!--<input type="text" value="" name="giftwrap">-->
+            </div>
+        </div>
+        @endif
+        <div id="tprice">
+        </div>
         @if($product->haveadesigninmind_option == 1)
         <button type = "button" class ="havedesign">Have a design in mind? WhatsApp Us!</button>
         @endif
@@ -2265,11 +2267,36 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
                     </div>
                     <div class="tab-pane fade" id="tab-pane-6">
                         <div class="row mx-0">
-                        <div class="col-lg-6">
-                            <h2>Leave a comment here</h2>
-                            <form id="contact-form" action="{{url('/productreview')}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                            <input type="hidden" name="productid" id="productid" value="{{$product->id}}">
+                            <div class="col-md-12 p-3">
+                                <h4 class="mb-4" style="display:none;">Review</h4>
+                                <div class="media" >
+                                    <div class="media-body">
+                                        @foreach($review as $review)
+                                            @foreach(range(1,5) as $i)
+                                            <span class="fa-stack" style="width:1em">
+                                                <i class="far fa-star fa-stack-1x"></i>
+
+                                                @if($review->rating >0)
+                                                    @if($review->rating >0.5)
+                                                        <i class="fas fa-star fa-stack-1x"></i>
+                                                    @else
+                                                        <i class="fas fa-star-half fa-stack-1x"></i>
+                                                    @endif
+                                                @endif
+                                                @php $review->rating--; @endphp
+                                            </span>
+                                            @endforeach
+                                        <h6>{{$review->name}}<small> - <i>{{ \Carbon\Carbon::parse($review->datee)->format('j F Y')}}</i></small></h6>
+                                        <p>{!!$review->comment!!}</p>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        <div class="col-lg-12">
+                        <h2>Leave a comment here</h2>
+                        <form id="contact-form" action="{{url('/productreview')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                        <input type="hidden" name="productid" id="productid" value="{{$product->id}}">
 
                                 <div class="flex-w flex-m p-t-50 p-b-23">
                                     <span class="stext-102 cl3 m-r-16">
@@ -2315,34 +2342,6 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
                                 </div>
                             </form>
                         </div>
-                            <div class="col-lg-6 p-3">
-                                <h4 class="mb-4" style="display:none;">Review</h4>
-                                <div class="review_items" >
-                                    <div class="row mx-0">
-                                        @foreach($review as $review)
-                                            <div class="col-lg-12 review_items_inner">
-                                                    @foreach(range(1,5) as $i)
-                                                    <span class="fa-stack" style="width:1em">
-                                                        <i class="far fa-star fa-stack-1x"></i>
-
-                                                        @if($review->rating >0)
-                                                            @if($review->rating >0.5)
-                                                                <i class="fas fa-star fa-stack-1x"></i>
-                                                            @else
-                                                                <i class="fas fa-star-half fa-stack-1x"></i>
-                                                            @endif
-                                                        @endif
-                                                        @php $review->rating--; @endphp
-                                                    </span>
-                                                    @endforeach
-                                                <h6>{{$review->name}}<small> - <i>{{ \Carbon\Carbon::parse($review->datee)->format('j F Y')}}</i></small></h6>
-                                                <p>{!!$review->comment!!}</p>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -2636,31 +2635,28 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
           </button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{url('/anyquery')}}">
-            @csrf
+          <form method="post" action="">
             <div class="form-group">
-                <label for="Name" class="col-form-label">Name:</label><span class="text-danger">*</span>
-                <input type="text" class="form-control" id="Name" name="name" required>
+                <label for="Name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="Name">
               </div>
               <div class="form-group">
-                <label for="Name" class="col-form-label">Email:</label><span class="text-danger">*</span>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <label for="Name" class="col-form-label">Email:</label>
+                <input type="email" class="form-control" id="email">
               </div>
               <div class="form-group">
-                <label for="Name" class="col-form-label">Phone:</label><span class="text-danger">*</span>
-                <input type="tel" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="phone" name="phone" required>
+                <label for="Name" class="col-form-label">Phone:</label>
+                <input type="text" class="form-control" id="phone">
               </div>
               <div class="form-group">
-                <label for="Message" class="col-form-label">Message:</label><span class="text-danger">*</span>
-                <textarea class="form-control" id="Message" name="message" required></textarea>
+                <label for="Message" class="col-form-label">Message:</label>
+                <textarea class="form-control" id="Message"></textarea>
               </div>
-        </div>
-        <x-honey/>
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2708,36 +2704,30 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
     });
     </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- DateScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <!--Date Script-->
-    <script>
-        function opencolor(){
-             var shodd = $('#onshoww').val();
-            alert(shodd);
-        }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- DateScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!--Date Script-->
+<script>
+    function getcharmid(){
+        $('select[name="charm_id"] option:selected').each(function () {
+               var charm = $(this).attr('value');
+            var productdd = $('#productdd').val();
+            var combo_idd = $(this).data('comboattrr');
+           // alert(combo_idd);
+            var data = $.parseJSON($.ajax({
+                url: "{{url('/charmloadd')}}",
+                type: "POST",
+                data: {'product':productdd, 'charmvalue': charm,'combo_idd':combo_idd, _token: '{{csrf_token()}}' },
+                dataType: 'JSON',
+                async: false
+        }).responseText);
+        var charmm = [data.attribute];
+            });
+
+    }
     </script>
 
-<script>
-function getcharmid(){
-    $('select[name="charm_id"] option:selected').each(function () {
-   	    var charm = $(this).attr('value');
-        var productdd = $('#productdd').val();
-        var combo_idd = $(this).data('comboattrr');
-       // alert(combo_idd);
-        var data = $.parseJSON($.ajax({
-            url: "{{url('/charmloadd')}}",
-            type: "POST",
-            data: {'product':productdd, 'charmvalue': charm,'combo_idd':combo_idd, _token: '{{csrf_token()}}' },
-            dataType: 'JSON',
-            async: false
-    }).responseText);
-    var charmm = [data.attribute];
-        });
-
-}
-</script>
 
 <script>
 function getattr() {
@@ -2757,7 +2747,7 @@ function getattr() {
             async: false
     }).responseText);
     var x = [data.attribute];
-        });
+});
 
     $('input[type=radio]:checked').each(function () {
    	    var a = $(this).attr('value');
@@ -2793,7 +2783,7 @@ function getattr() {
             dataType: 'JSON',
             success: function (dataa) {
                $.each(dataa, function(key,value) {
-                $("#price-dd").append('<input type="hidden" class="price'+value.product_id+'" name="price" id="price-dd" value="'+ value.price+'" >');
+                $("#price-dd").append('<input type="hidden" class="price'+value.product_id+'" class="pricee-dd" name="price" id="price-dd" value="'+ value.price+'" >');
                 $("#pric-dd").append(' <p class = "new-price">₹'+value.price+' <span> (Inclusive of GST)</span></p>');
                 $("#quantity-dd").append('<span>' + value.quantity + '</span>');
                 $("#sku-dd").append('<span>' + value.skucode + '</span>');
@@ -2829,8 +2819,8 @@ function getimages() {
                 res += '<img src = "http://127.0.0.1:8000/uploads/images/'+value.images+'" style="display:none;">';
             }
                 ress += '<div class = "img-item">'+
-                            '<a href = "" data-id = "'+i+'">'+
-                                '<img src = "http://127.0.0.1:8000/uploads/images/'+value.images+'" onclick="currentSlide('+i+')"  >'+
+                            '<a href = "#" data-id = "'+i+'">'+
+                                '<img src = "http://127.0.0.1:8000/uploads/images/'+value.images+'" onclick="currentSlide('+i+')"  height="100px">'+
                             '</a>'+
                         '</div>';
                     i++;
@@ -2875,32 +2865,32 @@ $('.logbtn1').on('click', function () {
 });*/
 </script>
 <script>
-    function checklocation(){
-        var locationdd = $('#location').val();
-        //alert(locationdd);
-        $.ajax({
-        url: "{{url('/locationcheck')}}",
-        type: "POST",
-        data: { 'locationdd': locationdd, _token: '{{csrf_token()}}' },
-        dataType: 'JSON',
-        success:function(data)
-        {
-            var pinres = "";
-         //   console.log(data);
-            $("#pinresult").html(data);
-            if(data.status == 'success'){
-                pinres += '<span class="text-danger"><strong>'+data.pincode+' '+data.city+'</strong></span>';
-            }else{
-                pinres += '<span class="text-danger"><strong>'+data.message+'</strong></span>';
-            }
-            $('#pinresult').append(pinres);
-
+function checklocation(){
+    var locationdd = $('#location').val();
+    //alert(locationdd);
+    $.ajax({
+    url: "{{url('/locationcheck')}}",
+    type: "POST",
+    data: { 'locationdd': locationdd, _token: '{{csrf_token()}}' },
+    dataType: 'JSON',
+    success:function(data)
+    {
+        var pinres = "";
+     //   console.log(data);
+        $("#pinresult").html(data);
+        if(data.status == 'success'){
+            pinres += '<span class="text-danger"><strong>'+data.pincode+' '+data.city+'</strong></span>';
+        }else{
+            pinres += '<span class="text-danger"><strong>'+data.message+'</strong></span>';
         }
-        });
+        $('#pinresult').append(pinres);
 
     }
-    </script>
-    <script>
+    });
+
+}
+</script>
+<script>
 $(document).ready(function() {
     var fileArr = [];
      $("#imageuploadd").change(function(){
@@ -2992,7 +2982,6 @@ $(document).ready(function() {
 
 
 <script type='text/javascript'>
-
     $('input:radio').on('change',function(){
             $d = $(this).attr('value');
                 if ($('.sradio'+$d)){
@@ -3001,8 +2990,8 @@ $(document).ready(function() {
                 }
             });
 
-    </script>
-    <script type='text/javascript'>
+</script>
+<script type='text/javascript'>
 
         $('input:radio').on('change',function(){
                 $d = $(this).attr('value');
@@ -3023,58 +3012,58 @@ $(document).ready(function() {
          text.style.display = "none";
       }
     }
-    </script>
+</script>
 <script>
-    function gettotal(){
-       var product_id = $('.giftwrap_price').val();
-       var price = $('.price<?php echo $product->id; ?>').val();
-       var charm_id = $('.charmmprice').val();
-       //alert(charm_id);
-       //alert(product_id);
-       //alert(price);
-       $.ajax({
-                url: "{{url('/totalpricepro')}}",
+function gettotal(){
+   var product_id = $('.giftwrap_price').val();
+   var price = $('.price<?php echo $product->id; ?>').val();
+   var charm_id = $('.charmmprice').val();
+   //alert(charm_id);
+   //alert(product_id);
+   //alert(price);
+   $.ajax({
+            url: "{{url('/totalpricepro')}}",
+            type: "POST",
+            data: { 'product_id':product_id, 'price': price,'charm_id':charm_id, _token: '{{csrf_token()}}' },
+            dataType: 'JSON',
+            success:function(data)
+            {
+                console.log(data);
+                var tprice = "";
+                $("#tprice").html(data);
+                tpri += '<input type="text" name="totalprice" class="form-control" value="'+data+'">';
+                $('#tprice').append(tpri);
+            }
+        });
+}
+</script>
+<script>
+    function getchamprice(){
+        $('select[name="charm_id"] option:selected').each(function () {
+               var charm = $(this).attr('value');
+            var productdd = $('#productdd').val();
+            var combo_idd = $(this).data('comboattrr');
+            $("#charmprice").html('');
+                $.ajax({
+                url: "{{url('/charmmloadd')}}",
                 type: "POST",
-                data: { 'product_id':product_id, 'price': price,'charm_id':charm_id, _token: '{{csrf_token()}}' },
+                data: { 'product':productdd, 'charmvalue': charm,'combo_idd':combo_idd, _token: '{{csrf_token()}}' },
                 dataType: 'JSON',
                 success:function(data)
                 {
                     console.log(data);
-                    var tprice = "";
-                    $("#tprice").html(data);
-                    tpri += '<input type="text" name="totalprice" class="form-control" value="'+data+'">';
-                    $('#tprice').append(tpri);
+                    var chrpri = "";
+                    $("#charmprice").html(data);
+                    chrpri += '<input type="hidden" name="charmprice" class="charmmprice" value="'+data+'">';
+                    $('#charmprice').append(chrpri);
                 }
             });
+
+        });
+
     }
-    </script>
-    <script>
-        function getchamprice(){
-            $('select[name="charm_id"] option:selected').each(function () {
-                   var charm = $(this).attr('value');
-                var productdd = $('#productdd').val();
-                var combo_idd = $(this).data('comboattrr');
-                $("#charmprice").html('');
-                    $.ajax({
-                    url: "{{url('/charmmloadd')}}",
-                    type: "POST",
-                    data: { 'product':productdd, 'charmvalue': charm,'combo_idd':combo_idd, _token: '{{csrf_token()}}' },
-                    dataType: 'JSON',
-                    success:function(data)
-                    {
-                        console.log(data);
-                        var chrpri = "";
-                        $("#charmprice").html(data);
-                        chrpri += '<input type="hidden" name="charmprice" class="charmmprice" value="'+data+'">';
-                        $('#charmprice').append(chrpri);
-                    }
-                });
-
-            });
-
-        }
-    </script>
-    <script>
+</script>
+<script>
     $(document).ready(function(){
         // Date Object
         var dateMin = new Date();

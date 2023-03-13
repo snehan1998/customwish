@@ -46,10 +46,11 @@ input[type='radio'] {
                         <div class="ship_addres">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Select Available Addresses</label>
-                            <select class="form-control inputclass" name="address_select" id="exampleFormControlSelect1" onclick="displayaddresss();">
+                            <select class="form-control inputclass" name="address_select" id="exampleFormControlSelect1" oninput="displayaddresss();" required>
+                                <option value="">Select Address</option>
                                 <option><a class="add_new_add">+ Add a new address </a></option>
                                 @foreach($address as $address)
-                                <option value="{{$address->id}}" >{{$address->address}}</option>
+                                <option value="{{$address->id}}">{{$address->address}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -300,6 +301,17 @@ function displayaddresss() {
                     var dispchrpri = "";
                     $("#displayaddres").html(data);
                     dispchrpri += '<input type="hidden" name="charmprice" class="charmmprice" value="'+data+'">'+
+                                    '<input type="hidden" name="shipping_email" class="shipping_email" id="shipping_email" value="'+data.email+'">'+
+                                    '<input type="hidden" name="shipping_phone" id="shipping_phone" class="charmmprice" value="'+data.phone+'">'+
+                                    '<input type="hidden" name="shipping_firstname" id="shipping_firstname" class="charmmprice" value="'+data.name+'">'+
+                                    '<input type="hidden" name="shipping_lastname" id="shipping_lastname" class="charmmprice" value="'+data+'">'+
+                                    '<input type="hidden" name="shipping_address1" id="shipping_address1" class="charmmprice" value="'+data.address+'">'+
+                                    '<input type="hidden" name="ship_address2" id="shipping_address2" class="charmmprice" value="'+data.address+'">'+
+                                    '<input type="hidden" name="shipping_pincode" id="shipping_pincode" class="charmmprice" value="'+data.pincode+'">'+
+                                    '<input type="hidden" name="shipping_city" id="shipping_city" class="charmmprice" value="'+data.city+'">'+
+                                    '<input type="hidden" name="shipping_country" id="shipping_country" class="charmmprice" value="'+data.country+'">'+
+                                    '<input type="hidden" name="shipping_state" id="shipping_state" class="charmmprice" value="'+data.state+'">'+
+                                    '<input type="hidden" name="address_type"  id="address_type" class="charmmprice" value="'+data.address_type+'">'+
                                     '<div class="d-flex justify-content-between">'+
                                     '<div class="add_left">'+
                                         '<p><b>'+data.name+'</b></p>'+

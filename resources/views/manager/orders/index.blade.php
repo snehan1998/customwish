@@ -43,6 +43,7 @@
                                             <!--    <th>Refund</th>
                                             <th>Order Status</th>-->
                                                 <th>Ordered Date</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,6 +68,13 @@
                                               <button type="submit">Refund</button>
                                           </form>
                                         </td>-->
+                                        <td>
+                                            <button form="resource-delete-{{ $row->id }}" class="btn btn-danger btn-icon-style-2"><span>Delete</span></button>
+                                            <form id="resource-delete-{{ $row->id }}" action="{{ url('manager/orders/destroy', $row->id) }}" style="display: inline-block;" onSubmit="return confirm('Are you sure you want to delete this item?');" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            </form>
+                                        </td>
                                     </tr>
                                         </tr>
                                         <div class="modal fade" id="modal">
@@ -121,6 +129,7 @@
                                                 <th>Phone</th>
                                             <!--<th>Order Status</th>-->
                                                 <th>Ordered Date</th>
+                                                <th>Action</th>
                                               </tr>
                                         </tfoot>
                                     </table>

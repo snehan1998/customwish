@@ -28,7 +28,7 @@
 
 	<link rel="stylesheet" href="{{asset('css/aos.css')}}" />
 	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
-    
+
     <link rel="stylesheet" href="{{asset('css/style_custom.css')}}" />
 
 
@@ -190,7 +190,7 @@
                                     <p class="add_text">{{$coo->address}}</p>
                             </div>
                             <div class="col-md-6 text-right">
-                                <p class="inv_text ">Invoice <span>{{$order->order_id}}</span></p> 
+                                <p class="inv_text ">Invoice <span>{{$order->order_id}}</span></p>
                                 <p class="inv_text ">Order Date <span> {{$order->created_at}}</span> </p>
                                 <p>
                                 <a href="{{ url('/prnpriview') }}/{{$order->order_id}}" class="btnprn btn"><i class="fa fa-print mr-1"></i> Print Preview </a></center>
@@ -263,9 +263,9 @@
                                         <td>{{$product->product_name}}</td>
                                         <td>&#8377;{{$price}}</td>
                                         <td>{{$row->quantity}}</td>
-                                        <td>&#8377;@if($row->quantity != "undefined") {{$price * $row->quantity}} @else  {{$price}} @endif</td>
+                                        <td>&#8377;{{$price * $row->quantity}}</td>
                                         <td>
-                                            @if($row->giftwrap == 1)
+                                            @if($row->giftwrap == 1 )
                                             <p><strong> Gift Wrap Price</strong></p>
                                             <p>{{$row->giftwrap_price}}</p>
                                             @endif

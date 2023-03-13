@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\GiftCardBuy;
 use App\Models\Order;
 use App\Models\OrderList;
+use App\Models\StoreProductCartImage;
+use App\Models\StoreProductCartLogo;
 use Illuminate\Http\Request;
 use Razorpay\Api\Api;
 
@@ -16,7 +18,7 @@ class OrderController extends Controller
 
     public function orders(Request $request)
     {
-    	$orders = Order::orderBy('id','desc')->paginate(20);
+    	$orders = Order::orderBy('id','desc')->get();
     	return view('admin.orders.index',compact('orders'));
     }
 
@@ -68,4 +70,14 @@ class OrderController extends Controller
         return back()->with('flash_success', 'Deleted Successfully!');
     }
 
+    public function destroy($id)
+    {
+        $data = Order::find($id);
+        $datt = OrderList::where('order_id',$data->order_id)->delete();
+      //  $datt = StoreProductCartLogo::where('product_id',$data->id)->delete();
+       // $datt = StoreProductCartImage::where('product_id',$data->id)->delete();
+       // @unlink(public_path('uploads/images/'.$data->images));
+        $data->delete();
+        return back()->with('flash_success', ' Deleted  Successfully!');
+    }
 }

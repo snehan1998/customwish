@@ -19,7 +19,7 @@
                         <th scope="col" width="180px">Item Description</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Details</th>
+                        <th scope="col">Attributes</th>
                         <th scope="col" width="100px">Extra Price</th>
                         <th scope="col">Remove</th>
                         </tr>
@@ -41,6 +41,8 @@
                                 $cartprice = $productvariation->price;
                             }
                             $procar = App\Models\ProductCart::where('id',$cat->product_cart_id)->first();
+                            if($cat->quantity != "undefined")
+                            {
                                 if($procar->charm_price != null){
                                     if($procar->giftwrap == 1)
                                     {
@@ -56,6 +58,24 @@
                                         $subtotal[] = $cartprice * $cat->quantity ;
                                     }
                                 }
+
+                            }else{
+                                if($procar->charm_price != null){
+                                    if($procar->giftwrap == 1)
+                                    {
+                                    $subtotal[] = $cartprice + $procar->giftwrap_price +$procar->charm_price;
+                                    }else{
+                                        $subtotal[] = $cartprice + $procar->charm_price;
+                                    }
+                                }else{
+                                    if($procar->giftwrap == 1)
+                                    {
+                                    $subtotal[] = $cartprice + $procar->giftwrap_price;
+                                    }else{
+                                        $subtotal[] = $cartprice;
+                                    }
+                                }
+                            }
                             ?>
                         <tr>
                             <td class="align-middle">
@@ -68,6 +88,10 @@
                                  </a>
                                  <a href="{{url('/')}}/pro/{{$pro->slug}}">{{$pro->product_name}} </a>
                             </td>
+                           @if($cat->quantity == "undefined")
+                            <td class="align-middle">
+                            </td>
+                           @else
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m " >
@@ -82,78 +106,16 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">₹ {{$cartprice*$cat->quantity}}</td>
+                            @endif
+                            <td class="align-middle">₹ @if($cat->quantity != "undefined")
+                                {{$cartprice*$cat->quantity}} @else  {{$cartprice}} @endif
+                             </td>
                              <td>
-                                @if($procar->comment != "undefined" && $procar->comment != null && $procar->comment != "" )
-                                <p><strong>Comment:</strong></p>
-                                <p>{{$procar->comment}}</p>
-                                @endif
-                                @if($procar->description != "undefined" && $procar->description != null  && $procar->comment != "")
-                                @if($pro->textareaa == 1)
-                                <p><strong>{{$pro->textarea_name}}:</strong></p>
-                                <p>{{$procar->description}}</p>
-                                @endif
-                                @endif
                                 @if($procar->giftwrap == 1)
-                                <p><strong>Gift Wrap Price:</strong></p>
+                                <p>Gift Wrap Price:</p>
                                 <p>₹{{$procar->giftwrap_price}}</p>
                                 @endif
-                                @if($procar->pickup_type != "undefined" && $procar->pickup_type != null  && $procar->comment != "")
-                                <p><strong>Pickup Type:</strong></p>
-                                <p>{{$procar->pickup_type}}</p>
-                                @endif
-                                @if($procar->datee != "undefined" && $procar->datee != null  && $procar->comment != "")
-                                <p><strong>Date:</strong></p>
-                                <p>{{$procar->datee}}</p>
-                                @endif
-                                @if($procar->timee != "undefined" && $procar->timee != null  && $procar->comment != "")
-                                <p><strong>Time:</strong></p>
-                                <p>{{$procar->timee}}</p>
-                                @endif
-                                @if($procar->flowerss_type != "undefined" && $procar->flowerss_type != null  && $procar->comment != "")
-                                <p><strong>Flower Type:</strong></p>
-                                <p>{{$procar->flowerss_type}}</p>
-                                @endif
-                                @if($procar->location != "undefined" && $procar->location != null  && $procar->comment != "")
-                                <p><strong>Location:</strong></p>
-                                <p>{{$procar->location}}</p>
-                                @endif
-                                @if($procar->colortype != "undefined" && $procar->colortype != null  && $procar->comment != "")
-                                <p><strong> Color:</strong></p>
-                                <p>{{$procar->colortype}}</p>
-                                @endif
-                                @if($procar->printside != "undefined" && $procar->printside != null  && $procar->comment != "")
-                                <p><strong>Front And BackPrint:</strong></p>
-                                <p>{{$procar->printside}}</p>
-                                @endif
-                                @if($procar->addtext1 != "undefined" && $procar->addtext1 != null  && $procar->comment != "")
-                                @if($pro->addatext_option == 1)
-                                <p><strong>{{$pro->addatext_heading}}:</strong></p>
-                                <p>{{$procar->addtext1}}</p>
-                                @endif
-                                @endif
-                                @if($procar->addtext2 != "undefined" && $procar->addtext2 != null  && $procar->comment != "")
-                                @if($pro->text_field == 1)
-                                <p><strong>{{$pro->text_heading}}:</strong></p>
-                                <p>{{$procar->addtext2}}</p>
-                                @endif
-                                @endif
-                                @if($procar->egg_type != "undefined" && $procar->egg_type != null  && $procar->comment != "")
-                                <p><strong>Egg Type:</strong></p>
-                                <p>{{$procar->egg_type}}</p>
-                                @endif
-                                @if($cat->variation_id != null)
-                                <?php $provar = App\Models\AddSubVariation::where('id',$cat->variation_id)->first();
-                                    $var = App\Models\Addsubvariationn::where('var_id',$cat->variation_id)->get();
-                                ?>
-                                    @foreach($var as $var)
-                                    <?php $attribute = App\Models\Attribute::where('id',$var->main_attr_id)->first();
-                                         $attributevalue = App\Models\AttributeValue::where('id',$var->main_attr_value)->first();
-                                    ?>
-                                    <p><strong>{{$attribute->attr_name}}</strong></p>
-                                    <p>{{$attributevalue->attr_value_name}}</p>
-                                    @endforeach
-                                @endif
+
                                 @if($procar->charm_id != null)
                                 <?php $charm = explode(',',$procar->charm_id)?>
                                 @foreach($charm as $charm)
@@ -168,6 +130,7 @@
                                 @endif
                             </td>
                             <td class="align-middle">₹
+                                @if($cat->quantity != "undefined")
                                     @if($procar->charm_price != null)
                                         @if($procar->giftwrap == 1)
                                         {{($cartprice*$cat->quantity)+$procar->giftwrap_price+$procar->charm_price}}
@@ -181,6 +144,21 @@
                                         {{$cartprice*$cat->quantity}}
                                         @endif
                                     @endif
+                                @else
+                                    @if($procar->charm_price != null)
+                                        @if($procar->giftwrap == 1)
+                                        {{$cartprice + $procar->giftwrap_price+$procar->charm_price}}
+                                        @else
+                                        {{$cartprice+$procar->charm_price}}
+                                        @endif
+                                    @else
+                                        @if($procar->giftwrap == 1)
+                                        {{$cartprice + $procar->giftwrap_price}}
+                                        @else
+                                        {{$cartprice}}
+                                        @endif
+                                    @endif
+                                @endif
                             </td>
                             <td class="align-middle">
                                 <a href="{{url('del/')}}/{{$cat->id}}/user_id/{{$cat->user_id}}" title="">

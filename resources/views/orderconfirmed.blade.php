@@ -54,11 +54,9 @@
             <div class="col-lg-2 col-md-3 col-sm-6 col-xs-13">
                 <p class="pcss3">{{$product->product_name}}</p>
             </div>
-            @if($orderlist->quantity != "undefined")
             <div class="col-lg-2 col-md-3 col-sm-6 col-xs-13">
                 <p class="pcss3">{{$orderlist->quantity}}</p>
             </div>
-            @endif
             @if($orderlist->giftwrap == 1)
             <div class="col-lg-2 col-md-3 col-sm-6 col-xs-13">
                 <p class="pcss4">₹{{$orderlist->giftwrap_price}}</p>
@@ -88,10 +86,10 @@
         </div>
        <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-13">
-                <p class="pd">Coupon Charge</p>
+                <p class="pd">Coupon/GiftCard Amount</p>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-13">
-                <p class="price">₹{{$order->coupon_price}}</p>
+                <p class="price">₹{{$order->coupon_amount}}</p>
             </div>
          </div>
         <hr class="hrcss1">

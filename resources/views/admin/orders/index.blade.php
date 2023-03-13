@@ -43,6 +43,7 @@
                                             <!--    <th>Refund</th>
                                             <th>Order Status</th>-->
                                                 <th>Ordered Date</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,6 +68,13 @@
                                               <button type="submit">Refund</button>
                                           </form>
                                         </td>-->
+                                        <td>
+                                            <button form="resource-delete-{{ $row->id }}" class="btn btn-danger btn-icon-style-2"><span>Delete</span></button>
+                                            <form id="resource-delete-{{ $row->id }}" action="{{ url('admin/orders/destroy', $row->id) }}" style="display: inline-block;" onSubmit="return confirm('Are you sure you want to delete this item?');" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            </form>
+                                        </td>
                                     </tr>
                                         </tr>
                                         <div class="modal fade" id="modal">
@@ -90,7 +98,7 @@
                                                         <select class="form-control" name="order_status">
                                                         <option @if($row->status == "received") selected @endif value="received">Received</option>
                                                         <option @if($row->status == "packed") selected @endif value="packed">Packed</option>
-                                                            <option @if($row->status == "Cancle") selected @endif value="Cancle">Cancle</option>
+                                                        <option @if($row->status == "Cancle") selected @endif value="Cancle">Cancle</option>
                                                         <option @if($row->status == "shipped") selected @endif value="shipped">Shipped</option>
                                                         <option @if($row->status == "delivered") selected @endif value="delivered">Delivered</option>
 
@@ -121,6 +129,7 @@
                                                 <th>Phone</th>
                                             <!--<th>Order Status</th>-->
                                                 <th>Ordered Date</th>
+                                                <th>Action</th>
                                               </tr>
                                         </tfoot>
                                     </table>

@@ -105,6 +105,7 @@ Route::post('/productreview',[WebsiteController::class,'productreview'])->middle
 Route::post('/customwishcorporategifts/corpenquiry',[WebsiteController::class,'corenquiry'])->middleware(['honey']);
 Route::post('/customwishcorporategifts/corpenquiry',[WebsiteController::class,'corenquiry'])->middleware(['honey']);
 Route::post('/giftcardbuy',[WebsiteController::class,'giftcardbuy'])->middleware(['honey']);
+Route::post('/anyquery',[WebsiteController::class,'anyquery'])->middleware(['honey']);
 
 Route::post('storerr',[CartController::class,'storerr']);
 
