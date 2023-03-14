@@ -21,7 +21,6 @@ class OrderConfirmController extends Controller
         $userid=Auth::user()->id;
         $coooup=Cart::where('user_id',$userid)->first();
         $gifco = GiftCardBuy::where('id',$coooup->giftcard_id)->first();
-
         if($gifco == null){
             $pri = null;
         }else{
