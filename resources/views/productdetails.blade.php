@@ -2658,7 +2658,7 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
         <x-honey/>
 
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Send</button>
         </div>
           </form>
       </div>

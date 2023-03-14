@@ -48,7 +48,7 @@
                                             <input type="tel" pattern="[1-9]{1}[0-9]{9}"   class="form-control" id="phone" placeholder="Enter Phone" name="phone" required value="{{ $user->phone}}">
                                         </div>
                                     </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12 mb-3">
                                         <label class="control-label">Date of Birth</label><span class="text-danger">*</span>
                                         <input class="form-control" type="date" name="dob" value="{{$user->dob}}" required/>
                                     </div>
@@ -57,7 +57,7 @@
                                         <input class="form-control" type="radio" name="gender" value="male" required @if($user->gender == 'male') checked @endif/>
                                         </label>
                                     </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12 mb-2">
                                         <label>Female
                                         <input class="form-control" type="radio" name="gender" value="female" @if($user->gender == 'female') checked @endif/>
                                         </label>

@@ -48,7 +48,7 @@
                     @if(Auth::check())
                         <a class="text-body pr-0" href="{{url('/customwishcorporategifts/corporategift')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
                      @else
-                     <a class="text-body mr-3" href="{{url('/login')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
+                     <a class="text-body pr-0" href="{{url('/login')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
                      @endif
                 </div>
             </div>
@@ -339,7 +339,7 @@
         <div class="row border-top">
             <div class="col-md-12 px-xl-0">
                 <div class="text-center">
-                    <p class="mb-md-0 text-center text-secondary py-2">&copy; 2022 Customwish All Rights Reserved. </p>
+                    <p class="mb-md-0 text-center text-secondary py-2">&copy; 2023 Customwish All Rights Reserved. </p>
                 </div>
             </div>
         </div>
