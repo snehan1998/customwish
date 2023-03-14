@@ -577,23 +577,23 @@ input[type="radio"].btn.btn-primary-sign {
                 </div>
                 <input type="hidden" name="corporate_id" value="{{$corporate->id}}">
                 <div class="col-lg-12">
-                    <h5 class="song">Name</h5><br>
+                    <h5 class="song">Name</h5>
                     <p style="display: flex;"><input type="text" class="inputclass11 addtext18" name="name" placeholder="Enter Name" required style=""></p>
                 </div>
                 <div class="col-lg-12">
-                    <h5 class="song">Email</h5><br>
+                    <h5 class="song">Email</h5>
                     <p style="display: flex;"><input type="email" class="inputclass11 email" name="email" required placeholder="Enter Email" style=""></p>
                 </div>
                 <div class="col-lg-12">
-                    <h5 class="song">Mobile Number</h5><br>
+                    <h5 class="song">Mobile Number</h5>
                     <p style="display: flex;"><input type="tel" class="inputclass11 addtext18" pattern="[1-9]{1}[0-9]{9}" required name="phone" placeholder="Enter Phone number" style=""></p>
                 </div>
                 <div class="col-lg-12">
-                    <h5 class="song">Quantity of Products</h5><br>
+                    <h5 class="song">Quantity of Products</h5>
                     <p style="display: flex;"><input type="number" class="inputclass11 addtext18" name="quantity" requiredplaceholder="Type here" style=""></p>
                 </div>
                 <div class="col-lg-12">
-                    <h5 class="song">Message</h5><br>
+                    <h5 class="song">Message</h5>
                     <p style="display: flex;"><textarea type="text" class="inputclass11 addtext18" name="message" placeholder="Enter Message" style=""></textarea></p>
                 </div>
                 <x-honey/>

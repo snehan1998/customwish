@@ -450,7 +450,7 @@
                         </div>
                     </div>
                 </div>
-                    <div class="d-flex flex-row-reverse bg-dark p-3 grand_total">
+                    <div class="d-flex flex-row-reverse bg-dark p-2 grand_total">
                         <div class="p-r-20 p-l-20 text-right ">
                             <p class="mb-2">Grand Total: <span>₹{{$order->payable_price}}</span></p>
                             <!-- <div class="h2 font-weight-light"></div> -->

@@ -9,6 +9,18 @@ p{
     color: #000;
     font-size: 14px;
 }
+::placeholder { 
+    color: #ffffff;
+    opacity: 1;
+  }
+  
+  :-ms-input-placeholder { 
+    color: #ffffff;
+  }
+  
+  ::-ms-input-placeholder { 
+    color: #ffffff;
+  }
 p.tes {
     margin: 20px 0 20px 0;
     font-size: 14px;
@@ -57,7 +69,7 @@ nav ul li a {
     color: var(--white-color);
     line-height: 32px;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 16px;
     padding: 15px 15px;
     transition: 0.3s all ease;
 }
@@ -89,7 +101,7 @@ nav ul li > ul li:hover > ul {
     opacity: 1;
 }
 nav ul li a:hover {
-    color: #ffc107;
+    color: #fff;
 }
 /* nav ul li ul li:hover > ul {
     top: 38px;
@@ -307,7 +319,7 @@ p.clicl {
     padding: 20px;
     margin: 0px 0 0 0;
     box-shadow: 0px 1px 11px #ccc;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: #fff;
 }
 .test-img:hover{
@@ -582,7 +594,7 @@ h1.shopping-crt {
     box-shadow: none;
 }
 .shop-ccc .text-right{
-    text-align: right;
+    text-align: right !important;
     display: block;
 }
 
@@ -624,7 +636,7 @@ p.add_text{
     box-shadow: none;
 }
 .table tbody td {
-    font-size: 12px;
+    font-size: 14px;
     color: #000;
     box-shadow: none;
     vertical-align: middle;
@@ -633,7 +645,7 @@ p.add_text{
     margin-bottom: 5px;
 }
 .table tbody td p strong{
-    font-weight: 500;
+    font-weight: 600;
 }
 .dashboard-box .table tbody tr td a{
     max-height: 34px;
@@ -709,11 +721,15 @@ button.btn.btn_remove {
 }
 .pcss {
     color: #000;
-    font-size: 18px;
+    font-size: 15px !important;
+    margin-bottom: 0px !important;
+    font-weight: 600;
 }
 .orderhead {
     color: #000000 !important;
     font-weight: 400 !important;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 .shop-ccc .orderpara {
     color: #000 !important;
@@ -733,18 +749,19 @@ p.pd {
 p.price {
     color: #000;
     font-weight: 600;
+    margin-bottom: 0px;
 }
 .pcss3 {
     font-size: 18px;
     color: #000;
-    text-align: center;
+    text-align: left !important;
     margin-bottom: 0px !important;
     padding-top: 0px !important;
 }
 .pcss4 {
     font-size: 18px;
     color: #c2272d;
-    text-align: right;
+    text-align: left !important;
     font-weight: 700;
     padding-top: 0px !important;
     margin-bottom: 0px !important;
@@ -1294,6 +1311,10 @@ label.slect-varient {
 .img-display img{
     width: 100%;
 }
+.img-showcase img {
+    min-width: 100%;
+    max-width: 100%;
+}
 .img-select {
     margin: 10px 0px;
     display: flex;
@@ -1301,7 +1322,17 @@ label.slect-varient {
 }
 .img-item img {
     width: 100% !important;
-    margin: 0rem ;
+    margin: 0rem;
+    max-height: 110px;
+}
+.img-item{
+    box-shadow: 0 0 5px #ddd;
+}
+.img-item:first-child {
+    margin-left: 0 !important;
+}
+.img-item:last-child {
+    margin-right: 0 !important;
 }
 .custom-control{
     padding-left: 0px;
@@ -1505,6 +1536,69 @@ button.logbtn1 {
     margin-bottom: 10px;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px #cccccc85;
+}
+
+.btn-num-product-down {
+    padding: 5px 8px;
+    background: #c2272d;
+    border-radius: 4px;
+    line-height: 10px;
+    width: auto;
+}
+
+.btn-num-product-down a{
+    color: #fff !important;
+    margin-top: 0px !important;
+}
+
+.btn-num-product-up {
+    padding: 5px 8px;
+    background: #c2272d;
+    border-radius: 4px;
+    line-height: 10px;
+    width: auto;
+}
+
+.btn-num-product-up a{
+    color: #fff !important;
+    margin-top: 0px !important;
+}
+
+.num-product{
+    margin: 0px 2px;
+    text-align: center;
+}
+.page-link {
+    font-size: 13px;
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.login-form-content nav{
+    background-color: transparent;
+}
+.login-form-content .page-link:hover{
+    color: #fff;
+}
+.myaccount-tab-menu.nav-tabs .nav-link i{
+    margin-right: 10px;
+}
+
+.preview input[type='radio']:checked{
+    border: 6px solid #fff;
+    outline: 2px solid #ce1219;
+}
+.continue_shop a{
+    color: #ce1219;
+}
+.continue_shop a:hover{
+    font-weight: 600;
 }
 
 @media only screen and (max-width: 600px){

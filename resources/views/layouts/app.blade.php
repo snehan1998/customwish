@@ -46,7 +46,7 @@
                     <a class="text-body mr-3" href="{{url('/contactus')}}">Contact Us</a>
                     <a class="text-body mr-3" href="{{url('/blogs')}}">Blog</a>
                     @if(Auth::check())
-                        <a class="text-body mr-3" href="{{url('/customwishcorporategifts/corporategift')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
+                        <a class="text-body pr-0" href="{{url('/customwishcorporategifts/corporategift')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
                      @else
                      <a class="text-body mr-3" href="{{url('/login')}}" style="border-right: none;"><i class="fa fa-gift" aria-hidden="true"></i> Corporate Gifts</a>
                      @endif

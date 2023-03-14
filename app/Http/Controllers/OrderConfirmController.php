@@ -21,6 +21,12 @@ class OrderConfirmController extends Controller
         $userid=Auth::user()->id;
         $coooup=Cart::where('user_id',$userid)->first();
         $gifco = GiftCardBuy::where('id',$coooup->giftcard_id)->first();
+
+        if($gifco == null){
+            $pri = null;
+        }else{
+            $pri = $gifco->giftvoucher_price;
+        }
         // Get the last order id
         $lastorderId = Order::orderBy('id','DESC')->first()->id;
 
@@ -41,7 +47,7 @@ class OrderConfirmController extends Controller
         $confirmorder->order_price = $request->input('order_price');
         $confirmorder->payable_price= $request->input('payable_price');
         $confirmorder->giftcard_id= $coooup->giftcard_id;
-        $confirmorder->giftcard_amount= $gifco->giftvoucher_price;
+        $confirmorder->giftcard_amount= $pri;
         $confirmorder->coupon_id= $coooup->coupon_id;
         $confirmorder->coupon_amount= $request->input('coupon_amount');
         $confirmorder->delivery_charge= $request->input('delivery_charge');

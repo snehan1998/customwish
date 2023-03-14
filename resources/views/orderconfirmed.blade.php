@@ -8,11 +8,9 @@
 <div class="shop-ccc">
     <!-- Cart Start -->
     <div class="container">
-     <br>
       <div class="row">
       <div class="col-lg-12">
       	<h2 class="orderhead">Your Order Confirmed!</h2>
-      	<br>
 
       	<p class="orderpara">Hi {{$order->firstname}},</p>
       	<p class="orderpara">Your Order has been confirmed and will be shipping soon.</p>
@@ -24,7 +22,7 @@
         <p class="pcss">Order date</p>
       	<p class="pcss1">{{ \Carbon\Carbon::parse($order->order_date)->format('j F Y')}}</p>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-13">
+      <div class="col-lg-4 col-md-3 col-sm-6 col-xs-13">
         <p class="pcss">Order number</p>
       	<p class="pcss1">{{$order->order_id}}</p>
       </div>
@@ -36,10 +34,28 @@
         <p class="pcss">Status</p>
       	<p class="pcss1">{{$order->status}}</p>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-13">
+      <div class="col-lg-2 col-md-3 col-sm-6 col-xs-13">
         <p class="pcss">Address</p>
       	<p class="pcss1">{{$order->address}}</p>
       </div>
+       </div>
+       <hr class="hrcss">
+       <div class="row align-items-center mb-3">
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <p class="pcss">Product</p>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+            <p class="pcss">Product Name</p>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <p class="pcss">Quantity</p>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <p class="pcss">Extra</p>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 text-right">
+            <p class="pcss">Price</p>
+        </div>
        </div>
        <hr class="hrcss">
        <?php $orderlist = App\Models\OrderList::where('order_id',$order->order_id)->get(); ?>
@@ -47,23 +63,23 @@
        <?php $productimg = App\Models\ProductImage::where('product_id',$orderlist->product_id)->first();
                 $product = App\Models\Product::where('id',$orderlist->product_id)->first();
        ?>
-         <div class="row align-items-center">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-13">
-                <img src="{{asset('uploads/images')}}/{{$productimg->images}}" class="img-fluid" style="width:200px;height:100px;">
+         <div class="row align-items-center mb-3">
+            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                <img src="{{asset('uploads/images')}}/{{$productimg->images}}" class="img-fluid" style="max-height:110px;">
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-13">
+            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                 <p class="pcss3">{{$product->product_name}}</p>
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-13">
+            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                 <p class="pcss3">{{$orderlist->quantity}}</p>
             </div>
             @if($orderlist->giftwrap == 1)
-            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-13">
+            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                 <p class="pcss4">₹{{$orderlist->giftwrap_price}}</p>
             </div>
             @endif
-            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-13">
-                <p class="pcss4">₹{{$orderlist->mrp_price}}</p>
+            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 text-right">
+                <p class="pcss4 text-right">₹{{$orderlist->mrp_price}}</p>
             </div>
        </div>
        @endforeach
