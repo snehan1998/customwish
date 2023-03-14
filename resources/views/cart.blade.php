@@ -69,13 +69,13 @@
                                  <a href="{{url('/')}}/pro/{{$pro->slug}}">{{$pro->product_name}} </a>
                             </td>
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group quantity mx-auto justify-content-center" style="width:110px;" >
                                     <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m " >
                                         <a href="{{url('/')}}/dec/{{$cat->id}}/user_id/{{$cat->user_id}}">
                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                         </a>
                                     </div>
-                                    <input class="mtext-104 cl3 txt-center num-product" readonly type="number" step="1" min="1" max="" name="quantity" value="{{$cat->quantity}}" title="Qty" size="4" pattern="" inputmode="" style=";width:70px">
+                                    <input class="mtext-104 cl3 txt-center num-product" readonly type="number" step="1" min="1" max="" name="quantity" value="{{$cat->quantity}}" title="Qty" size="4" pattern="" inputmode="" style="width:40px;">
                                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m quantity">
                                         <a href="{{url('/')}}/inc/{{$cat->id}}/user_id/{{$cat->user_id}}">
                                         <i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -289,8 +289,8 @@
 
 @else
 
-        <h4 class="shopping-crt" align="center">Your cart is currently empty!</h4>
-        <div align="center"><a href="{{url('/')}}">Continue Shopping</a></div>
+        <h4 class="shopping-crt text-center">Your cart is currently empty!</h4>
+        <div class="text-center continue_shop"><a href="{{url('/')}}">Continue Shopping</a></div>
 
 
 @endif

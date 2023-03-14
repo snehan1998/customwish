@@ -127,6 +127,8 @@ input[type='radio'] {
                     </div>
 
                 <div class="shipping_addbox" id="displayaddres">
+                    <div class="shipping_addbox_inner">
+                    </div>
                     <!--<div class="d-flex justify-content-between">
                         <div class="add_left">
                             <p><b>Jagadeesh</b></p>
