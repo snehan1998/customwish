@@ -449,7 +449,7 @@ class WebsiteController extends Controller
         //return $request->charmvalue;
         $selectop = ProductSelectOption::where('id',$request->charmvalue)->where('product_id', $request->product)->first();
         if ($request->charmvalue) {
-            $att = StoreCartCharm::where('product_select_id',$selectop->product_select_id)->where('user_id', Auth::user()->id)->where('product_id', $request->product)->first();
+            $att = StoreCartCharm::where('product_select_id',$selectop->product_select_id)->where('user_id', Auth::user()->id)->where('product_id', $request->product)->whereNull('cart_stored')->first();
             if ($att) {
                 $store = StoreCartCharm::where('product_select_id',$selectop->product_select_id)->where('user_id', Auth::user()->id)->where('product_id', $request->product)
                 ->update(['session_id' => Session::getId(),'user_id'=>Auth::user()->id ,'charm_id' => $request->charmvalue ,'charm_price' => $selectop->product_select_option_price,'combo_id'=>$request->combo_idd]);

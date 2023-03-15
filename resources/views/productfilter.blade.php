@@ -164,7 +164,7 @@
                                     @if (in_array($pricee->id, explode(',', $priceee)))
                                             checked
                                         @endif
-                                    >
+                                        onclick="filterResults()">
                                     <label for="price{{$pricee->id}}">{{ $pricee->title }}</label>
                                 </div>
                                 @endforeach
@@ -177,14 +177,14 @@
                                 <input name="stock" type="checkbox" value="instock" id="stock"
                                 @if (in_array('instock', explode(',', $stockk)))
                                 checked
-                                @endif>
+                                @endif onclick="filterResults()">
                                 <label for="stock">Instock</label>
                                 </div>
                                 <div class="custom-style">
                                 <input name="stock" type="checkbox" value="outofstock" id="stockk"
                                 @if (in_array('outofstock', explode(',',$stockk)))
                                     checked
-                                @endif>
+                                @endif onclick="filterResults()">
                                 <label for="stockk">Outofstock</label>
                                 </div>
                             </div>

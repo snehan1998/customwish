@@ -136,7 +136,7 @@
     <article class="collapse sidebarnav" id="top-filter">
 	    <div class="card card-body">
 		  <div class="container">
-		  
+
 		</div>
 		</div>
 
@@ -163,7 +163,7 @@
                                         @if (in_array($pricee->id, explode(',', $priceee)))
                                                 checked
                                             @endif
-                                        >
+                                            onclick="filterResults()">
                                         <label for="price{{$pricee->id}}">{{ $pricee->title }}</label>
                                     </div>
                                     @endforeach
@@ -173,14 +173,14 @@
                                 <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll">
                                     <h5>Stock Status</h5>
                                     <div class="custom-style">
-                                    <input name="stock" type="checkbox" value="instock" id="stock"
+                                    <input name="stock" type="checkbox" value="instock" id="stock" onclick="filterResults()"
                                     @if (in_array('instock', explode(',', $stockk)))
                                     checked
-                                    @endif>
+                                    @endif onclick="filterResults()">
                                     <label for="stock">Instock</label>
                                     </div>
                                     <div class="custom-style">
-                                    <input name="stock" type="checkbox" value="outofstock" id="stockk"
+                                    <input name="stock" type="checkbox" value="outofstock" id="stockk" onclick="filterResults()"
                                     @if (in_array('outofstock', explode(',',$stockk)))
                                         checked
                                     @endif>
@@ -188,7 +188,41 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll" style="display:none;">
+                                <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll">
+                                    <h5>Discount</h5>
+                                    <?php $discount=App\Models\FilterDiscount::get(); ?>
+                                    <?php $counter2=0; ?>
+                                    @if(!empty($discount))
+                                    @foreach ($discount as $discount)
+                                    <div class="custom-style">
+                                        <input name="discount" type="checkbox" value="{{$discount->id}}" id="discount{{$discount->id}}" onclick="filterResults()"
+                                        @if (in_array($discount->id, explode(',', $discountt)))
+                                        checked
+                                        @endif>
+                                        <label for="discount{{$discount->id}}">{{ $discount->dtitle }}</label>
+                                    </div>
+                                    @endforeach
+                                    @endif
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll">
+                                    <h5>Category</h5>
+                                    <?php $category=App\Models\Category::get(); ?>
+                                    <?php $counter3=0; ?>
+                                    @if(!empty($category))
+                                    @foreach ($category as $category)
+                                    <div class="custom-style">
+                                        <input name="categoryy" type="checkbox" value="{{$category->id}}" id="categoryy{{$category->id}}" onclick="filterResults()"
+                                        @if (in_array($category->id, explode(',', $categoryy)))
+                                        checked
+                                        @endif>
+                                        <label for="categoryy{{$category->id}}">{{ $category->cat_name }}</label>
+                                    </div>
+                                    @endforeach
+                                    @endif
+                                </div>
+
+                            <!--    <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll" style="display:none;">
                                 <h5>Attribute</h5>
                                 <?php $counter=0;
                                 ?>
@@ -209,16 +243,16 @@
                                     @endif
                                 </div>
 
-                            <div class="col-md-12 col-sm-12 text-center">
-                                <div class="buttom-gorup">
-                            <button type="submit" id="filter" class="submit-bnt">Submit</button>
-                            </div>
+                                    <div class="col-md-12 col-sm-12 text-center">
+                                        <div class="buttom-gorup">
+                                    <button type="submit" id="filter" class="submit-bnt">Submit</button>
+                                    </div>
 
-                            <div class="buttom-gorup">
-                                <form method="get" action="{{url('/')}}/sub/{{$sub->id}}">
-                                    <button type="submit" class="submit-bnt">Reset</button>
-                                </form> </div>
-                            </div>
+                                    <div class="buttom-gorup">
+                                        <form method="get" action="{{url('/')}}/sub/{{$sub->id}}">
+                                            <button type="submit" class="submit-bnt">Reset</button>
+                                        </form> </div>
+                                    </div>-->
 
 		            </div>
                 </div>
@@ -338,7 +372,7 @@
                             </div>
                         </div>
                     </div>
-        
+
     </div>
     <!-- Products End -->
 
@@ -346,7 +380,7 @@
 <!--======================================= Trending Products============================================--->
 @if($trend->count() > 0)
 <div class="container pt-5 pb-3">
-	
+
         <h2 class="section-title position-relative text-center mb-4" data-aos="fade-up" data-aos-delay="400" >Trending Products
         <div class="right_viewall"><a href="{{url('/cp/trend')}}" class="btn btn-primary mr-0">View All</a></div>
         </h2>

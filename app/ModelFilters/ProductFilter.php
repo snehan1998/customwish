@@ -19,7 +19,10 @@ class ProductFilter extends ModelFilter
     {
         return $this->whereIn('stock_status',explode(',', $stock));
     }
-
+    public function categoryy($cat)
+    {
+        return $this->whereIn('category_id',explode(',', $cat));
+    }
     public function attribute($attribute)
     {
         return $this->whereHas('variationn', function($que) use ($attribute)
@@ -180,6 +183,100 @@ class ProductFilter extends ModelFilter
             return $this->whereHas('productprice', function ($query)  {
                 return $query->whereBetween('price',[6000,8000])->orwhereBetween('price',[8000,10000]);
             });
+        }
+
+    }
+
+
+    public function discount($idd)
+    {
+        if ($idd == 1) {
+            return $this->whereBetween('discount',[0,20]);
+        }elseif($idd == 2){
+            return $this->whereBetween('discount',[20,40]);
+        }elseif($idd == 3){
+            return $this->whereBetween('discount',[40,60]);
+        }elseif($idd == 4){
+            return $this->whereBetween('discount',[60,80]);
+        }elseif($idd == 5){
+            return $this->whereBetween('discount',[80,100]);
+        }elseif($idd == '1,2,3,4,5'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[60,80])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '1,2,3,4'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[60,80]);
+        }elseif($idd == '1,2,3,5'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[40,60])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '1,2,4,5'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[60,80])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '1,3,4,5'){
+            return $this->whereBetween('discount',[0,20])
+            ->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[60,80])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '2,3,4,5'){
+            return $this->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[60,80])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '2,3,4'){
+            return $this->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[60,80]);
+        }elseif($idd == '2,3,5'){
+            return $this->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[40,60])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '2,4,5'){
+            return $this->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[60,80])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '3,4,5'){
+            return $this->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[60,80])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '1,2,3'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[40,60]);
+        }elseif($idd == '1,3,4'){
+            return $this->whereBetween('discount',[0,20])
+            ->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[60,80]);
+        }elseif($idd == '1,4,5'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[60,80])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '1,2,4'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[60,80]);
+        }elseif($idd == '1,2,5'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '1,2'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[20,40]);
+        }elseif($idd == '1,3'){
+            return $this->whereBetween('discount',[0,20])
+            ->orwhereBetween('discount',[40,60]);
+        }elseif($idd == '1,4'){
+            return $this->whereBetween('discount',[0,20])->orwhereBetween('discount',[60,80]);
+        }elseif($idd == '1,5'){
+            return $this->whereBetween('discount',[0,20])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '2,3'){
+            return $this->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[40,60]);
+        }elseif($idd == '2,4'){
+            return $this->orwhereBetween('discount',[20,40])->orwhereBetween('discount',[60,80]);
+        }elseif($idd == '2,5'){
+            return $this->orwhereBetween('discount',[20,40])
+            ->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '3,4'){
+            return $this->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[60,80]);
+        }elseif($idd == '3,5'){
+            return $this->orwhereBetween('discount',[40,60])->orwhereBetween('discount',[80,100]);
+        }elseif($idd == '4,5'){
+            return $this->orwhereBetween('discount',[60,80])
+            ->orwhereBetween('discount',[80,100]);
         }
 
     }

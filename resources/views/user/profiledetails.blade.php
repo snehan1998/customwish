@@ -52,6 +52,10 @@
                                         <label class="control-label">Date of Birth</label><span class="text-danger">*</span>
                                         <input class="form-control" type="date" name="dob" value="{{$user->dob}}" required/>
                                     </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12 mb-3">
+                                        <label class="control-label">Anniversary</label>
+                                        <input class="form-control" type="date" name="anniversary" value="{{$user->anniversary}}"/>
+                                    </div>
                                     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
                                         <label>Male
                                         <input class="form-control" type="radio" name="gender" value="male" required @if($user->gender == 'male') checked @endif/>
@@ -60,6 +64,11 @@
                                     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12 mb-2">
                                         <label>Female
                                         <input class="form-control" type="radio" name="gender" value="female" @if($user->gender == 'female') checked @endif/>
+                                        </label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12 mb-2">
+                                        <label>Others
+                                        <input class="form-control" type="radio" name="gender" value="others" @if($user->gender == 'others') checked @endif/>
                                         </label>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">

@@ -61,6 +61,7 @@ class UserDashboardController extends Controller
             'pincode'=>$request->pincode,
             'gender'=>$request->gender,
             'dob'=>$request->dob,
+            'anniversary' => $request->anniversary,
         ]);
 
             $user = User::find($id);

@@ -510,6 +510,7 @@ input[type="radio"].btn.btn-primary-sign {
     <div class="row mb-3">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="{{url('/')}}">Home</a>
                 <a class="breadcrumb-item text-dark" href="{{url('/cat')}}/{{$cat->id}}">{{$cat->cat_name}}</a>
                 @if($sub != "")<a class="breadcrumb-item text-dark" href="{{url('/sub')}}/{{$sub->id}}">{{$sub->subcat_name}}</a>@endif
                 @if($child != "")<a class="breadcrumb-item text-dark" href="">{{$child->childcat_name}}</a>@endif
@@ -1033,7 +1034,7 @@ input[type="radio"].btn.btn-primary-sign {
                 <div class="col-lg-12 pure-veg">
                     <h5>Gift-Wrap:</h5>
                     <p style="display: flex;"><input type="checkbox" name="giftwrap" data-gif="{{$product->giftwrapper_price}}" id="giftwrap" class="giftwrap{{$product->id}}" style="width: 20px;" onclick="myFunction(); gettotal();"><span style="padding-left: 10px;">Add Gift wrap(+₹{{$product->giftwrapper_price}})</span></p>
-                    <input type="hidden" class="giftwrap_price" id="giftwrappr" name="giftwrap_price" value="{{$product->giftwrapper_price}}">
+                    <input type="hidden" class="giftwrap_price{{$product->id}}" id="giftwrappr" name="giftwrap_price" value="{{$product->giftwrapper_price}}">
                 </div>
             </div>
             <div class="row" id="nonvegprice">
@@ -1267,7 +1268,10 @@ input[type="radio"].btn.btn-primary-sign {
                 'Added!',
                 'Product Added to Cart',
                 'success'
-                )
+                ).then((result) => {
+                // Reload the Page
+                window.location.replace('/cart');
+                });
             }else if(response.status == 'out'){
                 Swal.fire(
                         'Added!',
@@ -1860,7 +1864,7 @@ $prodimg = App\Models\ProductImage::where('product_id', $product->id)->whereNull
             <div class="col-lg-12 pure-veg">
                 <h5>Gift-Wrap:</h5>
                 <p style="display: flex;"><input type="checkbox" name="giftwrap" data-gif="{{$product->giftwrapper_price}}" id="giftwrap" class="giftwrap{{$product->id}}" style="width: 20px;" onclick="myFunction(); gettotal();"><span style="padding-left: 10px;">Add Gift wrap(+₹{{$product->giftwrapper_price}})</span></p>
-                <input type="hidden" class="giftwrap_price" id="giftwrappr"  data-giff="{{$product->giftwrapper_price}}" name="giftwrap_price" value="{{$product->giftwrapper_price}}">
+                <input type="hidden" class="giftwrap_price{{$product->id}}" id="giftwrappr"  data-giff="{{$product->giftwrapper_price}}" name="giftwrap_price" value="{{$product->giftwrapper_price}}">
             </div>
         </div>
         <div class="row" id="nonvegprice">
@@ -2038,7 +2042,10 @@ $('.add-to-procartt11<?php echo $product->id; ?>').click(function(e){
                 'Added!',
                 'Product Added to Cart',
                 'success'
-                )
+                ).then((result) => {
+                // Reload the Page
+                window.location.replace('/cart');
+                });
             }else if(response.status == 'error'){
                 Swal.fire(
                     response.msg
@@ -2420,7 +2427,10 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
                                         'Added!',
                                         'Product Added to Wishlist',
                                         'success'
-                                        )
+                                        ).then((result) => {
+                                        // Reload the Page
+                                        window.location.replace('/cart');
+                                        });
                                     }else if(response.status == 'exists'){
                                         Swal.fire(
                                         'Already Exists',
@@ -2542,7 +2552,10 @@ $('.checkadd-to-procart<?php echo $product->id; ?>').click(function(e){
                                             'Added!',
                                             'Product Added to Wishlist',
                                             'success'
-                                            )
+                                            ).then((result) => {
+                                            // Reload the Page
+                                            window.location.replace('/cart');
+                                            });
                                         }else if(response.status == 'exists'){
                                             Swal.fire(
                                             'Already Exists',

@@ -22,6 +22,10 @@ class Product extends Model
 
     private static $whiteListFilter =['*'];
 
+    public function productrequired()
+    {
+        return $this->hasOne(ProductRequired::class);
+    }
     public function subcategory()
     {
         return $this->belongsTo(SubCategory::class,'subcategory_id');

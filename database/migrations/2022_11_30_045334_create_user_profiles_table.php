@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('email',1000)->nullable();
             $table->string('phone',1000)->nullable();
             $table->string('dob',1000)->nullable();
-            $table->enum('gender',['Male','Female'])->nullable();
+            $table->string('anniversary',1000)->nullable();
+            $table->enum('gender',['male','female','others'])->nullable();
             $table->string('country',1000)->nullable();
             $table->string('state',1000)->nullable();
             $table->string('city',1000)->nullable();
