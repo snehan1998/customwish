@@ -1,5 +1,10 @@
 @push('after-styles')
 <link href="{{asset('css/custstyle.css')}}" rel="stylesheet"/>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="_token" content="{{ csrf_token() }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <style>
     h2.per {
   font-size: 22px;
@@ -7,9 +12,9 @@
 input[type='radio'] {
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: 35px;
-    height: 35px;
-    margin: 5px 16px 5px 0px;
+    width: 20px;
+    height: 20px;
+    margin: 3px 8px 0px 0px;
     /* background-size: 225px 70px; */
     position: relative;
     float: left;
@@ -19,7 +24,7 @@ input[type='radio'] {
     z-index: 99999;
     cursor: pointer;
     /* box-shadow: 0px 1px 1px #000; */
-    border: 6px double #c2272d;
+    border: 5px solid #ccc;
 }
 </style>
 @endpush
@@ -27,78 +32,116 @@ input[type='radio'] {
 @section('title', 'Checkout')
 @section('content')
 <div class="shop-ccc">
+    <div class="checkout_sec">
     <!-- Cart Start -->
-    <div class="container-fluid" >
-        <div class="row ">
-            <div class="col-lg-8 loginbox" style="padding:30px;">
+    <div class="container" >
+        <div class="row mt-5">
+            <div class="col-lg-8 ">
+            <div class="loginbox m-0">
 				<div class="row" style="">
-					<div class="col-lg-8">
+					<div class="col-lg-12">
 						<h2 class="per">PERSONAL INFORMATION</h2>
 					</div>
+                    <div class="col-lg-12" id="newshowdiss" style="display: block">
+                        <div class="ship_addres">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select Available Addresses</label>
+                            <select class="form-control inputclass" name="address_select" id="exampleFormControlSelect1" oninput="displayaddresss();" required>
+                                <option value="">Select Address</option>
+                                <option><a class="add_new_add">+ Add a new address </a></option>
+                                @foreach($address as $address)
+                                <option value="{{$address->id}}">{{$address->address}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        </div>
+                    </div>
 				</div>
+
+
 				<div class="row">
 				<div class="col-lg-12">
                 <form method="post" action="{{url('/placeorderbuy',$CartID)}}">
                 @csrf
-				<div class="row">
-					<div class="col-lg-6">
-						<input type="email" name="shipping_email" id="shipping_email" value="{{$user->email}}" class="inputclass" placeholder="Email" required>
-					</div>
-					<div class="col-lg-6">
-					    <input type="tel" name="shipping_phone" id="shipping_phone" value="{{$user->phone}}"  class="inputclass" placeholder="Number" required>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6">
-						<input type="text" name="shipping_firstname" id="shipping_firstname" value="{{$user->name}}" class="inputclass" placeholder="First Name" required>
-					</div>
-					<div class="col-lg-6">
-						<input type="text" name="shipping_lastname" id="shipping_lastname"  class="inputclass" placeholder="Last Name">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<textarea name="shipping_address1" id="shipping_address1" class="inputclass"  placeholder="Address Line 1">{{$user->address}}</textarea>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<textarea name="ship_address2" id="shipping_address2" class="inputclass" placeholder="Address Line 2"></textarea>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-3">
-						<input type="text" name="shipping_pincode" id="shipping_pincode" class="inputclass" value="{{$user->pincode}}" placeholder="Pincode">
-					</div>
-					<div class="col-lg-3">
-						<input type="text" name="shipping_city" id="shipping_city" class="inputclass" value="{{$user->city}}" placeholder="City">
-					</div>
-					<div class="col-lg-3">
-						<input type="text" name="shipping_country" id="shipping_country" value="{{$user->country}}" class="inputclass" placeholder="Country">
-					</div>
-					<div class="col-lg-3">
-						<input type="text" name="shipping_state" id="shipping_state" value="{{$user->state}}" class="inputclass" placeholder="State">
-					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-12">
-						<label>Adress Type</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-2">
-						<input type="radio" class="form-control" value="home"  placeholder="" name="address_type" id="home" checked>
-                        <label for="home"> Home</label>
-					</div>
-					<div class="col-lg-2">
-						<input type="radio" class="form-control" value="office" name="address_type" id="office"  placeholder="">
-                        <label for="office"> Office </label>
-					</div>
-					<div class="col-lg-2">
-						<input type="radio" class="form-control" value="other" placeholder="" name="address_type" id="other">
-                        <label for="other"> Other </label>
-					</div>
+                <div id="newshow" style="display: none">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="email" name="shipping_email" id="shipping_email" value="{{$user->email}}" class="inputclass" placeholder="Email" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="tel" name="shipping_phone" id="shipping_phone" value="{{$user->phone}}"  class="inputclass" placeholder="Number" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="text" name="shipping_firstname" id="shipping_firstname" value="{{$user->name}}" class="inputclass" placeholder="First Name" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" name="shipping_lastname" id="shipping_lastname"  class="inputclass" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <textarea name="shipping_address1" id="shipping_address1" class="inputclass"  placeholder="Address Line 1">{{$user->address}}</textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <textarea name="ship_address2" id="shipping_address2" class="inputclass" placeholder="Address Line 2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <input type="text" name="shipping_pincode" id="shipping_pincode" class="inputclass" value="{{$user->pincode}}" placeholder="Pincode">
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" name="shipping_city" id="shipping_city" class="inputclass" value="{{$user->city}}" placeholder="City">
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" name="shipping_country" id="shipping_country" value="{{$user->country}}" class="inputclass" placeholder="Country">
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" name="shipping_state" id="shipping_state" value="{{$user->state}}" class="inputclass" placeholder="State">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Adress Type</label>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-lg-2">
+                            <input type="radio" class="form-control" value="home"  placeholder="" name="address_type" id="home" checked>
+                            <label for="home" class="mb-0"> Home</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="radio" class="form-control" value="office" name="address_type" id="office"  placeholder="">
+                            <label for="office" class="mb-0"> Office </label>
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="radio" class="form-control" value="other" placeholder="" name="address_type" id="other">
+                            <label for="other" class="mb-0"> Other </label>
+                        </div>
+                    </div>
+                    </div>
+
+                <div class="shipping_addbox" id="displayaddres">
+                    <div class="shipping_addbox_inner">
+                    </div>
+                    <!--<div class="d-flex justify-content-between">
+                        <div class="add_left">
+                            <p><b>Jagadeesh</b></p>
+                            <p>
+                                <span>Bangalore, Bangalore, Karnataka, India , 572109</span>
+                                <span><label>Phone: </label>9876543210</span>
+                                <span><label>Email: </label>jags@customwish.com</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="add_right">Default</p>
+                        </div>
+                    </diV>-->
                 </div>
 				<div class="row">
 					<div class="col-lg-12">
@@ -106,6 +149,7 @@ input[type='radio'] {
 					</div>
 				</div>
 			<!--form-->
+            </div>
 		</div>
 	</div>
 </div>
@@ -231,5 +275,62 @@ input[type='radio'] {
 
 
 @push('after-scripts')
+<script>
+    function displayaddresss() {
+        $('select[name="address_select"] option:selected').each(function () {
+            var add_select = $(this).attr('value');
+            $("#displayaddres").html('');
+                $.ajax({
+                url: "{{url('/displayaddress')}}",
+                type: "POST",
+                data: { 'add_select':add_select, _token: '{{csrf_token()}}' },
+                dataType: 'JSON',
+                success:function(data)
+                {
+                    if(data.name == undefined){
+                        console.log(data.name);
+
+                        document.getElementById("newshow").style.display="block";
+                        document.getElementById("newshowdiss").style.display="none";
+
+                    }else{
+                        document.getElementById("newshow").style.display="none";
+                        document.getElementById("newshowdiss").style.display="block";
+
+                        var dispchrpri = "";
+                        $("#displayaddres").html(data);
+                        dispchrpri += '<input type="hidden" name="charmprice" class="charmmprice" value="'+data+'">'+
+                                        '<input type="hidden" name="shipping_email" class="shipping_email" id="shipping_email" value="'+data.email+'">'+
+                                        '<input type="hidden" name="shipping_phone" id="shipping_phone" class="charmmprice" value="'+data.phone+'">'+
+                                        '<input type="hidden" name="shipping_firstname" id="shipping_firstname" class="charmmprice" value="'+data.name+'">'+
+                                        '<input type="hidden" name="shipping_lastname" id="shipping_lastname" class="charmmprice" value="'+data+'">'+
+                                        '<input type="hidden" name="shipping_address1" id="shipping_address1" class="charmmprice" value="'+data.address+'">'+
+                                        '<input type="hidden" name="ship_address2" id="shipping_address2" class="charmmprice" value="'+data.address+'">'+
+                                        '<input type="hidden" name="shipping_pincode" id="shipping_pincode" class="charmmprice" value="'+data.pincode+'">'+
+                                        '<input type="hidden" name="shipping_city" id="shipping_city" class="charmmprice" value="'+data.city+'">'+
+                                        '<input type="hidden" name="shipping_country" id="shipping_country" class="charmmprice" value="'+data.country+'">'+
+                                        '<input type="hidden" name="shipping_state" id="shipping_state" class="charmmprice" value="'+data.state+'">'+
+                                        '<input type="hidden" name="address_type"  id="address_type" class="charmmprice" value="'+data.address_type+'">'+
+                                        '<div class="d-flex justify-content-between">'+
+                                        '<div class="add_left">'+
+                                            '<p><b>'+data.name+'</b></p>'+
+                                                '<p>'+
+                                                    '<span>'+data.address+','+data.city+', '+data.state+', '+data.country+' , '+data.pincode+'</span>'+
+                                                    '<span><label>Phone: </label> '+data.phone+'</span>'+
+                                                    '<span><label>Email: </label> '+data.email+'</span>'+
+                                                '</p>'+
+                                            '</div>'+
+                                            '<div>'+
+                                            '</div>'+
+                                        '</diV>';
+                        $('#displayaddres').append(dispchrpri);
+                    }
+                }
+            });
+
+        });
+    }
+    </script>
+
 @endpush
 @endsection

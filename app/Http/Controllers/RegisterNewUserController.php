@@ -38,6 +38,7 @@ class RegisterNewUserController extends Controller
                $data1=new UserProfile();
                $data1->user_id=$user->id;
                $data1->dob = $request->dob;
+               $data1->anniversary = $request->anniversary;
                $data1->gender = $request->gender;
                $data1->email = $request->email;
                $data1->name = $request->name;

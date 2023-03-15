@@ -38,6 +38,10 @@
                                 <x-jet-input id="name" class="block mt-1 w-full inputclass" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                             </div>
                             <div class="col-lg-12 mb-3">
+                                <x-jet-label for="adob" value="{{ __('Anniversary') }}" />
+                                <x-jet-input id="adob" class="block mt-1 w-full inputclass" type="date" name="anniversary" :value="old('anniversary')"  autofocus autocomplete="anniversary" />
+                            </div>
+                            <div class="col-lg-12 mb-3">
                                 <x-jet-label for="dob" value="{{ __('Date of Birth') }}" />
                                 <x-jet-input id="dob" class="block mt-1 w-full inputclass" type="date" name="dob" :value="old('dob')" required autofocus autocomplete="dob" />
                             </div>
@@ -51,9 +55,13 @@
                                         <x-jet-label for="female" value="{{ __('Female') }}" />
                                         <x-jet-input id="female" class="form-control" type="radio" name="gender" value="female" />
                                     </div>
+                                    <div>
+                                        <x-jet-label for="others" value="{{ __('Others') }}" />
+                                        <x-jet-input id="others" class="form-control" type="radio" name="gender" value="others" />
+                                    </div>
                                 </div>
                             </div>
-                                
+
 
                             <div class="col-lg-12">
                                 <x-jet-label for="email" value="{{ __('Email') }}" />
@@ -113,7 +121,7 @@
         </div>
     </div>
 
-    
+
 <br>
 <br>
 @push('after-scripts')

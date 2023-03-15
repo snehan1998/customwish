@@ -20,7 +20,7 @@ class FilterController extends Controller
 
         }else{
 
-            $products = Product::where('status','Active')->filter($request->all())->get();
+             $products = Product::where('status','Active')->filter($request->all())->get();
 
         }
         $stockk= $request->stock;

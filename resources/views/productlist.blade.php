@@ -103,7 +103,7 @@ nav.bg-light{
                             @if(!empty($pricee))
                             @foreach ($pricee as $pricee)
                             <div class="custom-style">
-                                <input name="price" type="checkbox" value="{{$pricee->id}}" id="price{{$pricee->id}}">
+                                <input name="price" type="checkbox" value="{{$pricee->id}}" id="price{{$pricee->id}}" onclick="filterResults()">
                                 <label for="price{{$pricee->id}}">{{ $pricee->title }}</label>
                             </div>
                             @endforeach
@@ -113,11 +113,11 @@ nav.bg-light{
                         <div class="col-md-12 col-sm-12 col-lg-12 vendors-list scroll">
                             <h5>Stock Status</h5>
                             <div class="custom-style">
-                            <input name="stock" type="checkbox" value="instock" id="stock">
+                            <input name="stock" type="checkbox" value="instock" id="stock" onclick="filterResults()">
                             <label for="stock">Instock</label>
                             </div>
                             <div class="custom-style">
-                            <input name="stock" type="checkbox" value="outofstock" id="stockk">
+                            <input name="stock" type="checkbox" value="outofstock" id="stockk" onclick="filterResults()">
                             <label for="stockk">Outofstock</label>
                             </div>
                         </div>

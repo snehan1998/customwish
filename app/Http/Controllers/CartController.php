@@ -2547,6 +2547,10 @@ class CartController extends Controller
                                     $cart->save();
 
                                     $cart_counter = Cart::where('user_id', Auth::user()->id)->count('id');
+                                    $charmcart = StoreCartCharm::where('product_id', $request->product_id)->where('user_id', Auth::user()->id)->update([
+                                        'cart_stored' => '1',
+                                    ]);
+
                                   //  $desch = StoreCartCharm::where('session_id', Session::getId())->where('product_id', $request->product_id)->delete();
                                     $des = StoreCartAttribute::where('session_id', Session::getId())->where('product_id', $request->product_id)->delete();
                                     return response()->json(['status'=>'success','msg' => 'Product Added successfully','cart_counter' => $cart_counter]);
@@ -2986,6 +2990,10 @@ class CartController extends Controller
                                 }
                                 $cart->save();
                                 $cart_counter = Cart::where('user_id', Auth::user()->id)->count('id');
+                                $charmcart = StoreCartCharm::where('product_id', $request->product_id)->where('user_id', Auth::user()->id)->update([
+                                    'cart_stored' => '1',
+                                ]);
+
                                 //$desch = StoreCartCharm::where('session_id', Session::getId())->where('product_id', $request->product_id)->delete();
                                 $des = StoreCartAttribute::where('session_id', Session::getId())->where('product_id', $request->product_id)->delete();
                                 return response()->json(['status'=>'success','msg' => 'Product Added successfully','cart_counter' => $cart_counter]);

@@ -36,7 +36,8 @@ class LoginController extends Controller
                 {
                     return redirect('admin/dashboard');
                 }else{
-                    return redirect('user/dashboard');
+                    return redirect('/');
+                    // return redirect('user/dashboard');
                 }
             }
             return redirect('/login')->with('flash_error','Username/Password is wrong!!!!');

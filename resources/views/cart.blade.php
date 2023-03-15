@@ -88,7 +88,7 @@
                                 <p><strong>Comment:</strong></p>
                                 <p>{{$procar->comment}}</p>
                                 @endif
-                                @if($procar->description != "undefined" && $procar->description != null  && $procar->comment != "")
+                                @if($procar->description != "undefined" && $procar->description != null  && $procar->description != "")
                                 @if($pro->textareaa == 1)
                                 <p><strong>{{$pro->textarea_name}}:</strong></p>
                                 <p>{{$procar->description}}</p>
@@ -98,47 +98,47 @@
                                 <p><strong>Gift Wrap Price:</strong></p>
                                 <p>₹{{$procar->giftwrap_price}}</p>
                                 @endif
-                                @if($procar->pickup_type != "undefined" && $procar->pickup_type != null  && $procar->comment != "")
+                                @if($procar->pickup_type != "undefined" && $procar->pickup_type != null  && $procar->pickup_type != "")
                                 <p><strong>Pickup Type:</strong></p>
                                 <p>{{$procar->pickup_type}}</p>
                                 @endif
-                                @if($procar->datee != "undefined" && $procar->datee != null  && $procar->comment != "")
+                                @if($procar->datee != "undefined" && $procar->datee != null  && $procar->datee != "")
                                 <p><strong>Date:</strong></p>
                                 <p>{{$procar->datee}}</p>
                                 @endif
-                                @if($procar->timee != "undefined" && $procar->timee != null  && $procar->comment != "")
+                                @if($procar->timee != "undefined" && $procar->timee != null  && $procar->timee != "")
                                 <p><strong>Time:</strong></p>
                                 <p>{{$procar->timee}}</p>
                                 @endif
-                                @if($procar->flowerss_type != "undefined" && $procar->flowerss_type != null  && $procar->comment != "")
+                                @if($procar->flowerss_type != "undefined" && $procar->flowerss_type != null  && $procar->flowerss_type != "")
                                 <p><strong>Flower Type:</strong></p>
                                 <p>{{$procar->flowerss_type}}</p>
                                 @endif
-                                @if($procar->location != "undefined" && $procar->location != null  && $procar->comment != "")
+                                @if($procar->location != "undefined" && $procar->location != null  && $procar->location != "")
                                 <p><strong>Location:</strong></p>
                                 <p>{{$procar->location}}</p>
                                 @endif
-                                @if($procar->colortype != "undefined" && $procar->colortype != null  && $procar->comment != "")
+                                @if($procar->colortype != "undefined" && $procar->colortype != null  && $procar->colortype != "")
                                 <p><strong> Color:</strong></p>
                                 <p>{{$procar->colortype}}</p>
                                 @endif
-                                @if($procar->printside != "undefined" && $procar->printside != null  && $procar->comment != "")
+                                @if($procar->printside != "undefined" && $procar->printside != null  && $procar->printside != "")
                                 <p><strong>Front And BackPrint:</strong></p>
                                 <p>{{$procar->printside}}</p>
                                 @endif
-                                @if($procar->addtext1 != "undefined" && $procar->addtext1 != null  && $procar->comment != "")
-                                @if($pro->addatext_option == 1)
-                                <p><strong>{{$pro->addatext_heading}}:</strong></p>
+                                @if($procar->addtext1 != "undefined" && $procar->addtext1 != null  && $procar->addtext1 != "")
+                                @if($pro->text_field == 1)
+                                <p><strong>{{$pro->text_heading}}:</strong></p>
                                 <p>{{$procar->addtext1}}</p>
                                 @endif
                                 @endif
-                                @if($procar->addtext2 != "undefined" && $procar->addtext2 != null  && $procar->comment != "")
-                                @if($pro->text_field == 1)
-                                <p><strong>{{$pro->text_heading}}:</strong></p>
+                                @if($procar->addtext2 != "undefined" && $procar->addtext2 != null  && $procar->addtext2 != "")
+                                @if($pro->addatext_option == 1)
+                                <p><strong>{{$pro->addatext_heading}}:</strong></p>
                                 <p>{{$procar->addtext2}}</p>
                                 @endif
                                 @endif
-                                @if($procar->egg_type != "undefined" && $procar->egg_type != null  && $procar->comment != "")
+                                @if($procar->egg_type != "undefined" && $procar->egg_type != null  && $procar->egg_type != "")
                                 <p><strong>Egg Type:</strong></p>
                                 <p>{{$procar->egg_type}}</p>
                                 @endif
