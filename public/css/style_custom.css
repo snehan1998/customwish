@@ -1663,6 +1663,15 @@ button.logbtn1 {
     right: 15px;
 }
 
+.navigation-box i {
+    margin-right: 10px;
+    
+}
+.navigation-box a:hover{
+    background-color: #ce1219;
+    color: #fff;
+}
+
 @media only screen and (max-width: 600px){
     .container {
         padding: 0px 9px;

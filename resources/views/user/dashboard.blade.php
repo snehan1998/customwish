@@ -37,7 +37,7 @@
 
                             <div class="col-lg-4">
                             <div class="navigation-box">
-                            <a href="{{url('/user/wishlist')}}">  <i class="fa fa-heart" aria-hidden="true" style="color:black;"></i> Wishlist</a>
+                            <a href="{{url('/user/wishlist')}}">  <i class="fa fa-heart" aria-hidden="true" ></i> Wishlist</a>
                             </div>
                             </div>
 
@@ -49,7 +49,7 @@
 
                             <div class="col-lg-4">
                             <div class="navigation-box">
-                            <a href="{{url('/user/profiledetails')}}"> <i class="fa fa-user" aria-hidden="true" style="color:#555555"></i>Profile Details</a>
+                            <a href="{{url('/user/profiledetails')}}"> <i class="fa fa-user" aria-hidden="true"></i>Profile Details</a>
                             </div>
                             </div>
 
